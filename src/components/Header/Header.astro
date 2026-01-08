@@ -3,10 +3,10 @@ import MainLogo from './MainLogo.astro';
 import {LanguageButton} from './LanguageButton.jsx';
 ---
 
-<header>
+<header class="header">
     <MainLogo/>
-    <nav>
-        <ul>
+    <nav class="header-nav">
+        <ul class="header-nav__list">
             <li><a href="/home">Home</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/process">Process</a></li>
@@ -17,6 +17,27 @@ import {LanguageButton} from './LanguageButton.jsx';
     <LanguageButton/>
 </header>
 <style>
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:5px 15px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .header-nav{
+
+    }
+    .header-nav__list{
+        list-style: none;
+        display: flex;
+        gap:50px
+    }
+    .header-nav__list li a{
+        text-decoration: none;
+        color:#141414;
+        font-size:1.1rem
+    }
     @media screen and (max-height: 368px) {
 
 	}
