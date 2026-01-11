@@ -1,0 +1,39 @@
+.footer{
+    background-color: #121212;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.footer ul{
+    list-style: none;
+    padding:0
+}
+.footerTop{
+    display:flex;
+    gap:300px;
+    padding:0 150px
+}
+.footerTop__logo{
+    width:500px
+}
+.logoContainer{
+    display:flex;
+    align-items: center;
+    gap:10px
+}
+.footerTop__cards{
+    display:flex;
+    align-items:start;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+.footerTop__card ul
+.footerTop__card-list li{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.footerBottom p{
+    margin:0
+}

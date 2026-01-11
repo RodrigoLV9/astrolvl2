@@ -2,12 +2,12 @@ import React from 'react'
 import { SiGmail as IconGmail} from "react-icons/si";
 import { FaPhoneAlt as IconPhone} from "react-icons/fa";
 import { BsFillGeoAltFill as IconGPS } from "react-icons/bs";
-
+import '../styles/footer.css'
 export const Footer = () => {
   return (
     <footer className="footer">
         <section className="footerTop">
-            <div className="footerTop_logo">
+            <div className="footerTop__logo">
                 <div className="logoContainer">
                     <img src="/comets.png" alt="comets" width="30" height="30" />
                     <h3>Astro LvL</h3>
@@ -36,7 +36,7 @@ export const Footer = () => {
                 </div>
                 <div className="footerTop__card">
                     <h4>Contact</h4>
-                    <ul>
+                    <ul className='footerTop__card-list'>
                         <li>
                             <IconGmail/>
                             <p>astrolvl.dev@gmail.com</p>
