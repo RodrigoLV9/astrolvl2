@@ -10,13 +10,13 @@ export const Footer = () => {
             <div className="footerTop__logo">
                 <div className="logoContainer">
                     <img src="/comets.png" alt="comets" width="30" height="30" />
-                    <h3>Astro LvL</h3>
+                    <h2>Astro LvL</h2>
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In eligendi cupiditate hic suscipit repellendus quis culpa, ullam fugiat!</p>
             </div>
             <div className="footerTop__cards">
                 <div className="footerTop__card">
-                    <h4>Services</h4>
+                    <h3>Services</h3>
                     <ul>
                         <li><a href="/home">Home</a></li>
                         <li><a href="/services">Services</a></li>
@@ -26,7 +26,7 @@ export const Footer = () => {
                     </ul>
                 </div>
                 <div className="footerTop__card">
-                    <h4>Services</h4>
+                    <h3>Services</h3>
                     <ul>
                         <li><a href="/services#web-development">Web Development</a></li>
                         <li><a href="/services#mobile-development">Mobile Development</a></li>
@@ -35,7 +35,7 @@ export const Footer = () => {
                     </ul>
                 </div>
                 <div className="footerTop__card">
-                    <h4>Contact</h4>
+                    <h3>Contact</h3>
                     <ul className='footerTop__card-list'>
                         <li>
                             <IconGmail/>
