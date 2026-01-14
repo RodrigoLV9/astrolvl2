@@ -1,0 +1,75 @@
+.hero{
+    margin-top:130px;
+    height: calc(100vh - 130px);
+    position: relative
+}
+.tag{
+    width:200px;
+    display:flex;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(46, 45, 45, 0.54);
+    padding: 8px 16px;
+    border-radius: 15px;
+    font-size: .9rem;
+    margin:auto;
+}
+.tag-icon{
+    color: #e9da0b;
+}
+/* TITLE */
+.hero__text{
+    margin:90px auto;
+    text-align: center;
+}
+.hero__text h1{
+    font-size: 3rem;
+    padding: 20px 0
+}
+.hero__text h4{
+    font-size: 1.5rem;
+    color:gray
+}
+/* BUTTONS */
+.buttons{
+    width: min-content;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:25px
+}
+.button-services{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size:1rem;
+    gap: 15px;
+    width: 200px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: none;
+    cursor:pointer
+}
+.button-contact{
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(18, 112, 211);
+    color:black;
+    font-weight: 600;
+    cursor:pointer
+}
+/* CAROUSEL */
+.carousel{
+    width:100%;
+    height: 120px;
+    background-color: rgb(25, 24, 26);
+    font-size: 5rem;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

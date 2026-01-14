@@ -1,12 +1,12 @@
 import React from 'react'
 import { FaRegLightbulb as IconLightBulb, FaArrowRightLong as IconArrowRight } from "react-icons/fa6";
 import { FaHtml5 as IconHTML} from "react-icons/fa";
-
+import '../../styles/Home/Hero.css'
 export  const Hero:React.FC = () => {
   return (
     <section className="hero">
         <div className="tag">
-            <IconLightBulb />
+            <IconLightBulb className='tag-icon'/>
             <p>Tecnologia con vision</p>
         </div>
         <div className='hero__text'>
@@ -23,6 +23,8 @@ export  const Hero:React.FC = () => {
             </button>
         </div>
         <div className="carousel">
+            <IconHTML/>
+            <IconHTML/>
             <IconHTML/>
             <IconHTML/>
             <IconHTML/>
