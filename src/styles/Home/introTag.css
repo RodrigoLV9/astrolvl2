@@ -1,0 +1,17 @@
+.introTag{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: black;
+    color: gray;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 20px;
+    border: 1px solid gray;
+    width: fit-content;
+}
+.introTag__icon{
+    color:yellow
+}
