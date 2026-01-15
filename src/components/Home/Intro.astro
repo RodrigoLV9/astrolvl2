@@ -5,11 +5,11 @@ import { IntroTag } from "./IntroTag";
 <section class="intro">
     <div class="introLeft">
         <h2>Transformamos Ideas en Realidad Digital</h2>
-        <div class="intro__text">
+        <div class="introLeft__text">
             <p>En ASTRO LVL WEB, somos un equipo de desarrolladores apasionados por crear experiencias digitales únicas. Combinamos diseño vanguardista con tecnología de punta para llevar tu negocio al siguiente nivel.</p>
             <p>Desde startups innovadoras hasta empresas consolidadas, ayudamos a nuestros clientes a destacar en el mundo digital con soluciones personalizadas y escalables.</p>
         </div>
-        <div class="intro__tags">
+        <div class="introLeft__tags">
             <IntroTag/>
             <IntroTag/>
             <IntroTag/>
@@ -21,3 +21,40 @@ import { IntroTag } from "./IntroTag";
     </div>
     
 </section>
+<style>
+    .intro{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin:130px auto;
+        width: 70vw;
+    }
+    .introLeft{
+
+    }
+    .introLeft h2{
+        margin:20px 0;
+        font-size: 1.8rem;
+    }
+    .introLeft__text{
+        width: 500px;
+        margin: 30px 0;
+    }
+    .introLeft__text p{
+        margin:15px 0;
+        line-height: 1.6;
+        color: #636363;
+    }
+    .introLeft__tags{
+        display:flex;
+        gap:10px;
+        flex-wrap: wrap;
+    }
+    
+    .introRight img{
+        width: 450px;
+        height: auto;
+        border-radius:20px;
+
+    }
+</style>
