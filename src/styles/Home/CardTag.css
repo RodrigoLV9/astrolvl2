@@ -1,0 +1,13 @@
+.cardTag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:7px
+}
+.cardTag__icon{
+    color:rgb(3, 157, 3);
+    font-size: 1.2rem;
+}
+.cardTag__text{
+    font-size: .9rem;
+}
