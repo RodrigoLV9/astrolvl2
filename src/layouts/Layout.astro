@@ -19,10 +19,18 @@ import {Footer} from "../components/Footer.tsx"
 </html>
 
 <style>
+	@font-face {
+		font-family: 'Inter'; /* Name you choose for your font */
+		src: url('/src/assets/fonts/Inter\,wght.ttf') format('woff2'); /* Path to the font file */
+		font-weight: normal; /* Define the font's weight */
+		font-style: normal;  /* Define the font's style */
+		font-display: swap;  /* Optional: Prevents render-blocking */
+	}
 	:global(*){
 		box-sizing:border-box;
 		margin: 0;
 		padding:0;
+		font-family: 'Inter',Arial, Helvetica, sans-serif;
 	}
 	html,
 	body {
