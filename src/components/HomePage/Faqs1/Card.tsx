@@ -1,6 +1,6 @@
 import React from 'react'
 import { BsArrowDownShort } from 'react-icons/bs'
-import '../../styles/Home/FaqCard.css'
+import '../../../styles/Home/FaqCard.css'
 export const Card:React.FC = () => {
   return (
     <div className="card">

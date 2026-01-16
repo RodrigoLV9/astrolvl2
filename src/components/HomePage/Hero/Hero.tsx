@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaRegLightbulb as IconLightBulb, FaArrowRightLong as IconArrowRight } from "react-icons/fa6";
 import { FaHtml5 as IconHTML} from "react-icons/fa";
-import '../../styles/Home/Hero.css'
+import '../../../styles/Home/Hero.css'
 export  const Hero:React.FC = () => {
   return (
     <section className="hero">
