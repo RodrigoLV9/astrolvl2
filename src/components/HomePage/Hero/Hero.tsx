@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaRegLightbulb as IconLightBulb, FaArrowRightLong as IconArrowRight } from "react-icons/fa6";
-import { FaHtml5 as IconHTML} from "react-icons/fa";
+import { CarouselHero } from "../../CarouselHero.tsx"
 import '../../../styles/Home/Hero.css'
 export  const Hero:React.FC = () => {
   return (
@@ -22,15 +22,7 @@ export  const Hero:React.FC = () => {
                 <p>Contacto</p>
             </button>
         </div>
-        <div className="carousel">
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-        </div>
+        <CarouselHero/>
     </section>
   )
 }
