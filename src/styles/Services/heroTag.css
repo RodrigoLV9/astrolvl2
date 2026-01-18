@@ -1,0 +1,15 @@
+.heroTag{
+    width: fit-content;
+    padding:3px 7px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    border:1px solid rgb(63, 63, 63);
+    border-radius:15px;
+}
+.heroTag__icon{
+    color: #FFD700;
+    font-size: 18px;
+}
