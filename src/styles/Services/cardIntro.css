@@ -1,0 +1,22 @@
+.cardIntro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap:25px;
+    border:1px solid rgb(61, 61, 61);
+    border-radius: 5px;
+    width:350px;
+    text-align: center;
+    padding:20px
+}
+.cardIntro-icon{
+    font-size: 1.4rem;
+}
+.cardIntro span{
+    font-weight: bolder;
+}
+.cardIntro p{
+    color:gray;
+    width:300px
+}
