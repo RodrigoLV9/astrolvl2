@@ -4,7 +4,7 @@ import { DescriptionCard } from "./DescriptionCard.tsx";
 <section class="description">
    <div class="description__text">
         <h1>Servicio completo de diseño de Landing Page</h1>
-        <h3>Queremos crear tu página web y que se destaque, pero también queremos darte el mejor servicio.</h3>
+        <p>Queremos crear tu página web y que se destaque, pero también queremos darte el mejor servicio.</p>
    </div>
    <div class="descriptions-container">
       <div class="descriptions-container__section1">
@@ -27,3 +27,44 @@ import { DescriptionCard } from "./DescriptionCard.tsx";
       </div>
    </div>
 </section>
+<style>
+   .description{
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+   }
+   .description__text{
+      text-align: center;
+   }
+   .description__text h1{
+      font-size: 2rem;
+      margin-bottom:15px
+   }
+   .description__text p{
+      color:grey
+   }
+   .descriptions-container{
+      margin:40px auto
+   }
+   .descriptions-container__section1, .descriptions-container__section2{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      gap:40px;
+      margin-bottom:50px
+   }
+   .descriptions-container__section1 img, .descriptions-container__section2 img{
+      width:500px;
+      height: auto;
+      border-radius:5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   }
+   .cards{
+      display: flex;
+      flex-direction: column;
+      gap:20px;
+      align-items: center;
+      justify-content: center;
+   }
+</style>
