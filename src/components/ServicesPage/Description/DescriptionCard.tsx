@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaCheckCircle as IconCheckCircle } from "react-icons/fa";
-
+import "../../../styles/Services/descriptionCard.css"
 export const DescriptionCard:React.FC = () => {
   return (
     <div className='card'>
