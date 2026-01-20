@@ -1,14 +1,14 @@
-.card{
+.descriptionCard{
     width:450px;
 }
-.card__header{
+.descriptionCard__header{
     display:flex;
     align-items: center;
     justify-content: start;
     gap:10px;
     padding:10px 0
 }
-.card p{
+.descriptionCard p{
     font-size:16px;
     line-height:1.5;
     color:rgb(174, 174, 174)

@@ -1,4 +1,4 @@
-.card{
+.faq1Card{
     width:750px;
     padding:10px 15px;
     margin:20px 0;
@@ -6,15 +6,15 @@
     border-radius:10px;
     cursor: pointer;
 }
-.card__visible{
+.faq1Card__visible{
     display: flex;
     align-items: center;
     justify-content: space-between;
 
 }
-.card__visible p{
+.faq1Card__visible p{
     font-size: .9rem;
 }
-.card__visible-icon{
+.faq1Card__visible-icon{
     font-size:1.5rem
 }
