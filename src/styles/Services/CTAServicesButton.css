@@ -1,0 +1,16 @@
+.CTAServicesButton{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: slateblue;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin:auto;
+    color:black
+}
+.CTAServicesButton-icon{
+    font-size: 1.2rem;
+}
