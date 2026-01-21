@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaArrowRightLong as IconArrowRight } from "react-icons/fa6";
-
+import '../../../styles/Services/moreCard.css'
 export const MoreCard:React.FC = () => {
   return (
     <div className='moreCard'>
