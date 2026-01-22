@@ -1,0 +1,19 @@
+---
+import { Search } from "./Search"
+import {BlogCardMain} from './BlogCardMain.tsx'
+import BlogCardPopular from "./BlogCardPopular.astro"
+---
+<section class="blogHero">
+    <Search />
+    <div class="blogsPopular">
+        <BlogCardMain/>
+        <div class="blogPopular__left">
+            <h4>Lo mas Leido</h4>
+            <div class="blogPopular__cards">
+                <BlogCardPopular/>
+                <BlogCardPopular/>
+                <BlogCardPopular/>
+            </div>
+        </div>
+    </div>
+</section>
