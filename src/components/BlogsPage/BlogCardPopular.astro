@@ -8,3 +8,28 @@ import { BlogPopularFooter } from './BlogPopularFooter';
         <BlogPopularFooter/>
     </div>
 </div>
+<style>
+    .blogCardPopular{
+        display:flex;
+        gap:15px;
+        align-items: center;
+    }
+    .blogCardPopular img{
+        width:130px;
+        height:130px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .blogCardPopular__text{
+        height: 130px;
+        padding:10px 5px 0 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .blogCardPopular__text p{
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+</style>

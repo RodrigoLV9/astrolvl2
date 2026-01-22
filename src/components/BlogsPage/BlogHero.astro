@@ -7,9 +7,9 @@ import BlogCardPopular from "./BlogCardPopular.astro"
     <Search />
     <div class="blogsPopular">
         <BlogCardMain/>
-        <div class="blogPopular__left">
+        <div class="blogsPopular__left">
             <h4>Lo mas Leido</h4>
-            <div class="blogPopular__cards">
+            <div class="blogsPopular__left__cards">
                 <BlogCardPopular/>
                 <BlogCardPopular/>
                 <BlogCardPopular/>
@@ -17,3 +17,26 @@ import BlogCardPopular from "./BlogCardPopular.astro"
         </div>
     </div>
 </section>
+<style>
+    .blogHero{
+        padding:70px 0;
+        margin:auto;
+        height: 100vh;
+    }
+    .blogsPopular{
+        display:flex;
+        align-items: start;
+        justify-content: center;
+        gap:30px
+    }
+    .blogsPopular__left h4{
+        margin-bottom: 20px;
+    }
+    .blogsPopular__left__cards{
+        height: 100%;
+        display:flex;
+        flex-direction: column;
+        gap:20px;
+    
+    }
+</style>

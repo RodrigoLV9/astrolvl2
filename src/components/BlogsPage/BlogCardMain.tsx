@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoBookOutline as IconBook } from "react-icons/io5";
 import { MdOutlineDateRange as IconDate } from "react-icons/md";
-
+import '../../styles/Blogs/blogCardMain.css'
 export const BlogCardMain:React.FC = () => {
   return (
     <div className='blogCardMain'>
