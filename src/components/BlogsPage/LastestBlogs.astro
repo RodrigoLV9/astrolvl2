@@ -1,0 +1,35 @@
+---
+import BlogCard from "./BlogCard.astro";
+
+---
+<section class="blogs">
+    <h2>Ultimos articulos</h2>
+    <div class="blogs__cards">
+        <BlogCard/>
+        <BlogCard/>
+        <BlogCard/>
+        <BlogCard/>
+        <BlogCard/>
+        <BlogCard/>
+        <BlogCard/>
+        <BlogCard/>
+    </div>
+</section>
+<style>
+    .blogs{
+        padding:100px 0;
+        width: 80vw;
+        margin:auto
+    }
+    .blogs h2{
+        font-size:2rem;
+        margin-bottom:50px;
+    }
+    .blogs__cards{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap:50px;
+        justify-items: center;
+        align-items: center;
+    }
+</style>
