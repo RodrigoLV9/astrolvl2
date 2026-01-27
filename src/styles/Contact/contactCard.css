@@ -1,0 +1,39 @@
+.contactCard{
+    width:450px;
+    display:flex;
+    align-items: center;
+    gap:20px;
+    border:1px solid gray;
+    border-radius: 10px;
+    padding: 10px 30px;
+}
+.contactCard-icon{
+    font-size: 4rem;
+    color:lightgreen
+}
+.contactCard__content{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: 100%;
+}
+.contactButton{
+    padding:5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+    border-radius: 5px;
+    background-color:rgb(0, 140, 255);
+    outline: none;
+    border:none;
+    width: 100%;
+    color:black
+}
+.contactButton-icon{
+    font-size: 1.6rem;
+}
+.contactButton span{
+    font-size: .9rem;
+    font-weight: bold;
+}

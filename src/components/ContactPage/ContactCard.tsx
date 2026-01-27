@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaWhatsapp as IconWhatsapp } from "react-icons/fa";
-
+import '../../styles/Contact/contactCard.css'
 export const ContactCard:React.FC = () => {
   return (
     <div className='contactCard'>

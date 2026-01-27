@@ -17,4 +17,46 @@
         <label for="">Nombre completo</label>
         <textarea name="" id="" placeholder="Escriba su mensaje..."></textarea>
     </div>
+    <button type="button">Enviar Mensaje</button>
 </form>
+<style>
+    .contact__form{
+        width:500px
+    }
+    .contact__form button{
+        height: 40px;
+        width: 100%;
+        border:none;
+        border-radius: 5px;
+        background-color: rgb(0, 140, 255);
+        color:white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .input-container{
+        display: flex;
+        flex-direction: column;
+        gap:5px;
+        margin:30px 0;
+    }
+    .input-container label{
+        margin-bottom: 10px;
+    }
+    .input-container input{
+        height: 35px;
+        border:1px solid gray;
+        border-radius: 5px;
+        background-color: transparent;
+        padding:5px 10px;
+        color:white
+    }
+    .input-container textarea{
+        height: 90px;
+        border:1px solid gray;
+        border-radius: 5px;
+        background-color: transparent;
+        padding:5px 10px;
+        color:white;
+        resize: none;
+    }
+</style>
