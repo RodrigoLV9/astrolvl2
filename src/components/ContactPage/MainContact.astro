@@ -1,0 +1,66 @@
+---
+import ContactForm from "./ContactForm.astro";
+import {ContactCard} from "./ContactCard.tsx"
+import { ItemSocial } from "./ItemSocial.tsx";
+---
+<section class="contact">
+    <div class="contact__text">
+        <h1>Contactenos</h1>
+        <p>Estamos aquí para hacer realidad su proyecto digital</p>
+    </div>
+    <div class="contact__main">
+        <div class="contact__main-left">
+            <h2>Envienos un mensaje</h2>
+            <ContactForm/>
+        </div>
+        <div class="contact__main-right">
+            <h2>Redes de comunicacion</h2>
+            <div class="cards__social">
+                <ContactCard/>
+                <ContactCard/>
+                <ContactCard/>
+            </div>
+        </div>
+    </div>
+    <div class="socials">
+        <h2>Siganos en</h2>
+        <div class="socials__items">
+            <ItemSocial/>
+            <ItemSocial/>
+            <ItemSocial/>
+            <ItemSocial/>
+            <ItemSocial/>
+            <ItemSocial/>
+            <ItemSocial/>
+            <ItemSocial/>
+        </div>
+    </div>
+</section>
+<style>
+    .contact{
+        padding:100px 0
+    }
+    .contact__text{
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .contact__main{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        gap:50px
+    }
+    .socials{
+        margin:80px 0;
+    }
+    .socials h2{
+        text-align: center;
+        margin-bottom:30px;
+    }
+    .socials__items{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        gap:50px;
+    }
+</style>
