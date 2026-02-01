@@ -3,7 +3,7 @@ import { CardIntroProcess } from './CardIntroProcess.tsx';
 ---
 <section class="introProcess">
     <div class="introProcess__text">
-        <h2>Por Qué Nuestro Proceso Funciona</h2>
+        <h2>Por qué Nuestro Proceso Funciona</h2>
         <p>Tres pilares fundamentales que garantizan el éxito de cada proyecto</p>
     </div>
     <div class="introProcess__cards">
@@ -12,3 +12,26 @@ import { CardIntroProcess } from './CardIntroProcess.tsx';
         <CardIntroProcess/>
     </div>
 </section>
+<style>
+    .introProcess{
+        padding:50px 0;
+    }
+    .introProcess__text{
+        text-align: center;
+        margin-bottom:60px;
+    }
+    .introProcess__text h2{
+        margin-bottom:10px;
+        font-size: 2rem;
+    }
+    .introProcess__text p{
+        color:gray
+    }
+    .introProcess__cards{
+        width: 80dvw;
+        margin:auto;
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+</style>
