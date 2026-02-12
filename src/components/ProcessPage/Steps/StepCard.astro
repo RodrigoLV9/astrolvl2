@@ -1,7 +1,7 @@
 <article class="stepCard">
     <header>
         <span>1.</span>
-        <h2 class="stepCard">Descubrimiento y consulta</h2>
+        <h3 class="stepCard__title">Descubrimiento y consulta</h3>
     </header>
     <ul class="stepCard__list">
         <li>Reunión inicial de descubrimiento</li>
@@ -10,3 +10,31 @@
         <li>Reunión inicial de descubrimiento</li>
     </ul>
 </article>
+<style>
+    .stepCard{
+        width: fit-content;
+        padding: 15px 50px;
+        border:1px solid gray;
+        border-radius: 5px;
+    }
+    .stepCard header{
+        display: flex;
+        align-items: end;
+        width: fit-content;
+        margin-bottom: 15px;
+        color:orange
+    }
+    .stepCard header span{
+        font-size: 1.4rem;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    .stepCard__list{
+        list-style: none;
+    }
+    .stepCard__list li{
+        margin-bottom: 5px;
+        font-size: 1rem;
+        color:rgb(175, 175, 175)
+    }
+</style>
