@@ -4,13 +4,24 @@ import '../styles/carouselHero.css'
 export const CarouselHero:React.FC = () => {
   return (
     <div className="carouselHero">
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-            <IconHTML/>
-        </div>
+      <div className="carouselHero-group">
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+      </div>
+      <div className="carouselHero-group">
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+          <IconHTML/>
+      </div>
+      </div>
   )
 }
