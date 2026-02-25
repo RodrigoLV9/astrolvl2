@@ -14,12 +14,16 @@
     padding:0 150px
 }
 .footerTop__logo{
-    width:500px
+    width:500px;
+}
+.footerTop__logo{
+    text-align: start;
 }
 .logoContainer{
     display:flex;
     align-items: center;
-    gap:10px
+    gap:15px;
+    margin-bottom: 10px;
 }
 .footerTop__cards{
     display:flex;

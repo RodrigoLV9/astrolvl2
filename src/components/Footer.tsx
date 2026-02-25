@@ -3,7 +3,7 @@ import { SiGmail as IconGmail} from "react-icons/si";
 import { FaPhoneAlt as IconPhone} from "react-icons/fa";
 import { BsFillGeoAltFill as IconGPS } from "react-icons/bs";
 import '../styles/footer.css'
-export const Footer = () => {
+export const Footer:React.FC = () => {
   return (
     <footer className="footer">
         <section className="footerTop">
