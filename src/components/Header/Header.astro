@@ -1,6 +1,7 @@
 ---
 import MainLogo from './MainLogo.astro';
 import {LanguageButton} from './LanguageButton.jsx';
+import {SelectServices} from './SelectServices.tsx'
 ---
 
 <header class="header">
@@ -8,7 +9,7 @@ import {LanguageButton} from './LanguageButton.jsx';
     <nav class="header-nav">
         <ul class="header-nav__list">
             <li><a href="/home">Home</a></li>
-            <li><a href="/services">Services</a></li>
+            <SelectServices/>
             <li><a href="/process">Process</a></li>
             <li><a href="/blogs">Blogs</a></li>
             <li><a href="/contact">Contact</a></li>
@@ -24,7 +25,7 @@ import {LanguageButton} from './LanguageButton.jsx';
         position: absolute;
         width: 100%;
         top:0;
-        padding:5px 15px;
+        padding:10px 15px;
         background-color: rgb(15, 14, 14);
         color:white;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
