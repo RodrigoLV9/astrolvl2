@@ -1,0 +1,49 @@
+.selectServices{
+    position: relative;
+    height: auto;
+}
+.selectServices__button{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.selectServices__button-icon{
+    font-size: 1.2rem;
+}
+.selectServices:hover .servicesList{
+    opacity: 1;
+    transform:translateY(0);
+    transition: opacity .3s ease;
+}
+.servicesList{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    padding:15px 30px;
+    margin:15px 0;
+    gap:1.2rem;
+    border-top:2px solid lightseagreen;
+    border-radius: 0 0 5px 5px;
+    transform: translateY(-300px);
+    background-color: rgb(5, 3, 10);
+    box-shadow: 1px 1px 5px 2px rgb(22, 22, 22);
+    z-index: 3;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.servicesList a{
+    text-decoration: none;
+    color:gray;
+    transition:color .3s ease
+}
+.servicesList a:hover{
+    color: lightseagreen;
+    transition: color .3s ease;
+}
