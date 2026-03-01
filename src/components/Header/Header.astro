@@ -1,6 +1,6 @@
 ---
 import MainLogo from './MainLogo.astro';
-import {LanguageButton} from './LanguageButton.jsx';
+import {LanguageButton} from './LanguageButton.tsx';
 import {SelectServices} from './SelectServices.tsx'
 ---
 
@@ -15,7 +15,7 @@ import {SelectServices} from './SelectServices.tsx'
             <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
-    <LanguageButton/>
+    <LanguageButton client:load />
 </header>
 <style>
     .header{
@@ -36,7 +36,7 @@ import {SelectServices} from './SelectServices.tsx'
     .header-nav__list{
         list-style: none;
         display: flex;
-        gap:50px
+        gap:90px
     }
     .header-nav__list li a{
         text-decoration: none;

@@ -1,0 +1,158 @@
+.containerLanguageButton {
+  position: relative;
+  display: inline-block;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.languageButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  min-width: 140px;
+}
+
+.languageButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(102, 126, 234, 0.4), 0 3px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.languageButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.languageFlag {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.languageLabel {
+  flex: 1;
+  text-align: left;
+}
+
+.languageArrow {
+  font-size: 1rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.languageArrow.open {
+  transform: rotate(180deg);
+}
+
+.languageDropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+.languageDropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.languageList {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.languageOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.languageOption:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  transform: translateX(4px);
+}
+
+.languageOption.selected {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  color: #667eea;
+  font-weight: 600;
+}
+
+.languageOption.selected:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+}
+
+.optionFlag {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.optionLabel {
+  flex: 1;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+/* Animación de entrada para cada opción */
+.languageDropdown.show .languageOption {
+  animation: slideInOption 0.3s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.languageDropdown.show .languageOption:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.languageDropdown.show .languageOption:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.languageDropdown.show .languageOption:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+@keyframes slideInOption {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .languageButton {
+    min-width: 120px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .languageFlag, .optionFlag {
+    font-size: 1rem;
+  }
+}
