@@ -1,9 +1,7 @@
 .selectServices{
     position: relative;
-    height: 40px;
-    padding-right:25px;
-    background-color: red;
     position:relative;
+    padding: 20px;
 }
 .selectServices__button{
     display: flex;
@@ -18,10 +16,14 @@
 .selectServices__button-icon{
     font-size: 1.2rem;
 }
-.selectServices:hover .servicesList{
+.selectServices:hover .servicesList,
+.selectServices:focus-within .servicesList,
+.servicesList:hover{
     opacity: 1;
-    transform:translateY(0);
-    transition: opacity .3s ease;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity .3s ease, transform .3s ease;
 }
 .servicesList{
     display: flex;
@@ -29,22 +31,27 @@
     justify-content: center;
     flex-direction: column;
     position:absolute;
-    padding:15px 30px;
-    margin:15px 0;
-    gap:1.2rem;
+    top: 100%;
+    left: 0px;
+    width: 100%;
+    padding:15px 20px;
+    gap:1.5rem;
     border-top:2px solid lightseagreen;
     border-radius: 0 0 5px 5px;
-    transform: translateY(-300px);
+    transform: translateY(8px);
     background-color: rgb(5, 3, 10);
     box-shadow: 1px 1px 5px 2px rgb(22, 22, 22);
-    z-index: 3;
+    z-index: 1001;
     opacity: 0;
-    transition: opacity .3s ease;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
 }
 .servicesList a{
     text-decoration: none;
     color:gray;
-    transition:color .3s ease
+    transition:color .3s ease;
+    font-size: .9rem;
 }
 .servicesList a:hover{
     color: lightseagreen;

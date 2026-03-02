@@ -22,12 +22,14 @@ import {SelectServices} from './SelectServices.tsx'
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: absolute;
+        position: fixed;
+        z-index: 1000;
         width: 100%;
         top:0;
-        padding:10px 15px;
+        height: min-content;
+        padding:0 20px;
         background-color: rgb(15, 14, 14);
-        color:white;
+        color:white;rgba(15, 14, 14, 0.308)
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .header-nav{
@@ -38,10 +40,18 @@ import {SelectServices} from './SelectServices.tsx'
         display: flex;
         gap:90px
     }
+    .header-nav__list li{
+        padding: 20px;
+    }
     .header-nav__list li a{
         text-decoration: none;
         color:white;
-        font-size:1.1rem
+        font-size: 1rem;
+        transition: color .3s ease;
+    }
+    .header-nav__list li a:hover{
+        color: lightseagreen;
+        transition: color .3s ease;
     }
     @media screen and (max-height: 368px) {
 
