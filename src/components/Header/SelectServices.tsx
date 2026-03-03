@@ -9,10 +9,10 @@ export const SelectServices:React.FC = () => {
             <IconArrowDown className='selectServices__button-icon'/>
         </button>
         <div className="servicesList">
-            <a href="/services">Landing Page</a>
-            <a href="/services">Web site</a>
-            <a href="/services">E-commerce</a>
-            <a href="/services">Maintenance</a>
+            <a href="/landing-page">Landing Page</a>
+            <a href="/website">Web site</a>
+            <a href="/ecommerce">E-commerce</a>
+            <a href="/support">Maintenance</a>
         </div>
     </li>
   )

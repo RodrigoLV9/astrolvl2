@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/ServicesPage/Hero/Hero.astro'
+import CardsIntro from '../components/ServicesPage/CardsIntro/CardsIntro.astro';
+import Intro from '../components/ServicesPage/Intro.astro';
+import Description from '../components/ServicesPage/Description/Description.astro';
+import Features from '../components/ServicesPage/Features/Features.astro';
+import Process from '../components/ServicesPage/Process/Process.astro';
+import Faqs1 from '../components/HomePage/Faqs1/Faqs1.astro'
+import CTAServices from '../components/ServicesPage/CTAServices/CTAServices.astro';
+import More from '../components/ServicesPage/More/More.astro';
+
+export async function getStaticPaths() {
+  const services = [
+    { 
+      slug: 'landing-page', 
+      title: 'Landing Pages de Alta Conversión', 
+      description: 'Diseñamos sitios enfocados en vender.' 
+    },
+    { 
+      slug: 'website', 
+      title: 'Sitios Web Corporativos', 
+      description: 'Presencia profesional para tu empresa.' 
+    },
+    { 
+      slug: 'ecommerce', 
+      title: 'Tiendas Online (E-commerce)', 
+      description: 'Escala tus ventas con una tienda robusta.' 
+    },
+    { 
+      slug: 'support', 
+      title: 'Soporte y Mantenimiento', 
+      description: 'Cuidamos tu web mientras tú creces.' 
+    },
+  ];
+
+  return services.map((item) => ({
+    params: { service: item.slug }, // Esto define el nombre en la URL
+    props: { content: item },       // Esto pasa los datos a la página
+  }));
+}
+
+const { service } = Astro.params;
+const { content } = Astro.props;
+---
+
+<Layout>
+    <Hero/>
+    <CardsIntro/>
+    <Intro/>
+    <Description/>
+    <Features/>
+    <Process/>
+    <Faqs1/>
+    <CTAServices/>
+    <More/>
+</Layout>
