@@ -1,20 +1,26 @@
 ---
 import { CardTag } from "./CardTag";
+
+type ServiceCardProps = {
+  title: string;
+  price: string;
+  description: string;
+  tags: string[];
+  href: string;
+};
+
+const { title, price, description, tags, href } = Astro.props as ServiceCardProps;
 ---
 <div class="servicesCard">
-        <h4 class="servicesCard__title">LANDING PAGE</h4>
-        <h5 class="servicesCard__price">$100.000 ARS</h5>
-        <p>Una página única, moderna y optimizada para presentar tu negocio o producto de forma efectiva.</p>
+        <h4 class="servicesCard__title">{title}</h4>
+        <h5 class="servicesCard__price">{price}</h5>
+        <p>{description}</p>
         <div class="servicesCard__tags">
-          <CardTag/>
-          <CardTag/>
-          <CardTag/>
-          <CardTag/>
-          <CardTag/>
-          <CardTag/>
-          <CardTag/>
+          {tags.map((tag) => (
+            <CardTag text={tag} />
+          ))}
         </div>
-        <a href="#" class="servicesCard__more">Ver más</a>
+        <a href={href} class="servicesCard__more">Ver más</a>
 </div>
 <style>
   .servicesCard{
