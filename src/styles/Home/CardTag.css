@@ -1,13 +1,17 @@
 .cardTag{
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap:7px
+    justify-content: flex-start;
+    gap:8px;
 }
 .cardTag__icon{
-    color:rgb(3, 157, 3);
-    font-size: 1.2rem;
+    color: #34d399;
+    font-size: 1rem;
+    flex-shrink: 0;
 }
 .cardTag__text{
-    font-size: .9rem;
+    font-size: .88rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.35;
+    margin: 0;
 }

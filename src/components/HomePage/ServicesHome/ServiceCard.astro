@@ -24,41 +24,91 @@ const { title, price, description, tags, href } = Astro.props as ServiceCardProp
 </div>
 <style>
   .servicesCard{
-    padding:10px 20px;
-    border:1px solid gray;
-    border-radius: 10px;
-    width: 300px;
-    
+    width: 320px;
+    min-height: 100%;
+    padding: 22px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 7px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
   }
+
+  .servicesCard:hover{
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.45);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  }
+
   .servicesCard__title{
-    color:steelblue;
-    margin:15px 0;
-  }
-  .servicesCard__price{
-    color:gold;
-    font-size: .95rem;
+    color: #e8f3ff;
+    margin: 0 0 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
     text-align: center;
-    margin:10px 0;
   }
+
+  .servicesCard__price{
+    color: #f7d56e;
+    font-size: .98rem;
+    font-weight: 600;
+    margin: 0 0 14px;
+    text-align: center;
+  }
+
   .servicesCard p{
-    font-size: .9rem;
-    color:gray;
-    margin:20px 0
+    font-size: .94rem;
+    line-height: 1.55;
+    color: rgba(207, 207, 207, 0.78);
+    margin: 0 0 30px;
   }
+
   .servicesCard__tags{
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap:15px;
-    margin:20px 0;
+    gap: 10px;
+    margin: 0 0 18px;
+    flex: 1;
   }
+
   .servicesCard__more{
-    color:rgb(0, 104, 189);
+    margin-top: auto;
+    align-self: flex-start;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #9fd0ff;
+    background: rgba(96, 165, 250, 0.15);
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    border-radius: 999px;
+    padding: 8px 14px;
     text-decoration: none;
-    transition: color .3s ease;
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease;
   }
+
   .servicesCard__more:hover{
-    color:rgb(46, 161, 255);
-    transition: color .3s ease;
+    color: #ffffff;
+    background: rgba(96, 165, 250, 0.28);
+    border-color: rgba(147, 197, 253, 0.55);
+  }
+
+  .servicesCard__more:focus-visible{
+    outline: 2px solid rgba(147, 197, 253, 0.75);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px){
+    .servicesCard{
+      width: 100%;
+      max-width: 360px;
+      padding: 18px 16px;
+    }
+
+    .servicesCard__title{
+      font-size: 1rem;
+    }
   }
 </style>
