@@ -14,6 +14,7 @@ import { CardTag } from "./CardTag";
           <CardTag/>
           <CardTag/>
         </div>
+        <a href="#" class="servicesCard__more">Ver más</a>
 </div>
 <style>
   .servicesCard{
@@ -44,5 +45,14 @@ import { CardTag } from "./CardTag";
     align-items: start;
     gap:15px;
     margin:20px 0;
+  }
+  .servicesCard__more{
+    color:rgb(0, 104, 189);
+    text-decoration: none;
+    transition: color .3s ease;
+  }
+  .servicesCard__more:hover{
+    color:rgb(46, 161, 255);
+    transition: color .3s ease;
   }
 </style>
