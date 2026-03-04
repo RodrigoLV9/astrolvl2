@@ -4,6 +4,7 @@ import { FaPhoneAlt as IconPhone} from "react-icons/fa";
 import { BsFillGeoAltFill as IconGPS } from "react-icons/bs";
 import '../styles/footer.css'
 export const Footer:React.FC = () => {
+  const year = new Date().getFullYear();
   return (
     <footer className="footer">
         <section className="footerTop">
@@ -12,11 +13,13 @@ export const Footer:React.FC = () => {
                     <img src="/comets.png" alt="comets" width="30" height="30" />
                     <h2>Astro LvL</h2>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In eligendi cupiditate hic suscipit repellendus quis culpa, ullam fugiat!</p>
+                <p>
+                  Diseñamos sitios web rápidos, modernos y orientados a resultados para potenciar tu marca digital.
+                </p>
             </div>
             <div className="footerTop__cards">
-                <div className="footerTop__card">
-                    <h3>Services</h3>
+                <nav className="footerTop__card" aria-label="Navegación principal">
+                    <h3>Navegación</h3>
                     <ul>
                         <li><a href="/home">Home</a></li>
                         <li><a href="/services">Services</a></li>
@@ -24,30 +27,30 @@ export const Footer:React.FC = () => {
                         <li><a href="/blogs">Blogs</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
-                </div>
+                </nav>
                 <div className="footerTop__card">
-                    <h3>Services</h3>
+                    <h3>Servicios</h3>
                     <ul>
-                        <li><a href="/services#web-development">Web Development</a></li>
-                        <li><a href="/services#mobile-development">Mobile Development</a></li>
-                        <li><a href="/services#ui-ux-design">UI/UX Design</a></li>
-                        <li><a href="/services#digital-marketing">Digital Marketing</a></li>
+                        <li><a href="/landing-page">Landing Page</a></li>
+                        <li><a href="/website">Web site</a></li>
+                        <li><a href="/ecommerce">E-commerce</a></li>
+                        <li><a href="/support">Support</a></li>
                     </ul>
                 </div>
                 <div className="footerTop__card">
-                    <h3>Contact</h3>
+                    <h3>Contacto</h3>
                     <ul className='footerTop__card-list'>
                         <li>
                             <IconGmail/>
-                            <p>astrolvl.dev@gmail.com</p>
+                            <a href="mailto:astrolvl.dev@gmail.com">astrolvl.dev@gmail.com</a>
                         </li>
                         <li>
                             <IconPhone/>
-                            <p>+54 9 11 6623-2246 </p>
+                            <a href="tel:+5491166232246">+54 9 11 6623-2246</a>
                         </li>
                         <li>
                             <IconGPS/>
-                            <p>Lorem ipsum do</p>
+                            <p>Buenos Aires, Argentina</p>
                         </li>
                     </ul>
                 </div>
@@ -55,7 +58,7 @@ export const Footer:React.FC = () => {
             </div>
         </section>
         <div className="footerBottom">
-            <p>© 2025 ASTRO LVL WEB. All rights reserved.</p>
+            <p>© {year} ASTRO LVL WEB. All rights reserved.</p>
         </div>
     
     </footer>

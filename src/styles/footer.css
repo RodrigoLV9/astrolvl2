@@ -1,46 +1,125 @@
 .footer{
-    background-color: #121212;
-    color: white;
-    padding: 20px;
+    background: radial-gradient(circle at top left, #1c1c1c 0%, #121212 48%, #0d0d0d 100%);
+    color: #ffffff;
     text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 .footer ul{
     list-style: none;
-    padding:0
+    padding:0;
+    margin: 0;
 }
 .footerTop{
-    display:flex;
-    gap:300px;
-    padding:0 150px
+    max-width: 1240px;
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: minmax(260px, 390px) 1fr;
+    gap:56px;
+    padding:56px 40px;
 }
 .footerTop__logo{
-    width:500px;
-}
-.footerTop__logo{
+    width:100%;
     text-align: start;
 }
 .logoContainer{
     display:flex;
     align-items: center;
-    gap:15px;
-    margin-bottom: 10px;
+    gap:12px;
+    margin-bottom: 16px;
 }
+
+.logoContainer h2{
+    font-size: 1.4rem;
+    letter-spacing: 0.4px;
+    margin: 0;
+}
+
+.footerTop__logo p{
+    color: rgba(255, 255, 255, 0.76);
+    line-height: 1.65;
+    margin: 0;
+}
+
 .footerTop__cards{
-    display:flex;
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items:start;
-    justify-content: space-between;
     width: 100%;
-    
+    gap: 16px;
 }
+
+.footerTop__card{
+    padding: 20px 18px;
+    text-align: left;
+}
+
+.footerTop__card h3{
+    margin: 0 0 14px;
+    font-size: 1rem;
+    color: #f2f2f2;
+    font-weight: 600;
+}
+
 .footerTop__card ul li{
-    padding:10px 0;
+    padding:8px 0;
 }
+
 .footerTop__card ul li a{
     text-decoration: none;
-    color:rgb(170, 170, 170)
+    color: rgba(255, 255, 255, 0.72);
+    transition: color .2s ease;
 }
+
+.footerTop__card ul li a:hover,
+.footerTop__card ul li a:focus-visible{
+    color: #ffffff;
+}
+
 .footerTop__card-list li{
     display: flex;
-    align-items: center;
-    gap:5px;
+    align-items: flex-start;
+    gap:10px;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.footerTop__card-list li svg{
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.footerTop__card-list li p{
+    margin: 0;
+}
+
+.footerBottom{
+    background: linear-gradient(120deg, #06b6d4 0%, #a855f7 100%);
+    padding: 16px;
+}
+
+.footerBottom p{
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+}
+
+@media (max-width: 1024px){
+    .footerTop{
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 44px 28px;
+    }
+
+    .footerTop__cards{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px){
+    .footerTop{
+        padding: 36px 18px;
+    }
+
+    .footerTop__cards{
+        grid-template-columns: 1fr;
+    }
 }
