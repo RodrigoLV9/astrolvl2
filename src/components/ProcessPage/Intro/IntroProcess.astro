@@ -1,37 +1,173 @@
 ---
 import { CardIntroProcess } from './CardIntroProcess.tsx';
+
+const cards = [
+  {
+    icon: '🔍',
+    stat: '100%',
+    title: 'Transparencia total',
+    description: 'Te mantenemos informado en cada etapa con reportes claros y comunicación abierta.',
+    accent: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  },
+  {
+    icon: '🚀',
+    stat: '+50',
+    title: 'Proyectos entregados',
+    description: 'Experiencia probada en proyectos de diversas industrias, siempre respetando los plazos.',
+    accent: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+  },
+  {
+    icon: '⭐',
+    stat: '98%',
+    title: 'Clientes satisfechos',
+    description: 'La gran mayoría de nuestros clientes recomiendan nuestros servicios activamente.',
+    accent: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+  },
+];
+
+const features = [
+  { icon: '💬', label: 'Comunicación constante' },
+  { icon: '⚡', label: 'Metodología ágil' },
+  { icon: '🧹', label: 'Código limpio y escalable' },
+  { icon: '🛡️', label: 'Soporte post-lanzamiento' },
+];
 ---
 <section class="introProcess">
-    <div class="introProcess__text">
-        <h2>Por qué Nuestro Proceso Funciona</h2>
-        <p>Tres pilares fundamentales que garantizan el éxito de cada proyecto</p>
+    <div class="introProcess__label">
+        <span class="introProcess__label-dot"></span>
+        <p>Por qué elegirnos</p>
     </div>
+
+    <div class="introProcess__text">
+        <h2>Por qué Nuestro <span class="introProcess__gradient">Proceso Funciona</span></h2>
+        <p>Pilares fundamentales que garantizan el éxito de cada proyecto</p>
+    </div>
+
     <div class="introProcess__cards">
-        <CardIntroProcess/>
-        <CardIntroProcess/>
-        <CardIntroProcess/>
+        {cards.map((card) => (
+            <CardIntroProcess client:load {...card} />
+        ))}
+    </div>
+
+    <div class="introProcess__features">
+        {features.map((f) => (
+            <div class="introProcess__feature">
+                <span class="introProcess__feature-icon">{f.icon}</span>
+                <span class="introProcess__feature-label">{f.label}</span>
+            </div>
+        ))}
     </div>
 </section>
+
 <style>
-    .introProcess{
-        padding:50px 0;
-    }
-    .introProcess__text{
-        text-align: center;
-        margin-bottom:60px;
-    }
-    .introProcess__text h2{
-        margin-bottom:10px;
-        font-size: 2rem;
-    }
-    .introProcess__text p{
-        color:gray
-    }
-    .introProcess__cards{
-        width: 80dvw;
-        margin:auto;
-        display:flex;
+    .introProcess {
+        padding: 100px 20px;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        background: linear-gradient(180deg, #0a0a0f 0%, #0d0d1a 100%);
+    }
+
+    /* Badge */
+    .introProcess__label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(102, 126, 234, 0.1);
+        border: 1px solid rgba(102, 126, 234, 0.28);
+        border-radius: 100px;
+        padding: 6px 18px;
+        margin-bottom: 28px;
+    }
+    .introProcess__label p {
+        color: #a8b4ff;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin: 0;
+    }
+    .introProcess__label-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #667eea;
+        animation: introPulse 2s ease-in-out infinite;
+    }
+    @keyframes introPulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* Heading */
+    .introProcess__text {
+        text-align: center;
+        margin-bottom: 64px;
+        max-width: 600px;
+    }
+    .introProcess__text h2 {
+        font-size: 2.6rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        line-height: 1.15;
+        margin-bottom: 14px;
+        color: #fff;
+    }
+    .introProcess__gradient {
+        background: linear-gradient(135deg, #667eea 0%, #a78bfa 50%, #f093fb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .introProcess__text p {
+        color: rgba(255,255,255,0.45);
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    /* Cards grid */
+    .introProcess__cards {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1100px;
+        margin-bottom: 52px;
+    }
+
+    /* Features strip */
+    .introProcess__features {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .introProcess__feature {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 100px;
+        padding: 10px 22px;
+        transition: border-color 0.3s, background 0.3s;
+    }
+    .introProcess__feature:hover {
+        background: rgba(102,126,234,0.08);
+        border-color: rgba(102,126,234,0.3);
+    }
+    .introProcess__feature-icon {
+        font-size: 1.1rem;
+        line-height: 1;
+    }
+    .introProcess__feature-label {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: rgba(255,255,255,0.7);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+        .introProcess__text h2 { font-size: 1.9rem; }
+        .introProcess__cards { gap: 14px; }
     }
 </style>

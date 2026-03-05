@@ -1,12 +1,24 @@
 import React from 'react'
-import { IoPlanet as IconPlanet} from "react-icons/io5";
 import '../../../styles/Process/cardIntro.css'
-export const CardIntroProcess = () => {
+
+interface CardIntroProcessProps {
+  icon: string
+  stat: string
+  title: string
+  description: string
+  accent: string
+}
+
+export const CardIntroProcess: React.FC<CardIntroProcessProps> = ({ icon, stat, title, description, accent }) => {
   return (
     <div className="cardIntroProcess">
-      <IconPlanet className='cardIntroProcess-icon'/>
-      <h3>100%</h3>
-      <p>Cada proyecto comienza con un análisis exhaustivo de requisitos y objetivos</p>
+      <div className="cardIntroProcess__icon" style={{ background: accent }}>
+        <span>{icon}</span>
+      </div>
+      <div className="cardIntroProcess__stat">{stat}</div>
+      <h3 className="cardIntroProcess__title">{title}</h3>
+      <p className="cardIntroProcess__desc">{description}</p>
+      <div className="cardIntroProcess__bar" style={{ background: accent }} />
     </div>
   )
 }
