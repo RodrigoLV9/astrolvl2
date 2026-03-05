@@ -1,35 +1,207 @@
 ---
-import StepCard from "./StepCard.astro"
-import TimeLine from "./TimeLine.astro"
+import StepCard from "./StepCard.astro";
+
+const steps = [
+  {
+    number: 1,
+    icon: '🔍',
+    title: 'Descubrimiento y Consulta',
+    duration: '1 – 2 semanas',
+    description: 'Entendemos tu negocio, objetivos y audiencia para sentar las bases del proyecto.',
+    items: [
+      'Reunión inicial de requisitos',
+      'Análisis de competidores y mercado',
+      'Definición de objetivos y KPIs',
+      'Propuesta personalizada y presupuesto',
+    ],
+    accent: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  },
+  {
+    number: 2,
+    icon: '✏️',
+    title: 'Diseño y Estrategia',
+    duration: '1 – 2 semanas',
+    description: 'Creamos la propuesta visual y técnica antes de escribir una sola línea de código.',
+    items: [
+      'Wireframes y arquitectura de información',
+      'Diseño UI en alta fidelidad',
+      'Selección del stack tecnológico',
+      'Prototipo interactivo para aprobación',
+    ],
+    accent: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+  },
+  {
+    number: 3,
+    icon: '⚡',
+    title: 'Desarrollo',
+    duration: '3 – 8 semanas',
+    description: 'Construimos tu proyecto con tecnología moderna, reportes semanales y total transparencia.',
+    items: [
+      'Desarrollo frontend y backend',
+      'Integraciones con APIs y servicios',
+      'Pruebas de rendimiento y seguridad',
+      'Revisiones semanales de avance',
+    ],
+    accent: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+  },
+  {
+    number: 4,
+    icon: '🔄',
+    title: 'Revisión y Ajustes',
+    duration: '1 semana',
+    description: 'Presentamos el producto completo y realizamos ajustes hasta tu plena satisfacción.',
+    items: [
+      'Demo completa del producto',
+      'Ronda de correcciones y ajustes',
+      'Pruebas en múltiples dispositivos',
+      'Aprobación final del cliente',
+    ],
+    accent: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+  },
+  {
+    number: 5,
+    icon: '🚀',
+    title: 'Lanzamiento y Soporte',
+    duration: 'Continuo',
+    description: 'Desplegamos tu proyecto y te acompañamos con soporte continuo para garantizar el éxito.',
+    items: [
+      'Deploy en servidor de producción',
+      'Capacitación al equipo del cliente',
+      'Monitoreo y optimización continua',
+      'Soporte técnico prioritario',
+    ],
+    accent: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+  },
+];
 ---
+
 <section class="steps">
-    <h1>Etapas del proceso</h1>
-    <div class="steps__timeline">
-        <StepCard/>
-        <StepCard/>
-        <StepCard/>
-        <StepCard/>
-    </div>
-    <TimeLine/>
+  <div class="steps__label">
+    <span class="steps__label-dot"></span>
+    <p>Paso a paso</p>
+  </div>
+  <div class="steps__heading">
+    <h2>Etapas del <span class="steps__gradient">Proceso</span></h2>
+    <p>Cada fase está diseñada para maximizar la calidad y minimizar los riesgos</p>
+  </div>
+
+  <div class="steps__timeline">
+    {steps.map((step, i) => (
+      <div class={`step-row ${i % 2 !== 0 ? 'step-row--right' : ''}`}>
+        <div class="step-row__card">
+          <StepCard {...step} />
+        </div>
+        <div class="step-row__center">
+          <div class="step-row__dot" style={`background: ${step.accent}`}>
+            <span>{step.icon}</span>
+          </div>
+        </div>
+        <div class="step-row__spacer" />
+      </div>
+    ))}
+  </div>
 </section>
+
 <style>
-    .steps{
-        position: relative;
-        height: 1500px;
+  .steps {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #0d0d1a 0%, #0a0a0f 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Badge */
+  .steps__label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.28);
+    border-radius: 100px;
+    padding: 6px 18px;
+    margin-bottom: 28px;
+  }
+  .steps__label p { color: #a8b4ff; font-size: 0.85rem; font-weight: 500; margin: 0; }
+  .steps__label-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #667eea;
+    animation: stepsPulse 2s ease-in-out infinite;
+  }
+  @keyframes stepsPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* Heading */
+  .steps__heading {
+    text-align: center;
+    margin-bottom: 80px;
+    max-width: 600px;
+  }
+  .steps__heading h2 {
+    font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px;
+    line-height: 1.15; margin-bottom: 14px; color: #fff;
+  }
+  .steps__gradient {
+    background: linear-gradient(135deg, #667eea 0%, #a78bfa 50%, #f093fb 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .steps__heading p { color: rgba(255,255,255,0.45); font-size: 1rem; line-height: 1.7; }
+
+  /* Timeline wrapper */
+  .steps__timeline {
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+
+  /* Continuous gradient line */
+  .steps__timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-1px);
+    top: 28px;
+    bottom: 28px;
+    width: 2px;
+    background: linear-gradient(180deg, #667eea 0%, #f093fb 25%, #4facfe 50%, #43e97b 75%, #fa709a 100%);
+    z-index: 0;
+  }
+
+  /* Each step row */
+  .step-row {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    grid-template-areas: "card center spacer";
+    align-items: start;
+    margin-bottom: 40px;
+  }
+  .step-row--right { grid-template-areas: "spacer center card"; }
+  .step-row:last-child { margin-bottom: 0; }
+
+  .step-row__card   { grid-area: card;   padding: 0 28px; }
+  .step-row__center { grid-area: center; display: flex; justify-content: center; padding-top: 6px; position: relative; z-index: 1; }
+  .step-row__spacer { grid-area: spacer; }
+
+  /* Dot */
+  .step-row__dot {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.35rem; line-height: 1; flex-shrink: 0;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.04), 0 0 0 14px rgba(255,255,255,0.015), 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  /* Mobile: single-column layout with dot on the left */
+  @media (max-width: 768px) {
+    .steps__heading h2 { font-size: 1.9rem; }
+    .steps__timeline::before { left: 26px; }
+    .step-row,
+    .step-row--right {
+      grid-template-columns: 52px 1fr;
+      grid-template-areas: "center card";
     }
-    .steps h1{
-        text-align: center;
-    }
-    .steps__timeline{
-        height: 1300px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        width: 70vw;
-        margin:auto
-    }
+    .step-row__spacer { display: none; }
+    .step-row__dot { width: 40px; height: 40px; font-size: 1rem; }
+    .step-row__card { padding: 0 0 0 16px; }
+  }
 </style>
