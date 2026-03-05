@@ -1,17 +1,36 @@
 .introTag{
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background-color: black;
-    color: gray;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
+    gap: 0.7rem;
+    background: linear-gradient(135deg, rgba(100, 150, 255, 0.15), rgba(150, 100, 255, 0.1));
+    color: #a8d8ff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     font-size: .92rem;
     font-weight: 500;
-    border-radius: 20px;
-    border: 1px solid gray;
+    border: 1px solid rgba(100, 150, 255, 0.4);
     width: fit-content;
+    transition: all 0.3s ease;
 }
-.introTag__icon{
-    color:yellow
+
+.introTag:hover {
+    background: linear-gradient(135deg, rgba(100, 150, 255, 0.25), rgba(150, 100, 255, 0.15));
+    border-color: rgba(100, 150, 255, 0.7);
+    box-shadow: 0 0 15px rgba(100, 150, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.introTag__icon {
+    color: #e9da0b;
+    filter: drop-shadow(0 0 4px rgba(233, 218, 11, 0.6));
+    animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
 }

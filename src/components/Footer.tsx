@@ -2,39 +2,47 @@ import React from 'react'
 import { SiGmail as IconGmail} from "react-icons/si";
 import { FaPhoneAlt as IconPhone} from "react-icons/fa";
 import { BsFillGeoAltFill as IconGPS } from "react-icons/bs";
+import { FaArrowRight as IconArrowRight } from "react-icons/fa6";
 import '../styles/footer.css'
-export const Footer:React.FC = () => {
+
+export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
+  
   return (
     <footer className="footer">
         <section className="footerTop">
             <div className="footerTop__logo">
                 <div className="logoContainer">
-                    <img src="/comets.png" alt="comets" width="30" height="30" />
+                    <img src="/comets.png" alt="comets" width="40" height="40" className="logo-img" />
                     <h2>Astro LvL</h2>
                 </div>
                 <p>
-                  Diseñamos sitios web rápidos, modernos y orientados a resultados para potenciar tu marca digital.
+                  Elevamos tu presencia digital con soluciones web modernas y orientadas a resultados para potenciar tu marca en el universo digital.
                 </p>
+                <div className="footer-social-links">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">Twitter</a>
+                </div>
             </div>
             <div className="footerTop__cards">
                 <nav className="footerTop__card" aria-label="Navegación principal">
                     <h3>Navegación</h3>
                     <ul>
-                        <li><a href="/home">Home</a></li>
-                        <li><a href="/services">Services</a></li>
-                        <li><a href="/process">Process</a></li>
-                        <li><a href="/blogs">Blogs</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/home">Home<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href="/services">Services<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href="/process">Process<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href="/blogs">Blogs<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href="/contact">Contact<IconArrowRight className="icon-arrow"/></a></li>
                     </ul>
                 </nav>
                 <div className="footerTop__card">
                     <h3>Servicios</h3>
                     <ul>
-                        <li><a href="/landing-page">Landing Page</a></li>
-                        <li><a href="/website">Web site</a></li>
-                        <li><a href="/ecommerce">E-commerce</a></li>
-                        <li><a href="/support">Support</a></li>
+                        <li><a href="/landing-page">Landing Page<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href="/website">Web site<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href="/ecommerce">E-commerce<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href="/support">Support<IconArrowRight className="icon-arrow"/></a></li>
                     </ul>
                 </div>
                 <div className="footerTop__card">
@@ -58,7 +66,7 @@ export const Footer:React.FC = () => {
             </div>
         </section>
         <div className="footerBottom">
-            <p>© {year} ASTRO LVL WEB. All rights reserved.</p>
+            <p>© {year} ASTRO LVL WEB. All rights reserved. | Diseñado con ✨ para el futuro digital</p>
         </div>
     
     </footer>

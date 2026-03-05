@@ -12,91 +12,151 @@ type ServiceCardProps = {
 const { title, price, description, tags, href } = Astro.props as ServiceCardProps;
 ---
 <div class="servicesCard">
-        <h4 class="servicesCard__title">{title}</h4>
-        <h5 class="servicesCard__price">{price}</h5>
-        <p>{description}</p>
+        <div class="servicesCard__header">
+          <h4 class="servicesCard__title">{title}</h4>
+          <h5 class="servicesCard__price">{price}</h5>
+        </div>
+        <p class="servicesCard__description">{description}</p>
         <div class="servicesCard__tags">
           {tags.map((tag) => (
             <CardTag text={tag} />
           ))}
         </div>
-        <a href={href} class="servicesCard__more">Ver más</a>
+        <a href={href} class="servicesCard__more">Ver más →</a>
 </div>
 <style>
   .servicesCard{
     width: 320px;
     min-height: 100%;
-    padding: 22px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 7px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    padding: 28px 24px;
+    border: 1px solid rgba(100, 150, 255, 0.3);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(100, 150, 255, 0.08), rgba(150, 100, 255, 0.05));
+    box-shadow: 0 8px 32px rgba(100, 150, 255, 0.1);
     display: flex;
     flex-direction: column;
-    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .servicesCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(100, 150, 255, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 
   .servicesCard:hover{
-    transform: translateY(-4px);
-    border-color: rgba(96, 165, 250, 0.45);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+    transform: translateY(-8px);
+    border-color: rgba(100, 150, 255, 0.6);
+    box-shadow: 0 16px 48px rgba(100, 150, 255, 0.25);
+  }
+
+  .servicesCard:hover::before {
+    opacity: 1;
+  }
+
+  .servicesCard__header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 16px;
   }
 
   .servicesCard__title{
-    color: #e8f3ff;
+    color: #ffffff;
     margin: 0 0 10px;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: 0.4px;
-    text-align: center;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #a8d8ff 0%, #7ec8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+  }
+
+  .servicesCard:hover .servicesCard__title {
+    -webkit-text-fill-color: unset;
+    color: #ffffff;
   }
 
   .servicesCard__price{
-    color: #f7d56e;
-    font-size: .98rem;
-    font-weight: 600;
-    margin: 0 0 14px;
-    text-align: center;
+    color: #e9da0b;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    filter: drop-shadow(0 0 6px rgba(233, 218, 11, 0.5));
+    letter-spacing: 0.5px;
   }
 
-  .servicesCard p{
-    font-size: .94rem;
-    line-height: 1.55;
-    color: rgba(207, 207, 207, 0.78);
-    margin: 0 0 30px;
+  .servicesCard__description{
+    font-size: .95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 24px;
+    position: relative;
+    z-index: 1;
   }
 
   .servicesCard__tags{
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 10px;
-    margin: 0 0 18px;
+    gap: 12px;
+    margin: 0 0 24px;
     flex: 1;
+    position: relative;
+    z-index: 1;
   }
 
   .servicesCard__more{
     margin-top: auto;
     align-self: flex-start;
-    font-size: .9rem;
+    font-size: .95rem;
     font-weight: 600;
-    color: #9fd0ff;
-    background: rgba(96, 165, 250, 0.15);
-    border: 1px solid rgba(96, 165, 250, 0.35);
-    border-radius: 999px;
-    padding: 8px 14px;
+    color: #a8d8ff;
+    background: linear-gradient(135deg, rgba(100, 150, 255, 0.2), rgba(150, 100, 255, 0.1));
+    border: 1px solid rgba(100, 150, 255, 0.5);
+    border-radius: 8px;
+    padding: 10px 18px;
     text-decoration: none;
-    transition: color .25s ease, background-color .25s ease, border-color .25s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .servicesCard__more::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
   }
 
   .servicesCard__more:hover{
     color: #ffffff;
-    background: rgba(96, 165, 250, 0.28);
-    border-color: rgba(147, 197, 253, 0.55);
+    background: linear-gradient(135deg, rgba(100, 150, 255, 0.4), rgba(150, 100, 255, 0.2));
+    border-color: rgba(100, 150, 255, 0.8);
+    box-shadow: inset 0 0 20px rgba(100, 150, 255, 0.2);
+  }
+
+  .servicesCard__more:hover::before {
+    left: 100%;
   }
 
   .servicesCard__more:focus-visible{
-    outline: 2px solid rgba(147, 197, 253, 0.75);
+    outline: 2px solid rgba(100, 150, 255, 0.8);
     outline-offset: 2px;
   }
 
@@ -104,11 +164,15 @@ const { title, price, description, tags, href } = Astro.props as ServiceCardProp
     .servicesCard{
       width: 100%;
       max-width: 360px;
-      padding: 18px 16px;
+      padding: 20px 18px;
     }
 
     .servicesCard__title{
       font-size: 1rem;
+    }
+
+    .servicesCard__price {
+      font-size: 0.95rem;
     }
   }
 </style>

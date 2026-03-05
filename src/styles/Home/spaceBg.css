@@ -1,0 +1,125 @@
+/* SPACE BACKGROUND WITH STARS AND FALLING COMETS */
+.space-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background: radial-gradient(ellipse at 50% 0%, #0d0b2a 0%, #07050f 55%, #020108 100%);
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Stars */
+.star-container,
+.asteroids-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+/* Comet — thin elongated line rotated 45° with gradient tail */
+.asteroid {
+    position: absolute;
+    width: 2px;
+    border-radius: 2px;
+    /* gradient: transparent tail → bright white head (bottom) */
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(180, 215, 255, 0.35) 45%,
+        rgba(220, 235, 255, 0.85) 80%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    /* static 45-degree tilt — individual transform property */
+    rotate: -45deg;
+    animation: fallComet linear forwards;
+    transform-origin: bottom center;
+}
+
+.asteroid.glow {
+    width: 3px;
+    filter: drop-shadow(0 0 4px rgba(170, 210, 255, 0.9));
+}
+
+@keyframes fallComet {
+    from {
+        translate: 0 0;
+        opacity: 1;
+    }
+    to {
+        /* equal X and Y = 45-degree trajectory, covers full viewport */
+        translate: 130vh 130vh;
+        opacity: 0;
+    }
+}
+
+/* Floating particles/space dust */
+.space-dust {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    animation: float 20s infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(30px) translateX(30px);
+        opacity: 0;
+    }
+}
+
+/* Nebula-like gradient overlay */
+.nebula {
+    position: absolute;
+    background: radial-gradient(ellipse at 20% 50%, rgba(150, 100, 255, 0.1) 0%, transparent 50%);
+    opacity: 0.4;
+}
+
+.nebula-1 {
+    width: 600px;
+    height: 600px;
+    top: 5%;
+    left: 0%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(80, 40, 180, 0.08) 0%, transparent 60%);
+}
+
+.nebula-2 {
+    width: 500px;
+    height: 500px;
+    bottom: 5%;
+    right: 0%;
+    background: radial-gradient(ellipse at 80% 50%, rgba(40, 80, 200, 0.07) 0%, transparent 60%);
+}

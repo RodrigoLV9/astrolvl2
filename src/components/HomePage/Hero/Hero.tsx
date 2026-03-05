@@ -1,10 +1,12 @@
 import React from 'react'
 import { FaRegLightbulb as IconLightBulb, FaArrowRightLong as IconArrowRight } from "react-icons/fa6";
 import { CarouselHero } from "../../CarouselHero.tsx"
+import { SpaceBackground } from "../../SpaceBackground.tsx"
 import '../../../styles/Home/Hero.css'
-export  const Hero:React.FC = () => {
+export const Hero: React.FC = () => {
   return (
     <section className="hero">
+        <SpaceBackground />
         <div className="tag">
             <IconLightBulb className='tag-icon'/>
             <p>Tecnologia con vision</p>
@@ -23,6 +25,6 @@ export  const Hero:React.FC = () => {
             </button>
         </div>
         <CarouselHero/>
-    </section>
+      </section>
   )
 }
