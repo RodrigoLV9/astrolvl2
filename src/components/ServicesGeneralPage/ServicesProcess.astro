@@ -1,0 +1,170 @@
+---
+---
+
+<section class="servicesProcess">
+    <div class="servicesProcess__text">
+        <h2>Nuestro proceso de trabajo</h2>
+        <p>Un enfoque estructurado pero flexible para asegurar tu éxito</p>
+    </div>
+    <div class="servicesProcess__timeline">
+        <div class="processStep">
+            <div class="processStep__number">1</div>
+            <div class="processStep__content">
+                <h4>Consulta y Análisis</h4>
+                <p>Entendemos tus necesidades, objetivos y visión para tu proyecto.</p>
+            </div>
+        </div>
+        <div class="processStep__connector"></div>
+        <div class="processStep">
+            <div class="processStep__number">2</div>
+            <div class="processStep__content">
+                <h4>Estrategia y Diseño</h4>
+                <p>Creamos un plan detallado y diseños visuales de alta calidad.</p>
+            </div>
+        </div>
+        <div class="processStep__connector"></div>
+        <div class="processStep">
+            <div class="processStep__number">3</div>
+            <div class="processStep__content">
+                <h4>Desarrollo</h4>
+                <p>Construimos tu sitio con tecnología moderna y mejores prácticas.</p>
+            </div>
+        </div>
+        <div class="processStep__connector"></div>
+        <div class="processStep">
+            <div class="processStep__number">4</div>
+            <div class="processStep__content">
+                <h4>Testing y QA</h4>
+                <p>Realizamos pruebas exhaustivas para garantizar calidad y seguridad.</p>
+            </div>
+        </div>
+        <div class="processStep__connector"></div>
+        <div class="processStep">
+            <div class="processStep__number">5</div>
+            <div class="processStep__content">
+                <h4>Lanzamiento y Soporte</h4>
+                <p>Desplegamos y proporcionamos soporte continuo para tu éxito.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .servicesProcess {
+        padding: 100px 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    .servicesProcess__text {
+        text-align: center;
+        margin-bottom: 70px;
+    }
+
+    .servicesProcess__text h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #e8f3ff 0%, #60a5fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .servicesProcess__text p {
+        font-size: 1.1rem;
+        color: #b0b0b0;
+    }
+
+    .servicesProcess__timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .processStep {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+        padding: 30px;
+        border: 1px solid rgba(96, 165, 250, 0.2);
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.02), rgba(139, 92, 246, 0.02));
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .processStep:hover {
+        border-color: rgba(96, 165, 250, 0.4);
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.05), rgba(139, 92, 246, 0.05));
+        transform: translateX(10px);
+    }
+
+    .processStep__number {
+        min-width: 50px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .processStep__content h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #e8f3ff;
+        margin: 0 0 10px 0;
+    }
+
+    .processStep__content p {
+        color: #b0b0b0;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .processStep__connector {
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(180deg, rgba(96, 165, 250, 0.5), rgba(96, 165, 250, 0.1));
+        margin-left: 25px;
+    }
+
+    .processStep:last-child .processStep__connector {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .servicesProcess {
+            padding: 60px 20px;
+        }
+
+        .servicesProcess__text h2 {
+            font-size: 2rem;
+        }
+
+        .processStep {
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .processStep__number {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .processStep__connector {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>

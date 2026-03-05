@@ -57,3 +57,16 @@
     color: lightseagreen;
     transition: color .3s ease;
 }
+.servicesList__all{
+    font-weight: 700;
+    color: #60a5fa !important;
+    font-size: 0.95rem;
+}
+.servicesList__all:hover{
+    color: #3b82f6 !important;
+}
+.servicesList__divider{
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0;
+}

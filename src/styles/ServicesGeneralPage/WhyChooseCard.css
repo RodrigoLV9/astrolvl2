@@ -1,0 +1,37 @@
+.whyCard {
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.05), rgba(139, 92, 246, 0.05));
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.whyCard:hover {
+    border-color: rgba(96, 165, 250, 0.3);
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(139, 92, 246, 0.1));
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+}
+
+.whyCard__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.whyCard__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e8f3ff;
+    margin: 0;
+}
+
+.whyCard__description {
+    color: #b0b0b0;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
