@@ -1,0 +1,169 @@
+﻿---
+---
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 340" fill="none" class="service-illustration">
+  <defs>
+    <radialGradient id="bg-sup" cx="50%" cy="50%" r="55%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="shield-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shield-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d3a28"/>
+      <stop offset="100%" stop-color="#071a10"/>
+    </linearGradient>
+    <filter id="glow-sup" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-sm" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ambient glow -->
+  <ellipse cx="250" cy="170" rx="240" ry="160" fill="url(#bg-sup)"/>
+
+  <!-- ===== CENTER: LARGE SHIELD ===== -->
+  <!-- Outer glow ring -->
+  <circle cx="170" cy="170" r="100" fill="url(#shield-glow)"/>
+
+  <!-- Pulsing rings around shield -->
+  <circle cx="170" cy="170" r="88" stroke="#10b981" stroke-width="0.8" fill="none" opacity="0.25"/>
+  <circle cx="170" cy="170" r="100" stroke="#10b981" stroke-width="0.6" fill="none" opacity="0.15"/>
+  <circle cx="170" cy="170" r="112" stroke="#10b981" stroke-width="0.4" fill="none" opacity="0.08"/>
+
+  <!-- Shield body -->
+  <path d="M170 72 L230 95 L230 158 Q230 215 170 238 Q110 215 110 158 L110 95 Z"
+        fill="url(#shield-fill)" stroke="#10b981" stroke-width="2"/>
+  <!-- Shield inner highlight -->
+  <path d="M170 84 L218 104 L218 156 Q218 205 170 225 Q122 205 122 156 L122 104 Z"
+        fill="none" stroke="#10b981" stroke-width="1" opacity="0.4"/>
+
+  <!-- Checkmark inside shield -->
+  <path d="M152 158 L164 172 L190 144"
+        stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"
+        filter="url(#glow-sup)"/>
+
+  <!-- Lock icon below checkmark -->
+  <rect x="160" y="186" width="20" height="16" rx="3" fill="#10b981" opacity="0.2"/>
+  <rect x="162" y="188" width="16" height="12" rx="2" fill="#10b981" opacity="0.4"/>
+  <path d="M164 186 Q164 180 170 180 Q176 180 176 186" stroke="#10b981" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- ===== TOP LEFT: UPTIME DONUT ===== -->
+  <rect x="12" y="18" width="100" height="100" rx="14" fill="#04100d" stroke="#0c3a2a" stroke-width="1.2"/>
+  <rect x="12" y="18" width="100" height="4" rx="2" fill="#10b981"/>
+  <!-- Donut chart -->
+  <circle cx="62" cy="72" r="28" stroke="#0c2a1e" stroke-width="9" fill="none"/>
+  <!-- Almost full arc = 99.9% uptime (dasharray: 175.5 = 99.9% of 2Ï€Ã—28â‰ˆ175.9) -->
+  <circle cx="62" cy="72" r="28" stroke="#10b981" stroke-width="9" fill="none"
+    stroke-dasharray="175 2" stroke-dashoffset="44" stroke-linecap="round"
+    filter="url(#glow-sm)"/>
+  <!-- Center dot -->
+  <circle cx="62" cy="72" r="6" fill="#071a10"/>
+  <circle cx="62" cy="72" r="4" fill="#10b981" opacity="0.5"/>
+  <!-- Small status label bar -->
+  <rect x="22" y="107" width="80" height="5" rx="2.5" fill="#0c2a1e"/>
+  <rect x="22" y="107" width="79" height="5" rx="2.5" fill="#10b981" opacity="0.7"/>
+
+  <!-- ===== TOP RIGHT: RESPONSE TIME GAUGE ===== -->
+  <rect x="388" y="18" width="100" height="100" rx="14" fill="#04100d" stroke="#0c3a2a" stroke-width="1.2"/>
+  <rect x="388" y="18" width="100" height="4" rx="2" fill="#10b981"/>
+  <!-- Half-gauge arc -->
+  <path d="M400 90 A38 38 0 0 1 476 90" stroke="#0c2a1e" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M400 90 A38 38 0 0 1 476 90" stroke="#10b981" stroke-width="9" fill="none"
+    stroke-dasharray="60 60" stroke-dashoffset="0" stroke-linecap="round" filter="url(#glow-sm)"/>
+  <!-- Needle -->
+  <line x1="438" y1="90" x2="421" y2="62" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="438" cy="90" r="5" fill="#0d2e22" stroke="#10b981" stroke-width="1.5"/>
+  <!-- Small bars below gauge -->
+  <rect x="396" y="100" width="80" height="5" rx="2" fill="#0a2018"/>
+  <rect x="396" y="108" width="56" height="5" rx="2" fill="#0a2018"/>
+
+  <!-- ===== BOTTOM LEFT: UPTIME BAR CHART ===== -->
+  <rect x="12" y="130" width="100" height="92" rx="14" fill="#04100d" stroke="#0c3a2a" stroke-width="1.2"/>
+  <rect x="12" y="130" width="100" height="4" rx="2" fill="#10b981"/>
+  <!-- Bar chart - 10 bars representing days -->
+  <rect x="20" y="196" width="7" height="20" rx="2" fill="#10b981" opacity="0.9"/>
+  <rect x="30" y="190" width="7" height="26" rx="2" fill="#10b981" opacity="0.9"/>
+  <rect x="40" y="194" width="7" height="22" rx="2" fill="#10b981" opacity="0.9"/>
+  <rect x="50" y="188" width="7" height="28" rx="2" fill="#10b981" opacity="0.9"/>
+  <rect x="60" y="192" width="7" height="24" rx="2" fill="#10b981" opacity="0.9"/>
+  <!-- One amber bar (minor incident) -->
+  <rect x="70" y="204" width="7" height="12" rx="2" fill="#f59e0b" opacity="0.85"/>
+  <rect x="80" y="189" width="7" height="27" rx="2" fill="#10b981" opacity="0.9"/>
+  <rect x="90" y="191" width="7" height="25" rx="2" fill="#10b981" opacity="0.9"/>
+  <!-- Grid -->
+  <line x1="18" y1="218" x2="102" y2="218" stroke="#0c2a1e" stroke-width="0.8"/>
+  <line x1="18" y1="208" x2="102" y2="208" stroke="#0c2a1e" stroke-width="0.5" stroke-dasharray="2 2"/>
+  <line x1="18" y1="198" x2="102" y2="198" stroke="#0c2a1e" stroke-width="0.5" stroke-dasharray="2 2"/>
+  <!-- Label bars -->
+  <rect x="20" y="220" width="80" height="4" rx="2" fill="#082010"/>
+
+  <!-- ===== BOTTOM RIGHT: SERVICE STATUS PANEL ===== -->
+  <rect x="388" y="130" width="100" height="92" rx="14" fill="#04100d" stroke="#0c3a2a" stroke-width="1.2"/>
+  <rect x="388" y="130" width="100" height="4" rx="2" fill="#10b981"/>
+  <!-- Status rows (circles + bars only) -->
+  <circle cx="402" cy="156" r="5" fill="#10b981" filter="url(#glow-sm)"/>
+  <rect x="412" y="152" width="66" height="7" rx="3" fill="#0c2a1e"/>
+  <rect x="413" y="153" width="50" height="5" rx="2" fill="#0e3a26" opacity="0.8"/>
+
+  <circle cx="402" cy="174" r="5" fill="#10b981" filter="url(#glow-sm)"/>
+  <rect x="412" y="170" width="66" height="7" rx="3" fill="#0c2a1e"/>
+  <rect x="413" y="171" width="58" height="5" rx="2" fill="#0e3a26" opacity="0.8"/>
+
+  <circle cx="402" cy="192" r="5" fill="#10b981" filter="url(#glow-sm)"/>
+  <rect x="412" y="188" width="66" height="7" rx="3" fill="#0c2a1e"/>
+  <rect x="413" y="189" width="44" height="5" rx="2" fill="#0e3a26" opacity="0.8"/>
+
+  <circle cx="402" cy="210" r="5" fill="#10b981" filter="url(#glow-sm)"/>
+  <rect x="412" y="206" width="66" height="7" rx="3" fill="#0c2a1e"/>
+  <rect x="413" y="207" width="62" height="5" rx="2" fill="#0e3a26" opacity="0.8"/>
+
+  <!-- ===== BOTTOM CENTER: BACKUP / CLOCK CARD ===== -->
+  <rect x="124" y="248" width="248" height="76" rx="14" fill="#04100d" stroke="#0c3a2a" stroke-width="1.2"/>
+  <rect x="124" y="248" width="248" height="4" rx="2" fill="#10b981"/>
+  <!-- Clock icon (left) -->
+  <circle cx="164" cy="290" r="26" fill="#071a10" stroke="#10b981" stroke-width="1.5"/>
+  <circle cx="164" cy="290" r="22" fill="#082018"/>
+  <!-- Clock hands -->
+  <line x1="164" y1="290" x2="164" y2="272" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="164" y1="290" x2="178" y2="285" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="164" cy="290" r="3" fill="#10b981"/>
+  <!-- Clock tick marks -->
+  <line x1="164" y1="266" x2="164" y2="270" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="164" y1="310" x2="164" y2="314" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="140" y1="290" x2="144" y2="290" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="184" y1="290" x2="188" y2="290" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Connector line -->
+  <line x1="196" y1="285" x2="215" y2="285" stroke="#0c3a2a" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- Backup stack icon (right of clock) -->
+  <!-- Stack of disks / layers -->
+  <ellipse cx="260" cy="278" rx="32" ry="9" fill="#0c2a1e" stroke="#10b981" stroke-width="1.2"/>
+  <rect x="228" y="278" width="64" height="8" fill="#0c2a1e"/>
+  <ellipse cx="260" cy="286" rx="32" ry="9" fill="#0d3020" stroke="#10b981" stroke-width="1.2"/>
+  <rect x="228" y="286" width="64" height="8" fill="#0d3020"/>
+  <ellipse cx="260" cy="294" rx="32" ry="9" fill="#0e3828" stroke="#10b981" stroke-width="1.2"/>
+  <!-- Top disk highlight -->
+  <ellipse cx="260" cy="278" rx="28" ry="7" fill="none" stroke="#10b981" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Connector line 2 -->
+  <line x1="296" y1="285" x2="314" y2="285" stroke="#0c3a2a" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- Shield mini (right section of bottom card) -->
+  <path d="M340 262 L362 270 L362 292 Q362 308 340 316 Q318 308 318 292 L318 270 Z"
+        fill="#0d3028" stroke="#10b981" stroke-width="1.5"/>
+  <path d="M329 290 L337 300 L353 278"
+        stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
+        filter="url(#glow-sm)"/>
+
+  <!-- Connecting dots/nodes overlay -->
+  <circle cx="340" cy="248" r="3" fill="#10b981" opacity="0.6"/>
+  <circle cx="372" cy="248" r="3" fill="#10b981" opacity="0.4"/>
+  <line x1="340" y1="248" x2="372" y2="248" stroke="#10b981" stroke-width="0.8" opacity="0.3" stroke-dasharray="4 3"/>
+</svg>

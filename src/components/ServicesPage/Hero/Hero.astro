@@ -1,25 +1,68 @@
 ---
 import { HeroTag } from "./HeroTag";
-import {Button} from './Button.tsx'
-import {CarouselHero} from '../../CarouselHero'
+import { Button } from './Button.tsx'
+import { CarouselHero } from '../../CarouselHero'
+import LandingPageIllustration from './illustrations/LandingPageIllustration.astro'
+import WebsiteIllustration from './illustrations/WebsiteIllustration.astro'
+import EcommerceIllustration from './illustrations/EcommerceIllustration.astro'
+import SupportIllustration from './illustrations/SupportIllustration.astro'
+
+interface Props {
+  service: string
+}
+
+const { service } = Astro.props
+
+const serviceData: Record<string, { breadcrumb: string; title: string; subtitle: string; tags: string[]; buttonText: string }> = {
+  'landing-page': {
+    breadcrumb: 'Servicios › Landing Page',
+    title: 'Landing Pages que Convierten Visitantes en Clientes',
+    subtitle: 'Diseños de alto impacto enfocados en resultados medibles',
+    tags: ['Alta Conversión', 'Mobile First', 'SEO Optimizado', 'A/B Testing'],
+    buttonText: 'Solicitar Landing Page',
+  },
+  'website': {
+    breadcrumb: 'Servicios › Sitio Web',
+    title: 'Sitios Web Corporativos que Generan Confianza',
+    subtitle: 'Presencia profesional diseñada para crecer contigo',
+    tags: ['Diseño Profesional', 'CMS Integrado', 'SEO Técnico', 'Escalable'],
+    buttonText: 'Solicitar Sitio Web',
+  },
+  'ecommerce': {
+    breadcrumb: 'Servicios › E-commerce',
+    title: 'Tiendas Online que Venden las 24 Horas del Día',
+    subtitle: 'E-commerce robusto y optimizado para maximizar tus ventas',
+    tags: ['Pagos Seguros', 'Gestión de Stock', 'SEO de Productos', 'Escalable'],
+    buttonText: 'Solicitar E-commerce',
+  },
+  'support': {
+    breadcrumb: 'Servicios › Soporte',
+    title: 'Soporte y Mantenimiento Proactivo para tu Web',
+    subtitle: 'Tu plataforma siempre activa, segura y optimizada',
+    tags: ['Monitoreo 24/7', 'Actualizaciones', 'Backups', 'Respuesta Rápida'],
+    buttonText: 'Solicitar Soporte',
+  },
+}
+
+const data = serviceData[service] ?? serviceData['landing-page']
 ---
 <section class="hero">
     <div class="heroLeft">
-        <p class="heroLeft__section">Servicios > Landing Page</p>
+        <p class="heroLeft__section">{data.breadcrumb}</p>
         <div class="heroLeft__text">
-            <h1>Landing Pages que Convierten Visitantes en Clientes</h1>
-            <h4>Diseños de alto impacto enfocados en resultados medibles</h4>
+            <h1>{data.title}</h1>
+            <h4>{data.subtitle}</h4>
         </div>
         <div class="heroLeft__tags">
-            <HeroTag/>
-            <HeroTag/>
-            <HeroTag/>
-            <HeroTag/>
+            {data.tags.map(tag => <HeroTag label={tag}/>)}
         </div>
-        <Button/>
+        <Button label={data.buttonText}/>
     </div>
     <div class="heroRight">
-        <img src="/src/assets/images/landingpage.png" alt=";anding page illustration" class="heroRight__image">
+        {service === 'landing-page' && <LandingPageIllustration/>}
+        {service === 'website' && <WebsiteIllustration/>}
+        {service === 'ecommerce' && <EcommerceIllustration/>}
+        {service === 'support' && <SupportIllustration/>}
     </div>
     <CarouselHero/>
 </section>
@@ -38,20 +81,40 @@ import {CarouselHero} from '../../CarouselHero'
         display:flex;
         flex-direction: column;
         justify-content: center;
-        gap:70px
-
+        gap:50px
+    }
+    .heroLeft__section {
+        font-size: 13px;
+        color: rgb(120, 120, 160);
+        letter-spacing: 0.5px;
+    }
+    .heroLeft__text h1 {
+        font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+    }
+    .heroLeft__text h4 {
+        margin-top: 16px;
+        font-size: 1rem;
+        font-weight: 400;
+        color: rgb(160, 160, 200);
+        line-height: 1.5;
     }
     .heroLeft__tags{
         display:flex;
         gap:10px;
         flex-wrap: wrap;
-        margin:20px 0
     }
     .heroRight{
-
+        width: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
-    .heroRight img{
-        width:500px;
-        height: 280px;
+    .heroRight :global(svg.service-illustration) {
+        width: 100%;
+        height: auto;
     }
 </style>
