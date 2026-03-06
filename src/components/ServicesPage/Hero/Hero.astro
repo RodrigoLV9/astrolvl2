@@ -1,6 +1,5 @@
 ---
 import { HeroTag } from "./HeroTag";
-import { Button } from './Button.tsx'
 import { CarouselHero } from '../../CarouselHero'
 import LandingPageIllustration from './illustrations/LandingPageIllustration.astro'
 import WebsiteIllustration from './illustrations/WebsiteIllustration.astro'
@@ -13,34 +12,45 @@ interface Props {
 
 const { service } = Astro.props
 
-const serviceData: Record<string, { breadcrumb: string; title: string; subtitle: string; tags: string[]; buttonText: string }> = {
+const serviceData: Record<string, {
+  badge: string
+  title: string
+  description: string
+  tags: string[]
+  primaryCTA: string
+  secondaryCTA: string
+}> = {
   'landing-page': {
-    breadcrumb: 'Servicios › Landing Page',
-    title: 'Landing Pages que Convierten Visitantes en Clientes',
-    subtitle: 'Diseños de alto impacto enfocados en resultados medibles',
+    badge: 'Landing Page',
+    title: 'Páginas diseñadas para convertir, no solo impresionar',
+    description: 'Creamos landing pages de alto rendimiento que guían al visitante hacia una única acción: comprar, registrarse o contactar. Sin distracciones, resultados medibles desde el primer día.',
     tags: ['Alta Conversión', 'Mobile First', 'SEO Optimizado', 'A/B Testing'],
-    buttonText: 'Solicitar Landing Page',
+    primaryCTA: 'Quiero mi landing page',
+    secondaryCTA: 'Ver proceso',
   },
   'website': {
-    breadcrumb: 'Servicios › Sitio Web',
-    title: 'Sitios Web Corporativos que Generan Confianza',
-    subtitle: 'Presencia profesional diseñada para crecer contigo',
-    tags: ['Diseño Profesional', 'CMS Integrado', 'SEO Técnico', 'Escalable'],
-    buttonText: 'Solicitar Sitio Web',
+    badge: 'Sitio Web Corporativo',
+    title: 'Tu presencia digital construida para generar confianza',
+    description: 'Diseñamos sitios web corporativos con identidad visual sólida, CMS integrado y arquitectura que escala con tu empresa. Un proyecto llave en mano desde el diseño hasta el lanzamiento.',
+    tags: ['Diseño UI/UX', 'CMS Integrado', 'SEO Técnico', 'Escalable'],
+    primaryCTA: 'Quiero mi sitio web',
+    secondaryCTA: 'Ver proceso',
   },
   'ecommerce': {
-    breadcrumb: 'Servicios › E-commerce',
-    title: 'Tiendas Online que Venden las 24 Horas del Día',
-    subtitle: 'E-commerce robusto y optimizado para maximizar tus ventas',
-    tags: ['Pagos Seguros', 'Gestión de Stock', 'SEO de Productos', 'Escalable'],
-    buttonText: 'Solicitar E-commerce',
+    badge: 'E-commerce',
+    title: 'Tu tienda online lista para vender las 24 horas',
+    description: 'Desarrollamos tiendas online robustas con gestión de inventario, múltiples pasarelas de pago y SEO por producto. Tu canal de ventas digital, optimizado para convertir y escalar.',
+    tags: ['Checkout Seguro', 'Gestión de Stock', 'SEO de Productos', 'Analítica'],
+    primaryCTA: 'Quiero mi tienda online',
+    secondaryCTA: 'Ver proceso',
   },
   'support': {
-    breadcrumb: 'Servicios › Soporte',
-    title: 'Soporte y Mantenimiento Proactivo para tu Web',
-    subtitle: 'Tu plataforma siempre activa, segura y optimizada',
-    tags: ['Monitoreo 24/7', 'Actualizaciones', 'Backups', 'Respuesta Rápida'],
-    buttonText: 'Solicitar Soporte',
+    badge: 'Soporte & Mantenimiento',
+    title: 'Tu plataforma activa, segura y en óptimas condiciones',
+    description: 'Actualizaciones, backups automáticos, monitoreo continuo y respuesta rápida ante incidencias. Tu web en manos expertas para que tú te enfoques en hacer crecer tu negocio.',
+    tags: ['Monitoreo 24/7', 'Actualizaciones', 'Seguridad', 'Reportes Mensuales'],
+    primaryCTA: 'Quiero plan de soporte',
+    secondaryCTA: 'Ver proceso',
   },
 }
 
@@ -48,15 +58,24 @@ const data = serviceData[service] ?? serviceData['landing-page']
 ---
 <section class="hero">
     <div class="heroLeft">
-        <p class="heroLeft__section">{data.breadcrumb}</p>
+        <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            <span>{data.badge}</span>
+        </div>
         <div class="heroLeft__text">
             <h1>{data.title}</h1>
-            <h4>{data.subtitle}</h4>
+            <p class="hero__description">{data.description}</p>
         </div>
         <div class="heroLeft__tags">
             {data.tags.map(tag => <HeroTag label={tag}/>)}
         </div>
-        <Button label={data.buttonText}/>
+        <div class="hero__cta-group">
+            <a href="/contact" class="hero__btn-primary">
+                {data.primaryCTA}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="/process" class="hero__btn-secondary">{data.secondaryCTA}</a>
+        </div>
     </div>
     <div class="heroRight">
         {service === 'landing-page' && <LandingPageIllustration/>}
@@ -67,47 +86,128 @@ const data = serviceData[service] ?? serviceData['landing-page']
     <CarouselHero/>
 </section>
 <style>
-    .hero{
+    .hero {
+        position: relative;
         height: 100dvh;
-        width:80dvw;
-        margin:auto;
-        display:flex;
+        width: 100%;
+        margin: auto;
+        display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-evenly;
+        gap: 40px;
     }
-    .heroLeft{
-        width:600px;
-        height: 100dvh;
-        display:flex;
+
+    /* ── Left column ── */
+    .heroLeft {
+        max-width: 580px;
+        width: 100%;
+        display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap:50px
+        gap: 26px;
     }
-    .heroLeft__section {
-        font-size: 13px;
-        color: rgb(120, 120, 160);
-        letter-spacing: 0.5px;
+
+    /* ── Badge ── */
+    .hero__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 5px 14px;
+        border-radius: 100px;
+        border: 1px solid rgba(99, 102, 241, 0.35);
+        background: rgba(99, 102, 241, 0.08);
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: #a5b4fc;
+        letter-spacing: 0.3px;
     }
+    .hero__badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #22c55e;
+        flex-shrink: 0;
+        animation: heroBadgePulse 2.2s ease-in-out infinite;
+    }
+    @keyframes heroBadgePulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.35; }
+    }
+
+    /* ── Heading ── */
     .heroLeft__text h1 {
-        font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+        font-size: clamp(2.1rem, 3vw, 3.4rem);
         font-weight: 800;
-        line-height: 1.2;
-        letter-spacing: -0.5px;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+        color: #ffffff;
+        margin: 0;
     }
-    .heroLeft__text h4 {
-        margin-top: 16px;
-        font-size: 1rem;
+    .hero__description {
+        margin: 12px 0 0;
+        font-size: 1.05rem;
         font-weight: 400;
-        color: rgb(160, 160, 200);
-        line-height: 1.5;
+        line-height: 1.7;
+        color: rgba(196, 200, 235, 0.78);
+        max-width: 520px;
     }
-    .heroLeft__tags{
-        display:flex;
-        gap:10px;
+
+    /* ── Tags ── */
+    .heroLeft__tags {
+        display: flex;
+        gap: 8px;
         flex-wrap: wrap;
     }
-    .heroRight{
-        width: 500px;
+
+    /* ── CTA group ── */
+    .hero__cta-group {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+    .hero__btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 24px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(135deg, #6366f1, #3b82f6);
+        text-decoration: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        letter-spacing: 0.1px;
+        white-space: nowrap;
+    }
+    .hero__btn-primary:hover {
+        opacity: 0.88;
+        transform: translateY(-2px);
+    }
+    .hero__btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        padding: 13px 20px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: rgba(200, 205, 240, 0.8);
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        transition: background 0.2s ease, border-color 0.2s ease;
+        white-space: nowrap;
+    }
+    .hero__btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    /* ── Right column (illustration) ── */
+    .heroRight {
+        flex: 1;
+        max-width: 480px;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { GiFallingStar as IconStar } from "react-icons/gi";
+import { FaCheck as IconCheck } from "react-icons/fa6";
 import '../../../styles/Services/heroTag.css'
 
 interface HeroTagProps {
@@ -9,8 +9,8 @@ interface HeroTagProps {
 export const HeroTag: React.FC<HeroTagProps> = ({ label }) => {
   return (
     <div className="heroTag">
-      <IconStar className="heroTag__icon" />
-      <p>{label}</p>
+      <IconCheck className="heroTag__icon" />
+      <span>{label}</span>
     </div>
   )
 }
