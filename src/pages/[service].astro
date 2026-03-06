@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/ServicesPage/Hero/Hero.astro'
 import CardsIntro from '../components/ServicesPage/CardsIntro/CardsIntro.astro';
@@ -10,48 +10,195 @@ import Faqs1 from '../components/HomePage/Faqs1/Faqs1.astro'
 import CTAServices from '../components/ServicesPage/CTAServices/CTAServices.astro';
 import More from '../components/ServicesPage/More/More.astro';
 
-export async function getStaticPaths() {
-  const services = [
-    { 
-      slug: 'landing-page', 
-      title: 'Landing Pages de Alta Conversión', 
-      description: 'Diseñamos sitios enfocados en vender.' 
-    },
-    { 
-      slug: 'website', 
-      title: 'Sitios Web Corporativos', 
-      description: 'Presencia profesional para tu empresa.' 
-    },
-    { 
-      slug: 'ecommerce', 
-      title: 'Tiendas Online (E-commerce)', 
-      description: 'Escala tus ventas con una tienda robusta.' 
-    },
-    { 
-      slug: 'support', 
-      title: 'Soporte y Mantenimiento', 
-      description: 'Cuidamos tu web mientras tú creces.' 
-    },
-  ];
-
-  return services.map((item) => ({
-    params: { service: item.slug }, // Esto define el nombre en la URL
-    props: { content: item },       // Esto pasa los datos a la página
-  }));
+interface FaqItem {
+  question: string
+  answer: string
 }
 
-const { service } = Astro.params;
-const { content } = Astro.props;
+const serviceFaqs: Record<string, FaqItem[]> = {
+  'landing-page': [
+    {
+      question: '¿En qué se diferencia una landing page de un sitio web completo?',
+      answer: 'Una landing page es una página de propósito único diseñada para convertir visitantes en leads o clientes. A diferencia de un sitio con múltiples secciones y objetivos, la landing elimina distracciones y guía al usuario hacia una sola acción: comprar, registrarse o contactar.',
+    },
+    {
+      question: '¿Cuánto tiempo tarda en estar lista mi landing page?',
+      answer: 'Una landing page profesional suele estar lista en 2 a 3 semanas. Esto incluye la fase de Discovery, el diseño en alta fidelidad, el desarrollo y las pruebas finales. El plazo puede variar si hay integraciones externas o contenido adicional por definir.',
+    },
+    {
+      question: '¿Puede integrarse con mis herramientas de marketing?',
+      answer: 'Sí. Conectamos la landing con tu CRM (HubSpot, ActiveCampaign, Pipedrive), formularios de email marketing, píxel de Meta Ads, Google Ads, Google Tag Manager y cualquier otra herramienta que ya uses. Todo queda trazado y medible desde el primer día.',
+    },
+    {
+      question: '¿Está optimizada para móviles y velocidad de carga?',
+      answer: 'Absolutamente. Diseñamos y desarrollamos con enfoque mobile-first. Además, optimizamos imágenes, eliminamos código innecesario y aplicamos mejores prácticas de Core Web Vitals para asegurar una carga rápida que no penalice tu posicionamiento ni tu tasa de conversión.',
+    },
+    {
+      question: '¿Incluyen seguimiento de conversiones y analítica?',
+      answer: 'Sí. Configuramos Google Analytics 4, seguimiento de eventos clave (clics, envíos de formulario, scroll depth) y conversiones en Google Ads o Meta Ads si aplica. Así puedes medir exactamente el rendimiento de tu inversión en tráfico.',
+    },
+    {
+      question: '¿Qué contenido debo preparar yo?',
+      answer: 'Necesitas tener clara tu propuesta de valor y, si los tienes, imágenes o videos del producto o servicio. El resto —copywriting, estructura de la página, llamados a la acción— lo trabajamos juntos en la etapa de Discovery. No necesitas entregar un brief perfecto para empezar.',
+    },
+  ],
+  'website': [
+    {
+      question: '¿Cuántas páginas y secciones incluye un sitio web corporativo?',
+      answer: 'El alcance se define en la etapa de Discovery según tus necesidades. Un sitio corporativo típico incluye Inicio, Sobre nosotros, Servicios (o Productos), Blog y Contacto. Si necesitas más páginas —casos de estudio, equipo, portafolio— las agregamos al proyecto desde el inicio.',
+    },
+    {
+      question: '¿Podré actualizar el contenido sin conocimientos técnicos?',
+      answer: 'Sí. Integramos un CMS (gestor de contenidos) que te permite editar textos, imágenes, entradas de blog y más desde un panel visual sencillo, sin tocar código. En la entrega te hacemos una capacitación para que puedas manejarlo con total autonomía.',
+    },
+    {
+      question: '¿El sitio web estará optimizado para SEO desde el inicio?',
+      answer: 'Sí. Implementamos las bases técnicas de SEO: estructura semántica HTML, metaetiquetas, Open Graph, esquemas de datos estructurados, sitemap XML y rendimiento de carga optimizado. Si necesitas una estrategia de contenido SEO más profunda, eso se cotiza por separado.',
+    },
+    {
+      question: '¿El proyecto incluye diseño visual o solo desarrollo?',
+      answer: 'Incluye ambos por defecto. Diseñamos la identidad visual de la web —paleta, tipografía, componentes de UI— a partir de tu branding existente. Si necesitas construir o refinar tu identidad de marca desde cero, también lo ofrecemos como servicio adicional.',
+    },
+    {
+      question: '¿Ofrecen hosting y dominio, o solo el desarrollo?',
+      answer: 'Nos encargamos del desarrollo completo. Para hosting y dominio te recomendamos las mejores opciones según tu proyecto (Vercel, Netlify, VPS o hosting administrado) y te ayudamos a configurarlo todo. El costo del hosting corre por tu cuenta directamente con el proveedor.',
+    },
+    {
+      question: '¿Puedo escalar el sitio con más funcionalidades en el futuro?',
+      answer: 'Sí. Construimos sobre arquitecturas modulares y bien documentadas que facilitan el crecimiento. Puedes agregar tienda online, sistema de reservas, área de clientes, integraciones con terceros u otros módulos en cualquier momento sin rehacer todo desde cero.',
+    },
+  ],
+  'ecommerce': [
+    {
+      question: '¿Qué pasarela de pago integran en la tienda?',
+      answer: 'Integramos las pasarelas más utilizadas según tu mercado: Mercado Pago, Stripe, PayPal, Conekta, ePayco y otras. Si ya tienes contrato con una pasarela específica, también la conectamos. Garantizamos que el proceso de pago sea seguro, fluido y compatible con tarjetas, transferencias y billeteras digitales.',
+    },
+    {
+      question: '¿Puedo gestionar el inventario desde un panel de administración?',
+      answer: 'Sí. Tendrás acceso a un panel de control donde puedes agregar o editar productos, gestionar stock, procesar pedidos, aplicar descuentos y ver reportes de ventas, sin necesidad de conocimientos técnicos. Te capacitamos en el uso del panel al momento de la entrega.',
+    },
+    {
+      question: '¿Cuántos productos puede manejar la tienda sin perder rendimiento?',
+      answer: 'La arquitectura que usamos escala eficientemente hasta decenas de miles de productos sin degradación de rendimiento, siempre que el hosting sea adecuado. Si tienes un catálogo muy grande, lo analizamos en el Discovery para asegurar que la solución técnica tenga la capacidad requerida.',
+    },
+    {
+      question: '¿El e-commerce está optimizado para SEO de fichas de producto?',
+      answer: 'Sí. Implementamos URLs limpias y descriptivas, metaetiquetas por producto, rich snippets con datos estructurados (precio, disponibilidad, valoraciones), carga rápida de imágenes y estructura HTML semántica. Todo listo para que Google indexe y posicione tu catálogo desde el lanzamiento.',
+    },
+    {
+      question: '¿Puedo crear descuentos, cupones y campañas promocionales?',
+      answer: 'Sí. El panel incluye herramientas para definir descuentos por producto, categoría o total del carrito, cupones con condiciones y fechas de vigencia, y precios especiales por volumen o tipo de cliente. Perfectamente integrado con tus campañas de marketing.',
+    },
+    {
+      question: '¿Integran con plataformas de envío o marketplaces externos?',
+      answer: 'Sí. Conectamos la tienda con operadores logísticos (para cálculo de envíos en tiempo real), sistemas de fulfillment y, si lo requieres, sincronización de catálogo con Mercado Libre, Amazon o Instagram Shopping. Cada integración se evalúa en el alcance del proyecto.',
+    },
+  ],
+  'support': [
+    {
+      question: '¿Qué incluye exactamente el plan de mantenimiento?',
+      answer: 'Incluye actualizaciones de dependencias y plugins, monitoreo de disponibilidad 24/7, revisión mensual de rendimiento y seguridad, backups automáticos, corrección de errores detectados y soporte técnico para consultas del equipo. El alcance exacto se define según el plan contratado.',
+    },
+    {
+      question: '¿Cuál es el tiempo de respuesta ante una incidencia crítica?',
+      answer: 'Para incidencias críticas —sitio caído o brecha de seguridad— el tiempo de respuesta es de máximo 2 horas en horario laboral extendido. Para errores funcionales no críticos, respondemos dentro de las siguientes 24 horas hábiles. El SLA exacto se establece en el contrato.',
+    },
+    {
+      question: '¿Pueden encargarse del mantenimiento de un sitio que no desarrollaron?',
+      answer: 'Sí. Hacemos una auditoría técnica inicial del sitio para entender su arquitectura, dependencias y estado general. A partir de eso definimos el plan de mantenimiento adecuado y, si hay deuda técnica importante, te lo comunicamos con transparencia antes de comprometernos.',
+    },
+    {
+      question: '¿Con qué frecuencia realizan actualizaciones y revisiones?',
+      answer: 'Las actualizaciones de seguridad se aplican tan pronto están disponibles si son críticas, o en ciclos quincenales para actualizaciones regulares. Las revisiones de rendimiento y salud del sitio se hacen mensualmente. Recibirás un reporte con cada ciclo de mantenimiento.',
+    },
+    {
+      question: '¿Brindan reportes sobre el rendimiento y estado del sitio?',
+      answer: 'Sí. Cada mes recibes un informe con el estado del sitio: uptime, velocidad de carga, acciones de mantenimiento realizadas, actualizaciones aplicadas y cualquier anomalía detectada. Así siempre tienes visibilidad de lo que ocurre con tu plataforma.',
+    },
+    {
+      question: '¿Qué pasa si mi sitio se cae fuera de horario laboral?',
+      answer: 'Nuestro sistema de monitoreo detecta caídas automáticamente y nos alerta de inmediato. Dependiendo del plan, la atención fuera de horario puede tener un tiempo de respuesta establecido o ser bajo demanda. Si necesitas cobertura 24/7 completa, lo incluimos en el plan premium.',
+    },
+  ],
+}
+
+export async function getStaticPaths() {
+  const services = [
+    {
+      slug: 'landing-page',
+      title: 'Landing Pages de Alta Conversión',
+      description: 'Diseñamos sitios enfocados en vender.',
+    },
+    {
+      slug: 'website',
+      title: 'Sitios Web Corporativos',
+      description: 'Presencia profesional para tu empresa.',
+    },
+    {
+      slug: 'ecommerce',
+      title: 'Tiendas Online (E-commerce)',
+      description: 'Escala tus ventas con una tienda robusta.',
+    },
+    {
+      slug: 'support',
+      title: 'Soporte y Mantenimiento',
+      description: 'Cuidamos tu web mientras tú creces.',
+    },
+  ]
+
+  return services.map((item) => ({
+    params: { service: item.slug },
+    props: { content: item },
+  }))
+}
+
+const { service } = Astro.params
+const { content } = Astro.props
+
+const faqTitles: Record<string, { eyebrow: string; title: string; subtitle: string }> = {
+  'landing-page': {
+    eyebrow: 'Preguntas Frecuentes',
+    title: '¿Dudas sobre tu landing?',
+    subtitle: 'Todo lo que necesitas saber antes de arrancar tu página de conversión.',
+  },
+  'website': {
+    eyebrow: 'Preguntas Frecuentes',
+    title: '¿Dudas sobre tu sitio web?',
+    subtitle: 'Resolvemos las preguntas más comunes sobre desarrollo de sitios corporativos.',
+  },
+  'ecommerce': {
+    eyebrow: 'Preguntas Frecuentes',
+    title: '¿Dudas sobre tu tienda?',
+    subtitle: 'Todo lo que necesitas saber antes de lanzar tu e-commerce.',
+  },
+  'support': {
+    eyebrow: 'Preguntas Frecuentes',
+    title: '¿Dudas sobre el soporte?',
+    subtitle: 'Resolvemos las preguntas más comunes sobre nuestros planes de mantenimiento.',
+  },
+}
+
+const currentFaqs = serviceFaqs[service] ?? []
+const currentTitles = faqTitles[service] ?? {
+  eyebrow: 'Preguntas Frecuentes',
+  title: 'Respuestas que necesitas',
+  subtitle: 'Aclaramos las dudas más comunes sobre este servicio.',
+}
 ---
 
 <Layout>
-    <Hero/>
-    <CardsIntro/>
-    <Intro/>
-    <Description/>
-    <Features/>
-    <Process/>
-    <Faqs1/>
-    <CTAServices/>
-    <More/>
+  <Hero/>
+  <CardsIntro/>
+  <Intro/>
+  <Description/>
+  <Features/>
+  <Process/>
+  <Faqs1
+    faqs={currentFaqs}
+    eyebrow={currentTitles.eyebrow}
+    title={currentTitles.title}
+    subtitle={currentTitles.subtitle}
+  />
+  <CTAServices/>
+  <More/>
 </Layout>

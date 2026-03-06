@@ -1,41 +1,114 @@
-.faq1Card{
-    width:750px;
-    padding:5px 15px 10px 15px;
-    margin: 20px 0;
-    border:1px solid rgb(44, 44, 44);
-    border-radius:10px;
-    cursor: pointer;
-    overflow: hidden;
-    height: 130px;
-    transition: 1s height;
+﻿/* ─── FAQ list container (rendered by Faqs1Controller) ─── */
+.faqs1__list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.faq1Card-open{
-    height: 50px;
-    transition: 1s height;
-}
-.faq1Card__visible{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
+/* ─── Individual FAQ item ─── */
+.faq1Card {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  cursor: pointer;
+  padding: 0 8px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
 }
-.faq1Card__visible p{
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 10px 0;
+
+.faq1Card:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
-.faq1Card__visible-icon{
-    font-size:1.5rem;
-    transform: rotate(0deg);
-    transition: .3s all;
+
+.faq1Card:hover {
+  background: rgba(167, 139, 250, 0.04);
 }
-.faq1Card__visible-icon--open{
-    transform: rotate(180deg);
-    transition: .3s all;
+
+.faq1Card--open {
+  background: rgba(167, 139, 250, 0.05);
 }
-.faq1Card__text{
-    font-size: .9rem;
-    line-height:1.2rem;
-    margin-right:40px;
-    margin-top: 10px;
+
+/* ─── Header row: number + question + arrow ─── */
+.faq1Card__header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 10px;
+}
+
+/* Number indicator */
+.faq1Card__number {
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: rgba(167, 139, 250, 0.3);
+  min-width: 24px;
+  transition: color 0.25s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.faq1Card--open .faq1Card__number {
+  color: #a78bfa;
+}
+
+/* Question text */
+.faq1Card__question {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: 1.5;
+  transition: color 0.25s ease;
+}
+
+.faq1Card--open .faq1Card__question {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Arrow icon */
+.faq1Card__icon {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.25);
+  transform: rotate(0deg);
+  transition: transform 0.32s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.faq1Card--open .faq1Card__icon {
+  transform: rotate(180deg);
+  color: #a78bfa;
+}
+
+/* ─── Expandable answer body ─── */
+.faq1Card__body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.38s ease, padding-bottom 0.28s ease;
+}
+
+.faq1Card--open .faq1Card__body {
+  max-height: 250px;
+  padding-bottom: 24px;
+}
+
+/* Answer text */
+.faq1Card__answer {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
+@media (max-width: 600px) {
+  .faq1Card__answer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .faq1Card__header {
+    gap: 14px;
+    padding: 18px 6px;
+  }
 }

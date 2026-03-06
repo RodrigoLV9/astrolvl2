@@ -1,21 +1,26 @@
-import React,{useState} from 'react'
-import { IoIosArrowUp as IconArrowUp } from "react-icons/io";
+import React from 'react'
+import { IoIosArrowDown as IconArrow } from "react-icons/io";
 import '../../../styles/Home/Faq1Card.css'
-export const Faq1Card:React.FC = () => {
-  const [isOpen, setIsOpen]=useState<boolean>(false)
-  const handleSwitch=()=>{
-    setIsOpen(!isOpen)
-    console.log('swith')
-  }
+
+interface Faq1CardProps {
+  question: string
+  answer: string
+  index: number
+  isOpen: boolean
+  onToggle: () => void
+}
+
+export const Faq1Card: React.FC<Faq1CardProps> = ({ question, answer, index, isOpen, onToggle }) => {
   return (
-    <div className={`faq1Card ${isOpen ? '' : 'faq1Card-open'}`}  onClick={handleSwitch}>
-        <div className="faq1Card__visible" >
-            <p>¿Cuánto tarda en estar lista una página web?</p>
-            <IconArrowUp className={`faq1Card__visible-icon ${isOpen ? '' : 'faq1Card__visible-icon--open'}`}/>
-        </div>
-        <div className="faq1Card__text">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus minus blanditiis tempora autem dolorem! Deleniti nesciunt et nihil ratione voluptas iste reprehenderit deserunt nulla. Quisquam ipsum maxime praesentium distinctio pariatur!</p>
-        </div>
+    <div className={`faq1Card${isOpen ? ' faq1Card--open' : ''}`} onClick={onToggle}>
+      <div className="faq1Card__header">
+        <span className="faq1Card__number">{String(index + 1).padStart(2, '0')}</span>
+        <p className="faq1Card__question">{question}</p>
+        <IconArrow className="faq1Card__icon" />
+      </div>
+      <div className="faq1Card__body">
+        <p className="faq1Card__answer">{answer}</p>
+      </div>
     </div>
   )
 }
