@@ -1,34 +1,130 @@
----
+﻿---
 import { MoreCard } from "./MoreCard";
+
+interface Props {
+  service: string
+}
+const { service } = Astro.props
+
+const allServices = [
+  {
+    slug: 'landing-page',
+    tag: 'Landing Page',
+    title: 'Páginas de alta conversión',
+    description: 'Para campañas, lanzamientos o captación de leads. Diseñadas con un solo objetivo: convertir.',
+  },
+  {
+    slug: 'website',
+    tag: 'Sitio Web Corporativo',
+    title: 'Presencia digital completa',
+    description: 'Múltiples páginas, CMS integrado y SEO técnico para empresas que necesitan una base digital sólida.',
+  },
+  {
+    slug: 'ecommerce',
+    tag: 'E-commerce',
+    title: 'Tienda online a medida',
+    description: 'Gestión de catálogo, pagos y logística en una tienda online optimizada para vender y escalar.',
+  },
+  {
+    slug: 'support',
+    tag: 'Soporte y Mantenimiento',
+    title: 'Tu web en manos expertas',
+    description: 'Backups, actualizaciones, monitoreo y reportes mensuales para que nada falle sin que lo sepas.',
+  },
+]
+
+const others = allServices.filter(s => s.slug !== service)
 ---
+
 <section class="more">
-    <div class="more__text">
-        <h1>¿Es una Landing Page lo que necesitas?</h1>
-        <p>Elige Landing Page si necesitas una herramienta específica de conversión para campañas, productos o eventos. Para presencia digital completa, considera un Sitio Web.</p>
-    </div>
-    <div class="more__cards">
-        <MoreCard/>
-        <MoreCard/>
-        <MoreCard/>
-    </div>
+  <div class="more__divider"></div>
+  <div class="more__header">
+    <span class="more__eyebrow">Otros servicios</span>
+    <h2 class="more__heading">¿Necesitas algo <span class="more__heading-accent">diferente</span>?</h2>
+    <p class="more__subtitle">Cada servicio está diseñado para una necesidad específica. Si este no es el tuyo, aquí están las otras opciones.</p>
+  </div>
+  <div class="more__grid">
+    {others.map(s => (
+      <MoreCard
+        slug={s.slug}
+        tag={s.tag}
+        title={s.title}
+        description={s.description}
+        href={`/${s.slug}`}
+        client:load
+      />
+    ))}
+  </div>
 </section>
+
 <style>
-    .more{
-        padding:100px 0;
-        margin:auto;
+  .more {
+    padding: 80px 0 100px;
+    width: min(92%, 1100px);
+    margin: 0 auto;
+  }
+  .more__divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.35) 30%, rgba(139,92,246,0.35) 70%, transparent);
+    margin-bottom: 80px;
+  }
+  .more__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 56px;
+  }
+  .more__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #818cf8;
+    padding: 5px 14px;
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 100px;
+    width: fit-content;
+  }
+  .more__heading {
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: #e2e8f0;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .more__heading-accent {
+    background: linear-gradient(135deg, #818cf8, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .more__subtitle {
+    font-size: 0.95rem;
+    color: rgba(180,185,210,0.7);
+    margin: 0;
+    max-width: 500px;
+    line-height: 1.7;
+  }
+  .more__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 900px) {
+    .more__grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-    .more__text{
-        text-align: center;
+  }
+  @media (max-width: 580px) {
+    .more__grid {
+      grid-template-columns: 1fr;
     }
-    .more__text p{
-        margin-top:30px;
-        color:grey
+    .more {
+      padding: 60px 0 80px;
     }
-    .more__cards{
-        width: 80%;
-        margin:70px auto;
-        display:flex;
-        align-items: center;
-        justify-content: space-around;
-    }
+  }
 </style>

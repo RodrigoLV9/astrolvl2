@@ -1,15 +1,38 @@
 import React from 'react'
-import { FaArrowRightLong as IconArrowRight } from "react-icons/fa6";
+import { FaArrowRightLong as IconArrow } from "react-icons/fa6";
+import { FaRocket, FaEarthAmericas, FaCartShopping, FaScrewdriverWrench } from "react-icons/fa6";
 import '../../../styles/Services/moreCard.css'
-export const MoreCard:React.FC = () => {
+
+const iconMap: Record<string, React.ReactNode> = {
+  'landing-page': <FaRocket />,
+  'website': <FaEarthAmericas />,
+  'ecommerce': <FaCartShopping />,
+  'support': <FaScrewdriverWrench />,
+}
+
+interface MoreCardProps {
+  slug: string
+  title: string
+  description: string
+  href: string
+  tag: string
+}
+
+export const MoreCard: React.FC<MoreCardProps> = ({ slug, title, description, href, tag }) => {
   return (
-    <div className='moreCard'>
-        <h3>Sitio Web Completo</h3>
-        <p>Ideal para empresas que necesitan múltiples páginas, blog, portafolio y presencia digital robusta.</p>
-        <button className='moreCard__button'>
-            <span>Ver Sitio Web Completo</span>
-            <IconArrowRight className='moreCard__button-icon'/>
-        </button>
-    </div>
+    <a href={href} className='moreCard'>
+      <div className='moreCard__icon-wrap'>
+        {iconMap[slug]}
+      </div>
+      <div className='moreCard__body'>
+        <span className='moreCard__tag'>{tag}</span>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+      <div className='moreCard__footer'>
+        <span>Ver servicio</span>
+        <IconArrow className='moreCard__arrow' />
+      </div>
+    </a>
   )
 }

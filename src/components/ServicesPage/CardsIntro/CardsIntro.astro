@@ -1,19 +1,134 @@
 ---
 import {Card} from './Card.tsx'
+import {
+  BsRocketTakeoffFill,
+  BsGraphUpArrow,
+  BsShieldCheck,
+} from 'react-icons/bs'
+import {
+  HiOutlineDevicePhoneMobile,
+  HiOutlineCpuChip,
+} from 'react-icons/hi2'
+import {
+  MdOutlineStorefront,
+  MdOutlinePayment,
+  MdOutlineInventory2,
+} from 'react-icons/md'
+import {
+  RiSpeedUpLine,
+  RiUserSettingsLine,
+  RiSearchEyeLine,
+} from 'react-icons/ri'
+import {
+  TbClockHour4,
+  TbReportAnalytics,
+  TbCloudLock,
+} from 'react-icons/tb'
+
+interface Props {
+  service: string
+}
+const { service } = Astro.props
+
+const data: Record<string, Array<{ Icon: any; title: string; description: string; color: string }>> = {
+  'landing-page': [
+    { Icon: BsRocketTakeoffFill,   title: 'Diseñada para convertir',    description: 'Cada elemento —headline, CTA, flujo visual— está construido para guiar al visitante hacia la acción objetivo.',  color: '#6366f1' },
+    { Icon: BsGraphUpArrow,        title: 'Analítica desde el día 1',   description: 'Integramos GA4, seguimiento de eventos y conversiones en ads para que midas el ROI de cada campaña.',        color: '#22d3ee' },
+    { Icon: HiOutlineDevicePhoneMobile, title: 'Mobile-first & rápida',  description: 'Puntuación 90+ en Core Web Vitals. Optimizada para que Google la posicione y los usuarios no la abandonen.',   color: '#a78bfa' },
+  ],
+  'website': [
+    { Icon: RiUserSettingsLine,    title: 'CMS para tu equipo',         description: 'Edita textos, imágenes y publicaciones de blog sin tocar código desde un panel visual intuitivo.',            color: '#6366f1' },
+    { Icon: RiSearchEyeLine,       title: 'SEO técnico incluido',        description: 'Estructura semántica, metaetiquetas, datos estructurados y sitemap listos para escalar en buscadores.',         color: '#22d3ee' },
+    { Icon: RiSpeedUpLine,         title: 'Rendimiento optimizado',     description: 'Arquitectura modular, imágenes comprimidas y carga diferida para una experiencia que no hace esperar.',        color: '#a78bfa' },
+  ],
+  'ecommerce': [
+    { Icon: MdOutlinePayment,      title: 'Multi-pasarela de pago',     description: 'Stripe, MercadoPago, PayPal y más. Integradas con seguridad PCI y flujo de pago sin fricción.',            color: '#6366f1' },
+    { Icon: MdOutlineStorefront,   title: 'Catálogo sin límites',       description: 'Gestiona miles de productos, variantes, imágenes y stock desde un panel centralizado y fácil de usar.',     color: '#22d3ee' },
+    { Icon: MdOutlineInventory2,   title: 'SEO de producto incluido',   description: 'URLs limpias, rich snippets y metaetiquetas por ficha para que Google indexe y posicione tu catálogo.',    color: '#a78bfa' },
+  ],
+  'support': [
+    { Icon: TbClockHour4,          title: 'Monitoreo continuo',         description: 'Nuestro sistema detecta caídas en segundos y nos alerta de inmediato, antes de que tus usuarios lo noten.',  color: '#6366f1' },
+    { Icon: TbCloudLock,           title: 'Backups y seguridad',        description: 'Copias automáticas diarias, parches de seguridad prioritarios y escaneo de vulnerabilidades incluidos.',     color: '#22d3ee' },
+    { Icon: TbReportAnalytics,     title: 'Reporte mensual detallado',  description: 'Recibes un informe con uptime, velocidad, acciones realizadas y estado general de tu plataforma cada mes.', color: '#a78bfa' },
+  ],
+}
+
+const headers: Record<string, { eyebrow: string; heading: string; subtitle: string }> = {
+  'landing-page': {
+    eyebrow: '¿Por qué elegirnos?',
+    heading: 'Tres pilares que hacen la diferencia',
+    subtitle: 'No solo diseñamos páginas bonitas. Construimos herramientas de conversión medibles desde el primer día.',
+  },
+  'website': {
+    eyebrow: '¿Por qué elegirnos?',
+    heading: 'Lo que distingue un sitio que crece',
+    subtitle: 'Un sitio web es tan bueno como la estrategia detrás de él. Aquí está la nuestra.',
+  },
+  'ecommerce': {
+    eyebrow: '¿Por qué elegirnos?',
+    heading: 'Las bases de una tienda que vende',
+    subtitle: 'Tecnología, experiencia de compra y visibilidad en buscadores: los tres factores que deciden si tu tienda vende o no.',
+  },
+  'support': {
+    eyebrow: '¿Por qué elegirnos?',
+    heading: 'Mantenimiento que previene, no que repara',
+    subtitle: 'La mayoría actúa cuando algo falla. Nosotros trabajamos para que nada falle.',
+  },
+}
+
+const cards = data[service] ?? data['landing-page']
+const header = headers[service] ?? headers['landing-page']
 ---
-<div class="cards">
-    <Card/>
-    <Card/>
-    <Card/>
-</div>
+<section class="cardsIntro-section">
+  <div class="cardsIntro-header">
+    <span class="cardsIntro-eyebrow">{header.eyebrow}</span>
+    <h2 class="cardsIntro-heading">{header.heading}</h2>
+    <p class="cardsIntro-subtitle">{header.subtitle}</p>
+  </div>
+  <div class="cardsIntro-grid">
+    {cards.map(c => <Card Icon={c.Icon} title={c.title} description={c.description} accentColor={c.color}/>)}
+  </div>
+</section>
 <style>
-    .cards{
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        width: 90vw;
-        margin:auto;
-        gap:20px;
-        padding:100px 0
-    }
+  .cardsIntro-section {
+    padding: 80px 0 100px;
+    width: min(92%, 1200px);
+    margin: 0 auto;
+  }
+  .cardsIntro-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 640px;
+    margin: 0 auto 56px;
+  }
+  .cardsIntro-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #818cf8;
+  }
+  .cardsIntro-heading {
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    color: #e2e8f0;
+    margin: 0;
+    line-height: 1.25;
+  }
+  .cardsIntro-subtitle {
+    font-size: 0.93rem;
+    color: rgba(180,185,210,0.75);
+    margin: 0;
+    line-height: 1.65;
+  }
+  .cardsIntro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .cardsIntro-grid { grid-template-columns: 1fr; }
+  }
 </style>

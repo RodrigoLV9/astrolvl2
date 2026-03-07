@@ -1,31 +1,400 @@
----
-import ProcessCard from "./ProcessCard.astro"
----
-<section class="processServices">
-    <h1>Nuestro proceso de trabajo</h1>
-    <div class="processServices__cards">
-        <ProcessCard/>
-        <ProcessCard/>
-        <ProcessCard/>
-        <ProcessCard/>
-        <ProcessCard/>
-    </div>
-</section>
-<style>
-    .processServices{
-        text-align: center;
-        padding: 100px 0;
-        margin:auto;
-        width: 80%;
-    }
-    .processServices h1{
-        text-align: center;
-        margin-bottom: 50px;
-    }
-    .processServices__cards{
-        display:flex;
-        align-items: center;
-        justify-content:space-around;
+﻿---
+interface Props {
+  service: string
+}
+const { service } = Astro.props
 
+const data: Record<string, {
+  heading: string
+  subtitle: string
+  steps: Array<{ n: number; title: string; description: string }>
+}> = {
+  'landing-page': {
+    heading: 'De la idea al lanzamiento en 5 pasos',
+    subtitle: 'Un proceso claro, sin sorpresas y con entregas parciales para que siempre sepas en qué punto estamos.',
+    steps: [
+      { n: 1, title: 'Discovery',        description: 'Definimos objetivo de conversión, público objetivo, propuesta de valor y métricas de éxito. La base de todo lo que viene.' },
+      { n: 2, title: 'Copywriting',      description: 'Redactamos headlines, subtítulos, descripción de beneficios y CTAs optimizados para tu audiencia antes de diseñar.' },
+      { n: 3, title: 'Diseño UI',        description: 'Creamos el mockup de alta fidelidad. Lo revisas y apruebas antes de escribir una sola línea de código.' },
+      { n: 4, title: 'Desarrollo',       description: 'Construimos la landing con código limpio, rendimiento optimizado e integraciones con tus herramientas configuradas.' },
+      { n: 5, title: 'Lanzamiento',      description: 'Publicamos, configuramos analítica, verificamos que todo funcione y entregamos accesos e instrucciones de uso.' },
+    ],
+  },
+  'website': {
+    heading: 'Cómo construimos tu sitio web',
+    subtitle: 'Cinco fases que garantizan diseño alineado a tu marca, desarrollo sólido y un lanzamiento sin fricciones.',
+    steps: [
+      { n: 1, title: 'Discovery',        description: 'Relevamos tu marca, objetivos de negocio, competencia y alcance. Definimos páginas, funcionalidades y arquitectura de información.' },
+      { n: 2, title: 'Diseño UI/UX',     description: 'Wireframes y mockup completo del sitio. Diseñamos todos los componentes y el flujo de usuario antes de desarrollar.' },
+      { n: 3, title: 'Desarrollo',       description: 'Construimos el sitio con CMS integrado, SEO técnico configurado y código que puede escalar con tu empresa.' },
+      { n: 4, title: 'Contenido & QA',   description: 'Cargamos el contenido que nos proveas, realizamos pruebas de usabilidad, rendimiento y compatibilidad cross-browser.' },
+      { n: 5, title: 'Lanzamiento',      description: 'Configuramos dominio, SSL, hosting, redireccionamientos y hacemos un chequeo final antes de publicar.' },
+    ],
+  },
+  'ecommerce': {
+    heading: 'De catálogo vacío a tienda lista para vender',
+    subtitle: 'Cada etapa tiene entregables concretos para que puedas ver el avance y dar feedback en el momento exacto.',
+    steps: [
+      { n: 1, title: 'Discovery',        description: 'Definimos catálogo, pasarelas de pago, integraciones logísticas y reglas de negocio antes de diseñar o desarrollar.' },
+      { n: 2, title: 'Diseño UI/UX',     description: 'Diseñamos el flujo completo: home, ficha de producto, carrito y checkout. Aprobas el diseño antes del desarrollo.' },
+      { n: 3, title: 'Desarrollo',       description: 'Construimos la tienda, integramos pasarelas de pago, configuramos inventario y aplicamos SEO por producto.' },
+      { n: 4, title: 'Carga de datos',   description: 'Importamos tu catálogo, configuramos categorías, precios, variantes y métodos de envío según tus reglas.' },
+      { n: 5, title: 'Lanzamiento',      description: 'Realizamos pruebas de compra end-to-end, verificamos analítica y publicamos la tienda una vez todo está validado.' },
+    ],
+  },
+  'support': {
+    heading: 'Así funciona nuestro soporte',
+    subtitle: 'Un ciclo mensual predecible que mantiene tu web en óptimas condiciones sin que tengas que preocuparte.',
+    steps: [
+      { n: 1, title: 'Auditoría inicial',        description: 'Si no desarrollamos tu sitio, auditamos su estado técnico, dependencias y posibles vulnerabilidades antes de asumir el soporte.' },
+      { n: 2, title: 'Monitoreo activo',          description: 'Activamos el monitoreo de disponibilidad y performance para detectar incidencias antes de que impacten a tus usuarios.' },
+      { n: 3, title: 'Mantenimiento mensual',     description: 'Actualizamos dependencias, aplicamos parches de seguridad, hacemos backups y revisamos el rendimiento del sitio.' },
+      { n: 4, title: 'Resolución de incidencias', description: 'Ante errores funcionales o caídas, respondemos según SLA acordado con diagnóstico y solución documentados.' },
+      { n: 5, title: 'Reporte mensual',           description: 'Recibes un informe completo con todo lo realizado, el estado actual de la plataforma y las recomendaciones para el mes siguiente.' },
+    ],
+  },
+}
+
+const d = data[service] ?? data['landing-page']
+---
+
+<section class="process" id="process-section">
+  <div class="process__inner">
+
+    <div class="process__header">
+      <span class="process__eyebrow">Proceso</span>
+      <h2 class="process__heading">{d.heading}</h2>
+      <p class="process__subtitle">{d.subtitle}</p>
+    </div>
+
+    <div class="process__track">
+      <div class="process__spine" aria-hidden="true"></div>
+
+      {d.steps.map((step, i) => (
+        <div
+          class={`process__row ${i % 2 === 0 ? 'process__row--left' : 'process__row--right'}`}
+          data-index={i}
+        >
+          <!-- Card side -->
+          <div class="process__card-wrap">
+            <article class="process__card">
+              <span class="process__card-num">{String(step.n).padStart(2, '0')}</span>
+              <h3 class="process__card-title">{step.title}</h3>
+              <p class="process__card-desc">{step.description}</p>
+              <div class="process__card-bar" aria-hidden="true"></div>
+            </article>
+          </div>
+
+          <!-- Central node -->
+          <div class="process__node" aria-hidden="true">
+            <div class="process__node-pulse"></div>
+            <div class="process__node-core"></div>
+          </div>
+
+          <!-- Spacer (opposite side) -->
+          <div class="process__spacer" aria-hidden="true"></div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const rows = document.querySelectorAll<HTMLElement>('.process__row')
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          obs.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+  rows.forEach((row) => obs.observe(row))
+</script>
+
+<style>
+  /* ── Section shell ── */
+  .process {
+    padding: 100px 0 120px;
+  }
+  .process__inner {
+    width: min(92%, 1100px);
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .process__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 80px;
+  }
+  .process__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #818cf8;
+  }
+  .process__heading {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: #e2e8f0;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .process__subtitle {
+    font-size: 0.95rem;
+    color: rgba(180, 185, 210, 0.72);
+    margin: 0 auto;
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  /* ── Track (zigzag container) ── */
+  .process__track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Central vertical spine */
+  .process__spine {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(99, 102, 241, 0.5) 8%,
+      rgba(99, 102, 241, 0.5) 92%,
+      transparent
+    );
+  }
+
+  /* ── Each row ── */
+  .process__row {
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr;
+    align-items: center;
+    gap: 0 32px;
+    min-height: 120px;
+    padding: 28px 0;
+    /* Animation initial state */
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.55s ease,
+      transform 0.55s ease;
+  }
+  .process__row:nth-child(2) { transition-delay: 0.05s }
+  .process__row:nth-child(3) { transition-delay: 0.1s }
+  .process__row:nth-child(4) { transition-delay: 0.15s }
+  .process__row:nth-child(5) { transition-delay: 0.2s }
+  .process__row:nth-child(6) { transition-delay: 0.25s }
+
+  .process__row.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Left rows: card on left, spacer on right */
+  .process__row--left .process__card-wrap { grid-column: 1; grid-row: 1; }
+  .process__row--left .process__node      { grid-column: 2; grid-row: 1; }
+  .process__row--left .process__spacer    { grid-column: 3; grid-row: 1; }
+
+  /* Right rows: spacer on left, card on right */
+  .process__row--right .process__spacer    { grid-column: 1; grid-row: 1; }
+  .process__row--right .process__node      { grid-column: 2; grid-row: 1; }
+  .process__row--right .process__card-wrap { grid-column: 3; grid-row: 1; }
+
+  /* Slide direction per side */
+  .process__row--left  { --slide-x: -32px; }
+  .process__row--right { --slide-x:  32px; }
+  .process__row {
+    transform: translateY(20px) translateX(var(--slide-x, 0px));
+  }
+  .process__row.is-visible {
+    transform: translateY(0) translateX(0);
+  }
+
+  /* ── Card ── */
+  .process__card-wrap {
+    display: flex;
+    align-items: center;
+  }
+  .process__row--left  .process__card-wrap { justify-content: flex-end; }
+  .process__row--right .process__card-wrap { justify-content: flex-start; }
+
+  .process__card {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    padding: 28px 28px 24px;
+    border-radius: 5px;
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    background: rgba(15, 16, 35, 0.6);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .process__card:hover {
+    border-color: rgba(99, 102, 241, 0.45);
+    box-shadow: 0 0 32px rgba(99, 102, 241, 0.12);
+  }
+
+  /* Accent bar at bottom of card */
+  .process__card-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1, #818cf8, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .process__card:hover .process__card-bar {
+    transform: scaleX(1);
+  }
+
+  .process__card-num {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(129,140,248,0.15));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em;
+  }
+  .process__card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin: 0 0 10px;
+  }
+  .process__card-desc {
+    font-size: 0.875rem;
+    line-height: 1.72;
+    color: rgba(180, 185, 210, 0.78);
+    margin: 0;
+  }
+
+  /* ── Centre node ── */
+  .process__node {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    z-index: 2;
+  }
+  .process__node-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.18);
+    animation: nodePulse 2.8s ease-in-out infinite;
+  }
+  .process__node-core {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    box-shadow:
+      0 0 0 3px rgba(99, 102, 241, 0.25),
+      0 0 16px rgba(99, 102, 241, 0.5);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  @keyframes nodePulse {
+    0%, 100% { transform: scale(1);   opacity: 0.6; }
+    50%       { transform: scale(1.5); opacity: 0;   }
+  }
+
+  /* Stagger pulse so not all nodes pulse in sync */
+  .process__row:nth-child(2) .process__node-pulse { animation-delay: 0.4s }
+  .process__row:nth-child(3) .process__node-pulse { animation-delay: 0.8s }
+  .process__row:nth-child(4) .process__node-pulse { animation-delay: 1.2s }
+  .process__row:nth-child(5) .process__node-pulse { animation-delay: 1.6s }
+  .process__row:nth-child(6) .process__node-pulse { animation-delay: 2.0s }
+
+  /* ── Spacer ── */
+  .process__spacer {
+    /* intentionally empty – just occupies the grid cell */
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+
+  /* Tablet: narrower cards but keep zigzag */
+  @media (max-width: 900px) {
+    .process__card {
+      max-width: 340px;
+      padding: 22px 20px 20px;
     }
+    .process__card-num {
+      font-size: 2rem;
+    }
+  }
+
+  /* Mobile: collapse to single vertical timeline */
+  @media (max-width: 640px) {
+    .process__header {
+      margin-bottom: 52px;
+    }
+
+    /* Re-draw spine on the left */
+    .process__spine {
+      left: 27px;
+      transform: none;
+    }
+
+    /* Single column: [node] [card] */
+    .process__row,
+    .process__row--left,
+    .process__row--right {
+      grid-template-columns: 56px 1fr;
+      grid-template-rows: auto;
+      gap: 0 16px;
+      padding: 16px 0;
+      --slide-x: 0px;
+    }
+
+    /* Always: node col-1, card col-2, spacer hidden */
+    .process__row--left  .process__node,
+    .process__row--right .process__node      { grid-column: 1; grid-row: 1; }
+    .process__row--left  .process__card-wrap,
+    .process__row--right .process__card-wrap { grid-column: 2; grid-row: 1; }
+    .process__row--left  .process__spacer,
+    .process__row--right .process__spacer    { display: none; }
+
+    .process__row--left  .process__card-wrap,
+    .process__row--right .process__card-wrap { justify-content: flex-start; }
+
+    .process__card {
+      max-width: 100%;
+      padding: 20px 16px 18px;
+      backdrop-filter: none;
+    }
+    .process__card-num {
+      font-size: 1.8rem;
+    }
+  }
 </style>

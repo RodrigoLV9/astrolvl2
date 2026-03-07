@@ -1,12 +1,22 @@
 import React from 'react'
-import { BsRocketTakeoffFill as IconRocket } from "react-icons/bs";
+import type { IconType } from 'react-icons'
 import '../../../styles/Services/cardIntro.css'
-export const Card:React.FC = () => {
+
+interface CardProps {
+  Icon: IconType
+  title: string
+  description: string
+  accentColor?: string
+}
+
+export const Card: React.FC<CardProps> = ({ Icon, title, description, accentColor = '#6366f1' }) => {
   return (
     <div className='cardIntro'>
-        <IconRocket className='cardIntro-icon'/>
-        <span>Conversion optimizada</span>
-        <p>Copy persuasivo y CTAs estratégicos diseñados para maximizar conversiones</p>
+        <div className='cardIntro-iconWrap' style={{ '--accent': accentColor } as React.CSSProperties}>
+            <Icon className='cardIntro-icon'/>
+        </div>
+        <span>{title}</span>
+        <p>{description}</p>
     </div>
   )
 }

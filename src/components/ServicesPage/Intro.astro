@@ -1,40 +1,243 @@
+﻿---
+interface Props {
+  service: string
+}
+const { service } = Astro.props
+
+const data: Record<string, {
+  eyebrow: string
+  heading: string
+  body: string
+  bullets: string[]
+  badge: { value: string; label: string; sub: string }
+  img: string
+  imgAlt: string
+}> = {
+  'landing-page': {
+    eyebrow: '¿Qué es una landing page?',
+    heading: 'Una página. Un objetivo. Máximos resultados.',
+    body: 'Una landing page es una página de propósito único: convertir visitantes en leads, suscriptores o clientes. A diferencia de un sitio completo, elimina distracciones y concentra toda la atención en una sola acción medible.',
+    bullets: [
+      'Sin menús ni links que distraigan al visitante',
+      'Cada sección construida para empujar hacia el CTA',
+      'Medible desde el primer día con analítica integrada',
+    ],
+    badge: { value: '3×', label: 'más conversión', sub: 'vs. homepage' },
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    imgAlt: 'Dashboard de analítica mostrando métricas de conversión',
+  },
+  'website': {
+    eyebrow: '¿Qué es un sitio web corporativo?',
+    heading: 'Tu activo digital más importante, construido para durar.',
+    body: 'Un sitio web corporativo es la base de tu presencia digital: transmite credibilidad, presenta tu oferta con claridad y genera conversiones de forma constante con identidad visual sólida y arquitectura escalable.',
+    bullets: [
+      'CMS integrado: tu equipo edita sin tocar código',
+      'SEO técnico completo desde la primera línea',
+      'Arquitectura modular que crece con tu empresa',
+    ],
+    badge: { value: '70%', label: 'de compradores', sub: 'buscan en Google primero' },
+    img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+    imgAlt: 'Diseño de sitio web corporativo en pantalla',
+  },
+  'ecommerce': {
+    eyebrow: '¿Qué es un e-commerce a medida?',
+    heading: 'Tu canal de ventas digital, abierto las 24 horas.',
+    body: 'Un e-commerce a medida va más allá de los templates genéricos: integra las pasarelas de pago que necesitas, gestiona tu inventario y está optimizado para que Google posicione cada ficha de producto.',
+    bullets: [
+      'Pasarelas de pago adaptadas a tu mercado',
+      'SEO por producto para atraer tráfico orgánico',
+      'Panel de administración sin curva de aprendizaje',
+    ],
+    badge: { value: '24/7', label: 'ventas activas', sub: 'sin intervención manual' },
+    img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
+    imgAlt: 'Tienda online con catálogo de productos y carrito de compras',
+  },
+  'support': {
+    eyebrow: '¿Qué cubre el soporte técnico?',
+    heading: 'Tu web siempre activa. Nosotros nos encargamos.',
+    body: 'El mantenimiento web no es opcional: plugins desactualizados, backups inexistentes o código obsoleto son vectores reales de ataque. Nuestros planes cubren actualizaciones, seguridad y monitoreo continuo.',
+    bullets: [
+      'Alertas automáticas ante caídas, antes de que lo notes',
+      'Parches de seguridad aplicados en menos de 24 h',
+      'Reporte mensual con todo lo que ocurrió en tu plataforma',
+    ],
+    badge: { value: '99.9%', label: 'uptime', sub: 'garantizado por SLA' },
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+    imgAlt: 'Centro de datos con servidores monitoreados',
+  },
+}
+
+const d = data[service] ?? data['landing-page']
 ---
----
+
 <section class="intro">
-    <img src="/src/assets/images/landingpage.png" alt="landing page illustration">
-    <div class="introRight">
-        <h3>Que es una Landing Page?</h3>
-        <p>Es una página web única diseñada con un propósito específico: convertir visitantes en clientes potenciales o realizar una acción concreta, como rellenar un formulario, comprar un producto o suscribirse a un servicio. Estas páginas están optimizadas para maximizar las conversiones, por lo que a menudo eliminan distracciones como menús de navegación o enlaces a otras secciones del sitio web</p>
+  <div class="intro__img-wrap">
+    <img src={d.img} alt={d.imgAlt} loading="lazy"/>
+    <div class="intro__img-aura"></div>
+    <div class="intro__float-badge">
+      <strong class="intro__float-badge-value">{d.badge.value}</strong>
+      <div class="intro__float-badge-text">
+        <span class="intro__float-badge-label">{d.badge.label}</span>
+        <span class="intro__float-badge-sub">{d.badge.sub}</span>
+      </div>
     </div>
+  </div>
+
+  <div class="intro__content">
+    <span class="intro__eyebrow">{d.eyebrow}</span>
+    <h2 class="intro__heading">{d.heading}</h2>
+    <p class="intro__body">{d.body}</p>
+
+    <ul class="intro__bullets">
+      {d.bullets.map(b => (
+        <li class="intro__bullet">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          {b}
+        </li>
+      ))}
+    </ul>
+  </div>
 </section>
+
 <style>
-    .intro{
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        gap:30px;
-        margin:50px auto;
-        padding:100px 0;
-        width:80vw;
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+    width: min(92%, 1100px);
+    margin: 0 auto;
+    padding: 80px 0 100px;
+  }
 
-    }
-    .intro img{
-        width:400px;
-        height:auto;
-        border-radius:10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .introRight{
-        width:450px;
+  /* ── Image ── */
+  .intro__img-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 440px;
+  }
+  .intro__img-wrap img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+  .intro__img-aura {
+    position: absolute;
+    inset: -28px;
+    border-radius: 36px;
+    background: radial-gradient(ellipse at 40% 60%, rgba(99,102,241,0.2) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Floating badge */
+  .intro__float-badge {
+    position: absolute;
+    bottom: 20px;
+    left: -20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(10,10,20,0.85);
+    border: 1px solid rgba(99,102,241,0.35);
+    border-radius: 14px;
+    padding: 14px 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .intro__float-badge-value {
+    font-size: 1.6rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #818cf8, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .intro__float-badge-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .intro__float-badge-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    line-height: 1;
+  }
+  .intro__float-badge-sub {
+    font-size: 0.72rem;
+    color: rgba(180,185,210,0.6);
+    line-height: 1;
+  }
 
+  /* ── Content ── */
+  .intro__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .intro__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #818cf8;
+  }
+  .intro__heading {
+    font-size: clamp(1.55rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.22;
+    color: #e2e8f0;
+    margin: 0;
+  }
+  .intro__body {
+    font-size: 0.93rem;
+    line-height: 1.78;
+    color: rgba(180,185,210,0.82);
+    margin: 0;
+  }
+
+  /* ── Bullets ── */
+  .intro__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .intro__bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: rgba(200,210,235,0.88);
+    line-height: 1.55;
+  }
+  .intro__bullet svg {
+    color: #22d3ee;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  @media (max-width: 860px) {
+    .intro {
+      flex-direction: column;
+      gap: 48px;
+      padding: 60px 0;
     }
-    .introRight h3{
-        font-size:24px;
-        margin-bottom:20px;
+    .intro__img-wrap {
+      width: 100%;
     }
-    .introRight p{
-        font-size:16px;
-        line-height:1.6;
-        color:#555;
+    .intro__float-badge {
+      left: 12px;
+      bottom: 12px;
     }
+  }
 </style>

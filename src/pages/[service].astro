@@ -188,17 +188,17 @@ const currentTitles = faqTitles[service] ?? {
 
 <Layout>
   <Hero service={service}/>
-  <CardsIntro/>
-  <Intro/>
-  <Description/>
-  <Features/>
-  <Process/>
+  <CardsIntro service={service}/>
+  <Intro service={service}/>
+  <Description service={service}/>
+  <Features service={service}/>
+  <Process service={service}/>
   <Faqs1
     faqs={currentFaqs}
     eyebrow={currentTitles.eyebrow}
     title={currentTitles.title}
     subtitle={currentTitles.subtitle}
   />
-  <CTAServices/>
-  <More/>
+  <CTAServices service={service}/>
+  <More service={service}/>
 </Layout>

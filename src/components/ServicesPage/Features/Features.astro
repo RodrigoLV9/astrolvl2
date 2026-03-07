@@ -1,46 +1,136 @@
----
+﻿---
 import { FeatureCard } from "./FeatureCard.tsx";
+
+interface Props {
+  service: string
+}
+const { service } = Astro.props
+
+const data: Record<string, { heading: string; subtitle: string; features: string[] }> = {
+  'landing-page': {
+    heading: 'Todo incluido en tu landing page',
+    subtitle: 'Sin costos ocultos. Sin sorpresas. Cada ítem entregado y documentado.',
+    features: [
+      'Diseño UI/UX de alta fidelidad',
+      'Copywriting persuasivo incluido',
+      'Responsive mobile-first',
+      'Core Web Vitals 90+ garantizado',
+      'Integración con CRM y email marketing',
+      'Meta Pixel y Google Ads configurados',
+      'Google Analytics 4 + eventos clave',
+      'Formularios de captura de leads',
+      'SEO on-page optimizado',
+      'Dominio y hosting configurados',
+      'SSL incluido',
+      'Soporte 30 días post-lanzamiento',
+    ],
+  },
+  'website': {
+    heading: 'Todo incluido en tu sitio corporativo',
+    subtitle: 'Diseño, desarrollo y lanzamiento. Sin freelancers extras ni herramientas de pago externas.',
+    features: [
+      'Diseño UI/UX personalizado',
+      'Páginas según alcance acordado',
+      'CMS integrado (edición sin código)',
+      'Sistema de blog con SEO por artículo',
+      'SEO técnico on-page completo',
+      'Datos estructurados (Schema.org)',
+      'Open Graph y metaetiquetas',
+      'Sitemap XML y robots.txt',
+      'Core Web Vitals optimizados',
+      'Integraciones con herramientas externas',
+      'SSL y configuración de dominio',
+      'Capacitación de uso del CMS incluida',
+    ],
+  },
+  'ecommerce': {
+    heading: 'Todo incluido en tu tienda online',
+    subtitle: 'Desde el catálogo hasta la analítica de ventas, listo antes del lanzamiento.',
+    features: [
+      'Catálogo con variantes ilimitadas',
+      'Pasarelas de pago múltiples',
+      'Gestión de stock e inventario',
+      'Sistema de cupones y descuentos',
+      'Checkout de una sola página',
+      'Confirmación automática por email',
+      'SEO por ficha de producto',
+      'Rich snippets con precio y disponibilidad',
+      'Dashboard de ventas e ingresos',
+      'Reportes de abandono de carrito',
+      'Integración logística de envíos',
+      'Soporte 30 días post-lanzamiento',
+    ],
+  },
+  'support': {
+    heading: 'Todo incluido en el plan de soporte',
+    subtitle: 'Sin tarifas por hora ni sorpresas. Un plan fijo que cubre todo lo que tu plataforma necesita.',
+    features: [
+      'Monitoreo de disponibilidad 24/7',
+      'Alertas automáticas ante caídas',
+      'Actualizaciones de dependencias',
+      'Parches de seguridad prioritarios',
+      'Backups automáticos diarios',
+      'Almacenamiento externo de backups',
+      'Revisión mensual de rendimiento',
+      'Auditoría Core Web Vitals mensual',
+      'Soporte técnico para tu equipo',
+      'Corrección de errores funcionales',
+      'Reporte mensual detallado',
+      'Tiempo de respuesta garantizado SLA',
+    ],
+  },
+}
+
+const d = data[service] ?? data['landing-page']
 ---
 
-<div class="features">
-    <h1>Caracteristicas incluidas</h1>
-    <div class="features__list">
-        <ul class="features__list-cards">
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-        </ul>
-        <ul class="features__list-cards">
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-            <FeatureCard/>
-        </ul>
-    </div>
-</div>
+<section class="features">
+  <div class="features__header">
+    <h2 class="features__heading">{d.heading}</h2>
+    <p class="features__subtitle">{d.subtitle}</p>
+  </div>
+  <div class="features__grid">
+    {d.features.map((f, i) => <FeatureCard label={f} index={i + 1}/>)}
+  </div>
+</section>
+
 <style>
-    .features{
-        padding:100px 0;
-    }
-    .features h1{
-        text-align: center;
-        margin-bottom: 70px;
-    }
-    .features__list{
-        margin:auto;
-        display: flex;
-        width: fit-content;
-        gap:50px;
-    }
-    .features__list ul{
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap:30px
-    }
+  .features {
+    padding: 80px 0 100px;
+    width: min(92%, 1200px);
+    margin: 0 auto;
+  }
+  .features__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 56px;
+  }
+  .features__heading {
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    color: #e2e8f0;
+    margin: 0;
+    line-height: 1.25;
+  }
+  .features__subtitle {
+    font-size: 0.93rem;
+    color: rgba(180,185,210,0.75);
+    margin: 0;
+    max-width: 540px;
+    line-height: 1.6;
+  }
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px 40px;
+  }
+  @media (max-width: 900px) {
+    .features__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .features__grid { grid-template-columns: 1fr; }
+  }
 </style>

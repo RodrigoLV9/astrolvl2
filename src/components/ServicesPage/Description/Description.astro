@@ -1,70 +1,249 @@
----
+﻿---
 import { DescriptionCard } from "./DescriptionCard.tsx";
+
+interface Props {
+  service: string
+}
+const { service } = Astro.props
+
+const data: Record<string, {
+  eyebrow: string
+  heading: string
+  subtitle: string
+  sections: Array<{
+    img: string
+    imgAlt: string
+    cards: Array<{ title: string; description: string }>
+  }>
+}> = {
+  'landing-page': {
+    eyebrow: 'Qué incluye',
+    heading: 'Todo lo que tu landing necesita para convertir',
+    subtitle: 'Un proyecto llave en mano: desde el concepto hasta la analítica post-lanzamiento.',
+    sections: [
+      {
+        img: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&q=80',
+        imgAlt: 'Diseñador trabajando en wireframes de landing page',
+        cards: [
+          { title: 'Copywriting persuasivo', description: 'Redactamos el texto de la página orientado a la acción: headlines que enganchen, beneficios claros y CTAs que conviertan.' },
+          { title: 'Diseño UI de alta fidelidad', description: 'Mockup completo antes del desarrollo. Ve exactamente cómo quedará tu landing antes de escribir una línea de código.' },
+          { title: 'Formularios e integraciones', description: 'Lead forms conectados a tu CRM o herramienta de email marketing. Cada lead capturado llega directo a tu pipeline.' },
+          { title: 'A/B Testing preparado', description: 'Estructura modular lista para que puedas testear variantes de headline, CTA o imagen sin romper nada.' },
+        ],
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+        imgAlt: 'Laptop mostrando métricas de analítica web',
+        cards: [
+          { title: 'Pixel & conversiones configuradas', description: 'Meta Pixel, Google Ads y GA4 listos desde el lanzamiento. Mide exactamente el retorno de tu inversión en pauta.' },
+          { title: 'SEO on-page optimizado', description: 'Metaetiquetas, estructura semántica y velocidad de carga configuradas para que Google te encuentre y te posicione.' },
+          { title: 'Mobile-first responsive', description: 'Diseñada primero para móvil. Perfectamente adaptada a cualquier dispositivo sin sacrificar conversión.' },
+          { title: 'Hosting & despliegue', description: 'Te asesoramos en el hosting más adecuado y configuramos el despliegue automático para que tu landing esté siempre activa.' },
+        ],
+      },
+    ],
+  },
+  'website': {
+    eyebrow: 'Qué incluye',
+    heading: 'Un sitio corporativo completo, llave en mano',
+    subtitle: 'Diseño, desarrollo, CMS y SEO técnico: todo en un solo proyecto.',
+    sections: [
+      {
+        img: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
+        imgAlt: 'Diseño de interfaz de usuario en pantalla',
+        cards: [
+          { title: 'Diseño UI/UX personalizado', description: 'Paleta, tipografía y componentes visuales alineados a tu marca. No usamos templates: cada diseño es exclusivo para ti.' },
+          { title: 'CMS integrado sin código', description: 'Tu equipo puede crear y editar contenido, publicar artículos de blog e insertar imágenes desde un panel visual intuitivo.' },
+          { title: 'Sistema de blog incluido', description: 'Publicaciones con categorías, etiquetas, autores y SEO por artículo. Tu canal de contenido listo para crecer.' },
+          { title: 'Páginas ilimitadas', description: 'Inicio, Servicios, Sobre nosotros, Equipo, Casos de estudio, Contacto y las que necesites. El alcance lo defines tú.' },
+        ],
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80',
+        imgAlt: 'Pantalla con código y herramientas de desarrollo',
+        cards: [
+          { title: 'SEO técnico desde el inicio', description: 'Estructura semántica HTML5, metaetiquetas Open Graph, datos estructurados (Schema.org) y sitemap XML configurados.' },
+          { title: 'Rendimiento optimizado', description: 'Carga diferida de imágenes, minificación y Core Web Vitals optimizados para una experiencia que no penaliza tu SEO.' },
+          { title: 'Integraciones con terceros', description: 'CRM, chat en vivo, formularios de contacto, Google Analytics y cualquier herramienta que ya uses en tu stack.' },
+          { title: 'Soporte post-lanzamiento', description: '30 días de soporte técnico incluidos para resolver cualquier ajuste o incidencia tras el lanzamiento.' },
+        ],
+      },
+    ],
+  },
+  'ecommerce': {
+    eyebrow: 'Qué incluye',
+    heading: 'Tu tienda online lista para vender desde el primer día',
+    subtitle: 'Catálogo, pagos, logística y analítica: todo configurado antes de lanzar.',
+    sections: [
+      {
+        img: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=800&q=80',
+        imgAlt: 'Mano sosteniendo teléfono con aplicación de compras',
+        cards: [
+          { title: 'Catálogo y variantes', description: 'Sube productos con múltiples imágenes, variantes (talla, color), descripción SEO y precio. Sin límite de SKUs.' },
+          { title: 'Pasarelas de pago integradas', description: 'Stripe, MercadoPago, PayPal y más. Configuramos la pasarela que mejor se adapta a tu mercado y tipo de cliente.' },
+          { title: 'Gestión de stock e inventario', description: 'Control de stock en tiempo real, alertas de bajo inventario y ajuste de cantidades desde el panel de administración.' },
+          { title: 'Cupones y descuentos', description: 'Reglas de descuento por producto, categoría o total de carrito. Fecha de vencimiento y condiciones de uso configurables.' },
+        ],
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=800&q=80',
+        imgAlt: 'Pantalla de laptop con dashboard de ventas en línea',
+        cards: [
+          { title: 'SEO de fichas de producto', description: 'URLs limpias, metaetiquetas, rich snippets con precio y disponibilidad para que Google posicione cada producto.' },
+          { title: 'Checkout en un solo flujo', description: 'Proceso de compra simplificado con verificación de stock, cálculo de envío y confirmación automática por email.' },
+          { title: 'Analítica y reportes de ventas', description: 'Dashboard con métricas clave: ingresos, tasa de conversión, productos más vendidos y abandono de carrito.' },
+          { title: 'Integración logística', description: 'Conexión con operadores de envío para calcular costos en tiempo real y generar etiquetas de envío automáticamente.' },
+        ],
+      },
+    ],
+  },
+  'support': {
+    eyebrow: 'Qué incluye',
+    heading: 'Mantenimiento proactivo, no reactivo',
+    subtitle: 'No esperamos a que algo falle. Actuamos antes de que tú te enteres.',
+    sections: [
+      {
+        img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+        imgAlt: 'Panel de monitoreo con métricas de rendimiento del servidor',
+        cards: [
+          { title: 'Monitoreo de disponibilidad 24/7', description: 'Alertas automáticas ante caídas del sitio. Tiempo de respuesta garantizado para que tu web no esté caída más de lo necesario.' },
+          { title: 'Actualizaciones de dependencias', description: 'Mantenemos actualizados plugins, frameworks y librerías para evitar vulnerabilidades conocidas y deuda técnica acumulada.' },
+          { title: 'Backups automáticos diarios', description: 'Copias programadas del sitio y la base de datos, almacenadas en ubicación externa para recuperación ante cualquier incidente.' },
+          { title: 'Parches de seguridad prioritarios', description: 'Las vulnerabilidades críticas se parchean en menos de 24 horas desde su divulgación, sin esperar al siguiente ciclo.' },
+        ],
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=800&q=80',
+        imgAlt: 'Equipo de soporte técnico revisando reportes en pantallas',
+        cards: [
+          { title: 'Revisión mensual de rendimiento', description: 'Auditoría de velocidad de carga, Core Web Vitals y salud técnica con recomendaciones incluidas en cada reporte mensual.' },
+          { title: 'Auditoría técnica inicial', description: 'Si no desarrollamos tu sitio, realizamos una auditoría previa para entender su arquitectura y estado antes de asumir el soporte.' },
+          { title: 'Soporte para tu equipo', description: 'Canal de soporte directo para que tu equipo resuelva dudas técnicas, solicite cambios menores o reporte anomalías.' },
+          { title: 'Reporte mensual detallado', description: 'Informe con uptime, acciones realizadas, velocidad de carga, actualizaciones aplicadas y recomendaciones para el siguiente período.' },
+        ],
+      },
+    ],
+  },
+}
+
+const d = data[service] ?? data['landing-page']
 ---
+
 <section class="description">
-   <div class="description__text">
-        <h1>Servicio completo de diseño de Landing Page</h1>
-        <p>Queremos crear tu página web y que se destaque, pero también queremos darte el mejor servicio.</p>
-   </div>
-   <div class="descriptions-container">
-      <div class="descriptions-container__section1">
-         <div class="cards">
-            <DescriptionCard/>
-            <DescriptionCard/>
-            <DescriptionCard/>
-            <DescriptionCard/>
-         </div>
-         <img src="/src/assets/images/intro.webp" alt="image example">
+  <div class="description__header">
+    <span class="description__eyebrow">{d.eyebrow}</span>
+    <h2 class="description__heading">{d.heading}</h2>
+    <p class="description__subtitle">{d.subtitle}</p>
+  </div>
+
+  {d.sections.map((section, i) => (
+    <div class={`description__row ${i % 2 === 1 ? 'description__row--reverse' : ''}`}>
+      <div class="description__img-wrap">
+        <img src={section.img} alt={section.imgAlt} loading="lazy"/>
       </div>
-      <div class="descriptions-container__section2">
-         <img src="/src/assets/images/intro.webp" alt="image example">
-         <div class="cards">
-            <DescriptionCard/>
-            <DescriptionCard/>
-            <DescriptionCard/>
-            <DescriptionCard/>
-         </div>
+      <div class="description__cards">
+        {section.cards.map(c => <DescriptionCard title={c.title} description={c.description}/>)}
       </div>
-   </div>
+    </div>
+  ))}
 </section>
+
 <style>
-   .description{
-      padding: 4rem 2rem;
-      display: flex;
+  .description {
+    padding: 80px 0 60px;
+    width: min(92%, 1200px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+  .description__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .description__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #818cf8;
+  }
+  .description__heading {
+    font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: #e2e8f0;
+    margin: 0;
+  }
+  .description__subtitle {
+    font-size: 0.95rem;
+    color: rgba(180,185,210,0.75);
+    margin: 0;
+    line-height: 1.6;
+  }
+  /* Divider between rows */
+  .description__row + .description__row {
+    padding-top: 60px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  /* Row */
+  .description__row {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+  }
+  .description__row--reverse {
+    flex-direction: row-reverse;
+  }
+  /* Image */
+  .description__img-wrap {
+    flex-shrink: 0;
+    width: 420px;
+    position: relative;
+  }
+  .description__img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    border-radius: 28px;
+    background: radial-gradient(ellipse at center, rgba(99,102,241,0.13) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .description__img-wrap img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.09);
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  /* Cards grid */
+  .description__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+  }
+  @media (max-width: 960px) {
+    .description__row,
+    .description__row--reverse {
       flex-direction: column;
-      gap: 3rem;
-   }
-   .description__text{
-      text-align: center;
-   }
-   .description__text h1{
-      font-size: 2rem;
-      margin-bottom:15px
-   }
-   .description__text p{
-      color:grey
-   }
-   .descriptions-container{
-      margin:40px auto
-   }
-   .descriptions-container__section1, .descriptions-container__section2{
-      display:flex;
-      align-items: center;
-      justify-content: center;
-      gap:40px;
-      margin-bottom:50px
-   }
-   .descriptions-container__section1 img, .descriptions-container__section2 img{
-      width:500px;
-      height: auto;
-      border-radius:5px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   }
-   .descriptions-container__section1 .cards, .descriptions-container__section2 .cards{
-      display: flex;
-      flex-direction: column;
-      gap:20px;
-      align-items: center;
-      justify-content: center;
-   }
+      gap: 36px;
+    }
+    .description__img-wrap {
+      width: 100%;
+    }
+  }
+  @media (max-width: 600px) {
+    .description__cards {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

@@ -1,11 +1,16 @@
 import React from 'react'
 import { FaArrowRightLong as IconArrowRight } from "react-icons/fa6";
 import '../../../styles/Services/CTAServicesButton.css'
-export const CTAServicesButton:React.FC = () => {
+
+interface Props {
+  service?: string
+}
+
+export const CTAServicesButton: React.FC<Props> = () => {
   return (
-    <button className='CTAServicesButton'>
-        <span>Solicitar Cotización Personalizada</span>
+    <a href="/contact" className='CTAServicesButton'>
+        <span>Solicitar cotización personalizada</span>
         <IconArrowRight className='CTAServicesButton-icon'/>
-    </button>
+    </a>
   )
 }
