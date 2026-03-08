@@ -2,34 +2,76 @@
 import { BlogPopularFooter } from './BlogPopularFooter';
 ---
 <div class="blogCardPopular">
-    <img src="/src/assets/images/intro.webp" alt="image example">
+    <img src="/src/assets/images/intro.webp" alt="image example" />
     <div class="blogCardPopular__text">
-        <p>Que debes aprender para ser full stack? (Guia completa)</p>
+        <p>¿Qué debes aprender para ser full stack? (Guía completa)</p>
         <BlogPopularFooter/>
     </div>
 </div>
 <style>
-    .blogCardPopular{
-        display:flex;
-        gap:15px;
+    .blogCardPopular {
+        display: flex;
+        gap: 15px;
         align-items: center;
+        padding: 12px 14px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.022);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        animation: popFadeUp 0.55s ease both;
+        transition: border-color 0.3s ease, background 0.3s ease,
+                    transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .blogCardPopular img{
-        width:130px;
-        height:130px;
-        object-fit: cover;
-        border-radius: 8px;
+    .blogCardPopular::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, #6366f1, #a855f7);
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
-    .blogCardPopular__text{
+    .blogCardPopular:hover {
+        border-color: rgba(129, 140, 248, 0.28);
+        background: rgba(99, 102, 241, 0.05);
+        transform: translateX(4px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    }
+    .blogCardPopular:hover::before {
+        opacity: 1;
+    }
+    .blogCardPopular > img {
+        width: 130px;
         height: 130px;
-        padding:10px 5px 0 5px;
+        object-fit: cover;
+        border-radius: 4px;
+        flex-shrink: 0;
+        transition: transform 0.45s ease;
+    }
+    .blogCardPopular:hover > img {
+        transform: scale(1.05);
+    }
+    .blogCardPopular__text {
+        height: 130px;
+        padding: 6px 2px 0;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        /* flex: 1; */
     }
-    .blogCardPopular__text p{
+    .blogCardPopular__text p {
         font-size: 14px;
         font-weight: 500;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.88);
         margin-bottom: 8px;
+    }
+    @keyframes popFadeUp {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 </style>

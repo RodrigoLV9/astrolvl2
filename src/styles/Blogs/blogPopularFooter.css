@@ -1,17 +1,18 @@
-.blogPopularFooter{
-    display:flex;
+.blogPopularFooter {
+    display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding:10px 0px;
-    border-top: 1px solid rgb(41, 41, 41);
+    gap: 14px;
 }
-.blogPopularFooter__readTime, .blogPopularFooter__date{
-    display:flex;
+.blogPopularFooter__readTime,
+.blogPopularFooter__date {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap:5px;
+    gap: 4px;
+    color: rgb(105, 105, 130);
+    font-size: 11px;
 }
-.blogPopularFooter__readTime>span, .blogPopularFooter__date>span{
-    font-size: 14px;
-    color:rgb(150, 150, 150);
+.blogPopularFooter__readTime svg,
+.blogPopularFooter__date svg {
+    font-size: 12px;
+    opacity: 0.65;
 }
