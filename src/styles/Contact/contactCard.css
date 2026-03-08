@@ -1,39 +1,147 @@
-.contactCard{
-    width:450px;
-    display:flex;
-    align-items: center;
-    gap:20px;
-    border:1px solid gray;
-    border-radius: 10px;
-    padding: 10px 30px;
+/* ── Entrance animation ── */
+@keyframes cardSlideIn {
+  from { opacity: 0; transform: translateX(22px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
-.contactCard-icon{
-    font-size: 4rem;
-    color:lightgreen
+
+.contactCard {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: cardSlideIn 0.5s ease forwards;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  cursor: default;
 }
-.contactCard__content{
-    display: flex;
-    flex-direction: column;
-    gap:5px;
-    width: 100%;
+
+/* Stagger entrance delays */
+.contactCard:nth-child(1) { animation-delay: 0.10s; }
+.contactCard:nth-child(2) { animation-delay: 0.22s; }
+.contactCard:nth-child(3) { animation-delay: 0.34s; }
+
+/* Ambient glow blob */
+.contactCard::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -15%;
+  width: 55%;
+  height: 180%;
+  background: radial-gradient(ellipse, var(--icon-bg, rgba(0,200,100,0.12)) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
-.contactButton{
-    padding:5px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:15px;
-    border-radius: 5px;
-    background-color:rgb(0, 140, 255);
-    outline: none;
-    border:none;
-    width: 100%;
-    color:black
+
+.contactCard:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: color-mix(in srgb, var(--accent, rgba(255,255,255,0.2)) 55%, transparent);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px color-mix(in srgb, var(--accent, white) 18%, transparent),
+    0 0 60px color-mix(in srgb, var(--accent, white) 4%, transparent);
 }
-.contactButton-icon{
-    font-size: 1.6rem;
+
+.contactCard:hover::before {
+  opacity: 1;
 }
-.contactButton span{
-    font-size: .9rem;
-    font-weight: bold;
+
+/* ── Icon wrapper ── */
+.contactCard__icon-wrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--icon-bg, rgba(0,200,100,0.12));
+  border: 1px solid color-mix(in srgb, var(--accent, rgba(255,255,255,0.1)) 28%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  color: var(--accent, #4ade80);
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+.contactCard:hover .contactCard__icon-wrapper {
+  transform: scale(1.12) rotate(-6deg);
+  box-shadow: 0 4px 22px color-mix(in srgb, var(--accent, white) 28%, transparent);
+}
+
+/* ── Content ── */
+.contactCard__content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.contactCard__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent, #4ade80);
+  opacity: 0.9;
+}
+
+.contactCard__value {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+/* ── CTA Button ── */
+.contactButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent, white) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, white) 20%, transparent);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: fit-content;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.25s ease,
+              color 0.25s ease,
+              gap 0.25s ease,
+              transform 0.25s ease;
+}
+
+.contactButton:hover {
+  background: color-mix(in srgb, var(--accent, white) 22%, transparent);
+  color: white;
+  gap: 10px;
+  transform: translateX(2px);
+}
+
+.contactButton svg {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.contactButton:hover svg {
+  transform: translateX(2px);
 }

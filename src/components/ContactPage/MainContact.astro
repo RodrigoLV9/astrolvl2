@@ -10,71 +10,131 @@ import { ItemSocial } from "./ItemSocial.tsx";
     </div>
     <div class="contact__main">
         <div class="contact__main-left">
-            <h2>Envienos un mensaje</h2>
+            <h2>Envíenos un mensaje</h2>
             <ContactForm/>
         </div>
         <div class="contact__main-right">
-            <h2>Redes de comunicación</h2>
+            <div class="right-header">
+                <h2>Hablemos cuando quieras</h2>
+                <p class="right-header__desc">
+                    Elige el canal que prefieras. Respondemos en menos de 24 horas.
+                </p>
+            </div>
             <div class="cards__social">
-                <ContactCard/>
-                <ContactCard/>
-                <ContactCard/>
+                <ContactCard
+                    platform="whatsapp"
+                    value="+54 911 6623-2246"
+                    href="https://wa.me/5491166232246"
+                    client:load
+                />
+                <ContactCard
+                    platform="email"
+                    value="astrolvl.dev@gmail.com"
+                    href="mailto:astrolvl.dev@gmail.com"
+                    client:load
+                />
+                <ContactCard
+                    platform="instagram"
+                    value="@agenciaweb_astrolvl"
+                    href="https://www.instagram.com/agenciaweb_astrolvl/"
+                    client:load
+                />
             </div>
         </div>
     </div>
     <div class="socials">
-        <h2>Síguenos en</h2>
+        <div class="socials__label">Síguenos</div>
         <div class="socials__items">
-            <ItemSocial/>
-            <ItemSocial/>
-            <ItemSocial/>
-            <ItemSocial/>
-            <ItemSocial/>
-            <ItemSocial/>
-            <ItemSocial/>
-            <ItemSocial/>
+            <ItemSocial platform="instagram" href="https://www.instagram.com/agenciaweb_astrolvl/" client:load />
+            <ItemSocial platform="whatsapp"  href="https://wa.me/5491166232246" client:load />
+            <ItemSocial platform="twitter"   href="#" client:load />
+            <ItemSocial platform="facebook"  href="#" client:load />
+            <ItemSocial platform="linkedin"  href="#" client:load />
+            <ItemSocial platform="youtube"   href="#" client:load />
+            <ItemSocial platform="github"    href="#" client:load />
         </div>
     </div>
 </section>
 <style>
-    .contact{
-        padding:100px 0
+    .contact {
+        padding: 100px 0;
     }
-    .contact__text{
+
+    .contact__text {
         text-align: center;
         margin-bottom: 50px;
     }
-    .contact__text h1{
-        margin-bottom:20px
+    .contact__text h1 {
+        margin-bottom: 20px;
     }
-    .contact__text p{
+    .contact__text p {
         color: rgba(255, 255, 255, 0.5);
     }
-    .contact__main{
-        display:flex;
+
+    .contact__main {
+        display: flex;
         align-items: start;
         justify-content: center;
-        gap:70px
+        gap: 70px;
     }
-    .contact__main-left h2, .contact__main-right h2{
-        margin-bottom:30px
+
+    /* Left column */
+    .contact__main-left h2 {
+        margin-bottom: 30px;
     }
-    .cards__social{
-        display:flex;
+
+    /* Right column */
+    .contact__main-right {
+        width: 440px;
+        flex-shrink: 0;
+    }
+
+    /* Right section header */
+    .right-header {
+        margin-bottom: 28px;
+    }
+    .right-header h2 {
+        font-size: 1.55rem;
+        font-weight: 700;
+        line-height: 1.25;
+        margin-bottom: 10px;
+    }
+
+    .right-header__desc {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.42);
+        line-height: 1.65;
+        margin: 0;
+    }
+
+    .cards__social {
+        display: flex;
         flex-direction: column;
-        gap:30px
+        gap: 14px;
     }
-    .socials{
-        margin:80px 0;
+
+    /* Socials section */
+    .socials {
+        margin: 80px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
     }
-    .socials h2{
-        text-align: center;
-        margin-bottom:30px;
+
+    .socials__label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.28);
     }
-    .socials__items{
-        display:flex;
+
+    .socials__items {
+        display: flex;
         align-items: center;
         justify-content: center;
-        gap:50px;
+        gap: 10px;
+        flex-wrap: wrap;
     }
 </style>
