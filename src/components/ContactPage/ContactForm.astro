@@ -1,62 +1,350 @@
 ---
 ---
-<form action="" class="contact__form">
-    <div class="input-container">
-        <label for="">Nombre completo</label>
-        <input type="text" placeholder="Escriba su nombre">
+<form action="" class="contact__form" novalidate>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="cf-name">Nombre completo</label>
+            <input type="text" id="cf-name" name="name" placeholder="Escriba su nombre" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+            <label for="cf-email">Correo electrónico</label>
+            <input type="email" id="cf-email" name="email" placeholder="Escriba su correo" autocomplete="email" required>
+        </div>
     </div>
-    <div class="input-container">
-        <label for="">Nombre completo</label>
-        <input type="text" placeholder="Escriba su nombre">
+
+    <div class="form-group">
+        <label>Tipo de servicio</label>
+        <div class="custom-select" id="cf-service-wrapper">
+            <button type="button" class="custom-select__trigger" id="cf-service-trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span id="cf-service-display" class="custom-select__placeholder">Seleccione un servicio</span>
+                <svg class="custom-select__chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <ul class="custom-select__options" role="listbox" id="cf-service-options">
+                <li class="custom-select__option" data-value="landing" role="option" tabindex="-1">Landing Page</li>
+                <li class="custom-select__option" data-value="ecommerce" role="option" tabindex="-1">E-commerce</li>
+                <li class="custom-select__option" data-value="web" role="option" tabindex="-1">Sitio Web</li>
+                <li class="custom-select__option" data-value="soporte" role="option" tabindex="-1">Soporte</li>
+                <li class="custom-select__option" data-value="otro" role="option" tabindex="-1">Otro</li>
+            </ul>
+            <input type="hidden" name="service" id="cf-service-value">
+        </div>
     </div>
-    <div class="input-container">
-        <label for="">Nombre completo</label>
-        <input type="text" placeholder="Escriba su nombre">
+
+    <div class="form-group">
+        <label for="cf-message">Mensaje</label>
+        <textarea id="cf-message" name="message" placeholder="Escriba su mensaje..." rows="5" required></textarea>
     </div>
-    <div class="input-container">
-        <label for="">Nombre completo</label>
-        <textarea name="" id="" placeholder="Escriba su mensaje..."></textarea>
-    </div>
-    <button type="button">Enviar Mensaje</button>
+
+    <button type="submit" class="submit-btn">
+        <span class="submit-btn__text">Enviar Mensaje</span>
+    </button>
+
 </form>
+
+<script>
+    const wrapper = document.getElementById('cf-service-wrapper')!;
+    const trigger = document.getElementById('cf-service-trigger') as HTMLButtonElement;
+    const display = document.getElementById('cf-service-display')!;
+    const optionsList = document.getElementById('cf-service-options')!;
+    const hiddenInput = document.getElementById('cf-service-value') as HTMLInputElement;
+    const options = optionsList.querySelectorAll<HTMLLIElement>('.custom-select__option');
+
+    function openDropdown() {
+        trigger.setAttribute('aria-expanded', 'true');
+        wrapper.classList.add('is-open');
+        const selected = optionsList.querySelector<HTMLLIElement>('[aria-selected="true"]');
+        (selected ?? options[0]).focus();
+    }
+
+    function closeDropdown() {
+        trigger.setAttribute('aria-expanded', 'false');
+        wrapper.classList.remove('is-open');
+    }
+
+    function selectOption(li: HTMLLIElement) {
+        options.forEach(o => o.removeAttribute('aria-selected'));
+        li.setAttribute('aria-selected', 'true');
+        display.textContent = li.textContent;
+        display.classList.remove('custom-select__placeholder');
+        hiddenInput.value = li.dataset.value ?? '';
+        closeDropdown();
+        trigger.focus();
+    }
+
+    trigger.addEventListener('click', () => {
+        wrapper.classList.contains('is-open') ? closeDropdown() : openDropdown();
+    });
+
+    options.forEach(li => {
+        li.addEventListener('click', () => selectOption(li));
+        li.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectOption(li); }
+            if (e.key === 'Escape') { closeDropdown(); trigger.focus(); }
+            if (e.key === 'ArrowDown') { e.preventDefault(); (li.nextElementSibling as HTMLElement)?.focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); (li.previousElementSibling as HTMLElement)?.focus(); }
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target as Node)) closeDropdown();
+    });
+
+    trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); openDropdown();
+        }
+        if (e.key === 'Escape') closeDropdown();
+    });
+</script>
+
 <style>
-    .contact__form{
-        width:500px
+    /* ── Stagger fade-in on load ── */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
-    .contact__form button{
-        height: 40px;
-        width: 100%;
-        border:none;
-        border-radius: 5px;
-        background-color: rgb(0, 140, 255);
-        color:white;
-        font-size: 16px;
-        cursor: pointer;
-    }
-    .input-container{
+
+    .contact__form {
         display: flex;
         flex-direction: column;
-        gap:5px;
-        margin:30px 0;
+        gap: 24px;
+        width: 500px;
     }
-    .input-container label{
-        margin-bottom: 10px;
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
     }
-    .input-container input{
-        height: 35px;
-        border:1px solid gray;
-        border-radius: 5px;
-        background-color: transparent;
-        padding:5px 10px;
-        color:white
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        opacity: 0;
+        animation: fadeUp 0.45s ease forwards;
     }
-    .input-container textarea{
-        height: 90px;
-        border:1px solid gray;
-        border-radius: 5px;
-        background-color: transparent;
-        padding:5px 10px;
-        color:white;
+
+    /* Form-group containing the custom select must sit above the textarea group.
+       opacity-animated elements create stacking contexts — z-index fixes the order. */
+    .form-group:nth-child(1) { animation-delay: 0.05s; z-index: 3; }
+    .form-group:nth-child(2) { animation-delay: 0.15s; z-index: 4; }
+    .form-group:nth-child(3) { animation-delay: 0.25s; z-index: 2; }
+    .form-group:nth-child(4) { animation-delay: 0.35s; z-index: 1; }
+
+    /* The form-row wraps two groups, but counts as one child of the form */
+    .form-row .form-group {
+        opacity: 1;
+        animation: none;
+    }
+    .form-row {
+        opacity: 0;
+        animation: fadeUp 0.45s ease 0.05s forwards;
+    }
+
+    .form-group label {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.2s;
+    }
+
+    .form-group:focus-within label {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ── Base field styles ── */
+    .contact__form input,
+    .contact__form textarea {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0;
+        padding: 10px 2px;
+        color: white;
+        font-size: 0.95rem;
+        font-family: inherit;
+        outline: none;
+        width: 100%;
+        position: relative;
+        transition: border-color 0.25s;
+        /* animated underline via box-shadow */
+        box-shadow: inset 0 -1px 0 0 transparent;
+    }
+
+    .contact__form input:focus,
+    .contact__form textarea:focus {
+        border-bottom-color: transparent;
+        box-shadow: inset 0 -2px 0 0 rgb(0, 140, 255);
+    }
+
+    .contact__form input::placeholder,
+    .contact__form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact__form textarea {
         resize: none;
+        line-height: 1.65;
+    }
+
+    /* ── Custom Select ── */
+    .custom-select {
+        position: relative;
+        z-index: 10;
+    }
+
+    .custom-select__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0;
+        padding: 10px 2px;
+        color: white;
+        font-size: 0.95rem;
+        font-family: inherit;
+        cursor: pointer;
+        outline: none;
+        text-align: left;
+        transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .custom-select__trigger:focus,
+    .custom-select.is-open .custom-select__trigger {
+        border-bottom-color: transparent;
+        box-shadow: inset 0 -2px 0 0 rgb(0, 140, 255);
+    }
+
+    .custom-select__placeholder {
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    .custom-select__chevron {
+        flex-shrink: 0;
+        color: rgba(255, 255, 255, 0.35);
+        transition: transform 0.25s ease, color 0.2s;
+    }
+
+    .custom-select.is-open .custom-select__chevron {
+        transform: rotate(180deg);
+        color: rgb(0, 140, 255);
+    }
+
+    /* Dropdown panel */
+    .custom-select__options {
+        list-style: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        background: rgb(14, 9, 32);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        overflow: hidden;
+        z-index: 9999;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+        /* collapsed state */
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-6px);
+        pointer-events: none;
+        transition: max-height 0.28s ease, opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .custom-select.is-open .custom-select__options {
+        max-height: 260px;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+    }
+
+    .custom-select__option {
+        padding: 11px 14px;
+        font-size: 0.93rem;
+        color: rgba(255, 255, 255, 0.65);
+        cursor: pointer;
+        outline: none;
+        transition: background 0.15s, color 0.15s, padding-left 0.15s;
+        border-left: 2px solid transparent;
+    }
+
+    .custom-select__option:hover,
+    .custom-select__option:focus {
+        background: rgba(0, 140, 255, 0.08);
+        color: white;
+        padding-left: 18px;
+        border-left-color: rgb(0, 140, 255);
+    }
+
+    .custom-select__option[aria-selected="true"] {
+        color: rgb(0, 140, 255);
+        background: rgba(0, 140, 255, 0.06);
+        border-left-color: rgb(0, 140, 255);
+        padding-left: 18px;
+    }
+
+    /* ── Submit button ── */
+    .submit-btn {
+        position: relative;
+        height: 44px;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(0, 140, 255);
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background-color 0.2s, transform 0.15s;
+        margin-top: 4px;
+        opacity: 0;
+        animation: fadeUp 0.45s ease 0.45s forwards;
+    }
+
+    /* shimmer sweep */
+    .submit-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.18) 50%,
+            transparent 100%
+        );
+        transform: skewX(-20deg);
+        transition: left 0s;
+    }
+
+    .submit-btn:hover {
+        background-color: rgb(0, 120, 220);
+        transform: translateY(-1px);
+    }
+
+    .submit-btn:hover::before {
+        left: 125%;
+        transition: left 0.5s ease;
+    }
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+    @media (max-width: 560px) {
+        .contact__form {
+            width: 100%;
+        }
+        .form-row {
+            grid-template-columns: 1fr;
+        }
     }
 </style>

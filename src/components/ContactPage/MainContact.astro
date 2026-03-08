@@ -5,7 +5,7 @@ import { ItemSocial } from "./ItemSocial.tsx";
 ---
 <section class="contact">
     <div class="contact__text">
-        <h1>Contactenos</h1>
+        <h1>Contáctenos</h1>
         <p>Estamos aquí para hacer realidad su proyecto digital</p>
     </div>
     <div class="contact__main">
@@ -14,7 +14,7 @@ import { ItemSocial } from "./ItemSocial.tsx";
             <ContactForm/>
         </div>
         <div class="contact__main-right">
-            <h2>Redes de comunicacion</h2>
+            <h2>Redes de comunicación</h2>
             <div class="cards__social">
                 <ContactCard/>
                 <ContactCard/>
@@ -23,7 +23,7 @@ import { ItemSocial } from "./ItemSocial.tsx";
         </div>
     </div>
     <div class="socials">
-        <h2>Siganos en</h2>
+        <h2>Síguenos en</h2>
         <div class="socials__items">
             <ItemSocial/>
             <ItemSocial/>
@@ -47,6 +47,9 @@ import { ItemSocial } from "./ItemSocial.tsx";
     .contact__text h1{
         margin-bottom:20px
     }
+    .contact__text p{
+        color: rgba(255, 255, 255, 0.5);
+    }
     .contact__main{
         display:flex;
         align-items: start;
@@ -54,7 +57,7 @@ import { ItemSocial } from "./ItemSocial.tsx";
         gap:70px
     }
     .contact__main-left h2, .contact__main-right h2{
-        margin-bottom:50px
+        margin-bottom:30px
     }
     .cards__social{
         display:flex;
