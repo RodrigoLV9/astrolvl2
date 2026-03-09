@@ -119,7 +119,43 @@ const ServiceSelect: React.FC<ServiceSelectProps> = ({ value, onChange, hasError
     </div>
   )
 }
+
+// ── Button Spinner ───────────────────────────────────────────────────────────
+const Spinner: React.FC = () => (
+  <span className="btn-spinner" aria-hidden="true" />
+)
+
+// ── Success Card ─────────────────────────────────────────────────────────────
+const SuccessCard: React.FC<{ onReset: () => void }> = ({ onReset }) => (
+  <div className="success-card" role="status" aria-live="polite">
+    <div className="success-card__icon-wrapper">
+      <svg className="success-card__svg" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <circle className="sc-circle" cx="26" cy="26" r="23" stroke="rgb(34,197,94)" strokeWidth="2" fill="none" />
+        <path className="sc-check" d="M14 26l8 9 16-17" stroke="rgb(34,197,94)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      </svg>
+    </div>
+    <h3 className="success-card__title">¡Mensaje enviado!</h3>
+    <p className="success-card__subtitle">
+      Gracias por contactarnos.<br />Te responderemos en menos de 24&nbsp;horas.
+    </p>
+    <button type="button" className="success-card__reset" onClick={onReset}>
+      Enviar otro mensaje
+    </button>
+  </div>
+)
+
+// ── Main Form ────────────────────────────────────────────────────────────────
 export const ContactForm: React.FC = () => {
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [serverError, setServerError] = useState<string | null>(null)
+
+  const honeypotRef = useRef<HTMLInputElement>(null)
+
+  // Clear any browser-autofilled value; the field must stay empty for real users
+  useEffect(() => {
+    if (honeypotRef.current) honeypotRef.current.value = ''
+  }, [])
+
   const {
     register,
     control,
@@ -131,13 +167,64 @@ export const ContactForm: React.FC = () => {
     defaultValues: { name: '', email: '', service: '', message: '' },
   })
 
-  const onSubmit = async (_data: ContactFormData): Promise<void> => {
-    await new Promise(r => setTimeout(r, 800))
+  const handleReset = () => {
     reset()
+    setSubmitStatus('idle')
+    setServerError(null)
+  }
+
+  const onSubmit = async (data: ContactFormData): Promise<void> => {
+    setServerError(null)
+
+    // Honeypot — bots fill this; real users never interact with it
+    if (honeypotRef.current?.value) {
+      setSubmitStatus('success')
+      return
+    }
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Include honeypot value — server will reject if filled (bot detected)
+        body: JSON.stringify({ ...data, _hp: honeypotRef.current?.value ?? '' }),
+      })
+
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}))
+        throw new Error(
+          payload.error ?? 'Error desconocido. Por favor, inténtelo nuevamente.',
+        )
+      }
+
+      setSubmitStatus('success')
+      reset()
+    } catch (err) {
+      setServerError(
+        err instanceof Error
+          ? err.message
+          : 'Error desconocido. Por favor, inténtelo nuevamente.',
+      )
+      setSubmitStatus('error')
+    }
+  }
+
+  if (submitStatus === 'success') {
+    return <SuccessCard onReset={handleReset} />
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="contact__form" noValidate>
+      {/* Honeypot — invisible to humans, bots will fill it */}
+      <input
+        ref={honeypotRef}
+        type="text"
+        name="_hp"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hp-field"
+      />
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="cf-name">Nombre completo</label>
@@ -169,6 +256,7 @@ export const ContactForm: React.FC = () => {
           )}
         </div>
       </div>
+
       <div className="form-group">
         <label>Tipo de servicio</label>
         <Controller
@@ -186,6 +274,7 @@ export const ContactForm: React.FC = () => {
           <span className="field-error" role="alert">{errors.service.message}</span>
         )}
       </div>
+
       <div className="form-group">
         <label htmlFor="cf-message">Mensaje</label>
         <textarea
@@ -200,12 +289,26 @@ export const ContactForm: React.FC = () => {
         )}
       </div>
 
-      <button type="submit" className="submit-btn" disabled={isSubmitting}>
-        <span className="submit-btn__text">
-          {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
-        </span>
+      <button
+        type="submit"
+        className="submit-btn"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? (
+          <>
+            <Spinner />
+            <span className="submit-btn__text">Enviando...</span>
+          </>
+        ) : (
+          <span className="submit-btn__text">Enviar Mensaje</span>
+        )}
       </button>
 
+      {submitStatus === 'error' && serverError && (
+        <p className="form-feedback form-feedback--error" role="alert">
+          {serverError}
+        </p>
+      )}
     </form>
   )
 }
