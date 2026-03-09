@@ -1,5 +1,5 @@
 ---
-import ContactForm from "./ContactForm.astro";
+import { ContactForm } from "./ContactForm.tsx";
 import {ContactCard} from "./ContactCard.tsx"
 import { ItemSocial } from "./ItemSocial.tsx";
 ---
@@ -11,7 +11,7 @@ import { ItemSocial } from "./ItemSocial.tsx";
     <div class="contact__main">
         <div class="contact__main-left">
             <h2>Envíenos un mensaje</h2>
-            <ContactForm/>
+            <ContactForm client:load />
         </div>
         <div class="contact__main-right">
             <div class="right-header">
