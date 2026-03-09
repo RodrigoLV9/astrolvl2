@@ -1,17 +1,27 @@
 ---
 ---
-<div class="mainLogo">
+<a href="/home" class="mainLogo">
     <img src="/comets.png" alt="comets" width="30" height="30">
     <h3>Astro LvL</h3>
-</div>
+</a>
 <style>
-    .mainLogo{
+    .mainLogo {
         display: flex;
         align-items: center;
         gap: 10px;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
     }
-    .mainLogo h3{
-        font-size: 1.4rem;
-        margin:0
+    .mainLogo:hover {
+        opacity: 0.8;
+    }
+    .mainLogo h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0;
+        background: linear-gradient(135deg, #ffffff 30%, lightseagreen 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 </style>

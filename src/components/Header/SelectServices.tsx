@@ -4,12 +4,11 @@ import { IoIosArrowDown as IconArrowDown } from "react-icons/io";
 export const SelectServices:React.FC = () => {
   return (
     <li className='selectServices'>
-        <button className='selectServices__button'>
+        <a href='/services' className='servicesList__all'>
             <span>Services</span>
             <IconArrowDown className='selectServices__button-icon'/>
-        </button>
+        </a>
         <div className="servicesList">
-            <a href="/services" className="servicesList__all">Ver todos los servicios</a>
             <hr className="servicesList__divider" />
             <a href="/landing-page">Landing Page</a>
             <a href="/website">Web site</a>
