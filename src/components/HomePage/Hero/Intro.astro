@@ -1,60 +1,233 @@
----
+﻿---
 import { IntroTag } from "./IntroTag";
 ---
 
 <section class="intro">
     <div class="introLeft">
-        <h2>Transformamos Ideas en Realidad Digital</h2>
+        <div class="intro__label">
+            <span class="intro__label-dot"></span>
+            <p>Sobre Nosotros</p>
+        </div>
+        <h2>Transformamos Ideas en <span class="intro__gradient">Realidad Digital</span></h2>
         <div class="introLeft__text">
-            <p>En ASTRO LVL WEB, somos un equipo de desarrolladores apasionados por crear experiencias digitales únicas. Combinamos diseño vanguardista con tecnología de punta para llevar tu negocio al siguiente nivel.</p>
+            <p>En ASTRO LVL WEB, somos un equipo de desarrolladores apasionados por crear experiencias digitales unicas. Combinamos diseno vanguardista con tecnologia de punta para llevar tu negocio al siguiente nivel.</p>
             <p>Desde startups innovadoras hasta empresas consolidadas, ayudamos a nuestros clientes a destacar en el mundo digital con soluciones personalizadas y escalables.</p>
         </div>
         <div class="introLeft__tags">
-            <IntroTag/>
-            <IntroTag/>
-            <IntroTag/>
-            <IntroTag/>
+            <IntroTag text="Innovacion constante" client:load />
+            <IntroTag text="Diseno vanguardista" client:load />
+            <IntroTag text="Tecnologia de punta" client:load />
+            <IntroTag text="Escalabilidad total" client:load />
+        </div>
+        <div class="intro__stats">
+            <div class="intro__stat">
+                <span class="intro__stat-number">50+</span>
+                <span class="intro__stat-label">Proyectos</span>
+            </div>
+            <div class="intro__stat-divider"></div>
+            <div class="intro__stat">
+                <span class="intro__stat-number">30+</span>
+                <span class="intro__stat-label">Clientes</span>
+            </div>
+            <div class="intro__stat-divider"></div>
+            <div class="intro__stat">
+                <span class="intro__stat-number">3+</span>
+                <span class="intro__stat-label">Anos exp.</span>
+            </div>
         </div>
     </div>
     <div class="introRight">
+        <div class="introRight__glow"></div>
         <img src="/src/assets/images/intro.webp" alt="Intro image"/>
     </div>
-    
 </section>
+
 <style>
-    .intro{
+    .intro {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin:130px auto;
+        gap: 60px;
+        margin: 130px auto;
         width: 70vw;
+        max-width: 1200px;
     }
-    .introLeft{
 
+    /* LABEL */
+    .intro__label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        animation: fadeInLeft 0.8s ease-out both;
     }
-    .introLeft h2{
-        margin:20px 0;
-        font-size: 1.8rem;
+
+    .intro__label-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #3b82f6;
+        box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+        animation: pulse-dot 2s ease-in-out infinite;
+        flex-shrink: 0;
     }
-    .introLeft__text{
-        width: 500px;
-        margin: 30px 0;
+
+    .intro__label p {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #60a5fa;
+        margin: 0;
     }
-    .introLeft__text p{
-        margin:15px 0;
-        line-height: 1.6;
-        color: #636363;
+
+    @keyframes pulse-dot {
+        0%, 100% { box-shadow: 0 0 8px rgba(59, 130, 246, 0.8); }
+        50% { box-shadow: 0 0 18px rgba(59, 130, 246, 1), 0 0 32px rgba(59, 130, 246, 0.4); }
     }
-    .introLeft__tags{
-        display:flex;
-        gap:10px;
+
+    /* HEADING */
+    .introLeft h2 {
+        font-size: 2.3rem;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+        margin-bottom: 24px;
+        animation: fadeInLeft 0.8s ease-out 0.1s both;
+    }
+
+    .intro__gradient {
+        background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 60%, #818cf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* TEXT */
+    .introLeft__text {
+        max-width: 500px;
+        margin-bottom: 28px;
+        animation: fadeInLeft 0.8s ease-out 0.2s both;
+    }
+
+    .introLeft__text p {
+        margin: 14px 0;
+        line-height: 1.75;
+        color: #94a3b8;
+        font-size: 0.95rem;
+    }
+
+    /* TAGS */
+    .introLeft__tags {
+        display: flex;
+        gap: 10px;
         flex-wrap: wrap;
+        margin-bottom: 36px;
+        animation: fadeInLeft 0.8s ease-out 0.3s both;
     }
-    
-    .introRight img{
+
+    /* STATS */
+    .intro__stats {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        padding: 18px 28px;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.06));
+        border: 1px solid rgba(100, 150, 255, 0.2);
+        border-radius: 16px;
+        width: fit-content;
+        backdrop-filter: blur(8px);
+        animation: fadeInLeft 0.8s ease-out 0.4s both;
+    }
+
+    .intro__stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .intro__stat-number {
+        font-size: 1.75rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #60a5fa, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+    }
+
+    .intro__stat-label {
+        font-size: 0.7rem;
+        color: #64748b;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .intro__stat-divider {
+        width: 1px;
+        height: 38px;
+        background: linear-gradient(to bottom, transparent, rgba(100, 150, 255, 0.35), transparent);
+    }
+
+    /* RIGHT */
+    .introRight {
+        position: relative;
+        flex-shrink: 0;
+        animation: fadeInRight 0.9s ease-out 0.2s both;
+    }
+
+    .introRight__glow {
+        position: absolute;
+        inset: -30px;
+        border-radius: 36px;
+        background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.18) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+        z-index: 0;
+        filter: blur(24px);
+    }
+
+    .introRight img {
+        position: relative;
+        z-index: 1;
         width: 450px;
         height: auto;
-        border-radius:20px;
+        border-radius: 20px;
+        border: 1px solid rgba(100, 150, 255, 0.25);
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.5),
+            0 0 0 1px rgba(100, 150, 255, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
 
+    /* ANIMATIONS */
+    @keyframes fadeInLeft {
+        from { opacity: 0; transform: translateX(-28px); }
+        to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+        from { opacity: 0; transform: translateX(28px); }
+        to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+        .intro { gap: 40px; }
+        .introRight img { width: 360px; }
+    }
+
+    @media (max-width: 768px) {
+        .intro {
+            flex-direction: column;
+            margin: 80px auto;
+            width: 88vw;
+            gap: 48px;
+        }
+        .introLeft h2 { font-size: 1.75rem; }
+        .introLeft__text { max-width: 100%; }
+        .introRight img { width: 100%; max-width: 480px; }
+        .introRight { width: 100%; }
+        .intro__stats { width: 100%; justify-content: center; }
     }
 </style>
