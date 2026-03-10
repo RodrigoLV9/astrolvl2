@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/src/assets/fonts/Inter,wght.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ── Font */
+  --font-base: 'Inter', Arial, Helvetica, sans-serif;
+
+  /* ── Background  */
+  --bg-base:      rgb(6, 3, 19);
+  --bg-dark:      #020108;
+  --bg-light:     #0d0d1a;
+  --bg-section:   #0a0a0f;
+  --bg-card:      rgba(255, 255, 255, 0.03);
+  --bg-card-dark: rgba(12, 12, 28, 0.70);
+
+  /* ── Primary — Indigo  */
+  --clr-primary:      #6366f1;
+  --clr-primary-dull: #818cf8;
+  --clr-primary-pale: #a5b4fc;
+  --clr-primary-a10:  rgba(99, 102, 241, 0.10);
+  --clr-primary-a12:  rgba(99, 102, 241, 0.12);
+  --clr-primary-a20:  rgba(99, 102, 241, 0.20);
+  --clr-primary-a38:  rgba(99, 102, 241, 0.38);
+  --clr-primary-a55:  rgba(99, 102, 241, 0.55);
+
+  /* ── Gradient accents (blue / purple)  */
+  --clr-blue:        #667eea;
+  --clr-purple:      #a78bfa;
+  --clr-blue-a10:    rgba(100, 150, 255, 0.10);
+  --clr-blue-a15:    rgba(100, 150, 255, 0.15);
+  --clr-blue-a20:    rgba(100, 150, 255, 0.20);
+  --clr-blue-border: rgba(100, 150, 255, 0.30);
+
+  /* ── Teal accent */
+  --clr-accent:    #20b2aa;
+  --clr-accent-a10: rgba(32, 178, 170, 0.10);
+  --clr-accent-a18: rgba(32, 178, 170, 0.18);
+  --clr-accent-a30: rgba(32, 178, 170, 0.30);
+
+  /* ── Cyan  */
+  --clr-cyan: #22d3ee;
+
+  /* ── Warning / icon  */
+  --clr-warning: #fbbf24;
+
+  /* ── Text */
+  --txt-primary:   #ffffff;
+  --txt-secondary: rgba(255, 255, 255, 0.70);
+  --txt-muted:     rgba(255, 255, 255, 0.55);
+  --txt-dim:       rgba(255, 255, 255, 0.45);
+  --txt-ghost:     rgba(255, 255, 255, 0.30);
+  --txt-blue:      #a8d8ff;
+  --txt-blue-pale: #93c5fd;
+  --txt-purple:    #a8b4ff;
+  --txt-light:     #e2e8f0;
+
+  /* ── Borders / dividers */
+  --border-subtle:  rgba(255, 255, 255, 0.07);
+  --border-soft:    rgba(255, 255, 255, 0.10);
+  --border-medium:  rgba(255, 255, 255, 0.14);
+  --border-primary: rgba(99, 102, 241, 0.30);
+
+  /* ── Gradients */
+  --grad-primary:   linear-gradient(135deg, #667eea 0%, #a78bfa 50%, #f093fb 100%);
+  --grad-indigo:    linear-gradient(135deg, #4f52d3 0%, #6366f1 50%, #818cf8 100%);
+  --grad-blue-text: linear-gradient(135deg, #ffffff 0%, #a8d8ff 50%, #7ec8ff 100%);
+  --grad-footer:    linear-gradient(135deg, #070612 0%, #0f0f22 50%, #181632 100%);
+  --grad-card:      linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.08));
+
+  /* ── Typography */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.85rem;   /* 13–14px */
+  --text-base: 0.95rem;   /* ~15px */
+  --text-md:   1rem;      /* 16px */
+  --text-lg:   1.1rem;    /* ~18px */
+  --text-xl:   1.3rem;    /* ~21px */
+  --text-2xl:  1.65rem;   /* ~26px */
+  --text-3xl:  2rem;      /* 32px */
+  --text-4xl:  2.8rem;    /* ~45px */
+  --text-5xl:  3.5rem;    /* 56px */
+
+  /* ── Spacing */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-14: 56px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+  --sp-28: 112px;
+
+  /* ── Border radius */
+  --rad-xs:   4px;
+  --rad-sm:   6px;
+  --rad-md:   12px;
+  --rad-lg:   18px;
+  --rad-xl:   24px;
+  --rad-2xl:  28px;
+  --rad-pill: 100px;
+  --rad-full: 9999px;
+
+  /* ── Shadows */
+  --shadow-sm:      0 4px 20px rgba(0, 0, 0, 0.30);
+  --shadow-md:      0 8px 30px rgba(0, 0, 0, 0.30);
+  --shadow-lg:      0 22px 52px rgba(0, 0, 0, 0.28);
+  --shadow-xl:      0 30px 80px rgba(0, 0, 0, 0.45);
+  --shadow-primary: 0 8px 30px rgba(99, 102, 241, 0.55);
+  --shadow-blue:    0 0 30px rgba(100, 150, 255, 0.50);
+  --shadow-accent:  0 0 14px rgba(32, 178, 170, 0.15);
+
+  /* ── Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-base: all 0.3s ease;
+  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-index */
+  --z-base:     0;
+  --z-above:    1;
+  --z-overlay:  2;
+  --z-dropdown: 10;
+  --z-modal:    100;
+
+  /* ── Layout */
+  --max-w:    1400px;
+  --max-w-md: 1240px;
+  --max-w-sm:  900px;
+  --max-w-xs:  520px;
+  --px:        20px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-base);
+}
+
+html {
+  background-color: var(--bg-base);
+  color: var(--txt-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: transparent;
+  color: var(--txt-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

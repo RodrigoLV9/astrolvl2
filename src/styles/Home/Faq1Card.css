@@ -7,15 +7,15 @@
 
 /* ─── Individual FAQ item ─── */
 .faq1Card {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid var(--border-subtle);
   cursor: pointer;
   padding: 0 8px;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+  border-radius: var(--rad-sm);
+  transition: background var(--transition-fast);
 }
 
 .faq1Card:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .faq1Card:hover {
@@ -47,7 +47,7 @@
 }
 
 .faq1Card--open .faq1Card__number {
-  color: #a78bfa;
+  color: var(--clr-purple);
 }
 
 /* Question text */
@@ -76,7 +76,7 @@
 
 .faq1Card--open .faq1Card__icon {
   transform: rotate(180deg);
-  color: #a78bfa;
+  color: var(--clr-purple);
 }
 
 /* ─── Expandable answer body ─── */
@@ -95,7 +95,7 @@
 .faq1Card__answer {
   font-size: 0.875rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--txt-dim);
   margin: 0;
   padding-left: 44px;
   padding-right: 44px;

@@ -3,9 +3,9 @@
     flex: 1 1 280px;
     max-width: 340px;
     padding: 36px 28px 28px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--rad-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@
 }
 
 .cardIntroProcess:hover {
-    border-color: rgba(255, 255, 255, 0.14);
+    border-color: var(--border-medium);
     transform: translateY(-4px);
 }
 
@@ -34,9 +34,9 @@
 }
 
 .cardIntroProcess__stat {
-    font-size: 2.8rem;
+    font-size: var(--text-4xl);
     font-weight: 800;
-    color: #fff;
+    color: var(--txt-primary);
     line-height: 1;
     letter-spacing: -1px;
 }
@@ -49,8 +49,8 @@
 }
 
 .cardIntroProcess__desc {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.45);
+    font-size: var(--text-sm);
+    color: var(--txt-dim);
     line-height: 1.65;
     margin: 0;
 }

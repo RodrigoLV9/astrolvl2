@@ -2,15 +2,15 @@
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.08));
-    color: #93c5fd;
+    background: var(--grad-card);
+    color: var(--txt-blue-pale);
     padding: 0.45rem 1rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
+    border-radius: var(--rad-pill);
+    font-size: var(--text-sm);
     font-weight: 500;
-    border: 1px solid rgba(100, 150, 255, 0.3);
+    border: 1px solid var(--clr-blue-border);
     width: fit-content;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     cursor: default;
     white-space: nowrap;
 }
@@ -24,7 +24,7 @@
 }
 
 .introTag__icon {
-    color: #fbbf24;
+    color: var(--clr-warning);
     font-size: 0.9rem;
     filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.5));
     animation: pulse-icon 2.5s ease-in-out infinite;

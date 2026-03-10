@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header/Header.astro"
 import {Footer} from "../components/Footer.tsx"
+import "../styles/global.css"
 ---
 <!doctype html>
 <html lang="en">
@@ -17,27 +18,3 @@ import {Footer} from "../components/Footer.tsx"
 		<Footer/>
 	</body>
 </html>
-
-<style>
-	@font-face {
-		font-family: 'Inter';
-		src: url('/src/assets/fonts/Inter\,wght.ttf') format('woff2');
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-	:global(*){
-		box-sizing:border-box;
-		margin: 0;
-		padding:0;
-		font-family: 'Inter',Arial, Helvetica, sans-serif;
-	}
-	html {
-		background-color: rgb(6, 3, 19);
-		color: white;
-	}
-	body {
-		background: transparent;
-		color: white;
-	}
-</style>

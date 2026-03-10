@@ -1,6 +1,6 @@
 .footer{
-    background: linear-gradient(135deg, #070612 0%, #0f0f22 50%, #181632 100%);
-    color: #ffffff;
+    background: var(--grad-footer);
+    color: var(--txt-primary);
     text-align: center;
     border-top: 1px solid rgba(100, 150, 255, 0.2);
     position: relative;
@@ -51,17 +51,17 @@
     font-size: 1.4rem;
     letter-spacing: 1px;
     margin: 0;
-    background: linear-gradient(135deg, #a8d8ff 0%, #7ec8ff 100%);
+    background: var(--grad-blue-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .footerTop__logo p{
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--txt-secondary);
     line-height: 1.65;
     margin: 0 0 20px 0;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
 }
 
 .footer-social-links {
@@ -75,14 +75,14 @@
     align-items: center;
     justify-content: center;
     padding: 8px 16px;
-    background: linear-gradient(135deg, rgba(100, 150, 255, 0.2), rgba(150, 100, 255, 0.1));
-    border: 1px solid rgba(100, 150, 255, 0.3);
+    background: linear-gradient(135deg, var(--clr-blue-a20), rgba(150, 100, 255, 0.1));
+    border: 1px solid var(--clr-blue-border);
     border-radius: 20px;
-    color: #a8d8ff;
+    color: var(--txt-blue);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .social-link:hover {
@@ -118,8 +118,8 @@
 
 .footerTop__card ul li a{
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.7);
-    transition: all 0.3s ease;
+    color: var(--txt-secondary);
+    transition: var(--transition-base);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -128,7 +128,7 @@
 
 .footerTop__card ul li a:hover,
 .footerTop__card ul li a:focus-visible{
-    color: #a8d8ff;
+    color: var(--txt-blue);
 }
 
 .icon-arrow {
@@ -154,7 +154,7 @@
 .footerTop__card-list li svg{
     margin-top: 4px;
     flex-shrink: 0;
-    color: #a8d8ff;
+    color: var(--txt-blue);
     filter: drop-shadow(0 0 5px rgba(100, 150, 255, 0.3));
 }
 
@@ -163,16 +163,16 @@
 }
 
 .footerBottom{
-    background: linear-gradient(90deg, rgba(100, 150, 255, 0.1) 0%, rgba(150, 100, 255, 0.1) 100%);
+    background: linear-gradient(90deg, var(--clr-blue-a10), rgba(150, 100, 255, 0.1));
     border-top: 1px solid rgba(100, 150, 255, 0.2);
     padding: 20px 16px;
     position: relative;
-    z-index: 1;
+    z-index: var(--z-above);
 }
 
 .footerBottom p{
     margin: 0;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     letter-spacing: 0.3px;
     color: rgba(255, 255, 255, 0.8);
 }

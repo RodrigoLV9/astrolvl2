@@ -8,7 +8,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #0a0a0f 0%, #0d0d1a 100%);
+    background: linear-gradient(135deg, var(--bg-section) 0%, var(--bg-light) 100%);
 }
 
 /* ─── Badge ────────────────────────────────────────────────── */
@@ -18,15 +18,15 @@
     gap: 8px;
     background: rgba(102, 126, 234, 0.12);
     border: 1px solid rgba(102, 126, 234, 0.3);
-    border-radius: 100px;
+    border-radius: var(--rad-pill);
     padding: 6px 18px;
     margin-bottom: 32px;
-    z-index: 2;
+    z-index: var(--z-above);
 }
 
 .heroProcess__badge p {
-    color: #a8b4ff;
-    font-size: 0.85rem;
+    color: var(--txt-purple);
+    font-size: var(--text-sm);
     font-weight: 500;
     margin: 0;
 }
@@ -35,7 +35,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #667eea;
+    background: var(--clr-blue);
     animation: heroBadgePulse 2s ease-in-out infinite;
 }
 
@@ -54,24 +54,24 @@
 }
 
 .heroProcess__text h1 {
-    font-size: 3.5rem;
+    font-size: var(--text-5xl);
     margin-bottom: 18px;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--txt-primary);
     line-height: 1.1;
     letter-spacing: -1px;
 }
 
 .heroProcess__text-gradient {
-    background: linear-gradient(135deg, #667eea 0%, #a78bfa 50%, #f093fb 100%);
+    background: var(--grad-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .heroProcess__text p {
-    color: rgba(255, 255, 255, 0.55);
-    font-size: 1.1rem;
+    color: var(--txt-muted);
+    font-size: var(--text-lg);
     font-weight: 400;
     max-width: 520px;
     margin: 0 auto;
@@ -95,13 +95,13 @@
 .cardProcess__main {
     width: 480px;
     height: 360px;
-    border-radius: 28px;
+    border-radius: var(--rad-2xl);
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-slow);
     flex-shrink: 0;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45),
+    box-shadow: var(--shadow-xl),
                 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
@@ -109,11 +109,11 @@
 .cardProcess__secondary {
     width: 75px;
     height: 360px;
-    border-radius: 28px;
+    border-radius: var(--rad-2xl);
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-slow);
     flex-shrink: 0;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -188,7 +188,7 @@
 }
 
 .cardProcess-info__text h4 {
-    font-size: 1.65rem;
+    font-size: var(--text-2xl);
     font-weight: 800;
     letter-spacing: -0.5px;
     margin: 0;
@@ -211,13 +211,13 @@
 
 .cardProcess-info__tag {
     background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 100px;
+    border: 1px solid var(--border-medium);
+    border-radius: var(--rad-pill);
     padding: 3px 10px;
     font-size: 0.72rem;
     font-weight: 600;
     backdrop-filter: blur(10px);
-    color: #fff;
+    color: var(--txt-primary);
 }
 
 /* ─── Inactive info overlay ────────────────────────────────── */
@@ -258,9 +258,9 @@
 }
 
 .heroProcess__stat-number {
-    font-size: 2rem;
+    font-size: var(--text-3xl);
     font-weight: 800;
-    background: linear-gradient(135deg, #667eea 0%, #a78bfa 100%);
+    background: linear-gradient(135deg, var(--clr-blue) 0%, var(--clr-purple) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -268,8 +268,8 @@
 }
 
 .heroProcess__stat-label {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.45);
+    font-size: var(--text-sm);
+    color: var(--txt-dim);
     font-weight: 500;
     white-space: nowrap;
 }
@@ -277,7 +277,7 @@
 .heroProcess__stat-divider {
     width: 1px;
     height: 44px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--border-soft);
 }
 
 /* ─── Responsive ────────────────────────────────────────────── */

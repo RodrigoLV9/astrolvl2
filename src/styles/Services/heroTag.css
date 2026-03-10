@@ -8,17 +8,17 @@
     font-weight: 500;
     color: rgba(200, 210, 255, 0.82);
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--rad-sm);
     letter-spacing: 0.2px;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 .heroTag:hover {
-    background: rgba(99, 102, 241, 0.12);
+    background: var(--clr-primary-a12);
     border-color: rgba(99, 102, 241, 0.35);
 }
 .heroTag__icon {
-    color: #818cf8;
+    color: var(--clr-primary-dull);
     font-size: 0.65rem;
     flex-shrink: 0;
 }

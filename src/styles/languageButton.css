@@ -9,22 +9,22 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.875rem;
-  background: rgba(32, 178, 170, 0.1);
-  border: 1px solid rgba(32, 178, 170, 0.3);
-  border-radius: 6px;
+  background: var(--clr-accent-a10);
+  border: 1px solid var(--clr-accent-a30);
+  border-radius: var(--rad-sm);
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
   min-width: 130px;
 }
 
 .languageButton:hover {
-  background: rgba(32, 178, 170, 0.18);
+  background: var(--clr-accent-a18);
   border-color: rgba(32, 178, 170, 0.55);
-  color: lightseagreen;
-  box-shadow: 0 0 14px rgba(32, 178, 170, 0.15);
+  color: var(--clr-accent);
+  box-shadow: var(--shadow-accent);
 }
 
 .languageButton:active {

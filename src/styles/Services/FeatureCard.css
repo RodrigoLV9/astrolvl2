@@ -10,11 +10,11 @@
     flex-shrink: 0;
 }
 .featureCard-icon {
-    color: #22d3ee;
+    color: var(--clr-cyan);
     font-size: 0.8rem;
 }
 .featureCard span {
-    font-size: 0.88rem;
+    font-size: var(--text-sm);
     font-weight: 400;
     color: rgba(200,210,235,0.8);
     line-height: 1.4;

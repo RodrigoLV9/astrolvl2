@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--rad-lg);
     padding: 36px 32px;
     position: relative;
     overflow: hidden;
@@ -23,9 +23,9 @@
     transition: opacity 0.25s;
 }
 .cardIntro:hover {
-    border-color: rgba(99,102,241,0.3);
+    border-color: var(--border-primary);
     transform: translateY(-5px);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-lg);
 }
 .cardIntro:hover::before {
     opacity: 1;
@@ -51,8 +51,8 @@
 }
 .cardIntro span {
     font-weight: 700;
-    font-size: 1.05rem;
-    color: #e2e8f0;
+    font-size: var(--text-md);
+    color: var(--txt-light);
     line-height: 1.3;
 }
 .cardIntro p {

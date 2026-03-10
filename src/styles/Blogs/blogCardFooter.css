@@ -4,7 +4,7 @@
     justify-content: space-between;
     gap: 12px;
     padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid var(--border-subtle);
     margin-top: auto;
 }
 
@@ -24,7 +24,7 @@
 
 .blogCardFooter__meta-item svg {
     font-size: 13px;
-    color: #818cf8;
+    color: var(--clr-primary-dull);
     flex-shrink: 0;
 }
 
@@ -34,9 +34,9 @@
     gap: 5px;
     font-size: 12px;
     font-weight: 600;
-    color: #818cf8;
+    color: var(--clr-primary-dull);
     white-space: nowrap;
-    transition: gap 0.2s ease, color 0.2s ease;
+    transition: gap var(--transition-fast), color var(--transition-fast);
 }
 
 .blogCardFooter__cta svg {
@@ -46,7 +46,7 @@
 
 .blogCard:hover .blogCardFooter__cta {
     gap: 8px;
-    color: #a5b4fc;
+    color: var(--clr-primary-pale);
 }
 
 .blogCard:hover .blogCardFooter__cta svg {

@@ -3,9 +3,9 @@
     width:500px;
     display: flex;
     flex-direction: column;
-    border-radius: 6px;
+    border-radius: var(--rad-sm);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--border-subtle);
     background: rgba(255, 255, 255, 0.022);
     transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
     cursor: pointer;
@@ -14,7 +14,7 @@
 .blogCardMain:hover {
     border-color: rgba(129, 140, 248, 0.35);
     transform: translateY(-5px);
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45), 0 0 50px rgba(99, 102, 241, 0.07);
+    box-shadow: var(--shadow-xl), 0 0 50px var(--clr-primary-a10);
 }
 
 /* Media */
@@ -42,16 +42,16 @@
     position: absolute;
     top: 16px;
     left: 16px;
-    z-index: 2;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    color: white;
+    z-index: var(--z-overlay);
+    background: linear-gradient(135deg, var(--clr-primary), #a855f7);
+    color: var(--txt-primary);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     padding: 5px 14px;
-    border-radius: 4px;
-    box-shadow: 0 4px 16px rgba(99,102,241,0.4);
+    border-radius: var(--rad-xs);
+    box-shadow: 0 4px 16px var(--clr-primary-a38);
 }
 .blogCardMain__category {
     position: absolute;
@@ -83,7 +83,7 @@
     font-weight: 700;
     line-height: 1.38;
     margin-bottom: 12px;
-    color: #ffffff;
+    color: var(--txt-primary);
 }
 .blogCardMain__body p {
     font-size: 14px;
@@ -99,7 +99,7 @@
     justify-content: space-between;
     padding-top: 20px;
     margin-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid var(--border-subtle);
 }
 .blogCardMain__meta {
     display: flex;
@@ -123,13 +123,13 @@
     gap: 7px;
     font-size: 13px;
     font-weight: 600;
-    color: #818cf8;
+    color: var(--clr-primary-dull);
     text-decoration: none;
     transition: gap 0.22s ease, color 0.22s ease;
 }
 .blogCardMain__cta:hover {
     gap: 12px;
-    color: #a5b4fc;
+    color: var(--clr-primary-pale);
 }
 @keyframes cardSlideLeft {
     from { opacity: 0; transform: translateX(-28px); }

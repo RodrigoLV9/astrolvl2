@@ -4,7 +4,7 @@
     justify-content: flex-start;
     gap: 8px;
     padding: 4px 0;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .cardTag:hover {
@@ -12,7 +12,7 @@
 }
 
 .cardTag__icon{
-    color: #a8d8ff;
+    color: var(--txt-blue);
     font-size: 1.1rem;
     flex-shrink: 0;
     filter: drop-shadow(0 0 4px rgba(100, 150, 255, 0.4));
@@ -34,7 +34,7 @@
 }
 
 .cardTag__text{
-    font-size: .88rem;
+    font-size: var(--text-sm);
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.35;
     margin: 0;

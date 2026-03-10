@@ -15,10 +15,10 @@
     align-items: center;
     gap: 10px;
     backdrop-filter: blur(10px);
-    background: linear-gradient(135deg, rgba(150, 100, 255, 0.2), rgba(100, 150, 255, 0.1));
-    border: 1px solid rgba(150, 200, 255, 0.3);
+    background: linear-gradient(135deg, rgba(150, 100, 255, 0.2), var(--clr-blue-a15));
+    border: 1px solid var(--clr-blue-border);
     padding: 10px 16px;
-    border-radius: 50px;
+    border-radius: var(--rad-pill);
     font-size: .9rem;
     animation: slideInDown 0.8s ease-out;
     margin: 0 auto 30px auto;
@@ -31,7 +31,7 @@
 }
 
 .tag-icon{
-    color: #e9da0b;
+    color: var(--clr-warning);
     filter: drop-shadow(0 0 5px rgba(233, 218, 11, 0.6));
 }
 
@@ -54,21 +54,21 @@
 }
 
 .hero__text h1{
-    font-size: 3.5rem;
+    font-size: var(--text-5xl);
     padding: 20px 0;
-    background: linear-gradient(135deg, #ffffff 0%, #a8d8ff 50%, #7ec8ff 100%);
+    background: var(--grad-blue-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: 0 0 30px rgba(100, 150, 255, 0.3);
     font-weight: 800;
     letter-spacing: -1px;
-    max-width: 900px;
+    max-width: var(--max-w-sm);
 }
 
 .hero__text h4{
-    font-size: 1.3rem;
-    color: #a8d8ff;
+    font-size: var(--text-xl);
+    color: var(--txt-blue);
     font-weight: 300;
     letter-spacing: 1px;
     margin-top: 15px;
@@ -104,13 +104,13 @@
     gap: 12px;
     width: 220px;
     padding: 14px 25px;
-    border-radius: 12px;
+    border-radius: var(--rad-md);
     border: 2px solid rgba(100, 150, 255, 0.6);
-    background: linear-gradient(135deg, rgba(100, 150, 255, 0.15), rgba(150, 100, 255, 0.1));
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--clr-blue-a15), rgba(150, 100, 255, 0.1));
+    color: var(--txt-primary);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     position: relative;
     overflow: hidden;
 }
@@ -130,7 +130,7 @@
 .button-services:hover {
     border-color: rgba(100, 150, 255, 1);
     background: linear-gradient(135deg, rgba(100, 150, 255, 0.3), rgba(150, 100, 255, 0.2));
-    box-shadow: 0 0 30px rgba(100, 150, 255, 0.5), inset 0 0 20px rgba(100, 150, 255, 0.1);
+    box-shadow: var(--shadow-blue), inset 0 0 20px rgba(100, 150, 255, 0.1);
     transform: translateY(-3px);
 }
 
@@ -145,15 +145,15 @@
 }
 
 .button-contact{
-    font-size: 1rem;
+    font-size: var(--text-md);
     padding: 14px 35px;
-    border-radius: 12px;
+    border-radius: var(--rad-md);
     border: none;
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    color: #ffffff;
+    color: var(--txt-primary);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     position: relative;
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(37, 99, 235, 0.3);
@@ -172,7 +172,7 @@
 
 .button-contact:hover {
     background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+    box-shadow: var(--shadow-md);
     transform: translateY(-3px);
 }
 

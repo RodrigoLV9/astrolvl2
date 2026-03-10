@@ -1,9 +1,9 @@
 .whyCard {
     padding: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-soft);
     border-radius: 10px;
     background: linear-gradient(135deg, rgba(96, 165, 250, 0.05), rgba(139, 92, 246, 0.05));
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
 }
 
 .whyCard__title {
-    font-size: 1.3rem;
+    font-size: var(--text-xl);
     font-weight: 700;
     color: #e8f3ff;
     margin: 0;
@@ -33,5 +33,5 @@
     color: #b0b0b0;
     margin: 0;
     line-height: 1.6;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
 }

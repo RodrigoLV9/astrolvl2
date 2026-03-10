@@ -6,18 +6,18 @@
 .blogSearch input {
     width: 100%;
     height: 50px;
-    border-radius: 6px;
+    border-radius: var(--rad-sm);
     border: 1px solid rgba(129, 140, 248, 0.22);
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(12px);
     outline: none;
     padding: 0 54px 0 24px;
-    color: white;
+    color: var(--txt-primary);
     font-size: 14px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 .blogSearch input::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--txt-ghost);
 }
 .blogSearch input:focus {
     border-color: rgba(129, 140, 248, 0.5);
@@ -29,6 +29,6 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
-    color: #818cf8;
+    color: var(--clr-primary-dull);
     pointer-events: none;
 }
