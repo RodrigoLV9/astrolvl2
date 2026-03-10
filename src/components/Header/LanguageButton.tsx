@@ -9,9 +9,9 @@ interface Language {
 }
 
 const languages: Language[] = [
-  { value: 'spanish', label: 'Español', flag: '🇪🇸' },
-  { value: 'english', label: 'English', flag: '🇺🇸' },
-  { value: 'portugues', label: 'Português', flag: '🇧🇷' }
+  { value: 'spanish', label: 'Español', flag: 'ES' },
+  { value: 'english', label: 'English', flag: 'EN' },
+  { value: 'portugues', label: 'Português', flag: 'PT' }
 ];
 
 export const LanguageButton: React.FC = () => {
