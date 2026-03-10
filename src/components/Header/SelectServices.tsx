@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../styles/selectServices.css'
 import { IoIosArrowDown as IconArrowDown } from "react-icons/io";
-export const SelectServices:React.FC = () => {
+
+export const SelectServices: React.FC = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      setMobileOpen(prev => !prev);
+    }
+  };
+
   return (
-    <li className='selectServices'>
-        <a href='/services' className='servicesList__all'>
+    <li className={`selectServices${mobileOpen ? ' mobile-open' : ''}`}>
+        <a href='/services' className='servicesList__all' onClick={handleClick}>
             <span>Services</span>
-            <IconArrowDown className='selectServices__button-icon'/>
+            <IconArrowDown className={`selectServices__button-icon${mobileOpen ? ' rotated' : ''}`}/>
         </a>
         <div className="servicesList">
             <hr className="servicesList__divider" />

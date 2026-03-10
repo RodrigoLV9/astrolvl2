@@ -6,34 +6,72 @@ import {SelectServices} from './SelectServices.tsx'
 
 <header class="header">
     <MainLogo/>
-    <nav class="header-nav">
+    <nav class="header-nav" id="header-nav">
         <ul class="header-nav__list">
             <li><a href="/home">Home</a></li>
-            <SelectServices/>
+            <SelectServices client:load/>
             <li><a href="/process">Process</a></li>
             <li><a href="/blogs">Blogs</a></li>
             <li><a href="/contact">Contact</a></li>
         </ul>
+        <div class="header-nav__lang">
+            <LanguageButton client:load />
+        </div>
     </nav>
-    <LanguageButton client:load />
+    <div class="header-actions">
+        <div class="header-actions__lang">
+            <LanguageButton client:load />
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+        </button>
+    </div>
 </header>
+
+<script>
+    const hamburger = document.getElementById('hamburger') as HTMLButtonElement | null;
+    const header = document.querySelector('.header') as HTMLElement | null;
+
+    hamburger?.addEventListener('click', () => {
+        const isOpen = header?.classList.toggle('menu-open');
+        hamburger.setAttribute('aria-expanded', String(!!isOpen));
+    });
+
+    // Close menu when a regular nav link is clicked
+    document.querySelectorAll('.header-nav__list li:not(.selectServices) a').forEach(link => {
+        link.addEventListener('click', () => {
+            header?.classList.remove('menu-open');
+            hamburger?.setAttribute('aria-expanded', 'false');
+        });
+    });
+</script>
+
 <style>
+    /* ── Base header bar ── */
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: fixed;
-        z-index: 5;
+        z-index: 100;
         width: 100%;
         top: 0;
         height: 64px;
         padding: 0 2rem;
         background-color: rgba(5, 3, 10, 0.72);
-        color: white;
-        border-bottom: 1px solid rgba(32, 178, 170, 0.12);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+        color: var(--txt-primary);
+        border-bottom: 1px solid var(--clr-accent-a10);
+        box-shadow: var(--shadow-sm);
         -webkit-backdrop-filter: blur(14px);
         backdrop-filter: blur(14px);
+    }
+
+    /* ── Desktop nav ── */
+    .header-nav {
+        display: flex;
+        align-items: center;
     }
 
     .header-nav__list {
@@ -51,32 +89,130 @@ import {SelectServices} from './SelectServices.tsx'
 
     .header-nav__list li a {
         text-decoration: none;
-        color: rgba(255, 255, 255, 0.78);
+        color: var(--txt-secondary);
         font-size: 0.9rem;
         font-weight: 500;
         padding: 0.5rem 0.875rem;
-        border-radius: 6px;
-        transition: color 0.2s ease, background-color 0.2s ease;
+        border-radius: var(--rad-sm);
+        transition: var(--transition-fast);
         display: block;
     }
 
     .header-nav__list li a:hover {
-        color: lightseagreen;
-        background-color: rgba(32, 178, 170, 0.08);
+        color: var(--clr-accent);
+        background-color: var(--clr-accent-a10);
     }
 
+    /* ── Right side actions ── */
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    /* Language inside mobile panel — hidden on desktop */
+    .header-nav__lang {
+        display: none;
+    }
+
+    /* ── Hamburger button ── */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
+    }
+
+    .hamburger__line {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--txt-primary);
+        border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform-origin: center;
+    }
+
+    /* Hamburger → X when menu is open */
+    .header.menu-open .hamburger__line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .header.menu-open .hamburger__line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    .header.menu-open .hamburger__line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* ── Mobile ── */
     @media screen and (max-width: 768px) {
         .header {
-            padding: 0 1rem;
+            padding: 0 1.25rem;
+        }
+
+        /* Show hamburger, hide desktop language */
+        .hamburger {
+            display: flex;
+        }
+        .header-actions__lang {
+            display: none;
+        }
+
+        /* Mobile nav panel — slides down from the header */
+        .header-nav {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+            padding: 1rem 1.25rem 1.5rem;
+            background: rgba(5, 3, 10, 0.97);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--clr-accent-a10);
+            box-shadow: var(--shadow-md);
+            z-index: 99;
+            /* Hidden state */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        }
+
+        .header.menu-open .header-nav {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
         .header-nav__list {
-            gap: 0;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.125rem;
         }
 
         .header-nav__list li a {
-            padding: 0.5rem 0.5rem;
-            font-size: 0.8rem;
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+        }
+
+        /* Show language button at the bottom of the mobile panel */
+        .header-nav__lang {
+            display: flex;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 0.5rem;
         }
     }
 </style>

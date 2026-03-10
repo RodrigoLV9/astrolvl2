@@ -1,7 +1,7 @@
 .containerLanguageButton {
   position: relative;
   display: inline-block;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-base);
 }
 
 .languageButton {
@@ -41,9 +41,9 @@
   line-height: 1;
   padding: 0.2rem 0.35rem;
   border-radius: 4px;
-  background: rgba(32, 178, 170, 0.15);
+  background: var(--clr-accent-a18);
   border: 1px solid rgba(32, 178, 170, 0.4);
-  color: lightseagreen;
+  color: var(--clr-accent);
   min-width: 1.75rem;
   text-align: center;
 }
@@ -69,7 +69,7 @@
   right: 0;
   background: rgba(5, 3, 10, 0.97);
   border: 1px solid rgba(32, 178, 170, 0.2);
-  border-top: 2px solid lightseagreen;
+  border-top: 2px solid var(--clr-accent);
   border-radius: 0 0 8px 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   overflow: hidden;
@@ -104,31 +104,31 @@
 }
 
 .languageOption:hover {
-  background: rgba(32, 178, 170, 0.1);
-  color: lightseagreen;
+  background: var(--clr-accent-a10);
+  color: var(--clr-accent);
   padding-left: 1.25rem;
 }
 
 .languageOption:hover .optionFlag {
-  background: rgba(32, 178, 170, 0.2);
+  background: var(--clr-accent-a18);
   border-color: rgba(32, 178, 170, 0.6);
-  color: lightseagreen;
+  color: var(--clr-accent);
 }
 
 .languageOption.selected {
-  background: rgba(32, 178, 170, 0.12);
-  color: lightseagreen;
+  background: var(--clr-accent-a10);
+  color: var(--clr-accent);
   font-weight: 600;
 }
 
 .languageOption.selected .optionFlag {
-  background: rgba(32, 178, 170, 0.25);
-  border-color: lightseagreen;
-  color: lightseagreen;
+  background: var(--clr-accent-a30);
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
 }
 
 .languageOption.selected:hover {
-  background: rgba(32, 178, 170, 0.18);
+  background: var(--clr-accent-a18);
 }
 
 .optionFlag {
@@ -141,8 +141,8 @@
   line-height: 1;
   padding: 0.2rem 0.35rem;
   border-radius: 4px;
-  background: rgba(32, 178, 170, 0.12);
-  border: 1px solid rgba(32, 178, 170, 0.3);
+  background: var(--clr-accent-a10);
+  border: 1px solid var(--clr-accent-a30);
   color: rgba(32, 178, 170, 0.85);
   min-width: 1.75rem;
   text-align: center;
@@ -180,6 +180,23 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .languageButton {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .containerLanguageButton {
+    width: 100%;
+  }
+
+  .languageDropdown {
+    right: 0;
+    left: 0;
   }
 }
 

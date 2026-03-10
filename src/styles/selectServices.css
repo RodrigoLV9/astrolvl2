@@ -88,3 +88,56 @@
     border-top: 1px solid var(--clr-accent-a30);
     margin: 2px 0 6px;
 }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .selectServices {
+        width: 100%;
+    }
+
+    .servicesList__all {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+
+    /* Rotate icon via JS class on mobile */
+    .selectServices__button-icon.rotated {
+        transform: rotate(180deg);
+        color: var(--clr-accent);
+    }
+
+    /* Kill all hover/focus-based opening on mobile */
+    .selectServices:hover .servicesList,
+    .selectServices:focus-within .servicesList,
+    .servicesList:hover {
+        display: none;
+    }
+
+    /* Base state: completely hidden */
+    .servicesList {
+        display: none;
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border-top: none;
+        border-left: 2px solid var(--clr-accent-a30);
+        margin-left: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0;
+        background: transparent;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Show when toggled */
+    .selectServices.mobile-open .servicesList {
+        display: flex !important;
+    }
+
+    .servicesList a {
+        padding: 0.5rem 0.5rem;
+        font-size: 0.95rem;
+    }
+}
