@@ -52,26 +52,46 @@ const services = [
 </section>
 <style>
     .servicesHome{
-        margin:60px 200px
+        margin: var(--sp-14) 200px;
     }
     .servicesHome__text{
         text-align: center;
-        margin:70px
+        margin: var(--sp-20) var(--sp-14);
     }
     .servicesHome__text h2{
-        font-size: 2rem;
-        margin:20px 0
+        font-size: var(--text-3xl);
+        margin: var(--sp-5) 0
     }
     .servicesHome__text h3{
-        font-size: 1.2rem;
+        font-size: var(--text-lg);
         font-weight: normal;
-        color:gray
+        color: var(--txt-muted)
     }
     .servicesHome__cards{
-        display:flex;
-        align-items: center;
+        display: flex;
+        align-items: stretch;
         justify-content: center;
         flex-wrap: wrap;
-        gap:30px
+        gap: var(--sp-8)
+    }
+
+    @media (max-width: 1280px) {
+        .servicesHome { margin: var(--sp-14) var(--sp-16); }
+    }
+    @media (max-width: 1024px) {
+        .servicesHome { margin: var(--sp-12) var(--sp-8); }
+        .servicesHome__text { margin: var(--sp-12) var(--sp-8); }
+    }
+    @media (max-width: 768px) {
+        .servicesHome { margin: var(--sp-10) var(--sp-5); }
+        .servicesHome__text { margin: var(--sp-8) var(--sp-4); }
+        .servicesHome__text h2 { font-size: var(--text-2xl); }
+        .servicesHome__text h3 { font-size: var(--text-base); }
+        .servicesHome__cards { gap: var(--sp-5); }
+    }
+    @media (max-width: 480px) {
+        .servicesHome { margin: var(--sp-8) var(--px); }
+        .servicesHome__text { margin: var(--sp-5) 0; }
+        .servicesHome__text h2 { font-size: var(--text-xl); }
     }
 </style>

@@ -66,24 +66,24 @@ import { IntroTag } from "./IntroTag";
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #3b82f6;
-        box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+        background: var(--clr-primary);
+        box-shadow: 0 0 8px var(--clr-primary-a55);
         animation: pulse-dot 2s ease-in-out infinite;
         flex-shrink: 0;
     }
 
     .intro__label p {
-        font-size: 0.8rem;
+        font-size: var(--text-sm);
         font-weight: 600;
         letter-spacing: 2.5px;
         text-transform: uppercase;
-        color: #60a5fa;
+        color: var(--txt-blue-pale);
         margin: 0;
     }
 
     @keyframes pulse-dot {
-        0%, 100% { box-shadow: 0 0 8px rgba(59, 130, 246, 0.8); }
-        50% { box-shadow: 0 0 18px rgba(59, 130, 246, 1), 0 0 32px rgba(59, 130, 246, 0.4); }
+        0%, 100% { box-shadow: 0 0 8px var(--clr-primary-a55); }
+        50% { box-shadow: 0 0 18px var(--clr-primary), 0 0 32px var(--clr-primary-a38); }
     }
 
     /* HEADING */
@@ -97,7 +97,7 @@ import { IntroTag } from "./IntroTag";
     }
 
     .intro__gradient {
-        background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 60%, #818cf8 100%);
+        background: linear-gradient(135deg, var(--clr-primary-pale) 0%, var(--clr-purple) 60%, var(--clr-primary-dull) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -113,8 +113,8 @@ import { IntroTag } from "./IntroTag";
     .introLeft__text p {
         margin: 14px 0;
         line-height: 1.75;
-        color: #94a3b8;
-        font-size: 0.95rem;
+        color: var(--txt-secondary);
+        font-size: var(--text-base);
     }
 
     /* TAGS */
@@ -132,9 +132,9 @@ import { IntroTag } from "./IntroTag";
         align-items: center;
         gap: 28px;
         padding: 18px 28px;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.06));
-        border: 1px solid rgba(100, 150, 255, 0.2);
-        border-radius: 16px;
+        background: var(--grad-card);
+        border: 1px solid var(--clr-blue-border);
+        border-radius: var(--rad-lg);
         width: fit-content;
         backdrop-filter: blur(8px);
         animation: fadeInLeft 0.8s ease-out 0.4s both;
@@ -150,7 +150,7 @@ import { IntroTag } from "./IntroTag";
     .intro__stat-number {
         font-size: 1.75rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #60a5fa, #a78bfa);
+        background: linear-gradient(135deg, var(--clr-primary-pale), var(--clr-purple));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -158,8 +158,8 @@ import { IntroTag } from "./IntroTag";
     }
 
     .intro__stat-label {
-        font-size: 0.7rem;
-        color: #64748b;
+        font-size: var(--text-xs);
+        color: var(--txt-dim);
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -168,7 +168,7 @@ import { IntroTag } from "./IntroTag";
     .intro__stat-divider {
         width: 1px;
         height: 38px;
-        background: linear-gradient(to bottom, transparent, rgba(100, 150, 255, 0.35), transparent);
+        background: linear-gradient(to bottom, transparent, var(--clr-blue-border), transparent);
     }
 
     /* RIGHT */
@@ -192,11 +192,11 @@ import { IntroTag } from "./IntroTag";
         z-index: 1;
         width: 450px;
         height: auto;
-        border-radius: 20px;
-        border: 1px solid rgba(100, 150, 255, 0.25);
+        border-radius: var(--rad-xl);
+        border: 1px solid var(--clr-blue-border);
         box-shadow:
             0 25px 60px rgba(0, 0, 0, 0.5),
-            0 0 0 1px rgba(100, 150, 255, 0.08),
+            0 0 0 1px var(--clr-blue-a10),
             inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
@@ -213,7 +213,11 @@ import { IntroTag } from "./IntroTag";
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-        .intro { gap: 40px; }
+        .intro {
+            gap: 40px;
+            width: 85vw;
+        }
+        .introLeft h2 { font-size: 2rem; }
         .introRight img { width: 360px; }
     }
 
@@ -222,12 +226,59 @@ import { IntroTag } from "./IntroTag";
             flex-direction: column;
             margin: 80px auto;
             width: 88vw;
-            gap: 48px;
+            gap: 40px;
         }
         .introLeft h2 { font-size: 1.75rem; }
         .introLeft__text { max-width: 100%; }
-        .introRight img { width: 100%; max-width: 480px; }
-        .introRight { width: 100%; }
-        .intro__stats { width: 100%; justify-content: center; }
+        .introLeft__text p { font-size: var(--text-sm); }
+        .introLeft__tags { gap: 8px; }
+        .introRight {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .introRight__glow { inset: -15px; }
+        .introRight img {
+            width: 100%;
+            max-width: 420px;
+        }
+        .intro__stats {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .intro {
+            margin: 60px auto;
+            width: 92vw;
+            gap: 32px;
+        }
+        .introLeft h2 {
+            font-size: var(--text-2xl);
+            letter-spacing: -0.3px;
+        }
+        .intro__label p { letter-spacing: 1.5px; }
+        .intro__stat-number { font-size: 1.35rem; }
+        .intro__stats {
+            gap: 16px;
+            padding: 14px 18px;
+        }
+        .intro__stat-divider { height: 28px; }
+    }
+
+    @media (max-width: 360px) {
+        .intro {
+            margin: 48px auto;
+            width: 94vw;
+            gap: 28px;
+        }
+        .introLeft h2 { font-size: var(--text-xl); }
+        .intro__stats {
+            gap: 12px;
+            padding: 12px 14px;
+        }
+        .intro__stat-label { letter-spacing: 0.5px; }
+        .intro__stat-divider { height: 24px; }
     }
 </style>

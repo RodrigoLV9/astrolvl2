@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 8px;
-    padding: 4px 0;
+    gap: var(--sp-2);
+    padding: var(--sp-1) 0;
     transition: var(--transition-base);
 }
 
@@ -13,7 +13,7 @@
 
 .cardTag__icon{
     color: var(--txt-blue);
-    font-size: 1.1rem;
+    font-size: var(--text-lg);
     flex-shrink: 0;
     filter: drop-shadow(0 0 4px rgba(100, 150, 255, 0.4));
     animation: check-bounce 0.6s ease-out;

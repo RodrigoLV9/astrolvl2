@@ -16,11 +16,11 @@
 }
 
 .introTag:hover {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(139, 92, 246, 0.15));
+    background: linear-gradient(135deg, var(--clr-blue-a20), rgba(139, 92, 246, 0.15));
     border-color: rgba(100, 150, 255, 0.6);
-    box-shadow: 0 0 14px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 0 14px var(--clr-blue-a20);
     transform: translateY(-2px);
-    color: #bfdbfe;
+    color: var(--txt-blue-pale);
 }
 
 .introTag__icon {
@@ -34,4 +34,20 @@
 @keyframes pulse-icon {
     0%, 100% { opacity: 1; filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.5)); }
     50%       { opacity: 0.75; filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8)); }
+}
+
+@media (max-width: 768px) {
+    .introTag {
+        white-space: normal;
+        font-size: var(--text-xs);
+        padding: 0.35rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .introTag {
+        padding: 0.4rem 0.75rem;
+        gap: 0.45rem;
+    }
+    .introTag__icon { font-size: 0.8rem; }
 }

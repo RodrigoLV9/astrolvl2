@@ -16,13 +16,13 @@ export const Hero: React.FC = () => {
             <h4>Desarrollo Web Futurista para Empresas Visionarias</h4>
         </div>
         <div className="buttons">
-            <button className="button-services">
-                <p>Explorar servicios</p>
+            <a href='/services' className="button-services">
+                <span>Explorar servicios</span>
                 <IconArrowRight/>
-            </button>
-            <button className="button-contact">
-                <p>Contacto</p>
-            </button>
+            </a>
+            <a href='/contact' className="button-contact">
+                <span>Contacto</span>
+            </a>
         </div>
         <CarouselHero/>
       </section>
