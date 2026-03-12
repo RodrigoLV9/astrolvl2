@@ -19,11 +19,6 @@ export const Footer: React.FC = () => {
                 <p>
                   Elevamos tu presencia digital con soluciones web modernas y orientadas a resultados para potenciar tu marca en el universo digital.
                 </p>
-                <div className="footer-social-links">
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">GitHub</a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">LinkedIn</a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">Twitter</a>
-                </div>
             </div>
             <div className="footerTop__cards">
                 <nav className="footerTop__card" aria-label="Navegación principal">
