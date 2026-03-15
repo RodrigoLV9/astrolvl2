@@ -1,9 +1,9 @@
 .descriptionCard {
     padding: 18px 20px;
     border-radius: 14px;
-    background: rgba(255,255,255,0.025);
+    background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-left: 2px solid rgba(99,102,241,0.4);
+    border-left: 2px solid var(--clr-primary-a38);
     transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
 }
 .descriptionCard:hover {
@@ -31,7 +31,26 @@
 .descriptionCard p {
     font-size: 0.82rem;
     line-height: 1.6;
-    color: rgba(170,178,205,0.78);
+    color: var(--txt-secondary);
     margin: 0;
     padding-left: 26px;
+}
+
+@media (max-width: 520px) {
+    .descriptionCard {
+        padding: 14px;
+        border-radius: var(--rad-sm);
+    }
+    .descriptionCard__header {
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+    .descriptionCard__header h4 {
+        font-size: var(--text-sm);
+    }
+    .descriptionCard p {
+        font-size: var(--text-xs);
+        line-height: 1.5;
+        padding-left: 22px;
+    }
 }

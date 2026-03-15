@@ -84,10 +84,10 @@ const data: Record<string, { heading: string; subtitle: string; features: string
 const d = data[service] ?? data['landing-page']
 ---
 
-<section class="features">
-  <div class="features__header">
-    <h2 class="features__heading">{d.heading}</h2>
-    <p class="features__subtitle">{d.subtitle}</p>
+<section class="features section-shell">
+  <div class="features__header section-header">
+    <h2 class="features__heading section-heading">{d.heading}</h2>
+    <p class="features__subtitle section-subtitle">{d.subtitle}</p>
   </div>
   <div class="features__grid">
     {d.features.map((f, i) => <FeatureCard label={f} index={i + 1}/>)}
@@ -97,28 +97,16 @@ const d = data[service] ?? data['landing-page']
 <style>
   .features {
     padding: 80px 0 100px;
-    width: min(92%, 1200px);
-    margin: 0 auto;
   }
   .features__header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
     margin-bottom: 56px;
   }
   .features__heading {
     font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 800;
-    color: #e2e8f0;
-    margin: 0;
-    line-height: 1.25;
   }
   .features__subtitle {
     font-size: 0.93rem;
     color: rgba(180,185,210,0.75);
-    margin: 0;
     max-width: 540px;
     line-height: 1.6;
   }
@@ -128,9 +116,31 @@ const d = data[service] ?? data['landing-page']
     gap: 4px 40px;
   }
   @media (max-width: 900px) {
-    .features__grid { grid-template-columns: repeat(2, 1fr); }
+    .features {
+      padding: 72px 0 88px;
+    }
+    .features__header {
+      margin-bottom: 42px;
+    }
+    .features__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 18px;
+    }
   }
   @media (max-width: 500px) {
-    .features__grid { grid-template-columns: 1fr; }
+    .features {
+      padding: 60px 0 74px;
+    }
+    .features__heading {
+      font-size: clamp(1.35rem, 7vw, 1.75rem);
+    }
+    .features__subtitle {
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
+    .features__grid {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
   }
 </style>

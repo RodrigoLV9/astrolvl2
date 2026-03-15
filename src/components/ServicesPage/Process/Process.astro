@@ -1,70 +1,22 @@
 ﻿---
+import { servicesProcessData } from "../../../data/generalData.js"
+
 interface Props {
   service: string
 }
 const { service } = Astro.props
 
-const data: Record<string, {
-  heading: string
-  subtitle: string
-  steps: Array<{ n: number; title: string; description: string }>
-}> = {
-  'landing-page': {
-    heading: 'De la idea al lanzamiento en 5 pasos',
-    subtitle: 'Un proceso claro, sin sorpresas y con entregas parciales para que siempre sepas en qué punto estamos.',
-    steps: [
-      { n: 1, title: 'Discovery',        description: 'Definimos objetivo de conversión, público objetivo, propuesta de valor y métricas de éxito. La base de todo lo que viene.' },
-      { n: 2, title: 'Copywriting',      description: 'Redactamos headlines, subtítulos, descripción de beneficios y CTAs optimizados para tu audiencia antes de diseñar.' },
-      { n: 3, title: 'Diseño UI',        description: 'Creamos el mockup de alta fidelidad. Lo revisas y apruebas antes de escribir una sola línea de código.' },
-      { n: 4, title: 'Desarrollo',       description: 'Construimos la landing con código limpio, rendimiento optimizado e integraciones con tus herramientas configuradas.' },
-      { n: 5, title: 'Lanzamiento',      description: 'Publicamos, configuramos analítica, verificamos que todo funcione y entregamos accesos e instrucciones de uso.' },
-    ],
-  },
-  'website': {
-    heading: 'Cómo construimos tu sitio web',
-    subtitle: 'Cinco fases que garantizan diseño alineado a tu marca, desarrollo sólido y un lanzamiento sin fricciones.',
-    steps: [
-      { n: 1, title: 'Discovery',        description: 'Relevamos tu marca, objetivos de negocio, competencia y alcance. Definimos páginas, funcionalidades y arquitectura de información.' },
-      { n: 2, title: 'Diseño UI/UX',     description: 'Wireframes y mockup completo del sitio. Diseñamos todos los componentes y el flujo de usuario antes de desarrollar.' },
-      { n: 3, title: 'Desarrollo',       description: 'Construimos el sitio con CMS integrado, SEO técnico configurado y código que puede escalar con tu empresa.' },
-      { n: 4, title: 'Contenido & QA',   description: 'Cargamos el contenido que nos proveas, realizamos pruebas de usabilidad, rendimiento y compatibilidad cross-browser.' },
-      { n: 5, title: 'Lanzamiento',      description: 'Configuramos dominio, SSL, hosting, redireccionamientos y hacemos un chequeo final antes de publicar.' },
-    ],
-  },
-  'ecommerce': {
-    heading: 'De catálogo vacío a tienda lista para vender',
-    subtitle: 'Cada etapa tiene entregables concretos para que puedas ver el avance y dar feedback en el momento exacto.',
-    steps: [
-      { n: 1, title: 'Discovery',        description: 'Definimos catálogo, pasarelas de pago, integraciones logísticas y reglas de negocio antes de diseñar o desarrollar.' },
-      { n: 2, title: 'Diseño UI/UX',     description: 'Diseñamos el flujo completo: home, ficha de producto, carrito y checkout. Aprobas el diseño antes del desarrollo.' },
-      { n: 3, title: 'Desarrollo',       description: 'Construimos la tienda, integramos pasarelas de pago, configuramos inventario y aplicamos SEO por producto.' },
-      { n: 4, title: 'Carga de datos',   description: 'Importamos tu catálogo, configuramos categorías, precios, variantes y métodos de envío según tus reglas.' },
-      { n: 5, title: 'Lanzamiento',      description: 'Realizamos pruebas de compra end-to-end, verificamos analítica y publicamos la tienda una vez todo está validado.' },
-    ],
-  },
-  'support': {
-    heading: 'Así funciona nuestro soporte',
-    subtitle: 'Un ciclo mensual predecible que mantiene tu web en óptimas condiciones sin que tengas que preocuparte.',
-    steps: [
-      { n: 1, title: 'Auditoría inicial',        description: 'Si no desarrollamos tu sitio, auditamos su estado técnico, dependencias y posibles vulnerabilidades antes de asumir el soporte.' },
-      { n: 2, title: 'Monitoreo activo',          description: 'Activamos el monitoreo de disponibilidad y performance para detectar incidencias antes de que impacten a tus usuarios.' },
-      { n: 3, title: 'Mantenimiento mensual',     description: 'Actualizamos dependencias, aplicamos parches de seguridad, hacemos backups y revisamos el rendimiento del sitio.' },
-      { n: 4, title: 'Resolución de incidencias', description: 'Ante errores funcionales o caídas, respondemos según SLA acordado con diagnóstico y solución documentados.' },
-      { n: 5, title: 'Reporte mensual',           description: 'Recibes un informe completo con todo lo realizado, el estado actual de la plataforma y las recomendaciones para el mes siguiente.' },
-    ],
-  },
-}
-
-const d = data[service] ?? data['landing-page']
+const serviceKey = (service in servicesProcessData ? service : 'landing-page') as keyof typeof servicesProcessData
+const d = servicesProcessData[serviceKey]
 ---
 
 <section class="process" id="process-section">
-  <div class="process__inner">
+  <div class="process__inner section-shell--compact">
 
-    <div class="process__header">
-      <span class="process__eyebrow">Proceso</span>
-      <h2 class="process__heading">{d.heading}</h2>
-      <p class="process__subtitle">{d.subtitle}</p>
+    <div class="process__header section-header">
+      <span class="process__eyebrow section-eyebrow">Proceso</span>
+      <h2 class="process__heading section-heading">{d.heading}</h2>
+      <p class="process__subtitle section-subtitle">{d.subtitle}</p>
     </div>
 
     <div class="process__track">
@@ -122,37 +74,20 @@ const d = data[service] ?? data['landing-page']
     padding: 100px 0 120px;
   }
   .process__inner {
-    width: min(92%, 1100px);
-    margin: 0 auto;
   }
 
   /* ── Header ── */
   .process__header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 14px;
     margin-bottom: 80px;
   }
-  .process__eyebrow {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #818cf8;
-  }
   .process__heading {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 800;
-    color: #e2e8f0;
-    margin: 0;
     line-height: 1.2;
   }
   .process__subtitle {
     font-size: 0.95rem;
     color: rgba(180, 185, 210, 0.72);
-    margin: 0 auto;
     max-width: 540px;
     line-height: 1.7;
   }
@@ -345,6 +280,12 @@ const d = data[service] ?? data['landing-page']
 
   /* Tablet: narrower cards but keep zigzag */
   @media (max-width: 900px) {
+    .process {
+      padding: 76px 0 96px;
+    }
+    .process__header {
+      margin-bottom: 60px;
+    }
     .process__card {
       max-width: 340px;
       padding: 22px 20px 20px;
@@ -395,6 +336,56 @@ const d = data[service] ?? data['landing-page']
     }
     .process__card-num {
       font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .process {
+      padding: 58px 0 72px;
+    }
+    .process__header {
+      margin-bottom: 38px;
+    }
+    .process__heading {
+      font-size: clamp(1.35rem, 7vw, 1.75rem);
+    }
+    .process__subtitle {
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
+    .process__spine {
+      left: 22px;
+    }
+    .process__row,
+    .process__row--left,
+    .process__row--right {
+      grid-template-columns: 44px 1fr;
+      gap: 0 10px;
+      padding: 12px 0;
+    }
+    .process__node {
+      width: 44px;
+      height: 44px;
+    }
+    .process__node-core {
+      width: 16px;
+      height: 16px;
+    }
+    .process__card {
+      padding: 16px 12px 14px;
+      border-radius: var(--rad-sm);
+    }
+    .process__card-title {
+      font-size: var(--text-base);
+      margin-bottom: 8px;
+    }
+    .process__card-desc {
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
+    .process__card-num {
+      font-size: 1.55rem;
+      margin-bottom: 8px;
     }
   }
 </style>

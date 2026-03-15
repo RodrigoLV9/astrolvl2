@@ -1,47 +1,21 @@
 ﻿---
 import { MoreCard } from "./MoreCard";
+import { servicesMoreData } from "../../../data/generalData.js";
 
 interface Props {
   service: string
 }
 const { service } = Astro.props
 
-const allServices = [
-  {
-    slug: 'landing-page',
-    tag: 'Landing Page',
-    title: 'Páginas de alta conversión',
-    description: 'Para campañas, lanzamientos o captación de leads. Diseñadas con un solo objetivo: convertir.',
-  },
-  {
-    slug: 'website',
-    tag: 'Sitio Web Corporativo',
-    title: 'Presencia digital completa',
-    description: 'Múltiples páginas, CMS integrado y SEO técnico para empresas que necesitan una base digital sólida.',
-  },
-  {
-    slug: 'ecommerce',
-    tag: 'E-commerce',
-    title: 'Tienda online a medida',
-    description: 'Gestión de catálogo, pagos y logística en una tienda online optimizada para vender y escalar.',
-  },
-  {
-    slug: 'support',
-    tag: 'Soporte y Mantenimiento',
-    title: 'Tu web en manos expertas',
-    description: 'Backups, actualizaciones, monitoreo y reportes mensuales para que nada falle sin que lo sepas.',
-  },
-]
-
-const others = allServices.filter(s => s.slug !== service)
+const others = servicesMoreData.filter(s => s.slug !== service)
 ---
 
-<section class="more">
+<section class="more section-shell--compact">
   <div class="more__divider"></div>
-  <div class="more__header">
-    <span class="more__eyebrow">Otros servicios</span>
-    <h2 class="more__heading">¿Necesitas algo <span class="more__heading-accent">diferente</span>?</h2>
-    <p class="more__subtitle">Cada servicio está diseñado para una necesidad específica. Si este no es el tuyo, aquí están las otras opciones.</p>
+  <div class="more__header section-header">
+    <span class="more__eyebrow section-eyebrow">Otros servicios</span>
+    <h2 class="more__heading section-heading">¿Necesitas algo <span class="more__heading-accent">diferente</span>?</h2>
+    <p class="more__subtitle section-subtitle">Cada servicio está diseñado para una necesidad específica. Si este no es el tuyo, aquí están las otras opciones.</p>
   </div>
   <div class="more__grid">
     {others.map(s => (
@@ -60,8 +34,6 @@ const others = allServices.filter(s => s.slug !== service)
 <style>
   .more {
     padding: 80px 0 100px;
-    width: min(92%, 1100px);
-    margin: 0 auto;
   }
   .more__divider {
     width: 100%;
@@ -70,19 +42,10 @@ const others = allServices.filter(s => s.slug !== service)
     margin-bottom: 80px;
   }
   .more__header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 14px;
     margin-bottom: 56px;
   }
   .more__eyebrow {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #818cf8;
     padding: 5px 14px;
     background: rgba(99,102,241,0.08);
     border: 1px solid rgba(99,102,241,0.2);
@@ -91,9 +54,6 @@ const others = allServices.filter(s => s.slug !== service)
   }
   .more__heading {
     font-size: clamp(1.7rem, 3vw, 2.4rem);
-    font-weight: 800;
-    color: #e2e8f0;
-    margin: 0;
     line-height: 1.2;
   }
   .more__heading-accent {
@@ -105,7 +65,6 @@ const others = allServices.filter(s => s.slug !== service)
   .more__subtitle {
     font-size: 0.95rem;
     color: rgba(180,185,210,0.7);
-    margin: 0;
     max-width: 500px;
     line-height: 1.7;
   }
@@ -115,8 +74,18 @@ const others = allServices.filter(s => s.slug !== service)
     gap: 22px;
   }
   @media (max-width: 900px) {
+    .more {
+      padding: 70px 0 90px;
+    }
+    .more__divider {
+      margin-bottom: 58px;
+    }
+    .more__header {
+      margin-bottom: 40px;
+    }
     .more__grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
   }
   @media (max-width: 580px) {
@@ -125,6 +94,19 @@ const others = allServices.filter(s => s.slug !== service)
     }
     .more {
       padding: 60px 0 80px;
+    }
+    .more__divider {
+      margin-bottom: 40px;
+    }
+    .more__heading {
+      font-size: clamp(1.4rem, 7vw, 1.8rem);
+    }
+    .more__subtitle {
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
+    .more__eyebrow {
+      padding: 4px 10px;
     }
   }
 </style>

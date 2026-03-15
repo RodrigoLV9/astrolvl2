@@ -79,11 +79,11 @@ const headers: Record<string, { eyebrow: string; heading: string; subtitle: stri
 const cards = data[service] ?? data['landing-page']
 const header = headers[service] ?? headers['landing-page']
 ---
-<section class="cardsIntro-section">
-  <div class="cardsIntro-header">
-    <span class="cardsIntro-eyebrow">{header.eyebrow}</span>
-    <h2 class="cardsIntro-heading">{header.heading}</h2>
-    <p class="cardsIntro-subtitle">{header.subtitle}</p>
+<section class="cardsIntro-section section-shell">
+  <div class="cardsIntro-header section-header">
+    <span class="cardsIntro-eyebrow section-eyebrow">{header.eyebrow}</span>
+    <h2 class="cardsIntro-heading section-heading">{header.heading}</h2>
+    <p class="cardsIntro-subtitle section-subtitle">{header.subtitle}</p>
   </div>
   <div class="cardsIntro-grid">
     {cards.map(c => <Card Icon={c.Icon} title={c.title} description={c.description} accentColor={c.color}/>)}
@@ -92,43 +92,48 @@ const header = headers[service] ?? headers['landing-page']
 <style>
   .cardsIntro-section {
     padding: 80px 0 100px;
-    width: min(92%, 1200px);
-    margin: 0 auto;
   }
   .cardsIntro-header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
     max-width: 640px;
     margin: 0 auto 56px;
   }
-  .cardsIntro-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #818cf8;
-  }
   .cardsIntro-heading {
     font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 800;
-    color: #e2e8f0;
-    margin: 0;
-    line-height: 1.25;
   }
   .cardsIntro-subtitle {
     font-size: 0.93rem;
     color: rgba(180,185,210,0.75);
-    margin: 0;
-    line-height: 1.65;
   }
   .cardsIntro-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
+  @media (max-width: 1100px) {
+    .cardsIntro-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+  }
   @media (max-width: 900px) {
+    .cardsIntro-section {
+      padding: 70px 0 86px;
+    }
+    .cardsIntro-header {
+      margin-bottom: 40px;
+    }
     .cardsIntro-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .cardsIntro-section {
+      padding: 60px 0 74px;
+    }
+    .cardsIntro-heading {
+      font-size: clamp(1.35rem, 7.5vw, 1.8rem);
+    }
+    .cardsIntro-subtitle {
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
   }
 </style>

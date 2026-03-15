@@ -130,8 +130,8 @@ const SuccessCard: React.FC<{ onReset: () => void }> = ({ onReset }) => (
   <div className="success-card" role="status" aria-live="polite">
     <div className="success-card__icon-wrapper">
       <svg className="success-card__svg" viewBox="0 0 52 52" fill="none" aria-hidden="true">
-        <circle className="sc-circle" cx="26" cy="26" r="23" stroke="rgb(34,197,94)" strokeWidth="2" fill="none" />
-        <path className="sc-check" d="M14 26l8 9 16-17" stroke="rgb(34,197,94)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <circle className="sc-circle" cx="26" cy="26" r="23" stroke="var(--clr-accent)" strokeWidth="2" fill="none" />
+        <path className="sc-check" d="M14 26l8 9 16-17" stroke="var(--clr-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     </div>
     <h3 className="success-card__title">¡Mensaje enviado!</h3>

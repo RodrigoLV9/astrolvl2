@@ -1,36 +1,6 @@
 ---
 import ServiceCard from "./ServiceCard.astro"
-
-const services = [
-    {
-        title: 'LANDING PAGE',
-        price: '$100.000 ARS',
-        description: 'Una página única, moderna y optimizada para presentar tu negocio o producto de forma efectiva.',
-        tags: ['Diseño responsive', 'Copy de conversión', 'Formulario de contacto', 'SEO básico', 'Carga rápida', 'Botón de WhatsApp', 'Integración con redes'],
-        href: '/landing-page'
-    },
-    {
-        title: 'WEB SITE',
-        price: '$180.000 ARS',
-        description: 'Sitio web multipágina para mostrar tu marca, servicios y propuesta de valor con presencia profesional.',
-        tags: ['Hasta 5 secciones', 'Diseño personalizado', 'Integración con WhatsApp', 'Optimización de velocidad', 'Galería de imágenes', 'Mapa de ubicación', 'Formulario de contacto'],
-        href: '/website'
-    },
-    {
-        title: 'E-COMMERCE',
-        price: '$300.000 ARS',
-        description: 'Tienda online lista para vender, con catálogo, carrito y proceso de compra claro para tus clientes.',
-        tags: ['Catálogo de productos', 'Carrito y checkout', 'Medios de pago', 'Panel autoadministrable', 'Gestión de stock', 'Cupones de descuento', 'Emails automáticos'],
-        href: '/ecommerce'
-    },
-    {
-        title: 'SUPPORT',
-        price: '$50.000 ARS',
-        description: 'Mantenimiento y soporte continuo para que tu web esté siempre actualizada, segura y funcionando al 100%.',
-        tags: ['Actualizaciones mensuales', 'Corrección de errores', 'Monitoreo básico', 'Soporte técnico', 'Backups regulares', 'Mejoras de rendimiento', 'Asistencia por WhatsApp'],
-        href: '/support'
-    }
-]
+import { servicesHomeData } from "../../../data/generalData.js"
 ---
 
 <section class="servicesHome">
@@ -39,7 +9,7 @@ const services = [
         <h3>Soluciones completas para llevar tu presencia digital al siguiente nivel</h3>
     </div>
     <div class="servicesHome__cards">
-        {services.map((service) => (
+        {servicesHomeData.map((service) => (
             <ServiceCard
                 title={service.title}
                 price={service.price}

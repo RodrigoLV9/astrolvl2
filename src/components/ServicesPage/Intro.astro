@@ -70,7 +70,7 @@ const data: Record<string, {
 const d = data[service] ?? data['landing-page']
 ---
 
-<section class="intro">
+<section class="intro section-shell--compact">
   <div class="intro__img-wrap">
     <img src={d.img} alt={d.imgAlt} loading="lazy"/>
     <div class="intro__img-aura"></div>
@@ -104,8 +104,6 @@ const d = data[service] ?? data['landing-page']
     display: flex;
     align-items: center;
     gap: 72px;
-    width: min(92%, 1100px);
-    margin: 0 auto;
     padding: 80px 0 100px;
   }
 
@@ -184,17 +182,17 @@ const d = data[service] ?? data['landing-page']
     gap: 20px;
   }
   .intro__eyebrow {
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #818cf8;
+    color: var(--clr-primary-dull);
   }
   .intro__heading {
     font-size: clamp(1.55rem, 2.5vw, 2.2rem);
     font-weight: 800;
     line-height: 1.22;
-    color: #e2e8f0;
+    color: var(--txt-light);
     margin: 0;
   }
   .intro__body {
@@ -226,6 +224,14 @@ const d = data[service] ?? data['landing-page']
     flex-shrink: 0;
     margin-top: 2px;
   }
+  @media (max-width: 1100px) {
+    .intro {
+      gap: 46px;
+    }
+    .intro__img-wrap {
+      width: 390px;
+    }
+  }
   @media (max-width: 860px) {
     .intro {
       flex-direction: column;
@@ -235,9 +241,56 @@ const d = data[service] ?? data['landing-page']
     .intro__img-wrap {
       width: 100%;
     }
+    .intro__img-wrap img {
+      height: 320px;
+    }
     .intro__float-badge {
       left: 12px;
       bottom: 12px;
+    }
+  }
+  @media (max-width: 520px) {
+    .intro {
+      gap: 30px;
+      padding: 52px 0 62px;
+    }
+    .intro__img-wrap img {
+      height: 240px;
+      border-radius: var(--rad-lg);
+    }
+    .intro__img-aura {
+      inset: -14px;
+      border-radius: 24px;
+    }
+    .intro__float-badge {
+      left: 8px;
+      bottom: 8px;
+      padding: 10px 12px;
+      gap: 8px;
+      border-radius: var(--rad-md);
+    }
+    .intro__float-badge-value {
+      font-size: 1.2rem;
+    }
+    .intro__float-badge-label {
+      font-size: 0.72rem;
+    }
+    .intro__float-badge-sub {
+      font-size: 0.66rem;
+    }
+    .intro__content {
+      gap: 14px;
+    }
+    .intro__heading {
+      font-size: clamp(1.35rem, 7vw, 1.75rem);
+    }
+    .intro__body {
+      font-size: var(--text-sm);
+      line-height: 1.65;
+    }
+    .intro__bullet {
+      font-size: var(--text-sm);
+      line-height: 1.5;
     }
   }
 </style>

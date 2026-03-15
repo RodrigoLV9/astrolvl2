@@ -1,12 +1,12 @@
 .heroTag {
     width: fit-content;
-    padding: 5px 12px;
+    padding: 5px var(--sp-3);
     display: flex;
     align-items: center;
     gap: 7px;
-    font-size: 0.77rem;
+    font-size: var(--text-xs);
     font-weight: 500;
-    color: rgba(200, 210, 255, 0.82);
+    color: var(--txt-secondary);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-soft);
     border-radius: var(--rad-sm);
@@ -21,4 +21,14 @@
     color: var(--clr-primary-dull);
     font-size: 0.65rem;
     flex-shrink: 0;
+}
+
+@media (max-width: 520px) {
+    .heroTag {
+        width: 100%;
+        justify-content: center;
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        gap: 6px;
+    }
 }

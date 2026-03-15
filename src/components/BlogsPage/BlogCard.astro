@@ -26,8 +26,8 @@ import { BlogCardFooter } from "./BlogCardFooter";
         flex-direction: column;
         border-radius: 10px;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid var(--border-subtle);
+        background: var(--bg-card);
         transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
         position: relative;
         animation: cardFadeUp 0.55s ease both;
@@ -91,12 +91,12 @@ import { BlogCardFooter } from "./BlogCardFooter";
         font-weight: 700;
         letter-spacing: 1px;
         text-transform: uppercase;
-        color: rgba(165, 180, 252, 0.95);
-        background: rgba(99, 102, 241, 0.2);
+        color: var(--clr-primary-pale);
+        background: var(--clr-primary-a20);
         border: 1px solid rgba(99, 102, 241, 0.35);
         backdrop-filter: blur(6px);
         padding: 3px 9px;
-        border-radius: 4px;
+        border-radius: var(--rad-xs);
     }
 
     /* Body */
@@ -108,7 +108,7 @@ import { BlogCardFooter } from "./BlogCardFooter";
         gap: 10px;
     }
     .blogCard__title {
-        font-size: 1rem;
+        font-size: var(--text-md);
         font-weight: 600;
         line-height: 1.5;
         color: rgba(255, 255, 255, 0.9);
@@ -120,7 +120,7 @@ import { BlogCardFooter } from "./BlogCardFooter";
         transition: color 0.2s ease;
     }
     .blogCard:hover .blogCard__title {
-        color: #a5b4fc;
+        color: var(--clr-primary-pale);
     }
     .blogCard__excerpt {
         font-size: 0.82rem;
@@ -136,5 +136,15 @@ import { BlogCardFooter } from "./BlogCardFooter";
     @keyframes cardFadeUp {
         from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+        .blogCard__body {
+            padding: 14px 16px 16px;
+        }
+        .blogCard__title {
+            font-size: var(--text-base);
+        }
     }
 </style>

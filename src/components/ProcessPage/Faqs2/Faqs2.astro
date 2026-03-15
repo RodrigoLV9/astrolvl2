@@ -1,30 +1,5 @@
 ﻿---
-const faqs = [
-  {
-    question: '¿En qué etapas se divide el proceso de desarrollo?',
-    answer: 'Trabajamos en cuatro fases principales: Discovery (entender el objetivo y definir el alcance), Diseño (wireframes y maquetas en alta fidelidad para tu aprobación), Desarrollo (construcción técnica con revisiones parciales) y Lanzamiento (pruebas finales, ajustes y entrega). Cada fase tiene entregables y un punto de aprobación claro antes de continuar.',
-  },
-  {
-    question: '¿Puedo solicitar cambios una vez iniciada una fase?',
-    answer: 'Sí. Cada fase incluye rondas de revisión definidas donde puedes pedir ajustes. Los cambios que caen dentro del alcance acordado no tienen costo adicional. Los que lo amplían se presupuestan de forma transparente antes de ejecutarlos, sin sorpresas.',
-  },
-  {
-    question: '¿Cómo funciona la aprobación del diseño antes de desarrollar?',
-    answer: 'Presentamos el diseño completo en alta fidelidad —con todos los estados, interacciones y versiones móvil y desktop— antes de escribir una sola línea de código. Solo avanzamos al desarrollo cuando das tu aprobación. Esto evita retrabajo costoso y garantiza que el resultado final coincida con tus expectativas.',
-  },
-  {
-    question: '¿Cómo se mantiene la comunicación a lo largo del proyecto?',
-    answer: 'Tenemos reuniones de seguimiento semanales por videollamada para revisar avances, resolver dudas y alinear prioridades. Fuera de eso, usamos un canal de comunicación directo (Slack, WhatsApp o email, según tu preferencia) para consultas rápidas. Siempre sabrás en qué punto está tu proyecto.',
-  },
-  {
-    question: '¿Qué necesito preparar antes de iniciar el proyecto?',
-    answer: 'Solo necesitas tener claro tu objetivo de negocio y, si los tienes, materiales de marca como logo, paleta de colores o guías de estilo. Todo lo demás —estructura, contenidos, estrategia técnica— lo definimos juntos en la etapa de Discovery. No es necesario saber de tecnología para trabajar con nosotros.',
-  },
-  {
-    question: '¿Qué recibo al finalizar el proyecto y cómo es la entrega?',
-    answer: 'Al cerrar el proyecto recibes el código fuente completo, acceso total a todos los repositorios, credenciales de las plataformas configuradas y documentación técnica básica. Realizamos una sesión de traspaso donde te explicamos cómo gestionar y actualizar tu proyecto. El primer mes post-lanzamiento incluye corrección de errores sin costo adicional.',
-  },
-];
+import { processFaqsData } from '../../../data/generalData.js';
 ---
 
 <section class="faqs2">
@@ -41,7 +16,7 @@ const faqs = [
     </div>
 
     <div class="faqs2__right">
-      {faqs.map((faq, i) => (
+      {processFaqsData.map((faq, i) => (
         <div class="faq2-item">
           <div class="faq2-item__question">
             <img
@@ -54,7 +29,7 @@ const faqs = [
             <h4>{faq.question}</h4>
           </div>
           <p class="faq2-item__answer">{faq.answer}</p>
-          {i < faqs.length - 1 && <div class="faq2-item__divider" />}
+          {i < processFaqsData.length - 1 && <div class="faq2-item__divider" />}
         </div>
       ))}
     </div>
@@ -65,7 +40,7 @@ const faqs = [
 <style>
   .faqs2 {
     padding: 100px 20px;
-    background: linear-gradient(180deg, #0a0a0f 0%, #0d0d1a 100%);
+    background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-light) 100%);
   }
 
   .faqs2__inner {
@@ -88,7 +63,7 @@ const faqs = [
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #a78bfa;
+    color: var(--clr-purple);
     margin: 0 0 20px;
   }
 
@@ -97,13 +72,13 @@ const faqs = [
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.8px;
-    color: #ffffff;
+    color: var(--txt-primary);
     margin: 0 0 20px;
   }
 
   .faqs2__subtitle {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--txt-dim);
     line-height: 1.75;
     margin: 0 0 32px;
   }
@@ -112,7 +87,7 @@ const faqs = [
     display: inline-block;
     font-size: 0.85rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--txt-muted);
     text-decoration: none;
     letter-spacing: 0.3px;
   }
@@ -151,7 +126,7 @@ const faqs = [
 
   .faq2-item__answer {
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.42);
+    color: var(--txt-dim);
     line-height: 1.75;
     margin: 0;
     padding-left: 30px;
@@ -159,12 +134,13 @@ const faqs = [
 
   .faq2-item__divider {
     height: 1px;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--border-subtle);
     margin-top: 28px;
   }
 
   /* Responsive */
   @media (max-width: 900px) {
+    .faqs2 { padding: 70px 20px; }
     .faqs2__inner {
       grid-template-columns: 1fr;
       gap: 48px;
@@ -175,5 +151,20 @@ const faqs = [
     .faqs2__title {
       font-size: 2rem;
     }
+  }
+
+  @media (max-width: 480px) {
+    .faqs2 { padding: 60px 16px; }
+    .faqs2__title { font-size: 1.65rem; letter-spacing: -0.4px; }
+    .faqs2__eyebrow { font-size: var(--text-xs); }
+    .faqs2__subtitle { font-size: var(--text-sm); }
+    .faq2-item { padding: 20px 0; }
+    .faq2-item__question h4 { font-size: var(--text-sm); }
+    .faq2-item__answer {
+      font-size: var(--text-sm);
+      padding-left: 0;
+    }
+    .faq2-item__question { gap: 8px; }
+    .faq2-item__divider { margin-top: 20px; }
   }
 </style>

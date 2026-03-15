@@ -68,3 +68,22 @@
 .cardIntroProcess:hover .cardIntroProcess__bar {
     opacity: 1;
 }
+
+@media (max-width: 768px) {
+    .cardIntroProcess {
+        flex: 1 1 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cardIntroProcess {
+        width: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        padding: 28px 20px 24px;
+    }
+
+    .cardIntroProcess__stat {
+        font-size: var(--text-3xl);
+    }
+}

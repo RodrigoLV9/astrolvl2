@@ -58,13 +58,13 @@
 
     .servicesProcess__text {
         text-align: center;
-        margin-bottom: 70px;
+        margin-bottom: var(--sp-16);
     }
 
     .servicesProcess__text h2 {
-        font-size: 2.5rem;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
         font-weight: 800;
-        margin-bottom: 20px;
+        margin-bottom: var(--sp-5);
         background: linear-gradient(135deg, #e8f3ff 0%, #60a5fa 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -72,8 +72,8 @@
     }
 
     .servicesProcess__text p {
-        font-size: 1.1rem;
-        color: #b0b0b0;
+        font-size: var(--text-lg);
+        color: var(--txt-muted);
     }
 
     .servicesProcess__timeline {
@@ -81,7 +81,7 @@
         flex-direction: column;
         gap: 30px;
         position: relative;
-        max-width: 900px;
+        max-width: var(--max-w-sm);
         margin: 0 auto;
     }
 
@@ -89,18 +89,20 @@
         display: flex;
         align-items: flex-start;
         gap: 30px;
-        padding: 30px;
-        border: 1px solid rgba(96, 165, 250, 0.2);
-        border-radius: 10px;
+        padding: var(--sp-8);
+        border: 1px solid var(--clr-blue-a20);
+        border-radius: var(--rad-md);
         background: linear-gradient(135deg, rgba(96, 165, 250, 0.02), rgba(139, 92, 246, 0.02));
-        transition: all 0.3s ease;
+        transition: var(--transition-base);
         position: relative;
     }
 
-    .processStep:hover {
-        border-color: rgba(96, 165, 250, 0.4);
-        background: linear-gradient(135deg, rgba(96, 165, 250, 0.05), rgba(139, 92, 246, 0.05));
-        transform: translateX(10px);
+    @media (hover: hover) {
+        .processStep:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.05), rgba(139, 92, 246, 0.05));
+            transform: translateX(10px);
+        }
     }
 
     .processStep__number {
@@ -113,20 +115,20 @@
         align-items: center;
         justify-content: center;
         font-weight: 700;
-        font-size: 1.3rem;
-        color: white;
+        font-size: var(--text-xl);
+        color: var(--txt-primary);
         flex-shrink: 0;
     }
 
     .processStep__content h4 {
         font-size: 1.2rem;
         font-weight: 700;
-        color: #e8f3ff;
-        margin: 0 0 10px 0;
+        color: var(--txt-light);
+        margin: 0 0 var(--sp-2) 0;
     }
 
     .processStep__content p {
-        color: #b0b0b0;
+        color: var(--txt-muted);
         margin: 0;
         line-height: 1.6;
     }
@@ -142,19 +144,36 @@
         display: none;
     }
 
-    @media (max-width: 768px) {
+    /* ── Tablet */
+    @media (max-width: 1024px) {
         .servicesProcess {
-            padding: 60px 20px;
+            padding: 80px 6vw;
         }
 
-        .servicesProcess__text h2 {
-            font-size: 2rem;
+        .servicesProcess__timeline {
+            max-width: 100%;
+        }
+    }
+
+    /* ── Mobile */
+    @media (max-width: 768px) {
+        .servicesProcess {
+            padding: 60px 6vw;
+        }
+
+        .servicesProcess__text {
+            margin-bottom: var(--sp-10);
         }
 
         .processStep {
             flex-direction: column;
             gap: 15px;
-            padding: 20px;
+            padding: var(--sp-5);
+            text-align: center;
+        }
+
+        .processStep__content h4 {
+            font-size: 1.1rem;
         }
 
         .processStep__number {
@@ -165,6 +184,37 @@
         .processStep__connector {
             margin-left: auto;
             margin-right: auto;
+        }
+    }
+
+    /* ── Small mobile */
+    @media (max-width: 480px) {
+        .servicesProcess {
+            padding: var(--sp-12) var(--px);
+        }
+
+        .servicesProcess__text {
+            margin-bottom: var(--sp-8);
+        }
+
+        .processStep {
+            padding: var(--sp-4);
+            gap: var(--sp-3);
+        }
+
+        .processStep__number {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            font-size: var(--text-md);
+        }
+
+        .processStep__content h4 {
+            font-size: var(--text-base);
+        }
+
+        .processStep__content p {
+            font-size: var(--text-sm);
         }
     }
 </style>

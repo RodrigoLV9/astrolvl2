@@ -21,7 +21,7 @@
     pointer-events: none;
 }
 .moreCard:hover {
-    border-color: rgba(99,102,241,0.38);
+    border-color: var(--clr-primary-a38);
     transform: translateY(-6px);
     box-shadow: var(--shadow-lg), 0 0 0 1px var(--clr-primary-a12);
 }
@@ -72,18 +72,18 @@
 .moreCard p {
     font-size: 0.85rem;
     line-height: 1.65;
-    color: rgba(180,185,210,0.72);
+    color: var(--txt-secondary);
     margin: 0;
 }
 .moreCard__footer {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--sp-2);
     color: var(--clr-primary-pale);
     font-weight: 600;
     font-size: var(--text-sm);
     padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid var(--border-subtle);
     transition: gap 0.25s;
 }
 .moreCard:hover .moreCard__footer {
@@ -95,4 +95,43 @@
 }
 .moreCard:hover .moreCard__arrow {
     transform: translateX(4px);
+}
+
+@media (max-width: 760px) {
+    .moreCard {
+        padding: 20px;
+    }
+    .moreCard__body {
+        margin-bottom: 16px;
+    }
+    .moreCard__footer {
+        padding-top: 14px;
+    }
+}
+
+@media (max-width: 460px) {
+    .moreCard {
+        padding: 16px 14px;
+        border-radius: var(--rad-md);
+    }
+    .moreCard__icon-wrap {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin-bottom: 14px;
+    }
+    .moreCard__tag {
+        font-size: 0.66rem;
+    }
+    .moreCard h3 {
+        font-size: var(--text-base);
+    }
+    .moreCard p {
+        font-size: var(--text-sm);
+        line-height: 1.55;
+    }
+    .moreCard__footer {
+        font-size: var(--text-xs);
+        padding-top: 12px;
+    }
 }

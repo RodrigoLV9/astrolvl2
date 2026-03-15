@@ -1,7 +1,6 @@
 ---
 import BlogCard from "./BlogCard.astro";
-
-const categories = ["Todos", "Desarrollo Web", "Diseño UI/UX", "Backend", "DevOps"];
+import { blogCategoriesData } from "../../data/generalData.js";
 ---
 <section class="latestBlogs">
     <div class="latestBlogs__bg">
@@ -20,7 +19,7 @@ const categories = ["Todos", "Desarrollo Web", "Diseño UI/UX", "Backend", "DevO
         </header>
 
         <div class="latestBlogs__filters" role="tablist" aria-label="Filtrar por categoría">
-            {categories.map((cat, i) => (
+            {blogCategoriesData.map((cat, i) => (
                 <button
                     class={`latestBlogs__filter${i === 0 ? " latestBlogs__filter--active" : ""}`}
                     role="tab"
@@ -116,11 +115,11 @@ const categories = ["Todos", "Desarrollo Web", "Diseño UI/UX", "Backend", "DevO
         font-weight: 700;
         letter-spacing: 2.5px;
         text-transform: uppercase;
-        color: #818cf8;
-        background: rgba(99, 102, 241, 0.1);
+        color: var(--clr-primary-dull);
+        background: var(--clr-primary-a10);
         border: 1px solid rgba(99, 102, 241, 0.25);
         padding: 4px 14px;
-        border-radius: 100px;
+        border-radius: var(--rad-pill);
         margin-bottom: 18px;
     }
     .latestBlogs__title {
@@ -150,9 +149,9 @@ const categories = ["Todos", "Desarrollo Web", "Diseño UI/UX", "Backend", "DevO
     }
     .latestBlogs__filter {
         padding: 7px 18px;
-        border-radius: 100px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.04);
+        border-radius: var(--rad-pill);
+        border: 1px solid var(--border-soft);
+        background: var(--bg-card);
         color: rgba(148, 163, 184, 0.8);
         font-size: 13px;
         cursor: pointer;
@@ -166,7 +165,7 @@ const categories = ["Todos", "Desarrollo Web", "Diseño UI/UX", "Backend", "DevO
     .latestBlogs__filter--active {
         border-color: rgba(99, 102, 241, 0.5);
         background: rgba(99, 102, 241, 0.15);
-        color: #a5b4fc;
+        color: var(--clr-primary-pale);
         box-shadow: 0 0 16px rgba(99, 102, 241, 0.15);
     }
 
@@ -191,11 +190,11 @@ const categories = ["Todos", "Desarrollo Web", "Diseño UI/UX", "Backend", "DevO
         align-items: center;
         gap: 8px;
         padding: 12px 28px;
-        border-radius: 8px;
+        border-radius: var(--rad-sm);
         border: 1px solid rgba(99, 102, 241, 0.35);
-        background: rgba(99, 102, 241, 0.1);
-        color: #a5b4fc;
-        font-size: 14px;
+        background: var(--clr-primary-a10);
+        color: var(--clr-primary-pale);
+        font-size: var(--text-sm);
         font-weight: 600;
         text-decoration: none;
         transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -217,5 +216,53 @@ const categories = ["Todos", "Desarrollo Web", "Diseño UI/UX", "Backend", "DevO
     @keyframes lbFadeUp {
         from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+        .latestBlogs__inner {
+            width: 90vw;
+        }
+        .latestBlogs__cards {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .latestBlogs {
+            padding: 70px 0 80px;
+        }
+        .latestBlogs__header {
+            margin-bottom: 32px;
+        }
+        .latestBlogs__subtitle {
+            font-size: var(--text-base);
+        }
+        .latestBlogs__filters {
+            gap: 8px;
+            margin-bottom: 36px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .latestBlogs {
+            padding: 56px 0 60px;
+        }
+        .latestBlogs__inner {
+            width: 92vw;
+        }
+        .latestBlogs__cards {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .latestBlogs__filter {
+            font-size: var(--text-xs);
+            padding: 6px 14px;
+        }
+        .latestBlogs__view-all {
+            width: 100%;
+            justify-content: center;
+        }
     }
 </style>

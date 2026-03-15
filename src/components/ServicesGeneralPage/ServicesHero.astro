@@ -38,7 +38,7 @@
         justify-content: flex-start;
         padding: 100px 8vw 80px;
         overflow: hidden;
-        background: linear-gradient(180deg, rgba(6, 3, 19, 1) 0%, rgba(20, 10, 40, 0.8) 100%);
+        background: linear-gradient(180deg, var(--bg-base) 0%, rgba(20, 10, 40, 0.8) 100%);
     }
 
     .servicesHero__content {
@@ -51,12 +51,12 @@
 
     .servicesHero__badge {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 6px 14px;
         background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(139, 92, 246, 0.2));
-        border: 1px solid rgba(96, 165, 250, 0.3);
+        border: 1px solid var(--clr-blue-border);
         border-radius: 20px;
         margin-bottom: 30px;
-        font-size: 0.9rem;
+        font-size: var(--text-sm);
         color: #60a5fa;
         font-weight: 600;
     }
@@ -73,8 +73,8 @@
     }
 
     .servicesHero__description {
-        font-size: 1.1rem;
-        color: #b0b0b0;
+        font-size: var(--text-lg);
+        color: var(--txt-muted);
         margin-bottom: 50px;
         line-height: 1.8;
         max-width: 640px;
@@ -91,8 +91,8 @@
         padding: 14px 32px;
         border-radius: 8px;
         font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
+        font-size: var(--text-md);
+        transition: var(--transition-base);
         text-decoration: none;
         display: inline-block;
         border: 2px solid transparent;
@@ -265,56 +265,89 @@
         }
     }
 
-    @media (max-width: 768px) {
+    /* ── Tablet */
+    @media (max-width: 1024px) {
         .servicesHero {
-            padding: 60px 20px;
-            min-height: 100dvh;
-            height: 100dvh;
+            padding: 100px 6vw 80px;
         }
 
-        .servicesHero__title {
-            font-size: 2rem;
+        .servicesHero__content {
+            max-width: 560px;
+        }
+
+        .servicesHero__illustration {
+            width: min(460px, 40vw);
+            height: min(420px, 66dvh);
+        }
+
+        .servicesHero__illustrationBlend {
+            width: min(500px, 46vw);
+            height: min(480px, 74dvh);
+        }
+    }
+
+    /* ── Mobile */
+    @media (max-width: 768px) {
+        .servicesHero {
+            padding: 90px 6vw 60px;
+            align-items: flex-start;
+        }
+
+        .servicesHero__content {
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .servicesHero__badge {
+            display: inline-block;
         }
 
         .servicesHero__description {
-            font-size: 1rem;
+            font-size: var(--text-md);
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .servicesHero__cta {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .servicesHero__button {
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
+            text-align: center;
         }
 
         .servicesHero__illustration {
-            width: min(320px, 64vw);
-            height: min(320px, 42dvh);
-            right: -24px;
-            bottom: 6%;
-            opacity: 0.38;
+            width: min(300px, 60vw);
+            height: min(260px, 34dvh);
+            right: 50%;
+            transform: translateX(50%);
+            bottom: 4%;
+            opacity: 0.22;
+            background-attachment: scroll;
         }
 
         .servicesHero__illustrationBlend {
-            width: min(360px, 70vw);
-            height: min(360px, 48dvh);
-            right: -24px;
-            bottom: 5%;
-            opacity: 0.82;
+            width: min(340px, 68vw);
+            height: min(300px, 40dvh);
+            right: 50%;
+            transform: translateX(50%);
+            bottom: 3%;
+            opacity: 0.55;
         }
 
         .servicesHero__glow {
-            width: 280px;
-            height: 280px;
-            right: -90px;
-            bottom: -110px;
+            width: 200px;
+            height: 200px;
+            right: -60px;
+            bottom: -80px;
         }
 
         .servicesHero__gridfx {
-            background-size: 34px 34px;
+            background-size: 30px 30px;
         }
     }
 </style>

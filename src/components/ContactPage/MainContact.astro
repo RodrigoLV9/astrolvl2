@@ -2,6 +2,10 @@
 import { ContactForm } from "./ContactForm.tsx";
 import {ContactCard} from "./ContactCard.tsx"
 import { ItemSocial } from "./ItemSocial.tsx";
+import type { SocialPlatform } from "./ItemSocial.tsx";
+import { contactSocialsData } from '../../data/generalData.js';
+
+const socialsItems = contactSocialsData as Array<{ platform: SocialPlatform; href: string }>;
 ---
 <section class="contact">
     <div class="contact__text">
@@ -45,64 +49,66 @@ import { ItemSocial } from "./ItemSocial.tsx";
     <div class="socials">
         <div class="socials__label">Síguenos</div>
         <div class="socials__items">
-            <ItemSocial platform="instagram" href="https://www.instagram.com/agenciaweb_astrolvl/" client:load />
-            <ItemSocial platform="whatsapp"  href="https://wa.me/5491166232246" client:load />
-            <ItemSocial platform="twitter"   href="#" client:load />
-            <ItemSocial platform="facebook"  href="#" client:load />
-            <ItemSocial platform="linkedin"  href="#" client:load />
-            <ItemSocial platform="youtube"   href="#" client:load />
-            <ItemSocial platform="github"    href="#" client:load />
+            {socialsItems.map(({ platform, href }) => (
+                <ItemSocial platform={platform} href={href} client:load />
+            ))}
         </div>
     </div>
 </section>
 <style>
     .contact {
-        padding: 100px 0;
+        padding: var(--sp-24) var(--px);
     }
 
     .contact__text {
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: var(--sp-12);
     }
     .contact__text h1 {
-        margin-bottom: 20px;
+        margin-bottom: var(--sp-5);
     }
     .contact__text p {
-        color: rgba(255, 255, 255, 0.5);
+        color: var(--txt-muted);
     }
 
     .contact__main {
         display: flex;
-        align-items: start;
+        align-items: flex-start;
         justify-content: center;
         gap: 70px;
+        width: 100%;
+        max-width: var(--max-w-sm);
+        margin: 0 auto;
     }
 
-    /* Left column */
+    .contact__main-left {
+        width: 100%;
+        max-width: 500px;
+    }
+
     .contact__main-left h2 {
-        margin-bottom: 30px;
+        margin-bottom: var(--sp-8);
     }
 
-    /* Right column */
     .contact__main-right {
-        width: 440px;
+        width: min(440px, 100%);
         flex-shrink: 0;
     }
 
     /* Right section header */
     .right-header {
-        margin-bottom: 28px;
+        margin-bottom: var(--sp-6);
     }
     .right-header h2 {
-        font-size: 1.55rem;
+        font-size: var(--text-xl);
         font-weight: 700;
         line-height: 1.25;
-        margin-bottom: 10px;
+        margin-bottom: var(--sp-2);
     }
 
     .right-header__desc {
-        font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.42);
+        font-size: var(--text-sm);
+        color: var(--txt-dim);
         line-height: 1.65;
         margin: 0;
     }
@@ -110,12 +116,13 @@ import { ItemSocial } from "./ItemSocial.tsx";
     .cards__social {
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: var(--sp-4);
+        width: 100%;
     }
 
     /* Socials section */
     .socials {
-        margin: 80px 0;
+        margin: var(--sp-20) 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -123,18 +130,100 @@ import { ItemSocial } from "./ItemSocial.tsx";
     }
 
     .socials__label {
-        font-size: 0.68rem;
+        font-size: var(--text-xs);
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.28);
+        color: var(--txt-ghost);
     }
 
     .socials__items {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: var(--sp-3);
         flex-wrap: wrap;
+    }
+
+    @media (max-width: 1200px) {
+        .contact__main {
+            gap: var(--sp-12);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .contact__main {
+            flex-direction: column;
+            align-items: center;
+            gap: var(--sp-16);
+        }
+
+        .contact__main-left,
+        .contact__main-right {
+            max-width: 680px;
+            width: 100%;
+        }
+
+        .right-header {
+            margin-bottom: var(--sp-5);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact {
+            padding-top: var(--sp-16);
+            padding-bottom: var(--sp-14);
+        }
+
+        .contact__text {
+            margin-bottom: var(--sp-10);
+        }
+
+        .contact__text h1 {
+            margin-bottom: var(--sp-3);
+        }
+
+        .contact__main {
+            gap: var(--sp-12);
+        }
+
+        .contact__main-left h2,
+        .right-header h2 {
+            font-size: var(--text-2xl);
+        }
+
+        .socials {
+            margin: var(--sp-14) 0 0;
+            gap: var(--sp-4);
+        }
+    }
+
+    @media (max-width: 560px) {
+        .contact {
+            padding: var(--sp-14) var(--sp-4) var(--sp-12);
+        }
+
+        .contact__text p {
+            font-size: var(--text-sm);
+        }
+
+        .contact__main-left h2,
+        .right-header h2 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--sp-3);
+        }
+
+        .right-header__desc {
+            font-size: var(--text-base);
+            line-height: 1.55;
+        }
+
+        .cards__social {
+            gap: var(--sp-3);
+        }
+
+        .socials__items {
+            gap: var(--sp-2);
+        }
     }
 </style>

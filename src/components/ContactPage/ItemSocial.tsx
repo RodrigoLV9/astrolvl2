@@ -1,9 +1,18 @@
 import React from 'react'
 import { FaInstagram, FaWhatsapp, FaFacebook, FaLinkedin, FaGithub, FaYoutube } from 'react-icons/fa'
-import { FaXTwitter } from 'react-icons/fa6'
+import { FaThreads, FaTiktok, FaXTwitter } from 'react-icons/fa6'
 import '../../styles/Contact/ItemSocial.css'
 
-type SocialPlatform = 'instagram' | 'whatsapp' | 'twitter' | 'facebook' | 'linkedin' | 'github' | 'youtube'
+export type SocialPlatform =
+  | 'instagram'
+  | 'whatsapp'
+  | 'twitter'
+  | 'facebook'
+  | 'linkedin'
+  | 'github'
+  | 'youtube'
+  | 'tiktok'
+  | 'threads'
 
 interface SocialConfig {
   icon: React.ReactNode
@@ -46,6 +55,16 @@ const socialConfig: Record<SocialPlatform, SocialConfig> = {
     icon: <FaYoutube />,
     name: 'YouTube',
     accentColor: 'rgba(255, 0, 0, 0.3)',
+  },
+  tiktok: {
+    icon: <FaTiktok />,
+    name: 'TikTok',
+    accentColor: 'rgba(0, 0, 0, 0.35)',
+  },
+  threads: {
+    icon: <FaThreads />,
+    name: 'Threads',
+    accentColor: 'rgba(255, 255, 255, 0.2)',
   },
 }
 

@@ -1,8 +1,8 @@
 .featureCard {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 6px 0;
+    gap: var(--sp-3);
+    padding: var(--sp-2) 0;
 }
 .featureCard__iconWrap {
     display: flex;
@@ -16,6 +16,20 @@
 .featureCard span {
     font-size: var(--text-sm);
     font-weight: 400;
-    color: rgba(200,210,235,0.8);
+    color: var(--txt-secondary);
     line-height: 1.4;
+}
+
+@media (max-width: 520px) {
+    .featureCard {
+        gap: var(--sp-2);
+        padding: 6px 0;
+    }
+    .featureCard-icon {
+        font-size: 0.72rem;
+    }
+    .featureCard span {
+        font-size: var(--text-xs);
+        line-height: 1.45;
+    }
 }

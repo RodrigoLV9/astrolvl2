@@ -5,6 +5,7 @@ import LandingPageIllustration from './illustrations/LandingPageIllustration.ast
 import WebsiteIllustration from './illustrations/WebsiteIllustration.astro'
 import EcommerceIllustration from './illustrations/EcommerceIllustration.astro'
 import SupportIllustration from './illustrations/SupportIllustration.astro'
+import { servicesHeroData } from '../../../data/generalData.js'
 
 interface Props {
   service: string
@@ -12,49 +13,8 @@ interface Props {
 
 const { service } = Astro.props
 
-const serviceData: Record<string, {
-  badge: string
-  title: string
-  description: string
-  tags: string[]
-  primaryCTA: string
-  secondaryCTA: string
-}> = {
-  'landing-page': {
-    badge: 'Landing Page',
-    title: 'Páginas diseñadas para convertir, no solo impresionar',
-    description: 'Creamos landing pages de alto rendimiento que guían al visitante hacia una única acción: comprar, registrarse o contactar. Sin distracciones, resultados medibles desde el primer día.',
-    tags: ['Alta Conversión', 'Mobile First', 'SEO Optimizado', 'A/B Testing'],
-    primaryCTA: 'Quiero mi landing page',
-    secondaryCTA: 'Ver proceso',
-  },
-  'website': {
-    badge: 'Sitio Web Corporativo',
-    title: 'Tu presencia digital construida para generar confianza',
-    description: 'Diseñamos sitios web corporativos con identidad visual sólida, CMS integrado y arquitectura que escala con tu empresa. Un proyecto llave en mano desde el diseño hasta el lanzamiento.',
-    tags: ['Diseño UI/UX', 'CMS Integrado', 'SEO Técnico', 'Escalable'],
-    primaryCTA: 'Quiero mi sitio web',
-    secondaryCTA: 'Ver proceso',
-  },
-  'ecommerce': {
-    badge: 'E-commerce',
-    title: 'Tu tienda online lista para vender las 24 horas',
-    description: 'Desarrollamos tiendas online robustas con gestión de inventario, múltiples pasarelas de pago y SEO por producto. Tu canal de ventas digital, optimizado para convertir y escalar.',
-    tags: ['Checkout Seguro', 'Gestión de Stock', 'SEO de Productos', 'Analítica'],
-    primaryCTA: 'Quiero mi tienda online',
-    secondaryCTA: 'Ver proceso',
-  },
-  'support': {
-    badge: 'Soporte & Mantenimiento',
-    title: 'Tu plataforma activa, segura y en óptimas condiciones',
-    description: 'Actualizaciones, backups automáticos, monitoreo continuo y respuesta rápida ante incidencias. Tu web en manos expertas para que tú te enfoques en hacer crecer tu negocio.',
-    tags: ['Monitoreo 24/7', 'Actualizaciones', 'Seguridad', 'Reportes Mensuales'],
-    primaryCTA: 'Quiero plan de soporte',
-    secondaryCTA: 'Ver proceso',
-  },
-}
-
-const data = serviceData[service] ?? serviceData['landing-page']
+const serviceKey = (service in servicesHeroData ? service : 'landing-page') as keyof typeof servicesHeroData
+const data = servicesHeroData[serviceKey]
 ---
 <section class="hero">
     <div class="heroLeft">
@@ -88,9 +48,10 @@ const data = serviceData[service] ?? serviceData['landing-page']
 <style>
     .hero {
         position: relative;
-        height: 100dvh;
-        width: 100%;
-        margin: auto;
+        min-height: 100dvh;
+        width: min(92%, var(--max-w));
+        margin: 0 auto;
+        padding: 110px 0 170px;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
@@ -216,5 +177,68 @@ const data = serviceData[service] ?? serviceData['landing-page']
     .heroRight :global(svg.service-illustration) {
         width: 100%;
         height: auto;
+    }
+
+    @media (max-width: 1100px) {
+        .hero {
+            gap: 26px;
+            padding-top: 100px;
+        }
+        .heroRight {
+            max-width: 420px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .hero {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 34px;
+            min-height: auto;
+            padding: 96px 0 160px;
+        }
+        .heroLeft {
+            max-width: 100%;
+        }
+        .heroRight {
+            width: min(480px, 100%);
+            max-width: 480px;
+            align-self: center;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .hero {
+            width: min(94%, var(--max-w));
+            padding: 88px 0 132px;
+            gap: 28px;
+        }
+        .heroLeft {
+            gap: 20px;
+        }
+        .heroLeft__text h1 {
+            font-size: clamp(1.85rem, 9vw, 2.45rem);
+            letter-spacing: -1px;
+        }
+        .hero__description {
+            font-size: var(--text-base);
+            line-height: 1.65;
+            margin-top: 10px;
+        }
+        .hero__cta-group {
+            width: 100%;
+            gap: 10px;
+        }
+        .hero__btn-primary,
+        .hero__btn-secondary {
+            width: 100%;
+            justify-content: center;
+            padding: 12px 16px;
+            font-size: var(--text-sm);
+        }
+        .hero__badge {
+            font-size: var(--text-xs);
+        }
     }
 </style>

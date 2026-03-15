@@ -5,20 +5,20 @@
     width:fit-content;
     gap:10px;
     padding:12px 20px;
-    border:none;
+    border: none;
     border-radius: var(--rad-md);
     color: var(--txt-primary);
-    font-weight: bold;
+    font-weight: 700;
     font-size: var(--text-base);
-    background-color: steelblue;
+    background: var(--grad-indigo);
+    box-shadow: 0 4px 20px var(--clr-primary-a38), 0 1px 4px rgba(0,0,0,0.3);
     cursor: pointer;
-    transition: opacity var(--transition-fast);
+    transition: transform var(--transition-fast), opacity var(--transition-fast), box-shadow var(--transition-fast);
 }
 .heroLeft__button:hover {
-    opacity: 0.85;
-}
-.heroLeft__button p{
-
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--clr-primary-a55), 0 2px 8px rgba(0,0,0,0.3);
 }
 .heroLeft__button-icon{
     font-size: 1.1rem;

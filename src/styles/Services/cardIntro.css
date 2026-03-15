@@ -37,8 +37,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(99,102,241,0.12);
-    border: 1px solid rgba(99,102,241,0.2);
+    background: var(--clr-primary-a12);
+    border: 1px solid var(--clr-primary-a20);
     /* per-accent override via inline --accent */
 }
 .cardIntro-iconWrap[style] {
@@ -58,6 +58,35 @@
 .cardIntro p {
     font-size: 0.875rem;
     line-height: 1.7;
-    color: rgba(180,185,210,0.78);
+    color: var(--txt-secondary);
     flex: 1;
+}
+
+@media (max-width: 760px) {
+    .cardIntro {
+        padding: 26px 20px;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 460px) {
+    .cardIntro {
+        border-radius: var(--rad-md);
+        padding: 20px 14px;
+    }
+    .cardIntro-iconWrap {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--rad-sm);
+    }
+    .cardIntro-icon {
+        font-size: 1.2rem;
+    }
+    .cardIntro span {
+        font-size: var(--text-base);
+    }
+    .cardIntro p {
+        font-size: var(--text-sm);
+        line-height: 1.6;
+    }
 }

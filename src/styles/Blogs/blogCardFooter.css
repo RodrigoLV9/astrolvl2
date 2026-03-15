@@ -19,11 +19,11 @@
     align-items: center;
     gap: 5px;
     color: rgba(148, 163, 184, 0.75);
-    font-size: 12px;
+    font-size: var(--text-xs);
 }
 
 .blogCardFooter__meta-item svg {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--clr-primary-dull);
     flex-shrink: 0;
 }
@@ -32,7 +32,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--clr-primary-dull);
     white-space: nowrap;
@@ -40,7 +40,7 @@
 }
 
 .blogCardFooter__cta svg {
-    font-size: 13px;
+    font-size: var(--text-sm);
     transition: transform 0.2s ease;
 }
 

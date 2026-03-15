@@ -12,7 +12,7 @@
     border: none;
     color: var(--txt-primary);
     text-decoration: none;
-    transition: transform 0.22s, box-shadow 0.22s, background-position 0.35s;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-position 0.35s;
     width: fit-content;
     margin-top: 4px;
     box-shadow: 0 4px 20px var(--clr-primary-a38), 0 1px 4px rgba(0,0,0,0.3);
@@ -24,8 +24,26 @@
 }
 .CTAServicesButton-icon {
     font-size: 0.95rem;
-    transition: transform 0.22s;
+    transition: transform var(--transition-fast);
 }
 .CTAServicesButton:hover .CTAServicesButton-icon {
     transform: translateX(4px);
+}
+
+@media (max-width: 860px) {
+    .CTAServicesButton {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .CTAServicesButton {
+        padding: 12px 14px;
+        border-radius: var(--rad-sm);
+        font-size: var(--text-sm);
+    }
+    .CTAServicesButton-icon {
+        font-size: 0.85rem;
+    }
 }
