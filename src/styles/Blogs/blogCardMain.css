@@ -21,8 +21,7 @@
 .blogCardMain__media {
     position: relative;
     overflow: hidden;
-    /* height: 340px; */
-    flex: 0 0 340px;
+    aspect-ratio: 16 / 9;
 }
 .blogCardMain__media img {
     width: 100%;
@@ -141,17 +140,11 @@
     .blogCardMain {
         width: 100%;
     }
-    .blogCardMain__media {
-        flex: 0 0 260px;
-    }
 }
 
 @media (max-width: 640px) {
     .blogCardMain {
         width: 100%;
-    }
-    .blogCardMain__media {
-        flex: 0 0 200px;
     }
     .blogCardMain__body {
         padding: 20px;

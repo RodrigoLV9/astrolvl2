@@ -1,21 +1,41 @@
 ---
 import { BlogCardFooter } from "./BlogCardFooter";
+
+interface Props {
+    title: string;
+    description: string;
+    image: string;
+    category: string;
+    href: string;
+    readTimeText: string;
+    dateText: string;
+}
+
+const {
+    title,
+    description,
+    image,
+    category,
+    href,
+    readTimeText,
+    dateText,
+} = Astro.props as Props;
 ---
 <article class="blogCard">
-    <a href="#" class="blogCard__link" aria-label="Leer artículo completo">
+    <a href={href} class="blogCard__link" aria-label={`Leer artículo: ${title}`}>
         <div class="blogCard__media">
             <img
-                src="/src/assets/images/intro.webp"
-                alt="¿Qué debes aprender para ser full stack?"
+                src={image}
+                alt={title}
                 loading="lazy"
             />
             <div class="blogCard__overlay"></div>
-            <span class="blogCard__category">Desarrollo Web</span>
+            <span class="blogCard__category">{category}</span>
         </div>
         <div class="blogCard__body">
-            <h3 class="blogCard__title">¿Qué debes aprender para ser full stack? (Guía completa)</h3>
-            <p class="blogCard__excerpt">Una guía completa con los lenguajes, frameworks y herramientas que necesitas para convertirte en desarrollador full stack.</p>
-            <BlogCardFooter />
+            <h3 class="blogCard__title">{title}</h3>
+            <p class="blogCard__excerpt">{description}</p>
+            <BlogCardFooter readTimeText={readTimeText} dateText={dateText} />
         </div>
     </a>
 </article>

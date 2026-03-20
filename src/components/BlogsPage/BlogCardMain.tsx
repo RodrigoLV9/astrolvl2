@@ -3,30 +3,49 @@ import { IoBookOutline as IconBook } from "react-icons/io5";
 import { MdOutlineDateRange as IconDate } from "react-icons/md";
 import { IoArrowForward as IconArrow } from "react-icons/io5";
 import '../../styles/Blogs/blogCardMain.css'
-export const BlogCardMain: React.FC = () => {
+
+interface BlogCardMainProps {
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  readTimeText: string;
+  dateText: string;
+  href: string;
+}
+
+export const BlogCardMain: React.FC<BlogCardMainProps> = ({
+  title,
+  description,
+  image,
+  category,
+  readTimeText,
+  dateText,
+  href,
+}) => {
   return (
     <article className='blogCardMain'>
         <div className="blogCardMain__media">
-            <img src="/src/assets/images/intro.webp" alt="image example" />
+            <img src={image} alt={title} />
             <div className="blogCardMain__media-overlay"></div>
             <span className="blogCardMain__badge">Post destacado</span>
-            <span className="blogCardMain__category">Desarrollo Web</span>
+            <span className="blogCardMain__category">{category}</span>
         </div>
         <div className="blogCardMain__body">
-            <h2>¿Qué debes aprender para ser full stack? (Guía completa)</h2>
-            <p>¿Qué lenguajes y tecnologías debes aprender para convertirte en fullstack? Esta es la guía completa que estabas buscando, con los recursos y cursos que necesitas.</p>
+            <h2>{title}</h2>
+            <p>{description}</p>
             <div className="blogCardMain__footer">
                 <div className="blogCardMain__meta">
                     <div className="blogCardMain__meta-item">
                         <IconBook />
-                        <span>8 min de lectura</span>
+                        <span>{readTimeText}</span>
                     </div>
                     <div className="blogCardMain__meta-item">
                         <IconDate />
-                        <span>Hace 3 años</span>
+                        <span>{dateText}</span>
                     </div>
                 </div>
-                <a href="#" className="blogCardMain__cta">
+                <a href={href} className="blogCardMain__cta">
                     Leer artículo <IconArrow />
                 </a>
             </div>

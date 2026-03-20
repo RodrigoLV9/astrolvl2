@@ -1,6 +1,40 @@
 ---
+import { getCollection } from "astro:content";
 import BlogCard from "./BlogCard.astro";
-import { blogCategoriesData } from "../../data/generalData.js";
+
+const blogEntries = await getCollection("blog");
+const sortedBlogs = [...blogEntries].sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fallbackImage = "/src/assets/images/img-blog-1-1.png";
+
+const estimateReadingTime = (content: string) => {
+    const words = content.trim().split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / 200));
+};
+
+const formatDate = (date: Date) =>
+    new Intl.DateTimeFormat("es-ES", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+    }).format(date);
+
+const categories = [
+    "Todos",
+    ...new Set(sortedBlogs.flatMap((blog) => blog.data.tags)),
+].slice(0, 8);
+
+const cards = sortedBlogs.map((blog) => ({
+    title: blog.data.title,
+    description: blog.data.description,
+    image: blog.data.image ?? fallbackImage,
+    category: blog.data.tags[0] ?? "Blog",
+    href: `/blog/${blog.slug}`,
+    readTimeText: `${estimateReadingTime(blog.body)} min`,
+    dateText: formatDate(blog.data.pubDate),
+}));
 ---
 <section class="latestBlogs">
     <div class="latestBlogs__bg">
@@ -19,7 +53,7 @@ import { blogCategoriesData } from "../../data/generalData.js";
         </header>
 
         <div class="latestBlogs__filters" role="tablist" aria-label="Filtrar por categoría">
-            {blogCategoriesData.map((cat, i) => (
+            {categories.map((cat, i) => (
                 <button
                     class={`latestBlogs__filter${i === 0 ? " latestBlogs__filter--active" : ""}`}
                     role="tab"
@@ -31,12 +65,9 @@ import { blogCategoriesData } from "../../data/generalData.js";
         </div>
 
         <div class="latestBlogs__cards">
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
-            <BlogCard/>
+            {cards.map((card) => (
+                <BlogCard {...card} />
+            ))}
         </div>
 
         <div class="latestBlogs__footer">

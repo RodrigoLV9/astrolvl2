@@ -4,17 +4,22 @@ import { MdOutlineDateRange as IconDate } from "react-icons/md";
 import { IoArrowForward as IconArrow } from "react-icons/io5";
 import '../../styles/Blogs/blogCardFooter.css'
 
-export const BlogCardFooter: React.FC = () => {
+interface BlogCardFooterProps {
+  readTimeText: string;
+  dateText: string;
+}
+
+export const BlogCardFooter: React.FC<BlogCardFooterProps> = ({ readTimeText, dateText }) => {
   return (
     <div className="blogCardFooter">
       <div className="blogCardFooter__meta">
         <div className="blogCardFooter__meta-item">
           <IconBook />
-          <span>8 min</span>
+          <span>{readTimeText}</span>
         </div>
         <div className="blogCardFooter__meta-item">
           <IconDate />
-          <span>Hace 3 años</span>
+          <span>{dateText}</span>
         </div>
       </div>
       <span className="blogCardFooter__cta">

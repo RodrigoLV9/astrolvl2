@@ -1,13 +1,25 @@
 ---
 import { BlogPopularFooter } from './BlogPopularFooter';
+
+interface Props {
+    title: string;
+    image: string;
+    href: string;
+    readTimeText: string;
+    dateText: string;
+}
+
+const { title, image, href, readTimeText, dateText } = Astro.props as Props;
 ---
-<div class="blogCardPopular">
-    <img src="/src/assets/images/intro.webp" alt="image example" />
-    <div class="blogCardPopular__text">
-        <p>¿Qué debes aprender para ser full stack? (Guía completa)</p>
-        <BlogPopularFooter/>
+<a class="blogCardPopular" href={href} aria-label={`Ir al blog: ${title}`}>
+    <div class="blogCardPopular__media">
+        <img src={image} alt={title} loading="lazy" />
     </div>
-</div>
+    <div class="blogCardPopular__text">
+        <p>{title}</p>
+        <BlogPopularFooter readTimeText={readTimeText} dateText={dateText} />
+    </div>
+</a>
 <style>
     .blogCardPopular {
         display: flex;
@@ -23,6 +35,8 @@ import { BlogPopularFooter } from './BlogPopularFooter';
         animation: popFadeUp 0.55s ease both;
         transition: border-color 0.3s ease, background 0.3s ease,
                     transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        color: inherit;
     }
     .blogCardPopular::before {
         content: '';
@@ -44,24 +58,30 @@ import { BlogPopularFooter } from './BlogPopularFooter';
     .blogCardPopular:hover::before {
         opacity: 1;
     }
-    .blogCardPopular > img {
+    .blogCardPopular__media {
         width: 130px;
-        height: 130px;
-        object-fit: cover;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
         border-radius: var(--rad-xs);
         flex-shrink: 0;
+    }
+    .blogCardPopular__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
         transition: transform 0.45s ease;
     }
-    .blogCardPopular:hover > img {
+    .blogCardPopular:hover .blogCardPopular__media img {
         transform: scale(1.05);
     }
     .blogCardPopular__text {
-        height: 130px;
+        min-height: 98px;
         padding: 6px 2px 0;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        /* flex: 1; */
+        flex: 1;
     }
     .blogCardPopular__text p {
         font-size: var(--text-sm);
@@ -77,9 +97,9 @@ import { BlogPopularFooter } from './BlogPopularFooter';
 
     /* ── Responsive ── */
     @media (max-width: 480px) {
-        .blogCardPopular > img {
+        .blogCardPopular__media {
             width: 90px;
-            height: 90px;
+            aspect-ratio: 4 / 3;
         }
         .blogCardPopular__text {
             height: auto;

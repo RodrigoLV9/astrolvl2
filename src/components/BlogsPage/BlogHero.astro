@@ -1,7 +1,40 @@
 ---
+import { getCollection } from "astro:content";
 import { Search } from "./Search"
 import { BlogCardMain } from './BlogCardMain.tsx'
 import BlogCardPopular from "./BlogCardPopular.astro"
+
+const blogEntries = await getCollection("blog");
+const sortedBlogs = [...blogEntries].sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const featuredBlog = sortedBlogs[0];
+const popularBlogs = sortedBlogs.slice(0, 3);
+
+const fallbackImage = "/src/assets/images/img-blog-1-1.png";
+
+const estimateReadingTime = (content: string) => {
+    const words = content.trim().split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / 200));
+};
+
+const formatDate = (date: Date) =>
+    new Intl.DateTimeFormat("es-ES", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+    }).format(date);
+
+const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
+    title: entry.data.title,
+    description: entry.data.description,
+    image: entry.data.image ?? fallbackImage,
+    category: entry.data.tags[0] ?? "Blog",
+    href: `/blog/${entry.slug}`,
+    readTimeText: `${estimateReadingTime(entry.body)} min de lectura`,
+    dateText: formatDate(entry.data.pubDate),
+});
 ---
 <section class="blogHero">
     <div class="blogHero__bg">
@@ -16,16 +49,18 @@ import BlogCardPopular from "./BlogCardPopular.astro"
     </div>
 
     <div class="blogHero__content">
-        <BlogCardMain />
+        {featuredBlog ? (
+            <BlogCardMain {...getBlogCardData(featuredBlog)} />
+        ) : null}
         <aside class="blogHero__sidebar">
             <h4 class="blogHero__sidebar-title">
                 <span class="blogHero__sidebar-dot"></span>
                 Lo más leído
             </h4>
             <div class="blogHero__sidebar-list">
-                <BlogCardPopular />
-                <BlogCardPopular />
-                <BlogCardPopular />
+                {popularBlogs.map((blog) => (
+                    <BlogCardPopular {...getBlogCardData(blog)} />
+                ))}
             </div>
         </aside>
     </div>
