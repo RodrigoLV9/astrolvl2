@@ -12,7 +12,7 @@ const sortedBlogs = [...blogEntries].sort(
 const featuredBlog = sortedBlogs[0];
 const popularBlogs = sortedBlogs.slice(0, 3);
 
-const fallbackImage = "/src/assets/images/img-blog-1-1.png";
+const fallbackImage = "/src/assets/images/blog/img-blog-1-main.jpg";
 
 const estimateReadingTime = (content: string) => {
     const words = content.trim().split(/\s+/).length;
@@ -29,7 +29,7 @@ const formatDate = (date: Date) =>
 const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
     title: entry.data.title,
     description: entry.data.description,
-    image: entry.data.image ?? fallbackImage,
+    image: entry.data.coverImage?.src ?? entry.data.image?.src ?? fallbackImage,
     category: entry.data.tags[0] ?? "Blog",
     href: `/blog/${entry.slug}`,
     readTimeText: `${estimateReadingTime(entry.body)} min de lectura`,

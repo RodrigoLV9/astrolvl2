@@ -14,7 +14,8 @@ export async function getStaticPaths() {
 const { blog } = Astro.props;
 const { Content } = await blog.render();
 
-const coverImage = blog.data.image ?? "/src/assets/images/img-blog-1-1.png";
+const coverImage = blog.data.coverImage?.src ?? blog.data.image?.src ?? "/src/assets/images/blog/img-blog-1-main.jpg";
+const coverAlt = blog.data.coverAlt ?? blog.data.title;
 const dateLabel = new Intl.DateTimeFormat("es-ES", {
   day: "2-digit",
   month: "long",
@@ -36,7 +37,7 @@ const dateLabel = new Intl.DateTimeFormat("es-ES", {
     </header>
 
     <figure class="blogPost__cover">
-      <img src={coverImage} alt={blog.data.title} loading="eager" />
+      <img src={coverImage} alt={coverAlt} loading="eager" />
     </figure>
 
     <section class="blogPost__content">
