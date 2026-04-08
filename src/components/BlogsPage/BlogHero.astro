@@ -5,12 +5,19 @@ import { BlogCardMain } from './BlogCardMain.tsx'
 import BlogCardPopular from "./BlogCardPopular.astro"
 
 const blogEntries = await getCollection("blog");
-const sortedBlogs = [...blogEntries].sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const sortedBlogs = blogEntries
+    .map((blog, index) => ({ blog, index }))
+    .sort((a, b) => {
+        const popularityDiff = (b.blog.data.popularity ?? 0) - (a.blog.data.popularity ?? 0);
+        if (popularityDiff !== 0) return popularityDiff;
+
+        // Tie-breaker: keep the original collection order.
+        return a.index - b.index;
+    })
+    .map(({ blog }) => blog);
 
 const featuredBlog = sortedBlogs[0];
-const popularBlogs = sortedBlogs.slice(0, 3);
+const popularBlogs = sortedBlogs.slice(1, 4);
 
 const fallbackImage = "/src/assets/images/blog/img-blog-1-main.jpg";
 
