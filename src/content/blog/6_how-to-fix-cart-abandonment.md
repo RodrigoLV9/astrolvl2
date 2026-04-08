@@ -5,6 +5,8 @@ pubDate: 2026-04-10
 coverImage: "../../assets/images/blog/img-blog-6-main.jpg"
 coverAlt: "Persona frustrada frente a una computadora portátil con un carrito de compras digital flotando"
 tags: ["ecommerce", "ventas", "ux", "optimización"]
+popularity: 3
+readingTime: '6 min'
 ---
 
 Es el escenario de terror de todo dueño de negocio online: invertiste miles en campañas de publicidad, lograste que el cliente ideal hiciera clic en tu anuncio, navegó por tu tienda, se enamoró de tu producto, lo añadió al carrito... y de repente, desapareció sin pagar. 

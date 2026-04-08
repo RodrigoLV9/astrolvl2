@@ -5,6 +5,8 @@ pubDate: 2026-03-27
 coverImage: "../../assets/images/blog/img-blog-9-main.jpg"
 coverAlt: "Usuario navegando fluidamente por una tienda online optimizada desde su smartphone"
 tags: ["mobile first", "diseño web", "ecommerce", "ux"]
+popularity: 10
+readingTime: '5 min'
 ---
 
 Seguramente has escuchado el término "Mobile First" (Móvil Primero) hasta el cansancio. Sin embargo, la gran mayoría de las empresas lo entienden mal. Creen que adaptar una web a móviles significa simplemente tomar el diseño de escritorio (para pantallas grandes) y encogerlo para que quepa en un teléfono. 

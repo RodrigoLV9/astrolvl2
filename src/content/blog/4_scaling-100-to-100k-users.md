@@ -5,6 +5,8 @@ pubDate: 2026-04-05
 coverImage: "../../assets/images/blog/img-blog-4-main.jpg"
 coverAlt: "Servidores modernos en un centro de datos en la nube representando la escalabilidad de software y la infraestructura elástica"
 tags: ["escalabilidad", "saas", "desarrollo a medida", "infraestructura"]
+popularity: 5
+readingTime: '6 min'
 ---
 
 Imagina este escenario: tu equipo de marketing lanza la campaña perfecta. Consiguen menciones en los medios más importantes, el tráfico se dispara y miles de clientes potenciales entran a tu plataforma al mismo tiempo, listos para comprar o registrarse. Todo parece un sueño, hasta que ocurre la pesadilla. 

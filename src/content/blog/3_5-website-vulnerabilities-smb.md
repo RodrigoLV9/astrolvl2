@@ -5,6 +5,8 @@ pubDate: 2026-04-02
 coverImage: "../../assets/images/blog/img-blog-3-main.jpg"
 coverAlt: "Candado digital holográfico sobre un servidor web, representando la protección de datos en pequeñas y medianas empresas"
 tags: ["ciberseguridad", "mantenimiento web", "pymes", "ecommerce"]
+popularity: 9
+readingTime: '6 min'
 ---
 
 Existe una creencia muy peligrosa entre los dueños de negocios: pensar que *"los hackers solo atacan a corporaciones gigantes o bancos porque ahí es donde está el dinero"*. Esta falsa sensación de seguridad es exactamente lo que los ciberdelincuentes están buscando. 

@@ -5,6 +5,8 @@ pubDate: 2026-04-08
 coverImage: "../../assets/images/blog/img-blog-7-main.jpg"
 coverAlt: "Representación conceptual de un dominio y hosting como bienes raíces digitales"
 tags: ["conceptos básicos", "dominio", "hosting", "desarrollo web"]
+popularity: 3
+readingTime: '6 min'
 ---
 
 Has decidido dar el gran paso: es hora de que tu empresa tenga una presencia profesional en internet. Hablas con conocidos, buscas en Google y, de repente, te encuentras sepultado bajo una avalancha de términos incomprensibles: servidores, DNS, propagación, ancho de banda, FTP y bases de datos. 

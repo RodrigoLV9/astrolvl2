@@ -5,6 +5,8 @@ pubDate: 2026-03-29
 coverImage: "../../assets/images/blog/img-blog-8-main.jpg"
 coverAlt: "Persona interactuando con una interfaz web accesible mediante un teclado especializado, destacando el diseño inclusivo"
 tags: ["accesibilidad", "desarrollo web", "seo", "ux"]
+popularity: 3
+readingTime: '5 min'
 ---
 
 Cuando las empresas planifican el rediseño de su sitio web o el lanzamiento de un nuevo Ecommerce, las prioridades suelen ser claras: un diseño deslumbrante, integraciones rápidas y embudos de venta optimizados. Sin embargo, en medio de estas reuniones, hay un elemento crítico que se suele ignorar por considerarse un "extra" o algo que "solo afecta a una minoría": **la accesibilidad web**.

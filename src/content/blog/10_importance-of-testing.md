@@ -5,6 +5,8 @@ pubDate: 2026-03-31
 coverImage: "../../assets/images/blog/img-blog-10-main.jpg"
 coverAlt: "Desarrollador de software inspeccionando código con un enfoque analítico en la calidad y el rendimiento del sistema"
 tags: ["testing", "calidad", "desarrollo web", "mantenimiento"]
+popularity: 2
+readingTime: '5 min'
 ---
 
 Existe una frase peligrosamente común en el mundo corporativo cuando se acerca la fecha límite para lanzar un nuevo software o sitio web: *"Lancémoslo así, si hay algún error lo arreglamos sobre la marcha"*. 
