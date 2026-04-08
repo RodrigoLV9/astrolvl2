@@ -16,6 +16,8 @@ const { Content } = await blog.render();
 
 const coverImage = blog.data.coverImage?.src ?? blog.data.image?.src ?? "/src/assets/images/blog/img-blog-1-main.jpg";
 const coverAlt = blog.data.coverAlt ?? blog.data.title;
+const tags = blog.data.tags?.length ? blog.data.tags : ["General"];
+const readingTimeLabel = blog.data.readingTime ?? "N/A";
 const dateLabel = new Intl.DateTimeFormat("es-ES", {
   day: "2-digit",
   month: "long",
@@ -32,7 +34,12 @@ const dateLabel = new Intl.DateTimeFormat("es-ES", {
       <div class="blogPost__meta">
         <time datetime={blog.data.pubDate.toISOString()}>{dateLabel}</time>
         <span>•</span>
-        <span>{blog.data.tags[0] ?? "General"}</span>
+        <span>{readingTimeLabel} de lectura</span>
+      </div>
+      <div class="blogPost__tags" aria-label="Etiquetas del artículo">
+        {tags.map((tag) => (
+          <span class="blogPost__tag">{tag}</span>
+        ))}
       </div>
     </header>
 
@@ -90,9 +97,27 @@ const dateLabel = new Intl.DateTimeFormat("es-ES", {
   .blogPost__meta {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     color: var(--txt-muted);
     font-size: var(--text-sm);
+  }
+
+  .blogPost__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .blogPost__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: var(--rad-pill);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--txt-primary);
+    background: rgba(99, 102, 241, 0.14);
+    border: 1px solid rgba(99, 102, 241, 0.35);
   }
 
   .blogPost__cover {
