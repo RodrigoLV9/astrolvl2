@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import { Search } from "./Search"
 import { BlogCardMain } from './BlogCardMain.tsx'
 import BlogCardPopular from "./BlogCardPopular.astro"
 
@@ -49,10 +48,6 @@ const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
         <div class="blogHero__orb blogHero__orb--1"></div>
         <div class="blogHero__orb blogHero__orb--2"></div>
         <div class="blogHero__orb blogHero__orb--3"></div>
-    </div>
-
-    <div class="blogHero__topbar">
-        <Search client:load />
     </div>
 
     <div class="blogHero__content">
@@ -136,20 +131,6 @@ const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
         66%       { transform: translate(18px, 20px) scale(0.95); }
     }
 
-    /* ── Top bar ── */
-    .blogHero__topbar {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 28px;
-        animation: fadeSlideDown 0.5s ease both;
-    }
-    .blogHero__topbar :global(.blogSearch) {
-        max-width: 680px;
-    }
-
     /* ── Content grid ── */
     .blogHero__content {
         position: relative;
@@ -200,10 +181,6 @@ const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
     .blogHero__sidebar-list :global(.blogCardPopular:nth-child(3)) { animation-delay: 0.64s; }
 
     /* ── Keyframes ── */
-    @keyframes fadeSlideDown {
-        from { opacity: 0; transform: translateY(-18px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
     @keyframes fadeSlideRight {
         from { opacity: 0; transform: translateX(28px); }
         to   { opacity: 1; transform: translateX(0); }
@@ -233,9 +210,6 @@ const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
     @media (max-width: 768px) {
         .blogHero {
             padding: 90px var(--px) 40px;
-        }
-        .blogHero__topbar :global(.blogSearch) {
-            max-width: 100%;
         }
     }
 

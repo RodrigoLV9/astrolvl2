@@ -21,16 +21,10 @@ const formatDate = (date: Date) =>
         year: "numeric",
     }).format(date);
 
-const categories = [
-    "Todos",
-    ...new Set(sortedBlogs.flatMap((blog) => blog.data.tags)),
-].slice(0, 8);
-
 const cards = sortedBlogs.map((blog) => ({
     title: blog.data.title,
     description: blog.data.description,
     image: blog.data.coverImage?.src ?? blog.data.image?.src ?? fallbackImage,
-    category: blog.data.tags[0] ?? "Blog",
     href: `/blog/${blog.slug}`,
     readTimeText: `${estimateReadingTime(blog.body)} min`,
     dateText: formatDate(blog.data.pubDate),
@@ -52,31 +46,10 @@ const cards = sortedBlogs.map((blog) => ({
             </p>
         </header>
 
-        <div class="latestBlogs__filters" role="tablist" aria-label="Filtrar por categoría">
-            {categories.map((cat, i) => (
-                <button
-                    class={`latestBlogs__filter${i === 0 ? " latestBlogs__filter--active" : ""}`}
-                    role="tab"
-                    aria-selected={i === 0 ? "true" : "false"}
-                >
-                    {cat}
-                </button>
-            ))}
-        </div>
-
         <div class="latestBlogs__cards">
             {cards.map((card) => (
                 <BlogCard {...card} />
             ))}
-        </div>
-
-        <div class="latestBlogs__footer">
-            <a href="#" class="latestBlogs__view-all">
-                Ver todos los artículos
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
         </div>
     </div>
 </section>
@@ -168,38 +141,6 @@ const cards = sortedBlogs.map((blog) => ({
         line-height: 1.65;
     }
 
-    /* Filters */
-    .latestBlogs__filters {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 52px;
-        animation: lbFadeUp 0.6s ease both 0.1s;
-    }
-    .latestBlogs__filter {
-        padding: 7px 18px;
-        border-radius: var(--rad-pill);
-        border: 1px solid var(--border-soft);
-        background: var(--bg-card);
-        color: rgba(148, 163, 184, 0.8);
-        font-size: 13px;
-        cursor: pointer;
-        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .latestBlogs__filter:hover {
-        border-color: rgba(129, 140, 248, 0.4);
-        color: rgba(165, 180, 252, 0.95);
-        background: rgba(99, 102, 241, 0.08);
-    }
-    .latestBlogs__filter--active {
-        border-color: rgba(99, 102, 241, 0.5);
-        background: rgba(99, 102, 241, 0.15);
-        color: var(--clr-primary-pale);
-        box-shadow: 0 0 16px rgba(99, 102, 241, 0.15);
-    }
-
     /* Cards grid */
     .latestBlogs__cards {
         display: grid;
@@ -207,41 +148,6 @@ const cards = sortedBlogs.map((blog) => ({
         gap: 28px;
         align-items: start;
         animation: lbFadeUp 0.6s ease both 0.2s;
-    }
-
-    /* Footer CTA */
-    .latestBlogs__footer {
-        display: flex;
-        justify-content: center;
-        margin-top: 56px;
-        animation: lbFadeUp 0.6s ease both 0.3s;
-    }
-    .latestBlogs__view-all {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 28px;
-        border-radius: var(--rad-sm);
-        border: 1px solid rgba(99, 102, 241, 0.35);
-        background: var(--clr-primary-a10);
-        color: var(--clr-primary-pale);
-        font-size: var(--text-sm);
-        font-weight: 600;
-        text-decoration: none;
-        transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .latestBlogs__view-all:hover {
-        border-color: rgba(99, 102, 241, 0.6);
-        background: rgba(99, 102, 241, 0.18);
-        transform: translateY(-2px);
-        box-shadow: 0 12px 32px rgba(99, 102, 241, 0.2);
-    }
-    .latestBlogs__view-all svg {
-        transition: transform 0.25s ease;
-        flex-shrink: 0;
-    }
-    .latestBlogs__view-all:hover svg {
-        transform: translateX(4px);
     }
 
     @keyframes lbFadeUp {
@@ -270,10 +176,6 @@ const cards = sortedBlogs.map((blog) => ({
         .latestBlogs__subtitle {
             font-size: var(--text-base);
         }
-        .latestBlogs__filters {
-            gap: 8px;
-            margin-bottom: 36px;
-        }
     }
 
     @media (max-width: 480px) {
@@ -286,14 +188,6 @@ const cards = sortedBlogs.map((blog) => ({
         .latestBlogs__cards {
             grid-template-columns: 1fr;
             gap: 16px;
-        }
-        .latestBlogs__filter {
-            font-size: var(--text-xs);
-            padding: 6px 14px;
-        }
-        .latestBlogs__view-all {
-            width: 100%;
-            justify-content: center;
         }
     }
 </style>
