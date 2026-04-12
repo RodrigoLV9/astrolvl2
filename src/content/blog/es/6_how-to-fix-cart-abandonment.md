@@ -2,7 +2,7 @@
 title: "Errores comunes que hacen que la gente abandone tu carrito de compras (y cómo solucionarlos hoy)"
 description: "Descubre por qué tus clientes abandonan el carrito de compras y cómo optimizar el checkout de tu ecommerce para multiplicar tus ventas."
 pubDate: 2026-04-10
-coverImage: "../../assets/images/blog/img-blog-6-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-6-main.jpg"
 coverAlt: "Persona frustrada frente a una computadora portátil con un carrito de compras digital flotando"
 tags: ["ecommerce", "ventas", "ux", "optimización"]
 popularity: 3
@@ -31,7 +31,7 @@ Imagina entrar a una tienda física, llegar a la caja con tu billetera en la man
 
 **La solución:** El poder del "Checkout como invitado" (Guest Checkout) es innegable. Permite que tus clientes paguen solo ingresando su correo electrónico y sus datos de envío. Puedes ofrecerles crear la cuenta *después* de que hayan pagado, con un solo clic, resaltando los beneficios de hacerlo (como rastrear su pedido).
 
-![Mano sosteniendo tarjeta de credito con usuario frustrado al fondo](../../assets/images/blog/img-blog-6-1.jpg)
+![Mano sosteniendo tarjeta de credito con usuario frustrado al fondo](../../../assets/images/blog/img-blog-6-1.jpg)
 
 ## 3. Formularios de pago interminables y lentos
 
@@ -51,7 +51,7 @@ Hoy en día, la inmensa mayoría de las compras online se descubren e inician de
 
 **La solución:** Tu tienda no solo debe ser "responsive", debe tener un enfoque "Mobile-First". Los botones de pago deben ocupar todo el ancho de la pantalla, los teclados numéricos deben abrirse automáticamente al seleccionar el campo del número de tarjeta, y los tiempos de carga en redes 4G o 5G deben ser instantáneos.
 
-![Smartphone con pantalla de carga infinita durante checkout movil](../../assets/images/blog/img-blog-6-2.jpg)
+![Smartphone con pantalla de carga infinita durante checkout movil](../../../assets/images/blog/img-blog-6-2.jpg)
 
 ## Recupera tus ventas perdidas con la tecnología correcta
 

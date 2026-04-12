@@ -2,7 +2,7 @@
 title: "Mobile First en serio: Errores comunes que las empresas cometen al adaptar sus webs a móviles"
 description: "Descubre los errores fatales que hunden tus ventas móviles y cómo un verdadero diseño Mobile First puede disparar la conversión de tu negocio digital."
 pubDate: 2026-03-27
-coverImage: "../../assets/images/blog/img-blog-9-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-9-main.jpg"
 coverAlt: "Usuario navegando fluidamente por una tienda online optimizada desde su smartphone"
 tags: ["mobile first", "diseño web", "ecommerce", "ux"]
 popularity: 10
@@ -23,7 +23,7 @@ Imagina a un cliente intentando acceder a tu tienda online mientras viaja en tra
 
 El resultado es una **tasa de rebote altísima** (el porcentaje de usuarios que abandonan tu web sin interactuar). En el mundo móvil, los usuarios no tienen paciencia. Si tu página tarda más de tres segundos en mostrar contenido útil, el visitante cerrará la pestaña y se irá con tu competencia. Un diseño verdaderamente optimizado prioriza el rendimiento, comprimiendo imágenes y cargando solo los elementos estrictamente necesarios para la pantalla inicial.
 
-![Pulgar intentando pulsar un boton pequeno en smartphone](../../assets/images/blog/img-blog-9-1.jpg)
+![Pulgar intentando pulsar un boton pequeno en smartphone](../../../assets/images/blog/img-blog-9-1.jpg)
 
 ## Botones imposibles y la regla del "pulgar"
 
@@ -45,7 +45,7 @@ Nadie quiere escribir una novela en su celular para comprar un producto. Los for
 *   Habilitar el autocompletado nativo del celular.
 *   Ofrecer botones de pago rápido en un solo clic, como Apple Pay o Google Pay, para que el usuario pueda finalizar la compra usando su huella digital o reconocimiento facial.
 
-![Interfaz ecommerce en smartphone con boton de compra destacado](../../assets/images/blog/img-blog-9-2.jpg)
+![Interfaz ecommerce en smartphone con boton de compra destacado](../../../assets/images/blog/img-blog-9-2.jpg)
 
 ## ¿Cómo se ve un verdadero diseño Mobile First?
 

@@ -2,7 +2,7 @@
 title: "Importancia del Testing: Por qué probar el código antes de lanzarlo ahorra miles de dólares"
 description: "Descubre cómo el testing de software evita crisis de reputación, pérdida de ventas y reduce drásticamente los costos de soporte en tu empresa."
 pubDate: 2026-03-31
-coverImage: "../../assets/images/blog/img-blog-10-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-10-main.jpg"
 coverAlt: "Desarrollador de software inspeccionando código con un enfoque analítico en la calidad y el rendimiento del sistema"
 tags: ["testing", "calidad", "desarrollo web", "mantenimiento"]
 popularity: 2
@@ -21,7 +21,7 @@ En el desarrollo de software, existe una máxima conocida como la "Regla del 100
 
 ¿Por qué ocurre esta multiplicación geométrica? Porque un error en producción ya no es solo un problema de código. Se convierte en un problema de negocio. Implica **costosos tickets de soporte al cliente**, horas extras de los desarrolladores trabajando bajo presión, reembolsos por servicios no prestados y, lo más grave, el daño irreparable a la imagen de la marca. Descubrir un error internamente cuesta centavos; que lo descubra tu cliente intentando pagar te cuesta miles de dólares.
 
-![Usuario frustrado ante fallo de transaccion en laptop](../../assets/images/blog/img-blog-10-1.jpg)
+![Usuario frustrado ante fallo de transaccion en laptop](../../../assets/images/blog/img-blog-10-1.jpg)
 
 ## ¿Por qué las plantillas y el código barato siempre fallan aquí?
 
@@ -37,7 +37,7 @@ Para entender el valor comercial de esto, veamos dos enfoques que aplicamos:
 *   **Pruebas de componentes pequeños:** Verificamos de forma aislada que reglas de negocio críticas funcionen. Por ejemplo, asegurarnos matemáticamente de que si un cliente aplica un cupón del 20%, el cálculo del descuento sea exacto siempre, evitando que pierdas dinero por cobros mal procesados.
 *   **Simulaciones de extremo a extremo:** Creamos robots virtuales que simulan exactamente lo que haría tu cliente. El robot entra a la web, busca un producto, lo añade al carrito, llena sus datos y procesa un pago simulado. Hacemos esto antes de cada actualización para garantizar que **la pasarela de pago nunca falle** y el embudo de ventas esté siempre blindado.
 
-![Escudo digital protegiendo engranajes sobre lineas de codigo](../../assets/images/blog/img-blog-10-2.jpg)
+![Escudo digital protegiendo engranajes sobre lineas de codigo](../../../assets/images/blog/img-blog-10-2.jpg)
 
 ### Deja de apagar incendios con tu tecnología
 

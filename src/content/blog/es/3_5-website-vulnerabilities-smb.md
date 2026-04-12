@@ -2,7 +2,7 @@
 title: "Ciberseguridad para PYMES: 5 vulnerabilidades que tu web actual probablemente tiene (y cómo cerrarlas)"
 description: "Descubre las vulnerabilidades web más comunes que exponen a las PYMES a ciberataques y aprende cómo proteger tu negocio, tus ventas y tu reputación."
 pubDate: 2026-04-02
-coverImage: "../../assets/images/blog/img-blog-3-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-3-main.jpg"
 coverAlt: "Candado digital holográfico sobre un servidor web, representando la protección de datos en pequeñas y medianas empresas"
 tags: ["ciberseguridad", "mantenimiento web", "pymes", "ecommerce"]
 popularity: 9
@@ -31,7 +31,7 @@ Ese sencillo formulario de "Contáctanos" puede ser un arma de doble filo. Los b
 
 En lugar de escribir "Hola, quiero información", escriben comandos informáticos ocultos. Si el código de tu web no está programado para filtrar y desinfectar estas respuestas, el atacante podría engañar a tu servidor para que revele información de tu base de datos o envíe miles de correos de spam usando tu dominio, lo que causará que tus propios correos comerciales terminen en la bandeja de *correo no deseado* de tus clientes.
 
-![Pantalla con escudo digital bloqueando codigo malicioso](../../assets/images/blog/img-blog-3-1.jpg)
+![Pantalla con escudo digital bloqueando codigo malicioso](../../../assets/images/blog/img-blog-3-1.jpg)
 
 ## 3. Falta de certificados SSL y pasarelas de pago dudosas
 
@@ -45,7 +45,7 @@ El eslabón más débil de la ciberseguridad suele ser el factor humano. Es alar
 
 Si un empleado deja la empresa, o si uno de los dispositivos desde donde inician sesión está infectado con un virus, toda la plataforma queda comprometida. Es fundamental implementar políticas de contraseñas fuertes, crear usuarios individuales con permisos limitados (que el redactor del blog no tenga acceso a la facturación de la tienda, por ejemplo) y requerir siempre verificación en dos pasos (2FA).
 
-![Profesional usando laptop con autenticacion de dos factores en smartphone](../../assets/images/blog/img-blog-3-2.jpg)
+![Profesional usando laptop con autenticacion de dos factores en smartphone](../../../assets/images/blog/img-blog-3-2.jpg)
 
 ## 5. La ausencia de copias de seguridad (Backups) automatizadas
 

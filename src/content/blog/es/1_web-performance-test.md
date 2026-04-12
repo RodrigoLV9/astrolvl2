@@ -2,7 +2,7 @@
 title: "Por qué los clientes abandonan el carrito en tu tienda online (y cómo evitarlo)"
 description: "Descubre las verdaderas razones detrás del abandono de carritos en ecommerce y aprende estrategias técnicas y de UX para transformar clics en clientes reales."
 pubDate: 2026-03-18
-coverImage: "../../assets/images/blog/img-blog-1-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-1-main.jpg"
 coverAlt: "Ilustración de un carrito de compras abandonado frente a una pantalla de computadora"
 tags: ["Ecommerce", "Optimización de Conversión", "UX Design", "Rendimiento Web", "Ventas B2B"]
 popularity: 3
@@ -28,7 +28,7 @@ Una arquitectura web deficiente, imágenes pesadas sin optimizar o un código so
 **La solución:**
 Necesitas una tienda construida con tecnologías modernas que prioricen el rendimiento (como la carga diferida de imágenes o la generación de sitios estáticos). **Una web rápida no solo mejora la experiencia del usuario, sino que es fundamental para el SEO**, permitiéndote rankear mejor en Google y reducir tus costos de adquisición de clientes.
 
-![Carriles digitales de alta velocidad representando rendimiento web](../../assets/images/blog/img-blog-1-1.jpg)
+![Carriles digitales de alta velocidad representando rendimiento web](../../../assets/images/blog/img-blog-1-1.jpg)
 
 ## 2. Falta de transparencia y "Costos Sorpresa"
 
@@ -50,7 +50,7 @@ Además, un formulario de pago interminable, donde el cliente tiene que introduc
 * **Autocompletado de direcciones:** Integra APIs que sugieran y completen automáticamente la dirección postal del cliente basándose en su código postal, ahorrándole valiosos segundos.
 * **Múltiples opciones de pago:** Desde tarjetas de crédito corporativas hasta billeteras digitales (Apple Pay, Google Pay). Cuantas menos barreras existan entre la intención y la transacción, mejor.
 
-![Mano sosteniendo smartphone con checkout completado](../../assets/images/blog/img-blog-1-2.jpg)
+![Mano sosteniendo smartphone con checkout completado](../../../assets/images/blog/img-blog-1-2.jpg)
 
 ## 4. Diseño que no inspira seguridad
 
@@ -61,5 +61,5 @@ En el mundo digital, tu sitio web es la vitrina y el vendedor al mismo tiempo. S
 **La solución:**
 El diseño visual debe transmitir autoridad y pulcritud corporativa. Un diseño limpio, moderno y estructurado, respaldado por una infraestructura tecnológica robusta, comunica subliminalmente que tu empresa es seria, estable y segura.
 
-![Carrito de compras con escudo de seguridad digital](../../assets/images/blog/img-blog-1-3.jpg)
+![Carrito de compras con escudo de seguridad digital](../../../assets/images/blog/img-blog-1-3.jpg)
 

@@ -2,7 +2,7 @@
 title: "Escalabilidad: Cómo preparar tu infraestructura para pasar de 100 a 100,000 usuarios sin morir en el intento"
 description: "Descubre cómo escalar tu infraestructura de software para soportar picos masivos de usuarios, evitar caídas costosas y proteger el crecimiento de tu negocio."
 pubDate: 2026-04-05
-coverImage: "../../assets/images/blog/img-blog-4-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-4-main.jpg"
 coverAlt: "Servidores modernos en un centro de datos en la nube representando la escalabilidad de software y la infraestructura elástica"
 tags: ["escalabilidad", "saas", "desarrollo a medida", "infraestructura"]
 popularity: 5
@@ -27,7 +27,7 @@ Para 100 usuarios, esto funciona. Para 10,000, es una bomba de tiempo. Si una fu
 
 **La solución a nivel de negocio:** Cuando el tráfico empieza a escalar, es momento de migrar hacia arquitecturas limpias y, en casos de alta demanda, a **microservicios**. Esto significa dividir tu plataforma en pequeñas piezas independientes. Si el servicio de facturación se satura, el resto de la aplicación sigue funcionando perfectamente y vendiendo. 
 
-![Grafico holografico de crecimiento exponencial en mesa corporativa](../../assets/images/blog/img-blog-4-1.jpg)
+![Grafico holografico de crecimiento exponencial en mesa corporativa](../../../assets/images/blog/img-blog-4-1.jpg)
 
 ## 2. Bases de datos: El verdadero cuello de botella
 
@@ -45,7 +45,7 @@ Si 50,000 usuarios entran a ver la página de inicio de tu software o el catálo
 
 Esto no solo reduce drásticamente el costo de tus servidores, sino que hace que tu plataforma cargue a la velocidad de la luz en cualquier parte del mundo.
 
-![Mapa mundial con nodos luminosos representando distribucion de datos](../../assets/images/blog/img-blog-4-2.jpg)
+![Mapa mundial con nodos luminosos representando distribucion de datos](../../../assets/images/blog/img-blog-4-2.jpg)
 
 ## 4. Elasticidad en la nube: Pagar solo por lo que usas
 

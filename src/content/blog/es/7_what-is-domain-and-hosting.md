@@ -2,7 +2,7 @@
 title: "¿Qué es el dominio y el hosting? La guía definitiva para dueños de negocios"
 description: "Descubre qué son el dominio y el hosting de forma sencilla. Aprende a proteger la identidad digital de tu negocio y transmite confianza a tus clientes."
 pubDate: 2026-04-08
-coverImage: "../../assets/images/blog/img-blog-7-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-7-main.jpg"
 coverAlt: "Representación conceptual de un dominio y hosting como bienes raíces digitales"
 tags: ["conceptos básicos", "dominio", "hosting", "desarrollo web"]
 popularity: 3
@@ -28,7 +28,7 @@ Elegir un buen nombre de dominio es una decisión de negocios estratégica. Debe
 
 Si no tienes un dominio propio, básicamente eres "un fantasma" en el mundo digital. Es el primer paso para construir una marca sólida y memorable.
 
-![Llave metalica sobre mesa de vidrio representando propiedad digital](../../assets/images/blog/img-blog-7-1.jpg)
+![Llave metalica sobre mesa de vidrio representando propiedad digital](../../../assets/images/blog/img-blog-7-1.jpg)
 
 ## El Hosting (Alojamiento): El terreno virtual
 
@@ -58,7 +58,7 @@ Ese candado se llama **Certificado SSL**. En términos sencillos, es un sistema 
 
 Hoy en día, el SSL está íntimamente ligado a un buen servicio de hosting. De hecho, si tu página no tiene ese candadito, Google Chrome le pondrá un cartel rojo gigante a tus visitantes diciendo: **"Este sitio no es seguro"**. No hay forma más rápida de perder una venta que asustando a tus clientes antes de que siquiera lean lo que ofreces.
 
-![Candado metalico sobre teclado simbolizando seguridad SSL](../../assets/images/blog/img-blog-7-2.jpg)
+![Candado metalico sobre teclado simbolizando seguridad SSL](../../../assets/images/blog/img-blog-7-2.jpg)
 
 ## Conclusión: Tu negocio es tu prioridad, nosotros nos encargamos del resto
 

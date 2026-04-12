@@ -2,7 +2,7 @@
 title: "Accesibilidad Web: Por qué hacer tu sitio inclusivo no es solo ético, sino también rentable"
 description: "Descubre por qué la accesibilidad web no es solo una cuestión ética, sino una estrategia rentable para mejorar tu SEO, UX y aumentar tus ventas online."
 pubDate: 2026-03-29
-coverImage: "../../assets/images/blog/img-blog-8-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-8-main.jpg"
 coverAlt: "Persona interactuando con una interfaz web accesible mediante un teclado especializado, destacando el diseño inclusivo"
 tags: ["accesibilidad", "desarrollo web", "seo", "ux"]
 popularity: 3
@@ -23,7 +23,7 @@ Los "bots" o rastreadores de Google que analizan tu sitio web para decidir en qu
 
 Si tu sitio web utiliza una estructura de código limpia, encabezados lógicos (H1, H2, H3) y textos alternativos (`alt text`) que describen correctamente las imágenes, le estás facilitando la vida a un usuario ciego. Pero al mismo tiempo, le estás entregando a Google el contexto perfecto para que entienda de qué trata tu página y te posicione por encima de tu competencia. **Un código accesible es el pilar de un SEO técnico impecable.**
 
-![Codigo web estructurado combinado con grafico de crecimiento SEO](../../assets/images/blog/img-blog-8-1.jpg)
+![Codigo web estructurado combinado con grafico de crecimiento SEO](../../../assets/images/blog/img-blog-8-1.jpg)
 
 ## Accesibilidad significa mejor experiencia para todos
 
@@ -41,7 +41,7 @@ Hoy en día es muy fácil levantar un sitio web utilizando plantillas genéricas
 
 Uno de los fallos más comunes en sitios mal construidos es la imposibilidad de realizar una **navegación por teclado**. Las personas con ciertas discapacidades motoras no usan un ratón; navegan saltando de un enlace a otro usando la tecla `Tab`. Si los botones de "Añadir al carrito" o los menús desplegables de tu Ecommerce no están programados para ser accesibles mediante el teclado, estás impidiendo físicamente que esos clientes te compren.
 
-![Usuario frustrado frente a laptop con carrito digital en pantalla](../../assets/images/blog/img-blog-8-2.jpg)
+![Usuario frustrado frente a laptop con carrito digital en pantalla](../../../assets/images/blog/img-blog-8-2.jpg)
 
 Además de la pérdida de ventas (el temido **abandono de carrito**), un código pobre te expone a riesgos legales. En muchos países, las leyes de accesibilidad digital son cada vez más estrictas, y las empresas se enfrentan a costosas demandas por tener plataformas que discriminan a usuarios con discapacidades.
 

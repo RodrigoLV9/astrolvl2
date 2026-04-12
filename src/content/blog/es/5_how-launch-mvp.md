@@ -2,7 +2,7 @@
 title: "MVP (Producto Mínimo Viable): Cómo lanzar tu idea al mercado en tiempo récord sin sacrificar calidad"
 description: "Descubre cómo un MVP bien diseñado te permite validar tu idea de negocio rápido, ahorrar costos y evitar el perfeccionismo sin entregar un producto mediocre."
 pubDate: 2026-03-25
-coverImage: "../../assets/images/blog/img-blog-5-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-5-main.jpg"
 coverAlt: "Equipo de desarrollo trabajando ágilmente en el lanzamiento de un Producto Mínimo Viable"
 tags: ["mvp", "desarrollo web", "saas", "emprendimiento"]
 popularity: 8
@@ -25,7 +25,7 @@ En el entorno B2B y de negocios digitales, el tiempo es, literalmente, dinero. Q
 *   **Agotamiento del presupuesto:** Desarrollar funciones complejas que nadie usará es tirar dinero a la basura. Validar rápido te permite invertir tu capital solo en las funcionalidades que tus clientes han demostrado valorar.
 *   **Pérdida de la ventana de oportunidad:** El mercado tecnológico avanza a una velocidad vertiginosa. Mientras pasas un año perfeccionando un detalle visual, un competidor más ágil puede lanzar una solución más simple y quedarse con tus primeros clientes.
 
-![Tablet mostrando grafico ascendente de validacion de producto](../../assets/images/blog/img-blog-5-1.jpg)
+![Tablet mostrando grafico ascendente de validacion de producto](../../../assets/images/blog/img-blog-5-1.jpg)
 
 ## Las 3 características innegociables de un buen MVP
 
@@ -42,7 +42,7 @@ Tu MVP no necesita animaciones en 3D, pero sí requiere una **experiencia de usu
 ### 3. Capacidad de medición
 El propósito de un MVP es aprender. Por lo tanto, debe incluir herramientas analíticas básicas que te permitan rastrear cómo interactúan los usuarios con la plataforma. Saber dónde hacen clic, dónde se detienen y qué funciones ignoran es el "combustible" que guiará las futuras actualizaciones de tu software.
 
-![Monitor con codigo limpio junto a boceto de interfaz de usuario](../../assets/images/blog/img-blog-5-2.jpg)
+![Monitor con codigo limpio junto a boceto de interfaz de usuario](../../../assets/images/blog/img-blog-5-2.jpg)
 
 ## De la idea a la pantalla: Cómo lo hacemos posible
 

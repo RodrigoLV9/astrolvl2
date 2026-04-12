@@ -2,7 +2,7 @@
 title: '"¿Nos escuchan los celulares?": Verdad o mito sobre la publicidad personalizada'
 description: 'Descubre la verdad detrás de los anuncios inquietantemente precisos. ¿Tu teléfono te espía o es solo el poder de la inteligencia artificial y los datos?'
 pubDate: 2026-04-12
-coverImage: "../../assets/images/blog/img-blog-2-main.jpg"
+coverImage: "../../../assets/images/blog/img-blog-2-main.jpg"
 coverAlt: "Teléfono inteligente rodeado de nodos de datos digitales flotantes"
 tags: ["privacidad", "inteligencia artificial", "marketing", "datos"]
 popularity: 4
@@ -27,7 +27,7 @@ Desde un punto de vista técnico y económico, procesar el audio continuo de mil
 
 Entonces, si no te están escuchando a escondidas, ¿cómo demonios sabían lo de las croquetas?
 
-![Icono de microfono bloqueado en smartphone representando privacidad de datos](../../assets/images/blog/img-blog-2-1.jpg)
+![Icono de microfono bloqueado en smartphone representando privacidad de datos](../../../assets/images/blog/img-blog-2-1.jpg)
 
 ## La verdad es más sorprendente: La inteligencia predictiva
 
@@ -49,7 +49,7 @@ Los **metadatos** son los datos sobre los datos (dónde estás, con quién está
 
 El sistema unió los puntos. No escuchó tu voz; leyó las coordenadas, cruzó los historiales de búsqueda de ambos perfiles y dedujo el contexto de la reunión.
 
-![Dos smartphones conectados por flujos de datos simbolizando metadatos cruzados](../../assets/images/blog/img-blog-2-2.jpg)
+![Dos smartphones conectados por flujos de datos simbolizando metadatos cruzados](../../../assets/images/blog/img-blog-2-2.jpg)
 
 ## Por qué tu negocio necesita entender esto
 
