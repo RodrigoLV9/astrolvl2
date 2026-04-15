@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import { Resend } from 'resend'
+import { z } from 'zod'
 import { contactSchema, SERVICE_LABELS, type ServiceValue } from '../../lib/validations/contactSchema'
 
 // This endpoint must run on the server — never prerender it.
@@ -86,7 +87,7 @@ export const POST: APIRoute = async ({ request }) => {
   const parsed = contactSchema.safeParse(body)
   if (!parsed.success) {
     return Response.json(
-      { error: 'Datos inválidos.', fields: parsed.error.flatten().fieldErrors },
+      { error: 'Datos inválidos.', fields: z.flattenError(parsed.error).fieldErrors },
       { status: 422 },
     )
   }

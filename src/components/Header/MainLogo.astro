@@ -1,8 +1,17 @@
 ---
+import type { Locale } from '../../i18n';
+import { localizedPage } from '../../lib/routes';
+
+interface Props {
+    locale: Locale;
+    brandName: string;
+}
+
+const { locale, brandName } = Astro.props;
 ---
-<a href="/home" class="mainLogo">
+<a href={localizedPage(locale, 'home')} class="mainLogo">
     <img src="/comets.png" alt="comets" width="30" height="30">
-    <h3>Astro LvL</h3>
+    <h3>{brandName}</h3>
 </a>
 <style>
     .mainLogo {

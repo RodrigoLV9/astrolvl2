@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SpaceBackground } from '../SpaceBackground.tsx'
+import type { I18nDictionary } from '../../i18n'
 import '../../styles/Process/heroProcess.css'
 
 interface ProcessCard {
@@ -12,21 +13,25 @@ interface ProcessCard {
   icon: string
 }
 
-const cards: ProcessCard[] = [
+interface HeroProcessProps {
+  text: I18nDictionary['process']['hero']
+}
+
+const cardsBase: ProcessCard[] = [
   {
     id: 1,
     phase: 'Fase 01',
     title: 'Descubrimiento',
-    description: 'Análisis profundo de tus objetivos, competidores y audiencia para construir la estrategia perfecta.',
-    tags: ['Análisis', 'Estrategia', 'Investigación'],
+    description: 'Analisis profundo de tus objetivos, competidores y audiencia para construir la estrategia perfecta.',
+    tags: ['Analisis', 'Estrategia', 'Investigacion'],
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     icon: '🔍',
   },
   {
     id: 2,
     phase: 'Fase 02',
-    title: 'Diseño & Estrategia',
-    description: 'Creamos la propuesta visual y técnica que representa tu marca y conecta con tu audiencia.',
+    title: 'Diseno & Estrategia',
+    description: 'Creamos la propuesta visual y tecnica que representa tu marca y conecta con tu audiencia.',
     tags: ['UI/UX', 'Wireframes', 'Prototipo'],
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
     icon: '✏️',
@@ -35,8 +40,8 @@ const cards: ProcessCard[] = [
     id: 3,
     phase: 'Fase 03',
     title: 'Desarrollo',
-    description: 'Construimos e implementamos tu proyecto con tecnología de vanguardia y código limpio.',
-    tags: ['Frontend', 'Backend', 'Optimización'],
+    description: 'Construimos e implementamos tu proyecto con tecnologia de vanguardia y codigo limpio.',
+    tags: ['Frontend', 'Backend', 'Optimizacion'],
     gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
     icon: '⚡',
   },
@@ -44,15 +49,31 @@ const cards: ProcessCard[] = [
     id: 4,
     phase: 'Fase 04',
     title: 'Lanzamiento',
-    description: 'Entregamos, capacitamos y ofrecemos soporte continuo para garantizar tu éxito a largo plazo.',
+    description: 'Entregamos, capacitamos y ofrecemos soporte continuo para garantizar tu exito a largo plazo.',
     tags: ['Deploy', 'Soporte', 'Growth'],
     gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
     icon: '🚀',
   },
 ]
 
-export const HeroProcess: React.FC = () => {
+export const HeroProcess: React.FC<HeroProcessProps> = ({ text }) => {
   const [activeCard, setActiveCard] = useState<number>(1)
+
+  const cards: ProcessCard[] = cardsBase.map((card, index) => {
+    const translated = text.cards[index]
+
+    if (!translated) {
+      return card
+    }
+
+    return {
+      ...card,
+      phase: translated.phase,
+      title: translated.title,
+      description: translated.description,
+      tags: translated.tags,
+    }
+  })
 
   return (
     <section className="heroProcess">
@@ -60,16 +81,16 @@ export const HeroProcess: React.FC = () => {
 
       <div className="heroProcess__badge">
         <span className="heroProcess__badge-dot"></span>
-        <p>Metodología Probada</p>
+        <p>{text.badge}</p>
       </div>
 
       <div className="heroProcess__text">
         <h1>
-          Nuestro <span className="heroProcess__text-gradient">Proceso</span>
+          {text.titleStart} <span className="heroProcess__text-gradient">{text.titleHighlight}</span>
           <br />
-          de Trabajo
+          {text.titleEnd}
         </h1>
-        <p>Metodología clara y transparente para resultados excepcionales en cada proyecto</p>
+        <p>{text.subtitle}</p>
       </div>
 
       <div className="heroProcess__cards">
@@ -110,17 +131,17 @@ export const HeroProcess: React.FC = () => {
       <div className="heroProcess__stats">
         <div className="heroProcess__stat">
           <span className="heroProcess__stat-number">4</span>
-          <span className="heroProcess__stat-label">Fases del proceso</span>
+          <span className="heroProcess__stat-label">{text.stats.phasesLabel}</span>
         </div>
         <div className="heroProcess__stat-divider" />
         <div className="heroProcess__stat">
           <span className="heroProcess__stat-number">100%</span>
-          <span className="heroProcess__stat-label">Transparencia</span>
+          <span className="heroProcess__stat-label">{text.stats.transparencyLabel}</span>
         </div>
         <div className="heroProcess__stat-divider" />
         <div className="heroProcess__stat">
           <span className="heroProcess__stat-number">+50</span>
-          <span className="heroProcess__stat-label">Proyectos completados</span>
+          <span className="heroProcess__stat-label">{text.stats.projectsLabel}</span>
         </div>
       </div>
     </section>

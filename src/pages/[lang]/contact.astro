@@ -1,0 +1,10 @@
+---
+import ContactPage from '../contact.astro';
+import { getLocaleStaticPaths } from '../../i18n';
+
+export function getStaticPaths() {
+  return getLocaleStaticPaths();
+}
+---
+
+<ContactPage />

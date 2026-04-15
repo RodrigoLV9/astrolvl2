@@ -12,6 +12,8 @@ interface BlogCardMainProps {
   readTimeText: string;
   dateText: string;
   href: string;
+  featuredBadge: string;
+  readArticleCta: string;
 }
 
 export const BlogCardMain: React.FC<BlogCardMainProps> = ({
@@ -22,13 +24,15 @@ export const BlogCardMain: React.FC<BlogCardMainProps> = ({
   readTimeText,
   dateText,
   href,
+  featuredBadge,
+  readArticleCta,
 }) => {
   return (
     <article className='blogCardMain'>
         <div className="blogCardMain__media">
             <img src={image} alt={title} />
             <div className="blogCardMain__media-overlay"></div>
-            <span className="blogCardMain__badge">Post destacado</span>
+            <span className="blogCardMain__badge">{featuredBadge}</span>
             <span className="blogCardMain__category">{category}</span>
         </div>
         <div className="blogCardMain__body">
@@ -46,7 +50,7 @@ export const BlogCardMain: React.FC<BlogCardMainProps> = ({
                     </div>
                 </div>
                 <a href={href} className="blogCardMain__cta">
-                    Leer artículo <IconArrow />
+                  {readArticleCta} <IconArrow />
                 </a>
             </div>
         </div>

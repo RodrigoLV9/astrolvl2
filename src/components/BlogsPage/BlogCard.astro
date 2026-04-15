@@ -8,6 +8,7 @@ interface Props {
     href: string;
     readTimeText: string;
     dateText: string;
+    readArticleAria: string;
 }
 
 const {
@@ -17,10 +18,11 @@ const {
     href,
     readTimeText,
     dateText,
+    readArticleAria,
 } = Astro.props as Props;
 ---
 <article class="blogCard">
-    <a href={href} class="blogCard__link" aria-label={`Leer artículo: ${title}`}>
+    <a href={href} class="blogCard__link" aria-label={`${readArticleAria}: ${title}`}>
         <div class="blogCard__media">
             <img
                 src={image}

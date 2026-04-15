@@ -3,51 +3,73 @@ import { ContactForm } from "./ContactForm.tsx";
 import {ContactCard} from "./ContactCard.tsx"
 import { ItemSocial } from "./ItemSocial.tsx";
 import type { SocialPlatform } from "./ItemSocial.tsx";
-import { contactSocialsData } from '../../data/generalData.js';
+import { contactSocialsData, mainSocialNetworks } from '../../data/socialNetworks.js';
+import { getDictionary, getLocaleFromPath } from '../../i18n';
 
 const socialsItems = contactSocialsData as Array<{ platform: SocialPlatform; href: string }>;
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+
+const cardByNetwork = {
+    whatsapp: mainSocialNetworks.find((item) => item.name === 'Whatsapp'),
+    email: mainSocialNetworks.find((item) => item.name === 'Mail'),
+    instagram: mainSocialNetworks.find((item) => item.name === 'Instagram'),
+};
+
+const contactCards = [
+    {
+        platform: 'whatsapp' as const,
+        entry: cardByNetwork.whatsapp,
+        label: dict.contact.cards.whatsappLabel,
+        buttonText: dict.contact.cards.whatsappButton,
+    },
+    {
+        platform: 'email' as const,
+        entry: cardByNetwork.email,
+        label: dict.contact.cards.emailLabel,
+        buttonText: dict.contact.cards.emailButton,
+    },
+    {
+        platform: 'instagram' as const,
+        entry: cardByNetwork.instagram,
+        label: dict.contact.cards.instagramLabel,
+        buttonText: dict.contact.cards.instagramButton,
+    },
+].filter((card) => !!card.entry);
 ---
 <section class="contact">
     <div class="contact__text">
-        <h1>Contáctenos</h1>
-        <p>Estamos aquí para hacer realidad su proyecto digital</p>
+        <h1>{dict.contact.heroTitle}</h1>
+        <p>{dict.contact.heroSubtitle}</p>
     </div>
     <div class="contact__main">
         <div class="contact__main-left">
-            <h2>Envíenos un mensaje</h2>
-            <ContactForm client:load />
+            <h2>{dict.contact.formTitle}</h2>
+            <ContactForm client:load dict={dict} />
         </div>
         <div class="contact__main-right">
             <div class="right-header">
-                <h2>Hablemos cuando quieras</h2>
+                <h2>{dict.contact.rightTitle}</h2>
                 <p class="right-header__desc">
-                    Elige el canal que prefieras. Respondemos en menos de 24 horas.
+                    {dict.contact.rightSubtitle}
                 </p>
             </div>
             <div class="cards__social">
-                <ContactCard
-                    platform="whatsapp"
-                    value="+54 911 6623-2246"
-                    href="https://wa.me/5491166232246"
-                    client:load
-                />
-                <ContactCard
-                    platform="email"
-                    value="astrolvl.dev@gmail.com"
-                    href="mailto:astrolvl.dev@gmail.com"
-                    client:load
-                />
-                <ContactCard
-                    platform="instagram"
-                    value="@agenciaweb_astrolvl"
-                    href="https://www.instagram.com/agenciaweb_astrolvl/"
-                    client:load
-                />
+                {contactCards.map(({ platform, entry, label, buttonText }) => (
+                    <ContactCard
+                        platform={platform}
+                        value={entry!.info}
+                        href={entry!.link}
+                        label={label}
+                        buttonText={buttonText}
+                        client:load
+                    />
+                ))}
             </div>
         </div>
     </div>
     <div class="socials">
-        <div class="socials__label">Síguenos</div>
+        <div class="socials__label">{dict.contact.socialsLabel}</div>
         <div class="socials__items">
             {socialsItems.map(({ platform, href }) => (
                 <ItemSocial platform={platform} href={href} client:load />

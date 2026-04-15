@@ -1,38 +1,41 @@
-﻿---
+---
 import { IntroTag } from "./IntroTag";
+import { getDictionary, getLocaleFromPath } from '../../../i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 
 <section class="intro">
     <div class="introLeft">
         <div class="intro__label">
             <span class="intro__label-dot"></span>
-            <p>Sobre Nosotros</p>
+            <p>{dict.home.intro.label}</p>
         </div>
-        <h2>Transformamos Ideas en <span class="intro__gradient">Realidad Digital</span></h2>
+        <h2>{dict.home.intro.titleStart} <span class="intro__gradient">{dict.home.intro.titleHighlight}</span></h2>
         <div class="introLeft__text">
-            <p>En ASTRO LVL WEB, somos un equipo de desarrolladores apasionados por crear experiencias digitales unicas. Combinamos diseno vanguardista con tecnologia de punta para llevar tu negocio al siguiente nivel.</p>
-            <p>Desde startups innovadoras hasta empresas consolidadas, ayudamos a nuestros clientes a destacar en el mundo digital con soluciones personalizadas y escalables.</p>
+            <p>{dict.home.intro.paragraphOne}</p>
+            <p>{dict.home.intro.paragraphTwo}</p>
         </div>
         <div class="introLeft__tags">
-            <IntroTag text="Innovacion constante" client:load />
-            <IntroTag text="Diseno vanguardista" client:load />
-            <IntroTag text="Tecnologia de punta" client:load />
-            <IntroTag text="Escalabilidad total" client:load />
+            {dict.home.intro.tags.map((tag) => (
+                <IntroTag text={tag} client:load />
+            ))}
         </div>
         <div class="intro__stats">
             <div class="intro__stat">
                 <span class="intro__stat-number">50+</span>
-                <span class="intro__stat-label">Proyectos</span>
+                <span class="intro__stat-label">{dict.home.intro.stats.projectsLabel}</span>
             </div>
             <div class="intro__stat-divider"></div>
             <div class="intro__stat">
                 <span class="intro__stat-number">30+</span>
-                <span class="intro__stat-label">Clientes</span>
+                <span class="intro__stat-label">{dict.home.intro.stats.clientsLabel}</span>
             </div>
             <div class="intro__stat-divider"></div>
             <div class="intro__stat">
                 <span class="intro__stat-number">3+</span>
-                <span class="intro__stat-label">Anos exp.</span>
+                <span class="intro__stat-label">{dict.home.intro.stats.experienceLabel}</span>
             </div>
         </div>
     </div>

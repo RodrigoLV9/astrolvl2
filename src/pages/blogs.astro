@@ -1,11 +1,64 @@
 ---
+import { getCollection } from 'astro:content';
 import BlogHero from '../components/BlogsPage/BlogHero.astro';
 import Layout from '../layouts/Layout.astro';
 import LastestBlogs from '../components/BlogsPage/LastestBlogs.astro';
+import { getDictionary, getLocaleFromPath } from '../i18n';
+import { localizedBlogPost, localizedPage } from '../lib/routes';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const baseSite = Astro.site ?? new URL(Astro.url.origin);
+const homePath = localizedPage(locale, 'home');
+const blogsPath = localizedPage(locale, 'blogs');
+const blogs = await getCollection('blog');
+const localizedBlogs = blogs.filter((entry) => entry.id.startsWith(`${locale}/`));
+const itemList = localizedBlogs.map((entry, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: entry.data.title,
+    url: new URL(localizedBlogPost(locale, entry.slug), baseSite).toString(),
+}));
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: dict.header.nav.home,
+            item: new URL(homePath, baseSite).toString(),
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: dict.header.nav.blogs,
+            item: new URL(blogsPath, baseSite).toString(),
+        },
+    ],
+};
+const collectionPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: dict.header.nav.blogs,
+    description: dict.blog.latestSubtitle,
+    url: Astro.url.toString(),
+    inLanguage: locale,
+};
+const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: itemList,
+};
 ---
 
 
-<Layout>
+<Layout seo={{ title: dict.header.nav.blogs, description: dict.blog.latestSubtitle }}>
+        <Fragment slot="head">
+                <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+                <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionPageSchema)} />
+                <script is:inline type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+        </Fragment>
     <BlogHero/>
     <LastestBlogs/>
 </Layout>

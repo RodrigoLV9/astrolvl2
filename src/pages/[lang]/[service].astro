@@ -1,0 +1,123 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/ServicesPage/Hero/Hero.astro'
+import CardsIntro from '../../components/ServicesPage/CardsIntro/CardsIntro.astro';
+import Intro from '../../components/ServicesPage/Intro.astro';
+import Description from '../../components/ServicesPage/Description/Description.astro';
+import Features from '../../components/ServicesPage/Features/Features.astro';
+import Process from '../../components/ServicesPage/Process/Process.astro';
+import Faqs1 from '../../components/HomePage/Faqs1/Faqs1.astro'
+import CTAServices from '../../components/ServicesPage/CTAServices/CTAServices.astro';
+import More from '../../components/ServicesPage/More/More.astro';
+import { servicesStaticPathsData, serviceFaqsData, serviceFaqTitlesData } from '../../data/generalData.js';
+import { SUPPORTED_LOCALES, getDictionary, getLocaleFromPath, isServiceSlug } from '../../i18n';
+
+interface FaqItem {
+  question: string
+  answer: string
+}
+
+export async function getStaticPaths() {
+  return SUPPORTED_LOCALES.flatMap((lang) =>
+    servicesStaticPathsData.map((item) => ({
+      params: { lang, service: item.slug },
+      props: { content: item },
+    }))
+  );
+}
+
+const { service } = Astro.params;
+const { content } = Astro.props as {
+  content: (typeof servicesStaticPathsData)[number];
+};
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const serviceSlug = isServiceSlug(content.slug) ? content.slug : 'landing-page';
+const serviceSeo = dict.servicesPage.hero[serviceSlug];
+
+const faqKey = (service in serviceFaqsData ? service : 'landing-page') as keyof typeof serviceFaqsData;
+const titleKey = (service in serviceFaqTitlesData ? service : 'landing-page') as keyof typeof serviceFaqTitlesData;
+
+const currentFaqs = serviceFaqsData[faqKey] as FaqItem[];
+const currentTitles = serviceFaqTitlesData[titleKey] ?? {
+  eyebrow: 'Preguntas Frecuentes',
+  title: 'Respuestas que necesitas',
+  subtitle: 'Aclaramos las dudas mas comunes sobre este servicio.',
+};
+const baseSite = Astro.site ?? new URL(Astro.url.origin);
+const homePath = locale === 'en' ? '/' : `/${locale}`;
+const servicesPath = locale === 'en' ? '/services' : `/${locale}/services`;
+const servicePath = Astro.url.pathname;
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: serviceSeo.title,
+  description: serviceSeo.description,
+  serviceType: serviceSeo.badge,
+  provider: {
+    "@type": "Organization",
+    name: dict.brand.name,
+    url: baseSite.toString(),
+  },
+  url: Astro.url.toString(),
+  inLanguage: locale,
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: currentFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: dict.header.nav.home,
+      item: new URL(homePath, baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: dict.header.nav.services,
+      item: new URL(servicesPath, baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: serviceSeo.title,
+      item: new URL(servicePath, baseSite).toString(),
+    },
+  ],
+};
+---
+
+<Layout seo={{ title: serviceSeo.title, description: serviceSeo.description }}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+  <Hero service={content.slug} />
+  <CardsIntro service={content.slug} />
+  <Intro service={content.slug} />
+  <Description service={content.slug} />
+  <Features service={content.slug} />
+  <Process service={content.slug} />
+  <Faqs1
+    faqs={currentFaqs}
+    eyebrow={currentTitles.eyebrow}
+    title={currentTitles.title}
+    subtitle={currentTitles.subtitle}
+  />
+  <CTAServices service={content.slug} />
+  <More service={content.slug} />
+</Layout>

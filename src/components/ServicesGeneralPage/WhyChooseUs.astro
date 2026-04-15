@@ -1,43 +1,24 @@
 ---
 import { WhyChooseCard } from './WhyChooseCard.tsx';
+import { getDictionary, getLocaleFromPath } from '../../i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 
 <section class="whyChooseUs">
     <div class="whyChooseUs__text">
-        <h2>¿Por qué elegirnos?</h2>
-        <p>Somos mucho más que una agencia de desarrollo web. Somos tu socio en el crecimiento digital.</p>
+        <h2>{dict.servicesGeneral.whyChoose.title}</h2>
+        <p>{dict.servicesGeneral.whyChoose.subtitle}</p>
     </div>
     <div class="whyChooseUs__grid">
-        <WhyChooseCard 
-            icon="⚡"
-            title="Rápido y Eficiente"
-            description="Entregamos proyectos de calidad en tiempos acordados, sin comprometer la excelencia."
-        />
-        <WhyChooseCard 
-            icon="🎨"
-            title="Diseño Moderno"
-            description="Creamos interfaces atractivas, intuitivas y alineadas con las tendencias actuales."
-        />
-        <WhyChooseCard 
-            icon="📱"
-            title="Responsive"
-            description="Tus sitios se ven perfectos en cualquier dispositivo: móvil, tablet o escritorio."
-        />
-        <WhyChooseCard 
-            icon="🔍"
-            title="SEO Optimizado"
-            description="Mejoramos tu visibilidad en buscadores para que tus clientes te encuentren fácilmente."
-        />
-        <WhyChooseCard 
-            icon="🛡️"
-            title="Seguro y Confiable"
-            description="Implementamos las mejores prácticas de seguridad para proteger tu negocio."
-        />
-        <WhyChooseCard 
-            icon="💬"
-            title="Soporte Permanente"
-            description="No abandonamos tu proyecto después del lanzamiento. Estamos contigo siempre."
-        />
+        {dict.servicesGeneral.whyChoose.items.map((item) => (
+            <WhyChooseCard 
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+            />
+        ))}
     </div>
 </section>
 

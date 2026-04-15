@@ -10,6 +10,7 @@ import Faqs1 from '../components/HomePage/Faqs1/Faqs1.astro'
 import CTAServices from '../components/ServicesPage/CTAServices/CTAServices.astro';
 import More from '../components/ServicesPage/More/More.astro';
 import { serviceFaqsData, serviceFaqTitlesData, servicesStaticPathsData } from '../data/generalData.js';
+import { getDictionary, getLocaleFromPath, isServiceSlug, type ServiceSlug } from '../i18n';
 
 interface FaqItem {
   question: string
@@ -24,7 +25,11 @@ export async function getStaticPaths() {
 }
 
 const { service } = Astro.params
-const { content } = Astro.props
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+const serviceParam = service ?? ''
+const serviceSlug: ServiceSlug = isServiceSlug(serviceParam) ? serviceParam : 'landing-page'
+const serviceSeo = dict.servicesPage.hero[serviceSlug]
 
 const faqKey = (service in serviceFaqsData ? service : 'landing-page') as keyof typeof serviceFaqsData
 const titleKey = (service in serviceFaqTitlesData ? service : 'landing-page') as keyof typeof serviceFaqTitlesData
@@ -35,9 +40,68 @@ const currentTitles = serviceFaqTitlesData[titleKey] ?? {
   title: 'Respuestas que necesitas',
   subtitle: 'Aclaramos las dudas más comunes sobre este servicio.',
 }
+const baseSite = Astro.site ?? new URL(Astro.url.origin)
+const homePath = '/'
+const servicesPath = '/services'
+const servicePath = Astro.url.pathname
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: serviceSeo.title,
+  description: serviceSeo.description,
+  serviceType: serviceSeo.badge,
+  provider: {
+    "@type": "Organization",
+    name: dict.brand.name,
+    url: baseSite.toString(),
+  },
+  url: Astro.url.toString(),
+  inLanguage: locale,
+}
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: currentFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+}
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: dict.header.nav.home,
+      item: new URL(homePath, baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: dict.header.nav.services,
+      item: new URL(servicesPath, baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: serviceSeo.title,
+      item: new URL(servicePath, baseSite).toString(),
+    },
+  ],
+}
 ---
 
-<Layout>
+<Layout seo={{ title: serviceSeo.title, description: serviceSeo.description }}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
   <Hero service={service}/>
   <CardsIntro service={service}/>
   <Intro service={service}/>

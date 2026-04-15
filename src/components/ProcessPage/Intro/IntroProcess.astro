@@ -1,26 +1,29 @@
 ---
 import { CardIntroProcess } from './CardIntroProcess.tsx';
-import { processIntroCardsData, processIntroFeaturesData } from '../../../data/generalData.js';
+import { getDictionary, getLocaleFromPath } from '../../../i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 <section class="introProcess">
     <div class="introProcess__label">
         <span class="introProcess__label-dot"></span>
-        <p>Por qué elegirnos</p>
+        <p>{dict.processPage.intro.label}</p>
     </div>
 
     <div class="introProcess__text">
-        <h2>Por qué Nuestro <span class="introProcess__gradient">Proceso Funciona</span></h2>
-        <p>Pilares fundamentales que garantizan el éxito de cada proyecto</p>
+        <h2>{dict.processPage.intro.titleStart} <span class="introProcess__gradient">{dict.processPage.intro.titleHighlight}</span></h2>
+        <p>{dict.processPage.intro.subtitle}</p>
     </div>
 
     <div class="introProcess__cards">
-        {processIntroCardsData.map((card) => (
+        {dict.processPage.intro.cards.map((card) => (
             <CardIntroProcess client:load {...card} />
         ))}
     </div>
 
     <div class="introProcess__features">
-        {processIntroFeaturesData.map((f) => (
+        {dict.processPage.intro.features.map((f) => (
             <div class="introProcess__feature">
                 <span class="introProcess__feature-icon">{f.icon}</span>
                 <span class="introProcess__feature-label">{f.label}</span>

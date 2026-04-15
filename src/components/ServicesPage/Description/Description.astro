@@ -1,14 +1,17 @@
 ﻿---
 import { DescriptionCard } from "./DescriptionCard.tsx";
-import { servicesDescriptionData } from "../../../data/generalData.js";
+import { getDictionary, getLocaleFromPath, isServiceSlug } from "../../../i18n";
 
 interface Props {
   service: string
 }
 const { service } = Astro.props
 
-const serviceKey = (service in servicesDescriptionData ? service : 'landing-page') as keyof typeof servicesDescriptionData
-const d = servicesDescriptionData[serviceKey]
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+
+const serviceKey = isServiceSlug(service) ? service : 'landing-page'
+const d = dict.servicesPage.description[serviceKey]
 ---
 
 <section class="description section-shell">

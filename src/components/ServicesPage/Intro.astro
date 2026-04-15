@@ -1,78 +1,27 @@
 ﻿---
+import { getDictionary, getLocaleFromPath, isServiceSlug, type ServiceSlug } from '../../i18n'
+
 interface Props {
   service: string
 }
 const { service } = Astro.props
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+const serviceKey: ServiceSlug = isServiceSlug(service) ? service : 'landing-page'
 
-const data: Record<string, {
-  eyebrow: string
-  heading: string
-  body: string
-  bullets: string[]
-  badge: { value: string; label: string; sub: string }
-  img: string
-  imgAlt: string
-}> = {
-  'landing-page': {
-    eyebrow: '¿Qué es una landing page?',
-    heading: 'Una página. Un objetivo. Máximos resultados.',
-    body: 'Una landing page es una página de propósito único: convertir visitantes en leads, suscriptores o clientes. A diferencia de un sitio completo, elimina distracciones y concentra toda la atención en una sola acción medible.',
-    bullets: [
-      'Sin menús ni links que distraigan al visitante',
-      'Cada sección construida para empujar hacia el CTA',
-      'Medible desde el primer día con analítica integrada',
-    ],
-    badge: { value: '3×', label: 'más conversión', sub: 'vs. homepage' },
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-    imgAlt: 'Dashboard de analítica mostrando métricas de conversión',
-  },
-  'website': {
-    eyebrow: '¿Qué es un sitio web corporativo?',
-    heading: 'Tu activo digital más importante, construido para durar.',
-    body: 'Un sitio web corporativo es la base de tu presencia digital: transmite credibilidad, presenta tu oferta con claridad y genera conversiones de forma constante con identidad visual sólida y arquitectura escalable.',
-    bullets: [
-      'CMS integrado: tu equipo edita sin tocar código',
-      'SEO técnico completo desde la primera línea',
-      'Arquitectura modular que crece con tu empresa',
-    ],
-    badge: { value: '70%', label: 'de compradores', sub: 'buscan en Google primero' },
-    img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
-    imgAlt: 'Diseño de sitio web corporativo en pantalla',
-  },
-  'ecommerce': {
-    eyebrow: '¿Qué es un e-commerce a medida?',
-    heading: 'Tu canal de ventas digital, abierto las 24 horas.',
-    body: 'Un e-commerce a medida va más allá de los templates genéricos: integra las pasarelas de pago que necesitas, gestiona tu inventario y está optimizado para que Google posicione cada ficha de producto.',
-    bullets: [
-      'Pasarelas de pago adaptadas a tu mercado',
-      'SEO por producto para atraer tráfico orgánico',
-      'Panel de administración sin curva de aprendizaje',
-    ],
-    badge: { value: '24/7', label: 'ventas activas', sub: 'sin intervención manual' },
-    img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-    imgAlt: 'Tienda online con catálogo de productos y carrito de compras',
-  },
-  'support': {
-    eyebrow: '¿Qué cubre el soporte técnico?',
-    heading: 'Tu web siempre activa. Nosotros nos encargamos.',
-    body: 'El mantenimiento web no es opcional: plugins desactualizados, backups inexistentes o código obsoleto son vectores reales de ataque. Nuestros planes cubren actualizaciones, seguridad y monitoreo continuo.',
-    bullets: [
-      'Alertas automáticas ante caídas, antes de que lo notes',
-      'Parches de seguridad aplicados en menos de 24 h',
-      'Reporte mensual con todo lo que ocurrió en tu plataforma',
-    ],
-    badge: { value: '99.9%', label: 'uptime', sub: 'garantizado por SLA' },
-    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
-    imgAlt: 'Centro de datos con servidores monitoreados',
-  },
+const imageByService: Record<ServiceSlug, string> = {
+  'landing-page': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+  website: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+  ecommerce: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
+  support: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
 }
 
-const d = data[service] ?? data['landing-page']
+const d = dict.servicesPage.intro[serviceKey]
 ---
 
 <section class="intro section-shell--compact">
   <div class="intro__img-wrap">
-    <img src={d.img} alt={d.imgAlt} loading="lazy"/>
+    <img src={imageByService[serviceKey]} alt={d.imageAlt} loading="lazy"/>
     <div class="intro__img-aura"></div>
     <div class="intro__float-badge">
       <strong class="intro__float-badge-value">{d.badge.value}</strong>

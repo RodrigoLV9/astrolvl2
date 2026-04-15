@@ -1,20 +1,101 @@
 ---
 import Header from "../components/Header/Header.astro"
 import {Footer} from "../components/Footer.tsx"
+import { getDictionary, getLocaleFromPath, SUPPORTED_LOCALES } from "../i18n"
+import { switchLocalePath } from "../lib/routes"
 import "../styles/global.css"
+
+interface SeoInput {
+  title?: string
+  description?: string
+  image?: string
+  canonicalPath?: string
+  noIndex?: boolean
+  type?: "website" | "article"
+}
+
+interface Props {
+  seo?: SeoInput
+}
+
+const { seo = {} } = Astro.props
+
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+const localeCodeMap = {
+  en: "en_US",
+  es: "es_ES",
+  pt: "pt_PT",
+} as const
+
+const defaultDescription = dict.brand.tagline
+const description = seo.description ?? defaultDescription
+const baseTitle = seo.title ?? dict.brand.name
+const fullTitle = baseTitle.includes(dict.brand.name) ? baseTitle : `${baseTitle} | ${dict.brand.name}`
+const robotsContent = seo.noIndex ? "noindex, nofollow" : "index, follow"
+const canonicalPath = seo.canonicalPath ?? Astro.url.pathname
+const siteBase = Astro.site ?? new URL(Astro.url.origin)
+const canonicalUrl = new URL(canonicalPath, siteBase).toString()
+const ogType = seo.type ?? "website"
+const ogImage = seo.image ?? "/comets.png"
+const ogImageUrl = new URL(ogImage, siteBase).toString()
+const alternateLinks = SUPPORTED_LOCALES.map((currentLocale) => ({
+  locale: currentLocale,
+  href: new URL(switchLocalePath(Astro.url.pathname, currentLocale), siteBase).toString(),
+}))
+const xDefaultHref = new URL(switchLocalePath(Astro.url.pathname, "en"), siteBase).toString()
+const orgName = dict.brand.name
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	name: orgName,
+	url: siteBase.toString(),
+	logo: new URL("/comets.png", siteBase).toString(),
+}
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: orgName,
+	url: siteBase.toString(),
+	inLanguage: locale,
+}
 ---
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/comets.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro LvL - Agencia de Desarrollo de Software</title>
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={robotsContent} />
+		<link rel="canonical" href={canonicalUrl} />
+		{alternateLinks.map((item) => (
+			<link rel="alternate" hreflang={item.locale} href={item.href} />
+		))}
+		<link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content={dict.brand.name} />
+		<meta property="og:locale" content={localeCodeMap[locale]} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageUrl} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+		<slot name="head" />
 	</head>
 	<body>
-		<Header/>
+		<Header locale={locale} dict={dict} />
 		<slot />
-		<Footer/>
+		<Footer locale={locale} dict={dict} />
 	</body>
 </html>

@@ -1,5 +1,6 @@
-﻿---
+---
 import { Faqs1Controller } from './Faqs1Controller'
+import { getDictionary, getLocaleFromPath } from '../../../i18n'
 
 interface FaqItem {
   question: string
@@ -13,42 +14,16 @@ interface Props {
   subtitle?: string
 }
 
-const defaultFaqs: FaqItem[] = [
-  {
-    question: '¿Cuánto cuesta desarrollar un proyecto web?',
-    answer: 'Cada proyecto es distinto, por lo que no manejamos tarifas fijas. Luego de una llamada breve para entender tu objetivo, te entregamos un presupuesto claro y detallado sin compromiso. El costo varía según el tipo de solución, el alcance y los plazos requeridos.',
-  },
-  {
-    question: '¿Con qué tecnologías trabajan?',
-    answer: 'Usamos tecnologías modernas y probadas según las necesidades de cada proyecto: Astro, Next.js o React para frontend; Node.js con PostgreSQL o MongoDB para backend; y Shopify para e-commerce cuando es la mejor opción. Elegimos la herramienta correcta para cada caso, no la de moda.',
-  },
-  {
-    question: '¿Trabajan con clientes de cualquier país?',
-    answer: 'Sí, trabajamos de forma completamente remota con clientes en toda América Latina, España y Estados Unidos. Nos adaptamos a distintos husos horarios y organizamos las reuniones para que la distancia no sea un obstáculo.',
-  },
-  {
-    question: '¿Ofrecen diseño, desarrollo o los dos?',
-    answer: 'Ofrecemos ambos. Nos encargamos del diseño UI/UX, la arquitectura técnica y el desarrollo completo. También podemos trabajar solo en desarrollo si ya tienes un diseño aprobado, o solo en diseño si cuentas con tu propio equipo técnico.',
-  },
-  {
-    question: '¿Cómo protegen la confidencialidad de mi proyecto?',
-    answer: 'Firmamos un acuerdo de confidencialidad (NDA) antes de iniciar cualquier conversación técnica. El código, los datos y los documentos del proyecto son propiedad exclusiva del cliente. Nunca compartimos ni reutilizamos trabajo de terceros.',
-  },
-  {
-    question: '¿En qué se diferencian de otras agencias o freelancers?',
-    answer: 'Nos enfocamos en resultados de negocio, no solo en entregables. Trabajamos con equipos pequeños y especializados: sin intermediarios, sin plantillas genéricas y sin sorpresas económicas. Cada decisión técnica y visual responde a tu objetivo, no a un proceso estandarizado.',
-  },
-  {
-    question: '¿Cómo inicio el proceso para trabajar con ustedes?',
-    answer: 'El primer paso es una llamada de 20 a 30 minutos sin costo donde escuchamos tu proyecto y evaluamos si somos el equipo adecuado. Desde ahí definimos el alcance, te enviamos una propuesta detallada y acordamos los pasos siguientes. Puedes contactarnos directamente desde la sección de contacto.',
-  },
-]
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+
+const defaultFaqs: FaqItem[] = dict.home.faqs.items
 
 const {
   faqs = defaultFaqs,
-  eyebrow = 'Preguntas Frecuentes',
-  title = 'Respuestas que necesitas',
-  subtitle = 'Aclaramos las dudas más comunes antes de que las tengas. Si algo no está aquí, estamos a un mensaje de distancia.',
+  eyebrow = dict.home.faqs.eyebrow,
+  title = dict.home.faqs.title,
+  subtitle = dict.home.faqs.subtitle,
 } = Astro.props
 ---
 

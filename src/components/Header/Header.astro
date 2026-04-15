@@ -2,27 +2,36 @@
 import MainLogo from './MainLogo.astro';
 import {LanguageButton} from './LanguageButton.tsx';
 import {SelectServices} from './SelectServices.tsx'
+import type { I18nDictionary, Locale } from '../../i18n';
+import { localizedPage } from '../../lib/routes';
+
+interface Props {
+    locale: Locale;
+    dict: I18nDictionary;
+}
+
+const { locale, dict } = Astro.props;
 ---
 
 <header class="header">
-    <MainLogo/>
+    <MainLogo locale={locale} brandName={dict.brand.name} />
     <nav class="header-nav" id="header-nav">
         <ul class="header-nav__list">
-            <li><a href="/home">Home</a></li>
-            <SelectServices client:load/>
-            <li><a href="/process">Process</a></li>
-            <li><a href="/blogs">Blogs</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href={localizedPage(locale, 'home')}>{dict.header.nav.home}</a></li>
+            <SelectServices client:load locale={locale} label={dict.header.nav.services} services={dict.footer.services} />
+            <li><a href={localizedPage(locale, 'process')}>{dict.header.nav.process}</a></li>
+            <li><a href={localizedPage(locale, 'blogs')}>{dict.header.nav.blogs}</a></li>
+            <li><a href={localizedPage(locale, 'contact')}>{dict.header.nav.contact}</a></li>
         </ul>
         <div class="header-nav__lang">
-            <LanguageButton client:load />
+            <LanguageButton client:load locale={locale} dict={dict} />
         </div>
     </nav>
     <div class="header-actions">
         <div class="header-actions__lang">
-            <LanguageButton client:load />
+            <LanguageButton client:load locale={locale} dict={dict} />
         </div>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <button class="hamburger" id="hamburger" aria-label={dict.header.aria.toggleMenu} aria-expanded="false">
             <span class="hamburger__line"></span>
             <span class="hamburger__line"></span>
             <span class="hamburger__line"></span>

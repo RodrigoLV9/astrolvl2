@@ -16,9 +16,10 @@ interface MoreCardProps {
   description: string
   href: string
   tag: string
+  ctaLabel: string
 }
 
-export const MoreCard: React.FC<MoreCardProps> = ({ slug, title, description, href, tag }) => {
+export const MoreCard: React.FC<MoreCardProps> = ({ slug, title, description, href, tag, ctaLabel }) => {
   return (
     <a href={href} className='moreCard'>
       <div className='moreCard__icon-wrap'>
@@ -30,7 +31,7 @@ export const MoreCard: React.FC<MoreCardProps> = ({ slug, title, description, hr
         <p>{description}</p>
       </div>
       <div className='moreCard__footer'>
-        <span>Ver servicio</span>
+        <span>{ctaLabel}</span>
         <IconArrow className='moreCard__arrow' />
       </div>
     </a>

@@ -1,0 +1,266 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { SUPPORTED_LOCALES, getDictionary, type Locale } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const blogs = await getCollection("blog");
+
+  return SUPPORTED_LOCALES.flatMap((lang) =>
+    blogs
+      .filter((blog) => blog.id.startsWith(`${lang}/`))
+      .map((blog) => ({
+        params: { lang, slug: blog.id.replace(`${lang}/`, '').replace(/\.(md|mdx)$/i, '') },
+        props: { blog, locale: lang },
+      }))
+  );
+}
+
+const { blog, locale } = Astro.props as {
+  blog: CollectionEntry<"blog">;
+  locale: Locale;
+};
+const { Content } = await blog.render();
+const dict = getDictionary(locale);
+
+const coverImage = blog.data.coverImage?.src ?? blog.data.image?.src ?? "/src/assets/images/blog/img-blog-1-main.jpg";
+const coverAlt = blog.data.coverAlt ?? blog.data.title;
+const tags: string[] = blog.data.tags?.length ? blog.data.tags : ["General"];
+const readingTimeLabel = blog.data.readingTime ?? "N/A";
+const baseSite = Astro.site ?? new URL(Astro.url.origin);
+const coverImageUrl = new URL(coverImage, baseSite).toString();
+const brandName = dict.brand.name;
+const homePath = locale === 'en' ? '/' : `/${locale}`;
+const blogsPath = locale === 'en' ? '/blogs' : `/${locale}/blogs`;
+const dateLabel = new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : locale === 'pt' ? 'pt-PT' : 'es-ES', {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+}).format(blog.data.pubDate);
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: blog.data.title,
+  description: blog.data.description,
+  datePublished: blog.data.pubDate.toISOString(),
+  dateModified: blog.data.pubDate.toISOString(),
+  image: [coverImageUrl],
+  inLanguage: locale,
+  mainEntityOfPage: Astro.url.toString(),
+  author: {
+    "@type": "Organization",
+    name: brandName,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: brandName,
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/comets.png", baseSite).toString(),
+    },
+  },
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: dict.header.nav.home,
+      item: new URL(homePath, baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: dict.header.nav.blogs,
+      item: new URL(blogsPath, baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: blog.data.title,
+      item: Astro.url.toString(),
+    },
+  ],
+};
+---
+
+<Layout
+  seo={{
+    title: blog.data.title,
+    description: blog.data.description,
+    image: coverImage,
+    type: "article",
+  }}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+  <article class="blogPost">
+    <header class="blogPost__header">
+      <span class="blogPost__eyebrow">{dict.blog.eyebrow}</span>
+      <h1>{blog.data.title}</h1>
+      <p>{blog.data.description}</p>
+      <div class="blogPost__meta">
+        <time datetime={blog.data.pubDate.toISOString()}>{dateLabel}</time>
+        <span>•</span>
+        <span>{readingTimeLabel} {dict.blog.readTimeSuffix}</span>
+      </div>
+      <div class="blogPost__tags" aria-label={dict.blog.mostReadTitle}>
+        {tags.map((tag) => (
+          <span class="blogPost__tag">{tag}</span>
+        ))}
+      </div>
+    </header>
+
+    <figure class="blogPost__cover">
+      <img src={coverImage} alt={coverAlt} loading="eager" />
+    </figure>
+
+    <section class="blogPost__content">
+      <Content />
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .blogPost {
+    width: min(92%, 900px);
+    margin: 110px auto 90px;
+    display: grid;
+    gap: 26px;
+  }
+
+  .blogPost__header {
+    display: grid;
+    gap: 12px;
+  }
+
+  .blogPost__eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clr-primary-dull);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    background: var(--clr-primary-a10);
+    padding: 4px 14px;
+    border-radius: var(--rad-pill);
+  }
+
+  .blogPost__header h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+    line-height: 1.2;
+    color: var(--txt-light);
+  }
+
+  .blogPost__header p {
+    margin: 0;
+    color: var(--txt-secondary);
+    line-height: 1.7;
+    font-size: var(--text-base);
+  }
+
+  .blogPost__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--txt-muted);
+    font-size: var(--text-sm);
+  }
+
+  .blogPost__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .blogPost__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: var(--rad-pill);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--txt-primary);
+    background: rgba(99, 102, 241, 0.14);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+  }
+
+  .blogPost__cover {
+    margin: 0;
+    border-radius: var(--rad-md);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .blogPost__cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .blogPost__content {
+    color: var(--txt-secondary);
+    display: grid;
+    gap: 16px;
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  .blogPost__content :global(h2),
+  .blogPost__content :global(h3) {
+    color: var(--txt-light);
+    line-height: 1.3;
+    margin-top: 14px;
+  }
+
+  .blogPost__content :global(p) {
+    margin: 0;
+  }
+
+  .blogPost__content :global(blockquote) {
+    margin: 0;
+    padding: 14px 18px;
+    border-left: 3px solid var(--clr-primary);
+    background: rgba(99, 102, 241, 0.08);
+    border-radius: 0 var(--rad-xs) var(--rad-xs) 0;
+    color: var(--txt-primary);
+  }
+
+  .blogPost__content :global(ul),
+  .blogPost__content :global(ol) {
+    margin: 0;
+    padding-left: 22px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .blogPost__content :global(img) {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--rad-sm);
+    border: 1px solid var(--border-subtle);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 768px) {
+    .blogPost {
+      margin: 92px auto 62px;
+      gap: 20px;
+    }
+
+    .blogPost__meta {
+      flex-wrap: wrap;
+      row-gap: 6px;
+    }
+  }
+</style>

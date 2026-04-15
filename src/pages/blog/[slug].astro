@@ -4,9 +4,10 @@ import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blog");
+  const englishBlogs = blogs.filter((blog) => blog.id.startsWith('en/'));
 
-  return blogs.map((blog) => ({
-    params: { slug: blog.slug },
+  return englishBlogs.map((blog) => ({
+    params: { slug: blog.id.replace(/^en\//, '').replace(/\.(md|mdx)$/i, '') },
     props: { blog },
   }));
 }
@@ -18,14 +19,75 @@ const coverImage = blog.data.coverImage?.src ?? blog.data.image?.src ?? "/src/as
 const coverAlt = blog.data.coverAlt ?? blog.data.title;
 const tags = blog.data.tags?.length ? blog.data.tags : ["General"];
 const readingTimeLabel = blog.data.readingTime ?? "N/A";
+const baseSite = Astro.site ?? new URL(Astro.url.origin);
+const coverImageUrl = new URL(coverImage, baseSite).toString();
+const brandName = "Astro LvL";
 const dateLabel = new Intl.DateTimeFormat("es-ES", {
   day: "2-digit",
   month: "long",
   year: "numeric",
 }).format(blog.data.pubDate);
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: blog.data.title,
+  description: blog.data.description,
+  datePublished: blog.data.pubDate.toISOString(),
+  dateModified: blog.data.pubDate.toISOString(),
+  image: [coverImageUrl],
+  inLanguage: "en",
+  mainEntityOfPage: Astro.url.toString(),
+  author: {
+    "@type": "Organization",
+    name: brandName,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: brandName,
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/comets.png", baseSite).toString(),
+    },
+  },
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: new URL("/", baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blogs",
+      item: new URL("/blogs", baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: blog.data.title,
+      item: Astro.url.toString(),
+    },
+  ],
+};
 ---
 
-<Layout>
+<Layout
+  seo={{
+    title: blog.data.title,
+    description: blog.data.description,
+    image: coverImage,
+    type: "article",
+  }}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
   <article class="blogPost">
     <header class="blogPost__header">
       <span class="blogPost__eyebrow">Blog</span>

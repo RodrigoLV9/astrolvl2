@@ -6,33 +6,25 @@ type Platform = 'whatsapp' | 'email' | 'instagram'
 
 interface PlatformConfig {
   icon: React.ReactNode
-  label: string
   accentColor: string
   iconBg: string
-  buttonText: string
 }
 
 const platformConfig: Record<Platform, PlatformConfig> = {
   whatsapp: {
     icon: <FaWhatsapp />,
-    label: 'WhatsApp',
     accentColor: '#25d366',
     iconBg: 'rgba(37, 211, 102, 0.12)',
-    buttonText: 'Escribir por WhatsApp',
   },
   email: {
     icon: <FaEnvelope />,
-    label: 'Correo electrónico',
     accentColor: '#4f8ef7',
     iconBg: 'rgba(79, 142, 247, 0.12)',
-    buttonText: 'Enviar un correo',
   },
   instagram: {
     icon: <FaInstagram />,
-    label: 'Instagram',
     accentColor: '#e1306c',
     iconBg: 'rgba(225, 48, 108, 0.12)',
-    buttonText: 'Ver perfil',
   },
 }
 
@@ -40,9 +32,11 @@ interface ContactCardProps {
   platform: Platform
   value: string
   href: string
+  label: string
+  buttonText: string
 }
 
-export const ContactCard: React.FC<ContactCardProps> = ({ platform, value, href }) => {
+export const ContactCard: React.FC<ContactCardProps> = ({ platform, value, href, label, buttonText }) => {
   const config = platformConfig[platform]
 
   return (
@@ -55,7 +49,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ platform, value, href 
     >
       <div className='contactCard__icon-wrapper'>{config.icon}</div>
       <div className='contactCard__content'>
-        <span className='contactCard__label'>{config.label}</span>
+        <span className='contactCard__label'>{label}</span>
         <p className='contactCard__value'>{value}</p>
         <a
           href={href}
@@ -63,7 +57,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ platform, value, href 
           rel='noopener noreferrer'
           className='contactButton'
         >
-          <span>{config.buttonText}</span>
+          <span>{buttonText}</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='13'

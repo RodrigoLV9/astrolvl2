@@ -1,74 +1,15 @@
 ﻿---
 import { CTAServicesButton } from "./CTAServicesButton.tsx";
+import { getDictionary, getLocaleFromPath, isServiceSlug, type ServiceSlug } from '../../../i18n'
 
 interface Props {
   service: string
 }
 const { service } = Astro.props
-
-const data: Record<string, {
-  eyebrow: string
-  heading: string
-  subtitle: string
-  price: string
-  priceNote: string
-  includes: string[]
-}> = {
-  'landing-page': {
-    eyebrow: 'Inversión',
-    heading: 'Landing page profesional desde $1,200',
-    subtitle: 'Precio fijo, alcance definido, sin sorpresas. Paga en dos cuotas: 50% al inicio del proyecto y 50% en la entrega.',
-    price: '$1,200',
-    priceNote: 'Precio base — varía según integraciones y funcionalidades adicionales',
-    includes: [
-      'Diseño UI/UX de alta fidelidad',
-      'Copywriting incluido',
-      'Integraciones de marketing configuradas',
-      'Soporte 30 días post-lanzamiento',
-    ],
-  },
-  'website': {
-    eyebrow: 'Inversión',
-    heading: 'Sitio web corporativo desde $2,500',
-    subtitle: 'Precio fijo, alcance definido desde el Discovery. Sin cargos por hora ni revisiones ilimitables cobradas aparte.',
-    price: '$2,500',
-    priceNote: 'Precio base — varía según número de páginas, CMS y funcionalidades',
-    includes: [
-      'Diseño UI/UX personalizado',
-      'CMS integrado para tu equipo',
-      'SEO técnico completo',
-      'Soporte 30 días post-lanzamiento',
-    ],
-  },
-  'ecommerce': {
-    eyebrow: 'Inversión',
-    heading: 'Tienda online lista para vender desde $3,500',
-    subtitle: 'Incluye diseño, desarrollo, integraciones de pago y carga inicial del catálogo. Un solo proveedor para todo.',
-    price: '$3,500',
-    priceNote: 'Precio base — varía según pasarelas, integraciones logísticas y tamaño del catálogo',
-    includes: [
-      'Diseño UI/UX del flujo completo',
-      'Pasarelas de pago configuradas',
-      'SEO por producto incluido',
-      'Soporte 30 días post-lanzamiento',
-    ],
-  },
-  'support': {
-    eyebrow: 'Inversión',
-    heading: 'Mantenimiento mensual desde $299/mes',
-    subtitle: 'Pago mensual recurrente, sin contrato anual obligatorio. Puedes escalar o pausar el plan con 15 días de aviso.',
-    price: '$299/mes',
-    priceNote: 'Precio base plan Esencial — planes Profesional y Premium disponibles',
-    includes: [
-      'Monitoreo 24/7 incluido',
-      'Backups diarios automáticos',
-      'Actualizaciones de seguridad',
-      'Reporte mensual detallado',
-    ],
-  },
-}
-
-const d = data[service] ?? data['landing-page']
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+const serviceKey: ServiceSlug = isServiceSlug(service) ? service : 'landing-page'
+const d = dict.servicesPage.cta[serviceKey]
 ---
 
 <section class="cta-services section-shell--compact">
@@ -85,11 +26,11 @@ const d = data[service] ?? data['landing-page']
           </li>
         ))}
       </ul>
-      <CTAServicesButton service={service} client:load/>
+      <CTAServicesButton service={service} locale={locale} label={d.buttonText} client:load/>
       <span class="cta-services__note">{d.priceNote}</span>
     </div>
     <div class="cta-services__price-badge">
-      <span class="cta-services__price-label">desde</span>
+      <span class="cta-services__price-label">{d.pricePrefix}</span>
       <strong class="cta-services__price">{d.price}</strong>
     </div>
   </div>

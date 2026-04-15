@@ -1,9 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import BlogCard from "./BlogCard.astro";
+import { getDictionary, getLocaleFromPath } from "../../i18n";
+import { localizedBlogPost } from "../../lib/routes";
 
 const blogEntries = await getCollection("blog");
-const sortedBlogs = [...blogEntries].sort(
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const localizedEntries = blogEntries.filter((entry) =>
+    locale === "en" ? entry.id.startsWith("en/") : entry.id.startsWith(`${locale}/`)
+);
+const sortedBlogs = [...localizedEntries].sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
@@ -15,7 +22,7 @@ const estimateReadingTime = (content: string) => {
 };
 
 const formatDate = (date: Date) =>
-    new Intl.DateTimeFormat("es-ES", {
+    new Intl.DateTimeFormat(locale === "en" ? "en-US" : locale === "pt" ? "pt-PT" : "es-ES", {
         day: "2-digit",
         month: "short",
         year: "numeric",
@@ -25,9 +32,10 @@ const cards = sortedBlogs.map((blog) => ({
     title: blog.data.title,
     description: blog.data.description,
     image: blog.data.coverImage?.src ?? blog.data.image?.src ?? fallbackImage,
-    href: `/blog/${blog.slug}`,
+    href: localizedBlogPost(locale, blog.slug),
     readTimeText: `${estimateReadingTime(blog.body)} min`,
     dateText: formatDate(blog.data.pubDate),
+    readArticleAria: dict.blog.readArticleAria,
 }));
 ---
 <section class="latestBlogs">
@@ -39,10 +47,10 @@ const cards = sortedBlogs.map((blog) => ({
 
     <div class="latestBlogs__inner">
         <header class="latestBlogs__header">
-            <span class="latestBlogs__eyebrow">Blog</span>
-            <h2 class="latestBlogs__title">Últimos artículos</h2>
+            <span class="latestBlogs__eyebrow">{dict.blog.eyebrow}</span>
+            <h2 class="latestBlogs__title">{dict.blog.latestTitle}</h2>
             <p class="latestBlogs__subtitle">
-                Explora contenido sobre desarrollo web, diseño y las últimas tendencias en tecnología.
+                {dict.blog.latestSubtitle}
             </p>
         </header>
 

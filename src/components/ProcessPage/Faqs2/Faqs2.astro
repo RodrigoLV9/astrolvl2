@@ -1,22 +1,28 @@
 ﻿---
-import { processFaqsData } from '../../../data/generalData.js';
+import { getDictionary, getLocaleFromPath } from '../../../i18n';
+import { localizedPage } from '../../../lib/routes';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const contactHref = localizedPage(locale, 'contact');
 ---
 
 <section class="faqs2">
   <div class="faqs2__inner">
 
     <div class="faqs2__left">
-      <p class="faqs2__eyebrow">Preguntas del proceso</p>
-      <h2 class="faqs2__title">Cómo trabajamos,<br/>paso a paso</h2>
+      <p class="faqs2__eyebrow">{dict.processPage.faqs.eyebrow}</p>
+      <h2 class="faqs2__title">{dict.processPage.faqs.title}</h2>
       <p class="faqs2__subtitle">
-        Todo lo que necesitas saber sobre nuestra metodología de trabajo antes de arrancar.
-        Si algo no está aquí, escríbenos.
+        {dict.processPage.faqs.subtitleLine1}
+        {" "}
+        {dict.processPage.faqs.subtitleLine2}
       </p>
-      <a href="/contact" class="faqs2__cta">Hablar con el equipo &rarr;</a>
+      <a href={contactHref} class="faqs2__cta">{dict.processPage.faqs.cta} &rarr;</a>
     </div>
 
     <div class="faqs2__right">
-      {processFaqsData.map((faq, i) => (
+      {dict.processPage.faqs.items.map((faq, i) => (
         <div class="faq2-item">
           <div class="faq2-item__question">
             <img
@@ -29,7 +35,7 @@ import { processFaqsData } from '../../../data/generalData.js';
             <h4>{faq.question}</h4>
           </div>
           <p class="faq2-item__answer">{faq.answer}</p>
-          {i < processFaqsData.length - 1 && <div class="faq2-item__divider" />}
+          {i < dict.processPage.faqs.items.length - 1 && <div class="faq2-item__divider" />}
         </div>
       ))}
     </div>

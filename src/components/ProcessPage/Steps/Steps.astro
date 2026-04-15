@@ -1,20 +1,23 @@
 ---
 import StepCard from "./StepCard.astro";
-import { processStepsData } from '../../../data/generalData.js';
+import { getDictionary, getLocaleFromPath } from '../../../i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 
 <section class="steps">
   <div class="steps__label">
     <span class="steps__label-dot"></span>
-    <p>Paso a paso</p>
+    <p>{dict.processPage.steps.label}</p>
   </div>
   <div class="steps__heading">
-    <h2>Etapas del <span class="steps__gradient">Proceso</span></h2>
-    <p>Cada fase está diseñada para maximizar la calidad y minimizar los riesgos</p>
+    <h2>{dict.processPage.steps.titleStart} <span class="steps__gradient">{dict.processPage.steps.titleHighlight}</span></h2>
+    <p>{dict.processPage.steps.subtitle}</p>
   </div>
 
   <div class="steps__timeline">
-    {processStepsData.map((step, i) => (
+    {dict.processPage.steps.items.map((step, i) => (
       <div class={`step-row ${i % 2 !== 0 ? 'step-row--right' : ''}`}>
         <div class="step-row__card">
           <StepCard {...step} />

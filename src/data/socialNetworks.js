@@ -54,3 +54,14 @@ export const mainSocialNetworks=[
 
     },
 ]
+
+export const contactSocialsData = [
+    { platform: 'instagram', href: 'https://www.instagram.com/agenciaweb_astrolvl/' },
+    { platform: 'whatsapp', href: 'https://wa.me/5491166232246' },
+    { platform: 'twitter', href: 'https://x.com/webastrolvl' },
+    { platform: 'facebook', href: 'https://www.facebook.com/profile.php?id=61576484442808' },
+    { platform: 'linkedin', href: 'https://www.linkedin.com/in/astro-lvl-agencia-de-desarrollo-digital-b19716368/' },
+    { platform: 'youtube', href: 'https://www.youtube.com/@AstroLvLAgenciaWeb' },
+    { platform: 'tiktok', href: 'https://www.tiktok.com/@astrolvlagenciaweb' },
+    { platform: 'threads', href: 'https://www.threads.com/@agenciaweb_astrolvl' },
+]

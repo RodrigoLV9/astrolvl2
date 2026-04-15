@@ -4,9 +4,17 @@ import { FaPhoneAlt as IconPhone} from "react-icons/fa";
 import { BsFillGeoAltFill as IconGPS } from "react-icons/bs";
 import { FaArrowRight as IconArrowRight } from "react-icons/fa6";
 import '../styles/footer.css'
+import type { I18nDictionary, Locale } from '../i18n';
+import { localizedPage, localizedService } from '../lib/routes';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  locale: Locale;
+  dict: I18nDictionary;
+}
+
+export const Footer: React.FC<FooterProps> = ({ locale, dict }) => {
   const year = new Date().getFullYear();
+  const copyrightLine = dict.footer.copyright.replace('{year}', String(year));
   
   return (
     <footer className="footer">
@@ -14,34 +22,34 @@ export const Footer: React.FC = () => {
             <div className="footerTop__logo">
                 <div className="logoContainer">
                     <img src="/comets.png" alt="comets" width="40" height="40" className="logo-img" />
-                    <h2>Astro LvL</h2>
+                    <h2>{dict.brand.name}</h2>
                 </div>
                 <p>
-                  Elevamos tu presencia digital con soluciones web modernas y orientadas a resultados para potenciar tu marca en el universo digital.
+                  {dict.brand.tagline}
                 </p>
             </div>
             <div className="footerTop__cards">
-                <nav className="footerTop__card" aria-label="Navegación principal">
-                    <h3>Navegación</h3>
+                <nav className="footerTop__card" aria-label={dict.footer.navigationTitle}>
+                    <h3>{dict.footer.navigationTitle}</h3>
                     <ul>
-                        <li><a href="/home">Home<IconArrowRight className="icon-arrow"/></a></li>
-                        <li><a href="/services">Services<IconArrowRight className="icon-arrow"/></a></li>
-                        <li><a href="/process">Process<IconArrowRight className="icon-arrow"/></a></li>
-                        <li><a href="/blogs">Blogs<IconArrowRight className="icon-arrow"/></a></li>
-                        <li><a href="/contact">Contact<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedPage(locale, 'home')}>{dict.header.nav.home}<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedPage(locale, 'services')}>{dict.header.nav.services}<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedPage(locale, 'process')}>{dict.header.nav.process}<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedPage(locale, 'blogs')}>{dict.header.nav.blogs}<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedPage(locale, 'contact')}>{dict.header.nav.contact}<IconArrowRight className="icon-arrow"/></a></li>
                     </ul>
                 </nav>
                 <div className="footerTop__card">
-                    <h3>Servicios</h3>
+                    <h3>{dict.footer.servicesTitle}</h3>
                     <ul>
-                        <li><a href="/landing-page">Landing Page<IconArrowRight className="icon-arrow"/></a></li>
-                        <li><a href="/website">Web site<IconArrowRight className="icon-arrow"/></a></li>
-                        <li><a href="/ecommerce">E-commerce<IconArrowRight className="icon-arrow"/></a></li>
-                        <li><a href="/support">Support<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedService(locale, 'landing-page')}>{dict.footer.services.landingPage}<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedService(locale, 'website')}>{dict.footer.services.website}<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedService(locale, 'ecommerce')}>{dict.footer.services.ecommerce}<IconArrowRight className="icon-arrow"/></a></li>
+                        <li><a href={localizedService(locale, 'support')}>{dict.footer.services.support}<IconArrowRight className="icon-arrow"/></a></li>
                     </ul>
                 </div>
                 <div className="footerTop__card">
-                    <h3>Contacto</h3>
+                    <h3>{dict.footer.contactTitle}</h3>
                     <ul className='footerTop__card-list'>
                         <li>
                             <IconGmail/>
@@ -53,7 +61,7 @@ export const Footer: React.FC = () => {
                         </li>
                         <li>
                             <IconGPS/>
-                            <p>Buenos Aires, Argentina</p>
+                            <p>{dict.footer.location}</p>
                         </li>
                     </ul>
                 </div>
@@ -61,7 +69,7 @@ export const Footer: React.FC = () => {
             </div>
         </section>
         <div className="footerBottom">
-            <p>© {year} ASTRO LVL WEB. All rights reserved. | Diseñado con ✨ para el futuro digital</p>
+            <p>{copyrightLine} | {dict.footer.signature}</p>
         </div>
     
     </footer>

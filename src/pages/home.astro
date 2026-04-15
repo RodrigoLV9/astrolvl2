@@ -4,11 +4,46 @@ import { Hero } from '../components/HomePage/Hero/Hero.tsx';
 import Intro from '../components/HomePage/Hero/Intro.astro';
 import ServicesHome from '../components/HomePage/ServicesHome/ServicesHome.astro';
 import Faqs1 from '../components/HomePage/Faqs1/Faqs1.astro';
+import { getDictionary, getLocaleFromPath } from '../i18n';
+import { localizedPage } from '../lib/routes';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const baseSite = Astro.site ?? new URL(Astro.url.origin);
+const homePath = localizedPage(locale, 'home');
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: dict.header.nav.home,
+      item: new URL(homePath, baseSite).toString(),
+    },
+  ],
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: dict.home.faqs.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
 ---
 
 
-<Layout>
-  <Hero client:load />
+<Layout seo={{ title: dict.header.nav.home, description: dict.home.hero.subtitle }}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <Hero client:load locale={locale} text={dict.home.hero} />
   <Intro/>
   <ServicesHome/>
   <Faqs1/>

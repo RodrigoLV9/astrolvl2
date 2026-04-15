@@ -1,21 +1,26 @@
 ﻿---
 import { MoreCard } from "./MoreCard";
-import { servicesMoreData } from "../../../data/generalData.js";
+import { getDictionary, getLocaleFromPath, isServiceSlug, type ServiceSlug } from '../../../i18n';
+import { localizedService } from '../../../lib/routes';
 
 interface Props {
   service: string
 }
 const { service } = Astro.props
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const serviceKey: ServiceSlug = isServiceSlug(service) ? service : 'landing-page';
 
-const others = servicesMoreData.filter(s => s.slug !== service)
+const texts = dict.servicesPage.more;
+const others = texts.cards.filter((s) => s.slug !== serviceKey);
 ---
 
 <section class="more section-shell--compact">
   <div class="more__divider"></div>
   <div class="more__header section-header">
-    <span class="more__eyebrow section-eyebrow">Otros servicios</span>
-    <h2 class="more__heading section-heading">¿Necesitas algo <span class="more__heading-accent">diferente</span>?</h2>
-    <p class="more__subtitle section-subtitle">Cada servicio está diseñado para una necesidad específica. Si este no es el tuyo, aquí están las otras opciones.</p>
+    <span class="more__eyebrow section-eyebrow">{texts.eyebrow}</span>
+    <h2 class="more__heading section-heading">{texts.headingStart} <span class="more__heading-accent">{texts.headingHighlight}</span>{texts.headingEnd}</h2>
+    <p class="more__subtitle section-subtitle">{texts.subtitle}</p>
   </div>
   <div class="more__grid">
     {others.map(s => (
@@ -24,7 +29,8 @@ const others = servicesMoreData.filter(s => s.slug !== service)
         tag={s.tag}
         title={s.title}
         description={s.description}
-        href={`/${s.slug}`}
+        href={localizedService(locale, s.slug)}
+        ctaLabel={texts.cardCta}
         client:load
       />
     ))}

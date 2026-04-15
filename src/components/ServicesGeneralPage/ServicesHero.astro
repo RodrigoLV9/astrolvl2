@@ -1,20 +1,23 @@
 ---
+import { getDictionary, getLocaleFromPath } from '../../i18n';
+import { localizedPage } from '../../lib/routes';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 
 <section class="servicesHero">
     <div class="servicesHero__content">
         <div class="servicesHero__badge">
-            <span>🚀 Servicios Digitales</span>
+            <span>🚀 {dict.servicesGeneral.hero.badge}</span>
         </div>
-        <h1 class="servicesHero__title">Llevamos tu presencia digital al siguiente nivel</h1>
+        <h1 class="servicesHero__title">{dict.servicesGeneral.hero.title}</h1>
         <p class="servicesHero__description">
-            Diseñamos soluciones web personalizadas que convierten visitantes en clientes. 
-            Desde landing pages de alto impacto hasta tiendas online robustas, tenemos el 
-            servicio perfecto para tu negocio.
+            {dict.servicesGeneral.hero.description}
         </p>
         <div class="servicesHero__cta">
-            <a href="#services" class="servicesHero__button primary">Explorar Servicios</a>
-            <a href="#contact" class="servicesHero__button secondary">Contáctanos</a>
+            <a href="#services" class="servicesHero__button primary">{dict.servicesGeneral.hero.exploreButton}</a>
+            <a href={localizedPage(locale, 'contact')} class="servicesHero__button secondary">{dict.servicesGeneral.hero.contactButton}</a>
         </div>
     </div>
     <div class="servicesHero__decorative">

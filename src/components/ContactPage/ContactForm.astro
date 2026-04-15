@@ -1,4 +1,8 @@
 ---
 import { ContactForm as ContactFormReact } from './ContactForm.tsx'
+import { getDictionary, getLocaleFromPath } from '../../i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
-<ContactFormReact client:load />
+<ContactFormReact client:load dict={dict} />

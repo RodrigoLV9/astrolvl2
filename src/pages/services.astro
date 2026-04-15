@@ -6,9 +6,59 @@ import ServicesHero from '../components/ServicesGeneralPage/ServicesHero.astro';
 import WhyChooseUs from '../components/ServicesGeneralPage/WhyChooseUs.astro';
 import ServicesProcess from '../components/ServicesGeneralPage/ServicesProcess.astro';
 import CTA from '../components/ServicesGeneralPage/CTA.astro';
+import { getDictionary, getLocaleFromPath } from '../i18n';
+import { localizedPage, localizedService } from '../lib/routes';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const baseSite = Astro.site ?? new URL(Astro.url.origin);
+const homePath = localizedPage(locale, 'home');
+const servicesPath = localizedPage(locale, 'services');
+const servicesList = dict.servicesHome.cards.map((service, index) => ({
+  "@type": "ListItem",
+  position: index + 1,
+  name: service.title,
+  url: new URL(localizedService(locale, service.slug), baseSite).toString(),
+}));
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: dict.header.nav.home,
+      item: new URL(homePath, baseSite).toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: dict.header.nav.services,
+      item: new URL(servicesPath, baseSite).toString(),
+    },
+  ],
+};
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: dict.header.nav.services,
+  description: dict.servicesGeneral.hero.description,
+  url: Astro.url.toString(),
+  inLanguage: locale,
+};
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: servicesList,
+};
 ---
 
-<Layout>
+<Layout seo={{ title: dict.header.nav.services, description: dict.servicesGeneral.hero.description }}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionPageSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+  </Fragment>
   <ServicesHero />
   <WhyChooseUs />
   <ServicesHome />

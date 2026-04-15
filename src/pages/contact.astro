@@ -1,9 +1,38 @@
 ---
 import MainContact from '../components/ContactPage/MainContact.astro';
 import Layout from '../layouts/Layout.astro';
+import { getDictionary, getLocaleFromPath } from '../i18n';
+import { localizedPage } from '../lib/routes';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const baseSite = Astro.site ?? new URL(Astro.url.origin);
+const homePath = localizedPage(locale, 'home');
+const contactPath = localizedPage(locale, 'contact');
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: dict.header.nav.home,
+            item: new URL(homePath, baseSite).toString(),
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: dict.header.nav.contact,
+            item: new URL(contactPath, baseSite).toString(),
+        },
+    ],
+};
 ---
 
 
-<Layout>
+<Layout seo={{ title: dict.header.nav.contact, description: dict.contact.heroSubtitle }}>
+        <Fragment slot="head">
+                <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+        </Fragment>
     <MainContact/>
 </Layout>

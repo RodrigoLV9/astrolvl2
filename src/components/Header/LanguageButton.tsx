@@ -1,22 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { IoIosArrowDown as IconArrowDown } from "react-icons/io";
 import '../../styles/languageButton.css'
+import type { I18nDictionary, Locale } from '../../i18n';
+import { switchLocalePath } from '../../lib/routes';
 
 interface Language {
-  value: string;
+  value: Locale;
   label: string;
   flag: string;
 }
 
-const languages: Language[] = [
-  { value: 'spanish', label: 'Español', flag: 'ES' },
-  { value: 'english', label: 'English', flag: 'EN' },
-  { value: 'portugues', label: 'Português', flag: 'PT' }
-];
+interface LanguageButtonProps {
+  locale: Locale;
+  dict: I18nDictionary;
+}
 
-export const LanguageButton: React.FC = () => {
+export const LanguageButton: React.FC<LanguageButtonProps> = ({ locale, dict }) => {
+  const languages: Language[] = [
+    { value: 'es', label: dict.language.options.es, flag: 'ES' },
+    { value: 'en', label: dict.language.options.en, flag: 'EN' },
+    { value: 'pt', label: dict.language.options.pt, flag: 'PT' },
+  ];
+
+  const initial = languages.find((language) => language.value === locale) ?? languages[1];
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>(languages[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>(initial);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Cerrar el dropdown cuando se hace clic fuera
@@ -38,6 +46,10 @@ export const LanguageButton: React.FC = () => {
   const handleSelect = (language: Language) => {
     setSelectedLanguage(language);
     setIsOpen(false);
+
+    if (language.value !== locale) {
+      window.location.href = switchLocalePath(window.location.pathname, language.value);
+    }
   };
 
   return (
@@ -47,6 +59,7 @@ export const LanguageButton: React.FC = () => {
         onClick={handleToggle}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
+        aria-label={dict.language.current}
       >
         <span className="languageFlag">{selectedLanguage.flag}</span>
         <span className="languageLabel">{selectedLanguage.label}</span>

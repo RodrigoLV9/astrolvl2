@@ -5,7 +5,8 @@ import LandingPageIllustration from './illustrations/LandingPageIllustration.ast
 import WebsiteIllustration from './illustrations/WebsiteIllustration.astro'
 import EcommerceIllustration from './illustrations/EcommerceIllustration.astro'
 import SupportIllustration from './illustrations/SupportIllustration.astro'
-import { servicesHeroData } from '../../../data/generalData.js'
+import { getDictionary, getLocaleFromPath, isServiceSlug } from '../../../i18n'
+import { localizedPage } from '../../../lib/routes'
 
 interface Props {
   service: string
@@ -13,8 +14,11 @@ interface Props {
 
 const { service } = Astro.props
 
-const serviceKey = (service in servicesHeroData ? service : 'landing-page') as keyof typeof servicesHeroData
-const data = servicesHeroData[serviceKey]
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+
+const serviceKey = isServiceSlug(service) ? service : 'landing-page'
+const data = dict.servicesPage.hero[serviceKey]
 ---
 <section class="hero">
     <div class="heroLeft">
@@ -30,11 +34,11 @@ const data = servicesHeroData[serviceKey]
             {data.tags.map(tag => <HeroTag label={tag}/>)}
         </div>
         <div class="hero__cta-group">
-            <a href="/contact" class="hero__btn-primary">
+            <a href={localizedPage(locale, 'contact')} class="hero__btn-primary">
                 {data.primaryCTA}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
-            <a href="/process" class="hero__btn-secondary">{data.secondaryCTA}</a>
+            <a href={localizedPage(locale, 'process')} class="hero__btn-secondary">{data.secondaryCTA}</a>
         </div>
     </div>
     <div class="heroRight">

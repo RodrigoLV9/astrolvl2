@@ -1,4 +1,9 @@
 ---
+import { getDictionary, getLocaleFromPath } from '../../i18n';
+import { localizedPage } from '../../lib/routes';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 
 <section class="ctaFinal">
@@ -8,9 +13,9 @@
         <div class="ctaFinal__shape shape-3"></div>
     </div>
     <div class="ctaFinal__content">
-        <h2>¿Listo para transformar tu presencia digital?</h2>
-        <p>Déjanos ayudarte a encontrar la solución perfecta para tu negocio</p>
-        <a href="#contact" class="ctaFinal__button">Comienza tu proyecto hoy</a>
+        <h2>{dict.servicesGeneral.cta.title}</h2>
+        <p>{dict.servicesGeneral.cta.subtitle}</p>
+        <a href={localizedPage(locale, 'contact')} class="ctaFinal__button">{dict.servicesGeneral.cta.button}</a>
     </div>
 </section>
 

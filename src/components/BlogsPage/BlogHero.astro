@@ -2,9 +2,16 @@
 import { getCollection } from "astro:content";
 import { BlogCardMain } from './BlogCardMain.tsx'
 import BlogCardPopular from "./BlogCardPopular.astro"
+import { getDictionary, getLocaleFromPath } from "../../i18n";
+import { localizedBlogPost } from "../../lib/routes";
 
 const blogEntries = await getCollection("blog");
-const sortedBlogs = blogEntries
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
+const localizedEntries = blogEntries.filter((entry) =>
+    locale === "en" ? entry.id.startsWith("en/") : entry.id.startsWith(`${locale}/`)
+);
+const sortedBlogs = localizedEntries
     .map((blog, index) => ({ blog, index }))
     .sort((a, b) => {
         const popularityDiff = (b.blog.data.popularity ?? 0) - (a.blog.data.popularity ?? 0);
@@ -26,7 +33,7 @@ const estimateReadingTime = (content: string) => {
 };
 
 const formatDate = (date: Date) =>
-    new Intl.DateTimeFormat("es-ES", {
+    new Intl.DateTimeFormat(locale === "en" ? "en-US" : locale === "pt" ? "pt-PT" : "es-ES", {
         day: "2-digit",
         month: "short",
         year: "numeric",
@@ -37,9 +44,12 @@ const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
     description: entry.data.description,
     image: entry.data.coverImage?.src ?? entry.data.image?.src ?? fallbackImage,
     category: entry.data.tags[0] ?? "Blog",
-    href: `/blog/${entry.slug}`,
-    readTimeText: `${estimateReadingTime(entry.body)} min de lectura`,
+    href: localizedBlogPost(locale, entry.slug),
+    readTimeText: `${estimateReadingTime(entry.body)} ${dict.blog.readTimeSuffix}`,
     dateText: formatDate(entry.data.pubDate),
+    featuredBadge: dict.blog.featuredBadge,
+    readArticleCta: dict.blog.readArticleCta,
+    readArticleAria: dict.blog.readArticleAria,
 });
 ---
 <section class="blogHero">
@@ -57,7 +67,7 @@ const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
         <aside class="blogHero__sidebar">
             <h4 class="blogHero__sidebar-title">
                 <span class="blogHero__sidebar-dot"></span>
-                Lo más leído
+                {dict.blog.mostReadTitle}
             </h4>
             <div class="blogHero__sidebar-list">
                 {popularBlogs.map((blog) => (

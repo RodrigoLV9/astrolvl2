@@ -2,27 +2,30 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useForm, Controller, type Resolver } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
-  contactSchema,
+  createContactSchema,
   type ContactFormData,
   SERVICE_VALUES,
-  SERVICE_LABELS,
+  type ServiceLabels,
   type ServiceValue,
 } from '../../lib/validations/contactSchema'
+import type { I18nDictionary } from '../../i18n'
 import '../../styles/Contact/contactForm.css'
 
 interface ServiceSelectProps {
   value: string
   onChange: (value: string) => void
   hasError: boolean
+  placeholder: string
+  labels: ServiceLabels
 }
 
-const ServiceSelect: React.FC<ServiceSelectProps> = ({ value, onChange, hasError }) => {
+const ServiceSelect: React.FC<ServiceSelectProps> = ({ value, onChange, hasError, placeholder, labels }) => {
   const [isOpen, setIsOpen] = useState(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const optionRefs = useRef<(HTMLLIElement | null)[]>([])
 
-  const selectedLabel = value ? SERVICE_LABELS[value as ServiceValue] : null
+  const selectedLabel = value ? labels[value as ServiceValue] : null
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -82,7 +85,7 @@ const ServiceSelect: React.FC<ServiceSelectProps> = ({ value, onChange, hasError
         onKeyDown={handleTriggerKeyDown}
       >
         <span className={selectedLabel ? undefined : 'custom-select__placeholder'}>
-          {selectedLabel ?? 'Seleccione un servicio'}
+          {selectedLabel ?? placeholder}
         </span>
         <svg
           className="custom-select__chevron"
@@ -112,7 +115,7 @@ const ServiceSelect: React.FC<ServiceSelectProps> = ({ value, onChange, hasError
             onClick={() => handleSelect(val)}
             onKeyDown={e => handleOptionKeyDown(e, idx, val)}
           >
-            {SERVICE_LABELS[val]}
+            {labels[val]}
           </li>
         ))}
       </ul>
@@ -126,7 +129,7 @@ const Spinner: React.FC = () => (
 )
 
 // ── Success Card ─────────────────────────────────────────────────────────────
-const SuccessCard: React.FC<{ onReset: () => void }> = ({ onReset }) => (
+const SuccessCard: React.FC<{ onReset: () => void; formTexts: I18nDictionary['contact']['form'] }> = ({ onReset, formTexts }) => (
   <div className="success-card" role="status" aria-live="polite">
     <div className="success-card__icon-wrapper">
       <svg className="success-card__svg" viewBox="0 0 52 52" fill="none" aria-hidden="true">
@@ -134,20 +137,33 @@ const SuccessCard: React.FC<{ onReset: () => void }> = ({ onReset }) => (
         <path className="sc-check" d="M14 26l8 9 16-17" stroke="var(--clr-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     </div>
-    <h3 className="success-card__title">¡Mensaje enviado!</h3>
-    <p className="success-card__subtitle">
-      Gracias por contactarnos.<br />Te responderemos en menos de 24&nbsp;horas.
-    </p>
+    <h3 className="success-card__title">{formTexts.successTitle}</h3>
+    <p className="success-card__subtitle">{formTexts.successMessage}</p>
     <button type="button" className="success-card__reset" onClick={onReset}>
-      Enviar otro mensaje
+      {formTexts.successReset}
     </button>
   </div>
 )
 
 // ── Main Form ────────────────────────────────────────────────────────────────
-export const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  dict: I18nDictionary
+}
+
+export const ContactForm: React.FC<ContactFormProps> = ({ dict }) => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [serverError, setServerError] = useState<string | null>(null)
+  const formTexts = dict.contact.form
+
+  const serviceLabels: ServiceLabels = {
+    landing: dict.contact.services.landing,
+    ecommerce: dict.contact.services.ecommerce,
+    web: dict.contact.services.web,
+    soporte: dict.contact.services.soporte,
+    otro: dict.contact.services.otro,
+  }
+
+  const localizedSchema = createContactSchema(dict.contact.validation, serviceLabels)
 
   const honeypotRef = useRef<HTMLInputElement>(null)
 
@@ -163,7 +179,7 @@ export const ContactForm: React.FC = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema as any) as Resolver<ContactFormData>,
+    resolver: zodResolver(localizedSchema as any) as Resolver<ContactFormData>,
     defaultValues: { name: '', email: '', service: '', message: '' },
   })
 
@@ -193,7 +209,7 @@ export const ContactForm: React.FC = () => {
       if (!res.ok) {
         const payload = await res.json().catch(() => ({}))
         throw new Error(
-          payload.error ?? 'Error desconocido. Por favor, inténtelo nuevamente.',
+          payload.error ?? formTexts.unknownError,
         )
       }
 
@@ -203,14 +219,14 @@ export const ContactForm: React.FC = () => {
       setServerError(
         err instanceof Error
           ? err.message
-          : 'Error desconocido. Por favor, inténtelo nuevamente.',
+          : formTexts.unknownError,
       )
       setSubmitStatus('error')
     }
   }
 
   if (submitStatus === 'success') {
-    return <SuccessCard onReset={handleReset} />
+    return <SuccessCard onReset={handleReset} formTexts={formTexts} />
   }
 
   return (
@@ -227,11 +243,11 @@ export const ContactForm: React.FC = () => {
       />
       <div className="form-row">
         <div className="form-group">
-          <label htmlFor="cf-name">Nombre completo</label>
+          <label htmlFor="cf-name">{formTexts.nameLabel}</label>
           <input
             id="cf-name"
             type="text"
-            placeholder="Escriba su nombre"
+            placeholder={formTexts.namePlaceholder}
             autoComplete="name"
             className={errors.name ? 'has-error' : undefined}
             {...register('name')}
@@ -242,11 +258,11 @@ export const ContactForm: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="cf-email">Correo electrónico</label>
+          <label htmlFor="cf-email">{formTexts.emailLabel}</label>
           <input
             id="cf-email"
             type="email"
-            placeholder="Escriba su correo"
+            placeholder={formTexts.emailPlaceholder}
             autoComplete="email"
             className={errors.email ? 'has-error' : undefined}
             {...register('email')}
@@ -258,7 +274,7 @@ export const ContactForm: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label>Tipo de servicio</label>
+        <label>{formTexts.serviceLabel}</label>
         <Controller
           name="service"
           control={control}
@@ -267,6 +283,8 @@ export const ContactForm: React.FC = () => {
               value={field.value ?? ''}
               onChange={field.onChange}
               hasError={!!errors.service}
+              placeholder={formTexts.servicePlaceholder}
+              labels={serviceLabels}
             />
           )}
         />
@@ -276,10 +294,10 @@ export const ContactForm: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="cf-message">Mensaje</label>
+        <label htmlFor="cf-message">{formTexts.messageLabel}</label>
         <textarea
           id="cf-message"
-          placeholder="Escriba su mensaje..."
+          placeholder={formTexts.messagePlaceholder}
           rows={5}
           className={errors.message ? 'has-error' : undefined}
           {...register('message')}
@@ -297,10 +315,10 @@ export const ContactForm: React.FC = () => {
         {isSubmitting ? (
           <>
             <Spinner />
-            <span className="submit-btn__text">Enviando...</span>
+            <span className="submit-btn__text">{formTexts.submittingText}</span>
           </>
         ) : (
-          <span className="submit-btn__text">Enviar Mensaje</span>
+          <span className="submit-btn__text">{formTexts.submitText}</span>
         )}
       </button>
 

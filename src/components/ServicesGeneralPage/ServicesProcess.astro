@@ -1,51 +1,28 @@
 ---
+import { getDictionary, getLocaleFromPath } from '../../i18n';
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 
 <section class="servicesProcess">
     <div class="servicesProcess__text">
-        <h2>Nuestro proceso de trabajo</h2>
-        <p>Un enfoque estructurado pero flexible para asegurar tu éxito</p>
+        <h2>{dict.servicesGeneral.process.title}</h2>
+        <p>{dict.servicesGeneral.process.subtitle}</p>
     </div>
     <div class="servicesProcess__timeline">
-        <div class="processStep">
-            <div class="processStep__number">1</div>
-            <div class="processStep__content">
-                <h4>Consulta y Análisis</h4>
-                <p>Entendemos tus necesidades, objetivos y visión para tu proyecto.</p>
+        {dict.servicesGeneral.process.steps.map((step, index) => (
+            <div class="processStepGroup">
+                <div class="processStep">
+                    <div class="processStep__number">{index + 1}</div>
+                    <div class="processStep__content">
+                        <h4>{step.title}</h4>
+                        <p>{step.description}</p>
+                    </div>
+                </div>
+                {index < dict.servicesGeneral.process.steps.length - 1 && <div class="processStep__connector"></div>}
             </div>
-        </div>
-        <div class="processStep__connector"></div>
-        <div class="processStep">
-            <div class="processStep__number">2</div>
-            <div class="processStep__content">
-                <h4>Estrategia y Diseño</h4>
-                <p>Creamos un plan detallado y diseños visuales de alta calidad.</p>
-            </div>
-        </div>
-        <div class="processStep__connector"></div>
-        <div class="processStep">
-            <div class="processStep__number">3</div>
-            <div class="processStep__content">
-                <h4>Desarrollo</h4>
-                <p>Construimos tu sitio con tecnología moderna y mejores prácticas.</p>
-            </div>
-        </div>
-        <div class="processStep__connector"></div>
-        <div class="processStep">
-            <div class="processStep__number">4</div>
-            <div class="processStep__content">
-                <h4>Testing y QA</h4>
-                <p>Realizamos pruebas exhaustivas para garantizar calidad y seguridad.</p>
-            </div>
-        </div>
-        <div class="processStep__connector"></div>
-        <div class="processStep">
-            <div class="processStep__number">5</div>
-            <div class="processStep__content">
-                <h4>Lanzamiento y Soporte</h4>
-                <p>Desplegamos y proporcionamos soporte continuo para tu éxito.</p>
-            </div>
-        </div>
+        ))}
     </div>
 </section>
 
@@ -83,6 +60,12 @@
         position: relative;
         max-width: var(--max-w-sm);
         margin: 0 auto;
+    }
+
+    .processStepGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
     }
 
     .processStep {

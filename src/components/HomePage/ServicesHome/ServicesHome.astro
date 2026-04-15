@@ -1,21 +1,26 @@
 ---
 import ServiceCard from "./ServiceCard.astro"
-import { servicesHomeData } from "../../../data/generalData.js"
+import { getDictionary, getLocaleFromPath } from "../../../i18n";
+import { localizedService } from "../../../lib/routes";
+
+const locale = getLocaleFromPath(Astro.url.pathname);
+const dict = getDictionary(locale);
 ---
 
 <section class="servicesHome">
     <div class="servicesHome__text">
-        <h2>Nuestros servicios</h2>
-        <h3>Soluciones completas para llevar tu presencia digital al siguiente nivel</h3>
+        <h2>{dict.servicesHome.title}</h2>
+        <h3>{dict.servicesHome.subtitle}</h3>
     </div>
     <div class="servicesHome__cards">
-        {servicesHomeData.map((service) => (
+        {dict.servicesHome.cards.map((service) => (
             <ServiceCard
                 title={service.title}
                 price={service.price}
                 description={service.description}
                 tags={service.tags}
-                href={service.href}
+                href={localizedService(locale, service.slug)}
+                moreLabel={dict.servicesHome.cardMore}
             />
         ))}
     </div>

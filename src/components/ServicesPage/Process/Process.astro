@@ -1,20 +1,23 @@
 ﻿---
-import { servicesProcessData } from "../../../data/generalData.js"
+import { getDictionary, getLocaleFromPath, isServiceSlug } from "../../../i18n"
 
 interface Props {
   service: string
 }
 const { service } = Astro.props
 
-const serviceKey = (service in servicesProcessData ? service : 'landing-page') as keyof typeof servicesProcessData
-const d = servicesProcessData[serviceKey]
+const locale = getLocaleFromPath(Astro.url.pathname)
+const dict = getDictionary(locale)
+
+const serviceKey = isServiceSlug(service) ? service : 'landing-page'
+const d = dict.servicesPage.process[serviceKey]
 ---
 
 <section class="process" id="process-section">
   <div class="process__inner section-shell--compact">
 
     <div class="process__header section-header">
-      <span class="process__eyebrow section-eyebrow">Proceso</span>
+      <span class="process__eyebrow section-eyebrow">{d.eyebrow}</span>
       <h2 class="process__heading section-heading">{d.heading}</h2>
       <p class="process__subtitle section-subtitle">{d.subtitle}</p>
     </div>

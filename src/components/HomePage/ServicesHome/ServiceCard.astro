@@ -7,9 +7,10 @@ type ServiceCardProps = {
   description: string;
   tags: string[];
   href: string;
+  moreLabel: string;
 };
 
-const { title, price, description, tags, href } = Astro.props as ServiceCardProps;
+const { title, price, description, tags, href, moreLabel } = Astro.props as ServiceCardProps;
 ---
 <div class="servicesCard">
         <div class="servicesCard__header">
@@ -22,7 +23,7 @@ const { title, price, description, tags, href } = Astro.props as ServiceCardProp
             <CardTag text={tag} />
           ))}
         </div>
-        <a href={href} class="servicesCard__more">Ver más →</a>
+        <a href={href} class="servicesCard__more">{moreLabel} →</a>
 </div>
 <style>
   .servicesCard{

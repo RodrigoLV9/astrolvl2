@@ -7,11 +7,12 @@ interface Props {
     href: string;
     readTimeText: string;
     dateText: string;
+    readArticleAria: string;
 }
 
-const { title, image, href, readTimeText, dateText } = Astro.props as Props;
+const { title, image, href, readTimeText, dateText, readArticleAria } = Astro.props as Props;
 ---
-<a class="blogCardPopular" href={href} aria-label={`Ir al blog: ${title}`}>
+<a class="blogCardPopular" href={href} aria-label={`${readArticleAria}: ${title}`}>
     <div class="blogCardPopular__media">
         <img src={image} alt={title} loading="lazy" />
     </div>
