@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 
 const rawSite = process.env.PUBLIC_SITE_URL ?? process.env.SITE_URL ?? 'http://localhost:4321';
@@ -14,10 +14,7 @@ if (process.env.NODE_ENV === 'production' && !process.env.PUBLIC_SITE_URL && !pr
 // https://astro.build/config
 export default defineConfig({
   site,
-  // Astro 5: static by default. Endpoints with `export const prerender = false`
-  // are rendered on-demand. The adapter handles those requests.
-  // Swap for your deploy platform: @astrojs/vercel, @astrojs/netlify, etc.
-  output: 'static',
-  adapter: node({ mode: 'standalone' }),
+  // Use the Vercel adapter for API routes and on-demand rendering on Vercel.
+  adapter: vercel(),
   integrations: [react(), sitemap()],
 });
