@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
+import fallbackBlogImage from "../../assets/images/blog/img-blog-1-main.jpg";
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blog");
@@ -15,12 +17,13 @@ export async function getStaticPaths() {
 const { blog } = Astro.props;
 const { Content } = await blog.render();
 
-const coverImage = blog.data.coverImage?.src ?? blog.data.image?.src ?? "/src/assets/images/blog/img-blog-1-main.jpg";
+const coverImage = blog.data.coverImage ?? blog.data.image ?? fallbackBlogImage;
+const coverImageSrc = coverImage.src;
 const coverAlt = blog.data.coverAlt ?? blog.data.title;
 const tags = blog.data.tags?.length ? blog.data.tags : ["General"];
 const readingTimeLabel = blog.data.readingTime ?? "N/A";
 const baseSite = Astro.site ?? new URL(Astro.url.origin);
-const coverImageUrl = new URL(coverImage, baseSite).toString();
+const coverImageUrl = new URL(coverImageSrc, baseSite).toString();
 const brandName = "Astro LvL";
 const dateLabel = new Intl.DateTimeFormat("es-ES", {
   day: "2-digit",
@@ -80,7 +83,7 @@ const breadcrumbSchema = {
   seo={{
     title: blog.data.title,
     description: blog.data.description,
-    image: coverImage,
+    image: coverImageSrc,
     type: "article",
   }}
 >
@@ -106,7 +109,15 @@ const breadcrumbSchema = {
     </header>
 
     <figure class="blogPost__cover">
-      <img src={coverImage} alt={coverAlt} loading="eager" />
+      <Image
+        src={coverImage}
+        alt={coverAlt}
+        loading="eager"
+        widths={[800, 1200, 1600]}
+        sizes="(max-width: 900px) 92vw, 900px"
+        quality={82}
+        format="webp"
+      />
     </figure>
 
     <section class="blogPost__content">

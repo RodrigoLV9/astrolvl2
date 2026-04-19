@@ -4,6 +4,7 @@ import { BlogCardMain } from './BlogCardMain.tsx'
 import BlogCardPopular from "./BlogCardPopular.astro"
 import { getDictionary, getLocaleFromPath } from "../../i18n";
 import { localizedBlogPost } from "../../lib/routes";
+import fallbackBlogImage from "../../assets/images/blog/img-blog-1-main.jpg";
 
 const blogEntries = await getCollection("blog");
 const locale = getLocaleFromPath(Astro.url.pathname);
@@ -25,7 +26,7 @@ const sortedBlogs = localizedEntries
 const featuredBlog = sortedBlogs[0];
 const popularBlogs = sortedBlogs.slice(1, 4);
 
-const fallbackImage = "/src/assets/images/blog/img-blog-1-main.jpg";
+const fallbackImage = fallbackBlogImage.src;
 
 const estimateReadingTime = (content: string) => {
     const words = content.trim().split(/\s+/).length;
@@ -39,12 +40,15 @@ const formatDate = (date: Date) =>
         year: "numeric",
     }).format(date);
 
+const getPostSlug = (entry: (typeof sortedBlogs)[number]) =>
+    entry.id.replace(/^[^/]+\//, '').replace(/\.(md|mdx)$/i, '');
+
 const getBlogCardData = (entry: (typeof sortedBlogs)[number]) => ({
     title: entry.data.title,
     description: entry.data.description,
     image: entry.data.coverImage?.src ?? entry.data.image?.src ?? fallbackImage,
     category: entry.data.tags[0] ?? "Blog",
-    href: localizedBlogPost(locale, entry.slug),
+    href: localizedBlogPost(locale, getPostSlug(entry)),
     readTimeText: `${estimateReadingTime(entry.body)} ${dict.blog.readTimeSuffix}`,
     dateText: formatDate(entry.data.pubDate),
     featuredBadge: dict.blog.featuredBadge,

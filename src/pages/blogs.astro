@@ -13,11 +13,13 @@ const homePath = localizedPage(locale, 'home');
 const blogsPath = localizedPage(locale, 'blogs');
 const blogs = await getCollection('blog');
 const localizedBlogs = blogs.filter((entry) => entry.id.startsWith(`${locale}/`));
+const getPostSlug = (entry: (typeof localizedBlogs)[number]) =>
+    entry.id.replace(/^[^/]+\//, '').replace(/\.(md|mdx)$/i, '');
 const itemList = localizedBlogs.map((entry, index) => ({
     "@type": "ListItem",
     position: index + 1,
     name: entry.data.title,
-    url: new URL(localizedBlogPost(locale, entry.slug), baseSite).toString(),
+    url: new URL(localizedBlogPost(locale, getPostSlug(entry)), baseSite).toString(),
 }));
 const breadcrumbSchema = {
     "@context": "https://schema.org",

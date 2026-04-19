@@ -9,6 +9,10 @@ popularity: 3
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-8-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-8-2.jpg';
+
 When companies plan to redesign their website or launch a new Ecommerce, the priorities are usually clear: a stunning design, fast integrations and optimized sales funnels. However, in the midst of these meetings, there is a critical element that is often ignored as an "extra" or something that "just affects a minority": **web accessibility**.
 
 Web accessibility is the practice of building sites that can be used by all people, regardless of their visual, auditory, motor or cognitive abilities. The great myth of the corporate world is to think that designing for accessibility is an act of pure charity. The reality is that it is a **powerful strategy of business**.
@@ -23,7 +27,7 @@ The Google "bots" or crawlers that analyze your website to decide where it will 
 
 If your website uses a clean code structure, logical headers (H1, H2, H3) and alternative texts (`alt text`) that correctly describe the images, you are making life easier for a blind user. But at the same time, you are giving Google the perfect context so that it understands what your page is about and positions you for it. above your competition. **Accessible code is the cornerstone of impeccable technical SEO.**
 
-![Structured web code combined with SEO growth graph](../../../assets/images/blog/img-blog-8-1.jpg)
+<BlogImage src={img1} alt={"Structured web code combined with SEO growth graph"} />
 
 ## Accessibility means better experience for everyone
 
@@ -41,7 +45,7 @@ Nowadays it is very easy to build a website using generic templates or drag-and-
 
 One of the most common failures in poorly built sites is the inability to perform **keyboard navigation**. People with certain motor disabilities do not use a mouse; They navigate by jumping from one link to another using the `Tab` key. If the "Add to Cart" buttons or drop-down menus of your Ecommerce are not programmed to be accessible via keyboard, you are physically preventing those customers from buying from you.
 
-![Frustrated user in front of laptop with digital cart on screen](../../../assets/images/blog/img-blog-8-2.jpg)
+<BlogImage src={img2} alt={"Frustrated user in front of laptop with digital cart on screen"} />
 
 In addition to lost sales (the dreaded **cart abandonment**), poor code exposes you to legal risks. In many countries, digital accessibility laws are becoming stricter, and companies face costly lawsuits for having platforms that discriminate against users with disabilities.
 

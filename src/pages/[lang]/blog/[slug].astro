@@ -1,8 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import Layout from "../../../layouts/Layout.astro";
 import { SUPPORTED_LOCALES, getDictionary, type Locale } from '../../../i18n';
+import fallbackBlogImage from "../../../assets/images/blog/img-blog-1-main.jpg";
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blog");
@@ -24,12 +26,13 @@ const { blog, locale } = Astro.props as {
 const { Content } = await blog.render();
 const dict = getDictionary(locale);
 
-const coverImage = blog.data.coverImage?.src ?? blog.data.image?.src ?? "/src/assets/images/blog/img-blog-1-main.jpg";
+const coverImage = blog.data.coverImage ?? blog.data.image ?? fallbackBlogImage;
+const coverImageSrc = coverImage.src;
 const coverAlt = blog.data.coverAlt ?? blog.data.title;
 const tags: string[] = blog.data.tags?.length ? blog.data.tags : ["General"];
 const readingTimeLabel = blog.data.readingTime ?? "N/A";
 const baseSite = Astro.site ?? new URL(Astro.url.origin);
-const coverImageUrl = new URL(coverImage, baseSite).toString();
+const coverImageUrl = new URL(coverImageSrc, baseSite).toString();
 const brandName = dict.brand.name;
 const homePath = locale === 'en' ? '/' : `/${locale}`;
 const blogsPath = locale === 'en' ? '/blogs' : `/${locale}/blogs`;
@@ -91,7 +94,7 @@ const breadcrumbSchema = {
   seo={{
     title: blog.data.title,
     description: blog.data.description,
-    image: coverImage,
+    image: coverImageSrc,
     type: "article",
   }}
 >
@@ -117,7 +120,15 @@ const breadcrumbSchema = {
     </header>
 
     <figure class="blogPost__cover">
-      <img src={coverImage} alt={coverAlt} loading="eager" />
+      <Image
+        src={coverImage}
+        alt={coverAlt}
+        loading="eager"
+        widths={[800, 1200, 1600]}
+        sizes="(max-width: 900px) 92vw, 900px"
+        quality={82}
+        format="webp"
+      />
     </figure>
 
     <section class="blogPost__content">

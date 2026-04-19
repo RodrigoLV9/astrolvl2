@@ -9,6 +9,10 @@ popularity: 5
 readingTime: '6 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-4-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-4-2.jpg';
+
 Imagine este cenário: sua equipe de marketing lança a campanha perfeita. Eles recebem menções nos meios de comunicação mais importantes, o tráfego dispara e milhares de potenciais clientes entram na sua plataforma ao mesmo tempo, prontos para comprar ou se cadastrar. Tudo parece um sonho, até que ocorre o pesadelo.
 
 A tela fica em branco. O sistema gera um erro 504. Sua plataforma acaba de sofrer uma das piores **interrupções de servidor**.
@@ -27,7 +31,7 @@ Para 100 usuários, isso funciona. Para 10.000, é uma bomba-relógio. Se um rec
 
 **A solução de nível empresarial:** quando o tráfego começa a aumentar, é hora de migrar para arquiteturas limpas e, em casos de alta demanda, para **microsserviços**. Isso significa dividir sua plataforma em pequenos pedaços independentes. Se o serviço de cobrança ficar sobrecarregado, o restante do aplicativo continuará funcionando perfeitamente e vendendo.
 
-![Gráfico holográfico de crescimento exponencial na mesa corporativa](../../../assets/images/blog/img-blog-4-1.jpg)
+<BlogImage src={img1} alt={"Gráfico holográfico de crescimento exponencial na mesa corporativa"} />
 
 ## 2. Bancos de dados: o verdadeiro gargalo
 
@@ -45,7 +49,7 @@ Se 50.000 usuários vêm ver a página inicial do seu software ou o catálogo pr
 
 Isso não apenas reduz drasticamente o custo de seus servidores, mas também faz com que sua plataforma carregue na velocidade da luz em qualquer lugar do mundo.
 
-![Mapa mundial com nós luminosos representando distribuição de dados](../../../assets/images/blog/img-blog-4-2.jpg)
+<BlogImage src={img2} alt={"Mapa mundial com nós luminosos representando distribuição de dados"} />
 
 ## 4. Elasticidade na nuvem: pague apenas pelo que usar
 

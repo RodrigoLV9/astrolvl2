@@ -9,6 +9,10 @@ popularity: 3
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-8-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-8-2.jpg';
+
 Cuando las empresas planifican el rediseño de su sitio web o el lanzamiento de un nuevo Ecommerce, las prioridades suelen ser claras: un diseño deslumbrante, integraciones rápidas y embudos de venta optimizados. Sin embargo, en medio de estas reuniones, hay un elemento crítico que se suele ignorar por considerarse un "extra" o algo que "solo afecta a una minoría": **la accesibilidad web**.
 
 La accesibilidad web es la práctica de construir sitios que puedan ser utilizados por todas las personas, independientemente de sus capacidades visuales, auditivas, motoras o cognitivas. El gran mito del mundo corporativo es pensar que diseñar para la accesibilidad es un acto de pura caridad. La realidad es que es una **poderosa estrategia de negocio**.
@@ -23,7 +27,7 @@ Los "bots" o rastreadores de Google que analizan tu sitio web para decidir en qu
 
 Si tu sitio web utiliza una estructura de código limpia, encabezados lógicos (H1, H2, H3) y textos alternativos (`alt text`) que describen correctamente las imágenes, le estás facilitando la vida a un usuario ciego. Pero al mismo tiempo, le estás entregando a Google el contexto perfecto para que entienda de qué trata tu página y te posicione por encima de tu competencia. **Un código accesible es el pilar de un SEO técnico impecable.**
 
-![Codigo web estructurado combinado con grafico de crecimiento SEO](../../../assets/images/blog/img-blog-8-1.jpg)
+<BlogImage src={img1} alt={"Codigo web estructurado combinado con grafico de crecimiento SEO"} />
 
 ## Accesibilidad significa mejor experiencia para todos
 
@@ -41,7 +45,7 @@ Hoy en día es muy fácil levantar un sitio web utilizando plantillas genéricas
 
 Uno de los fallos más comunes en sitios mal construidos es la imposibilidad de realizar una **navegación por teclado**. Las personas con ciertas discapacidades motoras no usan un ratón; navegan saltando de un enlace a otro usando la tecla `Tab`. Si los botones de "Añadir al carrito" o los menús desplegables de tu Ecommerce no están programados para ser accesibles mediante el teclado, estás impidiendo físicamente que esos clientes te compren.
 
-![Usuario frustrado frente a laptop con carrito digital en pantalla](../../../assets/images/blog/img-blog-8-2.jpg)
+<BlogImage src={img2} alt={"Usuario frustrado frente a laptop con carrito digital en pantalla"} />
 
 Además de la pérdida de ventas (el temido **abandono de carrito**), un código pobre te expone a riesgos legales. En muchos países, las leyes de accesibilidad digital son cada vez más estrictas, y las empresas se enfrentan a costosas demandas por tener plataformas que discriminan a usuarios con discapacidades.
 

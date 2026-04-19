@@ -1,6 +1,7 @@
 ﻿---
 import { getDictionary, getLocaleFromPath } from '../../../i18n';
 import { localizedPage } from '../../../lib/routes';
+import questionCircleIcon from '../../../assets/images/question-circle2.svg';
 
 const locale = getLocaleFromPath(Astro.url.pathname);
 const dict = getDictionary(locale);
@@ -26,7 +27,7 @@ const contactHref = localizedPage(locale, 'contact');
         <div class="faq2-item">
           <div class="faq2-item__question">
             <img
-              src="/src/assets/images/question-circle2.svg"
+              src={questionCircleIcon.src}
               alt=""
               width="18"
               height="18"

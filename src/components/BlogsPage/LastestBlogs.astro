@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BlogCard from "./BlogCard.astro";
 import { getDictionary, getLocaleFromPath } from "../../i18n";
 import { localizedBlogPost } from "../../lib/routes";
+import fallbackBlogImage from "../../assets/images/blog/img-blog-1-main.jpg";
 
 const blogEntries = await getCollection("blog");
 const locale = getLocaleFromPath(Astro.url.pathname);
@@ -14,7 +15,7 @@ const sortedBlogs = [...localizedEntries].sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const fallbackImage = "/src/assets/images/blog/img-blog-1-main.jpg";
+const fallbackImage = fallbackBlogImage.src;
 
 const estimateReadingTime = (content: string) => {
     const words = content.trim().split(/\s+/).length;
@@ -28,11 +29,14 @@ const formatDate = (date: Date) =>
         year: "numeric",
     }).format(date);
 
+const getPostSlug = (blog: (typeof sortedBlogs)[number]) =>
+    blog.id.replace(/^[^/]+\//, '').replace(/\.(md|mdx)$/i, '');
+
 const cards = sortedBlogs.map((blog) => ({
     title: blog.data.title,
     description: blog.data.description,
     image: blog.data.coverImage?.src ?? blog.data.image?.src ?? fallbackImage,
-    href: localizedBlogPost(locale, blog.slug),
+    href: localizedBlogPost(locale, getPostSlug(blog)),
     readTimeText: `${estimateReadingTime(blog.body)} min`,
     dateText: formatDate(blog.data.pubDate),
     readArticleAria: dict.blog.readArticleAria,

@@ -9,6 +9,10 @@ popularity: 5
 readingTime: '6 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-4-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-4-2.jpg';
+
 Imagine this scenario: your marketing team launches the perfect campaign. They get mentions in the most important media, traffic skyrockets and thousands of potential customers enter your platform at the same time, ready to buy or register. Everything seems like a dream, until the nightmare occurs.
 
 The screen goes blank. The system throws a 504 error. Your platform has just suffered one of the worst **server outages**.
@@ -27,7 +31,7 @@ For 100 users, this works. For 10,000, it's a ticking time bomb. If a minor feat
 
 **The business-level solution:** When traffic begins to scale, it is time to migrate towards clean architectures and, in cases of high demand, to **microservices**. This means breaking your platform into small independent pieces. If the billing service becomes overwhelmed, the rest of the application continues to work perfectly and selling.
 
-![Holographic graph of exponential growth on corporate table](../../../assets/images/blog/img-blog-4-1.jpg)
+<BlogImage src={img1} alt={"Holographic graph of exponential growth on corporate table"} />
 
 ## 2. Databases: The real bottleneck
 
@@ -45,7 +49,7 @@ If 50,000 users come to see the home page of your software or the main catalog o
 
 This not only drastically reduces the cost of your servers, but makes your platform load at lightning speed anywhere in the world.
 
-![World map with luminous nodes representing data distribution](../../../assets/images/blog/img-blog-4-2.jpg)
+<BlogImage src={img2} alt={"World map with luminous nodes representing data distribution"} />
 
 ## 4. Elasticity in the cloud: Pay only for what you use
 

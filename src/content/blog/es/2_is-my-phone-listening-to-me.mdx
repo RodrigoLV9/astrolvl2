@@ -9,6 +9,10 @@ popularity: 4
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-2-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-2-2.jpg';
+
 A todos nos ha pasado. Estás en un café charlando animadamente con un amigo sobre adoptar un cachorro y las mejores marcas de comida para perros. Te despides, sacas tu celular, abres Instagram o Facebook y ahí está: un anuncio brillante ofreciéndote un 20% de descuento en croquetas premium para cachorros. 
 
 Se te hiela la sangre por un segundo. *"Me están escuchando"*, piensas. *"Mi teléfono tiene el micrófono abierto"*.
@@ -27,7 +31,7 @@ Desde un punto de vista técnico y económico, procesar el audio continuo de mil
 
 Entonces, si no te están escuchando a escondidas, ¿cómo demonios sabían lo de las croquetas?
 
-![Icono de microfono bloqueado en smartphone representando privacidad de datos](../../../assets/images/blog/img-blog-2-1.jpg)
+<BlogImage src={img1} alt={"Icono de microfono bloqueado en smartphone representando privacidad de datos"} />
 
 ## La verdad es más sorprendente: La inteligencia predictiva
 
@@ -49,7 +53,7 @@ Los **metadatos** son los datos sobre los datos (dónde estás, con quién está
 
 El sistema unió los puntos. No escuchó tu voz; leyó las coordenadas, cruzó los historiales de búsqueda de ambos perfiles y dedujo el contexto de la reunión.
 
-![Dos smartphones conectados por flujos de datos simbolizando metadatos cruzados](../../../assets/images/blog/img-blog-2-2.jpg)
+<BlogImage src={img2} alt={"Dos smartphones conectados por flujos de datos simbolizando metadatos cruzados"} />
 
 ## Por qué tu negocio necesita entender esto
 

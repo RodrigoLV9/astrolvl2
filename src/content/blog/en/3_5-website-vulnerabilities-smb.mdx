@@ -9,6 +9,10 @@ popularity: 9
 readingTime: '6 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-3-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-3-2.jpg';
+
 There is a very dangerous belief among business owners: thinking that *"hackers only attack giant corporations or banks because that's where the money is"*. This false sense of security is exactly what cybercriminals are looking for.
 
 The reality is that modern attackers use automated programs (bots) that scan the internet 24 hours a day looking for any vulnerable websites. For them, it doesn't matter if you sell shoes locally or if you are a B2B consulting company; If your place has an open door, they will enter.
@@ -31,7 +35,7 @@ That simple “Contact Us” form can be a double-edged sword. Malicious bots lo
 
 Instead of typing "Hello, I want information," they type hidden computer commands. If your website code is not programmed to filter and sanitize these responses, the attacker could trick your server into revealing information from your database or send thousands of spam emails using your domain, causing your own commercial emails end up in your clients' *spam* folder.
 
-![Screen with digital shield blocking malicious code](../../../assets/images/blog/img-blog-3-1.jpg)
+<BlogImage src={img1} alt={"Screen with digital shield blocking malicious code"} />
 
 ## 3. Lack of SSL certificates and dubious payment gateways
 
@@ -45,7 +49,7 @@ The weakest link in cybersecurity is usually the human factor. It's alarmingly c
 
 If an employee leaves the company, or if one of the devices they log in from is infected with a virus, the entire platform is compromised. It is essential to implement strong password policies, create individual users with limited permissions (the blog writer does not have access to the store's billing, for example). example) and always require two-step verification (2FA).
 
-![Professional using laptop with two-factor authentication on smartphone](../../../assets/images/blog/img-blog-3-2.jpg)
+<BlogImage src={img2} alt={"Professional using laptop with two-factor authentication on smartphone"} />
 
 ## 5. The absence of automated backup copies (Backups)
 

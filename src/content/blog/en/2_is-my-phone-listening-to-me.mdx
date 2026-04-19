@@ -9,6 +9,10 @@ popularity: 4
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-2-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-2-2.jpg';
+
 It has happened to all of us. You're at a cafe chatting animatedly with a friend about adopting a puppy and the best dog food brands. You say goodbye, take out your cell phone, open Instagram or Facebook and there it is: a shiny ad offering you a 20% discount on premium kibble for puppies.
 
 Your blood runs cold for a second. *"They're listening to me"*, you think. *"My phone has the microphone open"*.
@@ -27,7 +31,7 @@ From a technical and economic point of view, processing the continuous audio of 
 
 So if they're not eavesdropping, how the hell did they know about the kibble?
 
-![Locked microphone icon on smartphone representing data privacy](../../../assets/images/blog/img-blog-2-1.jpg)
+<BlogImage src={img1} alt={"Locked microphone icon on smartphone representing data privacy"} />
 
 ## The truth is more surprising: Predictive intelligence
 
@@ -49,7 +53,7 @@ This is where the mathematical magic becomes truly amazing. Let's go back to the
 
 The system joined the dots. He didn't hear your voice; He read the coordinates, crossed the search histories of both profiles and deduced the context of the meeting.
 
-![Two smartphones connected by data streams symbolizing crossed metadata](../../../assets/images/blog/img-blog-2-2.jpg)
+<BlogImage src={img2} alt={"Two smartphones connected by data streams symbolizing crossed metadata"} />
 
 ## Why your business needs to understand this
 

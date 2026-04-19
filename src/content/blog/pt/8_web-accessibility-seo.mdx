@@ -9,6 +9,10 @@ popularity: 3
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-8-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-8-2.jpg';
+
 Quando as empresas planejam redesenhar seu site ou lançar um novo comércio eletrônico, as prioridades geralmente são claras: um design impressionante, integrações rápidas e funis de vendas otimizados. Porém, em meio a essas reuniões, há um elemento crítico que muitas vezes é ignorado como um “extra” ou algo que “apenas afeta uma minoria": **acessibilidade na web**.
 
 Acessibilidade na Web é a prática de construir sites que possam ser utilizados por todas as pessoas, independentemente de suas capacidades visuais, auditivas, motoras ou cognitivas. O grande mito do mundo corporativo é pensar que projetar para acessibilidade é um ato de pura caridade. A realidade é que é uma **estratégia poderosa de negócios**.
@@ -23,7 +27,7 @@ Os “bots” ou rastreadores do Google que analisam seu site para decidir onde 
 
 Se o seu site utiliza uma estrutura de código limpa, cabeçalhos lógicos (H1, H2, H3) e textos alternativos (`texto alternativo`) que descrevem corretamente as imagens, você está facilitando a vida de um usuário cego. Mas, ao mesmo tempo, você está dando ao Google o contexto perfeito para que ele entenda do que se trata a sua página e o posicione para ela. acima de sua concorrência. **Código acessível é a base de um SEO técnico impecável.**
 
-![Código web estruturado combinado com gráfico de crescimento de SEO](../../../assets/images/blog/img-blog-8-1.jpg)
+<BlogImage src={img1} alt={"Código web estruturado combinado com gráfico de crescimento de SEO"} />
 
 ## Acessibilidade significa melhor experiência para todos
 
@@ -41,7 +45,7 @@ Hoje em dia é muito fácil construir um site usando modelos genéricos ou const
 
 Uma das falhas mais comuns em sites mal construídos é a incapacidade de realizar a **navegação pelo teclado**. Pessoas com certas deficiências motoras não usam mouse; Eles navegam saltando de um link para outro usando a tecla `Tab`. Se os botões "Adicionar ao carrinho" ou menus suspensos do seu comércio eletrônico não estiverem programados para ser acessível via teclado, você está impedindo fisicamente que esses clientes comprem de você.
 
-![Usuário frustrado na frente do laptop com carrinho digital na tela](../../../assets/images/blog/img-blog-8-2.jpg)
+<BlogImage src={img2} alt={"Usuário frustrado na frente do laptop com carrinho digital na tela"} />
 
 Além da perda de vendas (o temido **abandono do carrinho**), um código inadequado expõe você a riscos legais. Em muitos países, as leis de acessibilidade digital estão a tornar-se mais rigorosas e as empresas enfrentam processos judiciais dispendiosos por terem plataformas que discriminam utilizadores com deficiência.
 

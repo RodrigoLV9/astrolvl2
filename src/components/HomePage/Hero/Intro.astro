@@ -1,6 +1,7 @@
 ---
 import { IntroTag } from "./IntroTag";
 import { getDictionary, getLocaleFromPath } from '../../../i18n';
+import introImage from '../../../assets/images/intro.webp';
 
 const locale = getLocaleFromPath(Astro.url.pathname);
 const dict = getDictionary(locale);
@@ -41,7 +42,7 @@ const dict = getDictionary(locale);
     </div>
     <div class="introRight">
         <div class="introRight__glow"></div>
-        <img src="/src/assets/images/intro.webp" alt="Intro image"/>
+        <img src={introImage.src} alt="Intro image"/>
     </div>
 </section>
 

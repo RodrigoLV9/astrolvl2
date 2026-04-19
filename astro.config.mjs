@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 
 const rawSite = process.env.PUBLIC_SITE_URL ?? process.env.SITE_URL ?? 'http://localhost:4321';
 const site = rawSite.endsWith('/') ? rawSite.slice(0, -1) : rawSite;
@@ -16,5 +17,5 @@ export default defineConfig({
   site,
   // Use the Vercel adapter for API routes and on-demand rendering on Vercel.
   adapter: vercel(),
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap(), mdx()],
 });

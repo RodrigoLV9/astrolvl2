@@ -9,6 +9,10 @@ popularity: 9
 readingTime: '6 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-3-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-3-2.jpg';
+
 Existe una creencia muy peligrosa entre los dueños de negocios: pensar que *"los hackers solo atacan a corporaciones gigantes o bancos porque ahí es donde está el dinero"*. Esta falsa sensación de seguridad es exactamente lo que los ciberdelincuentes están buscando. 
 
 La realidad es que los atacantes modernos utilizan programas automatizados (bots) que escanean internet las 24 horas del día buscando cualquier sitio web vulnerable. Para ellos, no importa si vendes zapatos a nivel local o si eres una empresa de consultoría B2B; si tu sitio tiene una puerta abierta, van a entrar. 
@@ -31,7 +35,7 @@ Ese sencillo formulario de "Contáctanos" puede ser un arma de doble filo. Los b
 
 En lugar de escribir "Hola, quiero información", escriben comandos informáticos ocultos. Si el código de tu web no está programado para filtrar y desinfectar estas respuestas, el atacante podría engañar a tu servidor para que revele información de tu base de datos o envíe miles de correos de spam usando tu dominio, lo que causará que tus propios correos comerciales terminen en la bandeja de *correo no deseado* de tus clientes.
 
-![Pantalla con escudo digital bloqueando codigo malicioso](../../../assets/images/blog/img-blog-3-1.jpg)
+<BlogImage src={img1} alt={"Pantalla con escudo digital bloqueando codigo malicioso"} />
 
 ## 3. Falta de certificados SSL y pasarelas de pago dudosas
 
@@ -45,7 +49,7 @@ El eslabón más débil de la ciberseguridad suele ser el factor humano. Es alar
 
 Si un empleado deja la empresa, o si uno de los dispositivos desde donde inician sesión está infectado con un virus, toda la plataforma queda comprometida. Es fundamental implementar políticas de contraseñas fuertes, crear usuarios individuales con permisos limitados (que el redactor del blog no tenga acceso a la facturación de la tienda, por ejemplo) y requerir siempre verificación en dos pasos (2FA).
 
-![Profesional usando laptop con autenticacion de dos factores en smartphone](../../../assets/images/blog/img-blog-3-2.jpg)
+<BlogImage src={img2} alt={"Profesional usando laptop con autenticacion de dos factores en smartphone"} />
 
 ## 5. La ausencia de copias de seguridad (Backups) automatizadas
 

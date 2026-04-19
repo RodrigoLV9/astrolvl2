@@ -9,6 +9,10 @@ popularity: 5
 readingTime: '6 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-4-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-4-2.jpg';
+
 Imagina este escenario: tu equipo de marketing lanza la campaña perfecta. Consiguen menciones en los medios más importantes, el tráfico se dispara y miles de clientes potenciales entran a tu plataforma al mismo tiempo, listos para comprar o registrarse. Todo parece un sueño, hasta que ocurre la pesadilla. 
 
 La pantalla se queda en blanco. El sistema arroja un error 504. Tu plataforma acaba de sufrir una de las peores **caídas del servidor**. 
@@ -27,7 +31,7 @@ Para 100 usuarios, esto funciona. Para 10,000, es una bomba de tiempo. Si una fu
 
 **La solución a nivel de negocio:** Cuando el tráfico empieza a escalar, es momento de migrar hacia arquitecturas limpias y, en casos de alta demanda, a **microservicios**. Esto significa dividir tu plataforma en pequeñas piezas independientes. Si el servicio de facturación se satura, el resto de la aplicación sigue funcionando perfectamente y vendiendo. 
 
-![Grafico holografico de crecimiento exponencial en mesa corporativa](../../../assets/images/blog/img-blog-4-1.jpg)
+<BlogImage src={img1} alt={"Grafico holografico de crecimiento exponencial en mesa corporativa"} />
 
 ## 2. Bases de datos: El verdadero cuello de botella
 
@@ -45,7 +49,7 @@ Si 50,000 usuarios entran a ver la página de inicio de tu software o el catálo
 
 Esto no solo reduce drásticamente el costo de tus servidores, sino que hace que tu plataforma cargue a la velocidad de la luz en cualquier parte del mundo.
 
-![Mapa mundial con nodos luminosos representando distribucion de datos](../../../assets/images/blog/img-blog-4-2.jpg)
+<BlogImage src={img2} alt={"Mapa mundial con nodos luminosos representando distribucion de datos"} />
 
 ## 4. Elasticidad en la nube: Pagar solo por lo que usas
 

@@ -9,6 +9,10 @@ popularity: 8
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-5-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-5-2.jpg';
+
 Você tem uma ideia de negócio brilhante. Uma plataforma ou aplicativo web que vai resolver um problema real e gerar renda. Imediatamente, você começa a imaginar todos os recursos: integrações complexas, perfis de usuário ultrapersonalizáveis, painéis com tecnologia de IA e design impressionante.
 
 Meses passam, talvez anos, e o produto continua em desenvolvimento. O orçamento está esgotado e a sua ideia ainda não viu a luz do dia. Este é o erro mais comum e letal na criação de produtos digitais: **a síndrome do produto perfeito**.
@@ -25,7 +29,7 @@ No ambiente de negócios B2B e digital, tempo é literalmente dinheiro. Querer l
 *   **Esgotamento do orçamento:** Desenvolver recursos complexos que ninguém usará é jogar dinheiro fora. Validar rapidamente permite que você invista seu capital apenas nos recursos que seus clientes comprovadamente valorizam.
 *   **Perda de janela de oportunidade:** O mercado de tecnologia avança a uma velocidade vertiginosa. Enquanto você passa um ano aperfeiçoando um detalhe visual, um concorrente mais ágil pode lançar uma solução mais simples e manter seus primeiros clientes.
 
-![Tablet mostrando gráfico ascendente de validação de produto](../../../assets/images/blog/img-blog-5-1.jpg)
+<BlogImage src={img1} alt={"Tablet mostrando gráfico ascendente de validação de produto"} />
 
 ## As 3 características inegociáveis ​​de um bom MVP
 
@@ -42,7 +46,7 @@ Seu MVP não precisa de animações 3D, mas requer uma experiência de usuário 
 ### 3. Capacidade de medição
 O objetivo de um MVP é aprender. Portanto, deve incluir ferramentas analíticas básicas que permitam acompanhar como os usuários interagem com a plataforma. Saber onde clicam, onde param e quais funções ignoram é o “combustível” que guiará futuras atualizações do seu software.
 
-![Monitore com código limpo próximo ao esboço da interface do usuário](../../../assets/images/blog/img-blog-5-2.jpg)
+<BlogImage src={img2} alt={"Monitore com código limpo próximo ao esboço da interface do usuário"} />
 
 ## Da ideia à tela: como fazemos acontecer
 

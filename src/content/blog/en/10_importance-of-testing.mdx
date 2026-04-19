@@ -9,6 +9,10 @@ popularity: 2
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-10-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-10-2.jpg';
+
 There is a dangerously common phrase in the corporate world when the deadline to launch a new software or website approaches: *"Let's launch it like this, if there are any errors we'll fix them as we go"*.
 
 This “test live” approach seems harmless and agile, but it hides a deadly trap for business. When a customer tries to make a purchase and the payment button doesn't respond, or when a user tries to access their account and encounters an error screen, trust is broken in seconds. An immediate **loss of sales** It quickly combines with a **reputation crisis**, where the frustrated customer not only abandons the cart, but goes straight to the competition.
@@ -21,7 +25,7 @@ In software development, there is a maxim known as the "100x Rule." This rule te
 
 Why does this geometric multiplication occur? Because a bug in production is no longer just a code problem. It becomes a business problem. It involves **expensive customer support tickets**, overtime of developers working under pressure, refunds for services not provided and, most seriously, irreparable damage to the brand image. Discovering a bug internally costs pennies; Having your client discover it trying to pay costs you thousands of dollars.
 
-![Frustrated user due to transaction failure on laptop](../../../assets/images/blog/img-blog-10-1.jpg)
+<BlogImage src={img1} alt={"Frustrated user due to transaction failure on laptop"} />
 
 ## Why do templates and cheap code always fail here?
 
@@ -37,7 +41,7 @@ To understand the business value of this, let's look at two approaches we apply:
 *   **Small component testing:** We verify in isolation that critical business rules work. For example, mathematically ensuring that if a customer applies a 20% coupon, the discount calculation is always accurate, preventing you from losing money due to incorrectly processed charges.
 *   **End-to-end simulations:** We create virtual robots that simulate exactly what your client would do. The robot enters the website, searches for a product, adds it to the cart, fills in its data and processes a simulated payment. We do this before every update to ensure **the payment gateway never fails** and the sales funnel is always armored.
 
-![Digital shield protecting gears over lines of code](../../../assets/images/blog/img-blog-10-2.jpg)
+<BlogImage src={img2} alt={"Digital shield protecting gears over lines of code"} />
 
 ### Stop putting out fires with your technology
 

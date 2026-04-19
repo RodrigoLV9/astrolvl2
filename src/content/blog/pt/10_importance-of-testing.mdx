@@ -9,6 +9,10 @@ popularity: 2
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-10-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-10-2.jpg';
+
 Existe uma frase perigosamente comum no mundo corporativo quando o prazo para lançar um novo software ou site se aproxima: *"Vamos lançar assim, se houver algum erro vamos corrigi-lo à medida que avançamos"*.
 
 Esta abordagem de “teste ao vivo” parece inofensiva e ágil, mas esconde uma armadilha mortal para os negócios. Quando um cliente tenta fazer uma compra e o botão de pagamento não responde, ou quando um usuário tenta acessar sua conta e encontra uma tela de erro, a confiança é quebrada em segundos. Uma **perda imediata de vendas** Rapidamente se combina com uma **crise de reputação**, onde o cliente frustrado não apenas abandona o carrinho, mas vai direto para a concorrência.
@@ -21,7 +25,7 @@ No desenvolvimento de software, existe uma máxima conhecida como “Regra 100x�
 
 Por que ocorre essa multiplicação geométrica? Porque um bug na produção não é mais apenas um problema de código. Torna-se um problema de negócios. Envolve **tíquetes caros de suporte ao cliente**, horas extras de desenvolvedores trabalhando sob pressão, reembolsos por serviços não prestados e, o mais grave, danos irreparáveis ​​ao imagem da marca. Descobrir um bug internamente custa centavos; Fazer com que seu cliente descubra que está tentando pagar custa milhares de dólares.
 
-![Usuário frustrado devido a falha na transação no laptop](../../../assets/images/blog/img-blog-10-1.jpg)
+<BlogImage src={img1} alt={"Usuário frustrado devido a falha na transação no laptop"} />
 
 ## Por que modelos e códigos baratos sempre falham aqui?
 
@@ -37,7 +41,7 @@ Para entender o valor comercial disso, vejamos duas abordagens que aplicamos:
 *   **Testes de componentes pequenos:** verificamos isoladamente se as regras de negócios críticas funcionam. Por exemplo, garantir matematicamente que se um cliente aplicar um cupom de 20%, o cálculo do desconto será sempre preciso, evitando que você perca dinheiro devido a cobranças processadas incorretamente.
 *   **Simulações ponta a ponta:** Criamos robôs virtuais que simulam exatamente o que seu cliente faria. O robô entra no site, busca um produto, adiciona no carrinho, preenche seus dados e processa um pagamento simulado. Fazemos isso antes de cada atualização para garantir que **o gateway de pagamento nunca falhe** e que o funil de vendas seja sempre blindado.
 
-![Escudo digital protegendo engrenagens em linhas de código](../../../assets/images/blog/img-blog-10-2.jpg)
+<BlogImage src={img2} alt={"Escudo digital protegendo engrenagens em linhas de código"} />
 
 ### Pare de apagar incêndios com sua tecnologia
 

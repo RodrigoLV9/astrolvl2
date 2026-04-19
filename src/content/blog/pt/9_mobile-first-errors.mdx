@@ -9,6 +9,10 @@ popularity: 10
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-9-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-9-2.jpg';
+
 Você provavelmente já ouviu o termo “Mobile First” até enjoar. No entanto, a grande maioria das empresas erra. Eles acreditam que adaptar um site para dispositivos móveis significa simplesmente pegar o design do desktop (para telas grandes) e reduzi-lo para caber em um telefone.
 
 Isto não é “Mobile First”; Este é um design reativo que, na prática, resulta em uma experiência de usuário frustrante. Pensar primeiro em dispositivos móveis significa **projetar a experiência desde o início para telas pequenas** e depois expandi-la para telas maiores a partir daí.
@@ -23,7 +27,7 @@ Imagine um cliente tentando acessar sua loja online enquanto viaja em transporte
 
 O resultado é uma **taxa de rejeição muito alta** (a porcentagem de usuários que saem do seu site sem interagir). No mundo móvel, os usuários não têm paciência. Se a sua página demorar mais de três segundos para exibir conteúdo útil, o visitante fechará a aba e passará para a sua concorrência. Um design verdadeiramente O Otimizado prioriza o desempenho, compactando imagens e carregando apenas os elementos estritamente necessários para a tela inicial.
 
-![Polegar tentando pressionar um pequeno botão no smartphone](../../../assets/images/blog/img-blog-9-1.jpg)
+<BlogImage src={img1} alt={"Polegar tentando pressionar um pequeno botão no smartphone"} />
 
 ## Botões impossíveis e a regra do "polegar"
 
@@ -45,7 +49,7 @@ Ninguém quer escrever um romance no celular para comprar um produto. Formulári
 *   Habilite o preenchimento automático nativo do celular.
 *   Ofereça botões de pagamento rápidos com um clique, como Apple Pay ou Google Pay, para que o usuário possa finalizar a compra usando sua impressão digital ou reconhecimento facial.
 
-![Interface de comércio eletrônico no smartphone com botão de compra destacado](../../../assets/images/blog/img-blog-9-2.jpg)
+<BlogImage src={img2} alt={"Interface de comércio eletrônico no smartphone com botão de compra destacado"} />
 
 ## Qual é a aparência de um verdadeiro design Mobile First?
 

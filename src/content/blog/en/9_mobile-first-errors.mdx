@@ -9,6 +9,10 @@ popularity: 10
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-9-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-9-2.jpg';
+
 You've probably heard the term "Mobile First" ad nauseam. However, the vast majority of companies get it wrong. They believe that adapting a website to mobile simply means taking the desktop design (for large screens) and shrinking it to fit on a phone.
 
 This is not "Mobile First"; This is a reactive design that, in practice, results in a frustrating user experience. Thinking mobile first means **designing the experience from the ground up for small screens** and then expanding it to larger screens from there.
@@ -23,7 +27,7 @@ Imagine a customer trying to access your online store while traveling on public 
 
 The result is a **very high bounce rate** (the percentage of users who leave your website without interacting). In the mobile world, users have no patience. If your page takes more than three seconds to display useful content, the visitor will close the tab and move on to your competition. A truly design Optimized prioritizes performance, compressing images and loading only the elements strictly necessary for the initial screen.
 
-![Thumb trying to press a small button on smartphone](../../../assets/images/blog/img-blog-9-1.jpg)
+<BlogImage src={img1} alt={"Thumb trying to press a small button on smartphone"} />
 
 ## Impossible buttons and the "thumb" rule
 
@@ -45,7 +49,7 @@ Nobody wants to write a novel on their cell phone to buy a product. Long forms a
 *   Enable native cell phone autocomplete.
 *   Offer quick one-click payment buttons, such as Apple Pay or Google Pay, so the user can check out using their fingerprint or facial recognition.
 
-![Ecommerce interface on smartphone with highlighted purchase button](../../../assets/images/blog/img-blog-9-2.jpg)
+<BlogImage src={img2} alt={"Ecommerce interface on smartphone with highlighted purchase button"} />
 
 ## What does a true Mobile First design look like?
 

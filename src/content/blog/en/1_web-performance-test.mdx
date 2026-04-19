@@ -9,6 +9,11 @@ popularity: 3
 readingTime: '5 min'
 ---
 
+import BlogImage from '../../../components/BlogImage.astro';
+import img1 from '../../../assets/images/blog/img-blog-1-1.jpg';
+import img2 from '../../../assets/images/blog/img-blog-1-2.jpg';
+import img3 from '../../../assets/images/blog/img-blog-1-3.jpg';
+
 You have invested budget in advertising, optimized your social networks and managed to get users to your online store. They browse your products, add items to cart, go to the checkout page and... they disappear.
 
 If this scenario sounds familiar to you, you're not alone. For B2B business owners and retailers alike, shopping cart abandonment is one of the biggest pain points in eCommerce.
@@ -28,7 +33,7 @@ Poor web architecture, heavy unoptimized images, or overloaded code make the use
 **The solution:**
 You need a store built with modern technologies that prioritize performance (such as lazy loading of images or static site generation). **A fast website not only improves the user experience, but is essential for SEO**, allowing you to rank better on Google and reduce your customer acquisition costs.
 
-![High speed digital rails representing web performance](../../../assets/images/blog/img-blog-1-1.jpg)
+<BlogImage src={img1} alt={"High speed digital rails representing web performance"} />
 
 ## 2. Lack of transparency and "Surprise Costs"
 
@@ -50,7 +55,7 @@ Furthermore, an endless payment form, where the customer has to enter redundant 
 * **Address autocomplete:** Integrate APIs that automatically suggest and complete the customer's postal address based on their zip code, saving you valuable seconds.
 * **Multiple payment options:** From corporate credit cards to digital wallets (Apple Pay, Google Pay). The fewer barriers there are between intent and transaction, the better.
 
-![Hand holding smartphone with completed checkout](../../../assets/images/blog/img-blog-1-2.jpg)
+<BlogImage src={img2} alt={"Hand holding smartphone with completed checkout"} />
 
 ## 4. Design that does not inspire security
 
@@ -61,5 +66,5 @@ In the digital world, your website is the showcase and the seller at the same ti
 **The solution:**
 The visual design must convey authority and corporate neatness. A clean, modern and structured design, supported by a robust technological infrastructure, subliminally communicates that your company is serious, stable and secure.
 
-![Shopping cart with digital security shield](../../../assets/images/blog/img-blog-1-3.jpg)
+<BlogImage src={img3} alt={"Shopping cart with digital security shield"} />
 
