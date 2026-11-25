@@ -5,4 +5,4 @@ import { getDictionary, getLocaleFromPath } from '../../i18n';
 const locale = getLocaleFromPath(Astro.url.pathname);
 const dict = getDictionary(locale);
 ---
-<ContactFormReact client:load dict={dict} />
+<ContactFormReact client:load dict={dict} locale={locale} />

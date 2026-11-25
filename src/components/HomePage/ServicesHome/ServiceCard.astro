@@ -3,7 +3,7 @@ import { CardTag } from "./CardTag";
 
 type ServiceCardProps = {
   title: string;
-  price: string;
+  price?: string;
   description: string;
   tags: string[];
   href: string;
@@ -15,7 +15,7 @@ const { title, price, description, tags, href, moreLabel } = Astro.props as Serv
 <div class="servicesCard">
         <div class="servicesCard__header">
           <h4 class="servicesCard__title">{title}</h4>
-          <h5 class="servicesCard__price">{price}</h5>
+          {price && <h5 class="servicesCard__price">{price}</h5>}
         </div>
         <p class="servicesCard__description">{description}</p>
         <div class="servicesCard__tags">

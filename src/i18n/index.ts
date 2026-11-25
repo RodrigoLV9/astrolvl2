@@ -4,7 +4,20 @@ import { pt } from "./pt";
 
 export const SUPPORTED_LOCALES = ["en", "es", "pt"] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
-export const SERVICE_SLUGS = ["landing-page", "website", "ecommerce", "support"] as const;
+export const SERVICE_SLUGS = [
+  "landing-page",
+  "website",
+  "ecommerce",
+  "support",
+  // "apps-moviles",
+  // "apps-escritorio",
+  // "saas",
+  // "api",
+  // "automatizacion-ia",
+  // "crm",
+  // "soluciones-personalizadas",
+  // "consultoria",
+] as const;
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
 export interface I18nDictionary {
@@ -33,6 +46,14 @@ export interface I18nDictionary {
       website: string;
       ecommerce: string;
       support: string;
+      // appsMoviles: string;
+      // appsEscritorio: string;
+      // saas: string;
+      // api: string;
+      // automatizacionIa: string;
+      // crm: string;
+      // solucionesPersonalizadas: string;
+      // consultoria: string;
     };
     location: string;
     copyright: string;
@@ -201,7 +222,7 @@ export interface I18nDictionary {
     cards: Array<{
       slug: ServiceSlug;
       title: string;
-      price: string;
+      price?: string;
       description: string;
       tags: string[];
     }>;
@@ -268,10 +289,10 @@ export interface I18nDictionary {
       eyebrow: string;
       heading: string;
       subtitle: string;
-      price: string;
-      priceNote: string;
+      price?: string;
+      priceNote?: string;
       includes: string[];
-      pricePrefix: string;
+      pricePrefix?: string;
       buttonText: string;
     }>;
     more: {
@@ -352,7 +373,7 @@ export function isServiceSlug(value: string): value is ServiceSlug {
 
 export function getLocaleFromPath(pathname: string): Locale {
   const [firstSegment = ""] = pathname.split("/").filter(Boolean);
-  return isLocale(firstSegment) ? firstSegment : "en";
+  return isLocale(firstSegment) ? firstSegment : "es";
 }
 
 export function getDictionary(locale: Locale): I18nDictionary {

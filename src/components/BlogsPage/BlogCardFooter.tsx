@@ -7,9 +7,10 @@ import '../../styles/Blogs/blogCardFooter.css'
 interface BlogCardFooterProps {
   readTimeText: string;
   dateText: string;
+  readCtaText: string;
 }
 
-export const BlogCardFooter: React.FC<BlogCardFooterProps> = ({ readTimeText, dateText }) => {
+export const BlogCardFooter: React.FC<BlogCardFooterProps> = ({ readTimeText, dateText, readCtaText }) => {
   return (
     <div className="blogCardFooter">
       <div className="blogCardFooter__meta">
@@ -23,7 +24,7 @@ export const BlogCardFooter: React.FC<BlogCardFooterProps> = ({ readTimeText, da
         </div>
       </div>
       <span className="blogCardFooter__cta">
-        Leer <IconArrow />
+        {readCtaText} <IconArrow />
       </span>
     </div>
   )

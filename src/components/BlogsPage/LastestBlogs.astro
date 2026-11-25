@@ -40,6 +40,7 @@ const cards = sortedBlogs.map((blog) => ({
     readTimeText: `${estimateReadingTime(blog.body)} min`,
     dateText: formatDate(blog.data.pubDate),
     readArticleAria: dict.blog.readArticleAria,
+    readArticleCta: dict.blog.readArticleCta,
 }));
 ---
 <section class="latestBlogs">

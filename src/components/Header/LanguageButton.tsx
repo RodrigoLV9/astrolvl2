@@ -22,7 +22,7 @@ export const LanguageButton: React.FC<LanguageButtonProps> = ({ locale, dict }) 
     { value: 'pt', label: dict.language.options.pt, flag: 'PT' },
   ];
 
-  const initial = languages.find((language) => language.value === locale) ?? languages[1];
+  const initial = languages.find((language) => language.value === locale) ?? languages[0];
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(initial);
   const dropdownRef = useRef<HTMLDivElement>(null);

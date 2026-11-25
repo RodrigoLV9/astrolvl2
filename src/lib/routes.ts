@@ -4,7 +4,7 @@ export const PAGE_SEGMENTS = ["home", "services", "process", "blogs", "contact"]
 export type PageSegment = (typeof PAGE_SEGMENTS)[number];
 
 export function localizedPage(locale: Locale, segment: PageSegment): string {
-  if (locale === "en" && segment === "home") {
+  if (locale === "es" && segment === "home") {
     return "/";
   }
 
@@ -21,7 +21,7 @@ export function localizedBlogPost(locale: Locale, slug: string): string {
 
 export function withLocalePrefix(locale: Locale, path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
-  if (locale === "en") {
+  if (locale === "es") {
     return normalized;
   }
 
@@ -40,11 +40,11 @@ export function switchLocalePath(currentPathname: string, nextLocale: Locale): s
   const basePath = baseSegments.join("/");
 
   if (!basePath) {
-    return nextLocale === "en" ? "/" : `/${nextLocale}`;
+    return nextLocale === "es" ? "/" : `/${nextLocale}`;
   }
 
   if (basePath === "home") {
-    return nextLocale === "en" ? "/" : `/${nextLocale}/home`;
+    return nextLocale === "es" ? "/" : `/${nextLocale}/home`;
   }
 
   return `/${nextLocale}/${basePath}`;

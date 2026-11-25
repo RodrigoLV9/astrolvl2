@@ -28,9 +28,9 @@ export const DEFAULT_CONTACT_VALIDATION_MESSAGES: ContactValidationMessages = {
   nameRequired: 'El nombre es requerido',
   nameMin: 'El nombre debe tener al menos 3 caracteres',
   emailRequired: 'El correo es requerido',
-  emailInvalid: 'Ingrese un correo electronico valido',
+  emailInvalid: 'Ingrese un correo electrónico válido',
   serviceRequired: 'Seleccione un servicio',
-  serviceInvalid: 'Seleccione un servicio valido',
+  serviceInvalid: 'Seleccione un servicio válido',
   messageRequired: 'El mensaje es requerido',
   messageMin: 'El mensaje debe tener al menos 20 caracteres',
 }

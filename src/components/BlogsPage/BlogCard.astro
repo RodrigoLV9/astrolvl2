@@ -9,6 +9,7 @@ interface Props {
     readTimeText: string;
     dateText: string;
     readArticleAria: string;
+    readArticleCta: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
     readTimeText,
     dateText,
     readArticleAria,
+    readArticleCta,
 } = Astro.props as Props;
 ---
 <article class="blogCard">
@@ -34,7 +36,7 @@ const {
         <div class="blogCard__body">
             <h3 class="blogCard__title">{title}</h3>
             <p class="blogCard__excerpt">{description}</p>
-            <BlogCardFooter readTimeText={readTimeText} dateText={dateText} />
+            <BlogCardFooter readTimeText={readTimeText} dateText={dateText} readCtaText={readArticleCta} />
         </div>
     </a>
 </article>

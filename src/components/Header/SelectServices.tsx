@@ -32,6 +32,14 @@ export const SelectServices: React.FC<SelectServicesProps> = ({ locale, label, s
         <a href={localizedService(locale, 'website')}>{services.website}</a>
         <a href={localizedService(locale, 'ecommerce')}>{services.ecommerce}</a>
         <a href={localizedService(locale, 'support')}>{services.support}</a>
+        {/* <a href={localizedService(locale, 'apps-moviles')}>{services.appsMoviles}</a> */}
+        {/* <a href={localizedService(locale, 'apps-escritorio')}>{services.appsEscritorio}</a> */}
+        {/* <a href={localizedService(locale, 'saas')}>{services.saas}</a> */}
+        {/* <a href={localizedService(locale, 'api')}>{services.api}</a> */}
+        {/* <a href={localizedService(locale, 'automatizacion-ia')}>{services.automatizacionIa}</a> */}
+        {/* <a href={localizedService(locale, 'crm')}>{services.crm}</a> */}
+        {/* <a href={localizedService(locale, 'soluciones-personalizadas')}>{services.solucionesPersonalizadas}</a> */}
+        {/* <a href={localizedService(locale, 'consultoria')}>{services.consultoria}</a> */}
         </div>
     </li>
   )

@@ -27,12 +27,14 @@ const d = dict.servicesPage.cta[serviceKey]
         ))}
       </ul>
       <CTAServicesButton service={service} locale={locale} label={d.buttonText} client:load/>
-      <span class="cta-services__note">{d.priceNote}</span>
+      {d.priceNote && <span class="cta-services__note">{d.priceNote}</span>}
     </div>
-    <div class="cta-services__price-badge">
-      <span class="cta-services__price-label">{d.pricePrefix}</span>
-      <strong class="cta-services__price">{d.price}</strong>
-    </div>
+    {d.price && (
+      <div class="cta-services__price-badge">
+        <span class="cta-services__price-label">{d.pricePrefix}</span>
+        <strong class="cta-services__price">{d.price}</strong>
+      </div>
+    )}
   </div>
 </section>
 

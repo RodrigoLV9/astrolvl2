@@ -2,9 +2,27 @@ import type { APIRoute } from 'astro'
 import { Resend } from 'resend'
 import { z } from 'zod'
 import { contactSchema, SERVICE_LABELS, type ServiceValue } from '../../lib/validations/contactSchema'
+import { SUPPORTED_LOCALES, type Locale } from '../../i18n'
 
 // This endpoint must run on the server — never prerender it.
 export const prerender = false
+
+// ── Routing by language ──────────────────────────────────────────────────────
+// ES and PT share the main mailbox; EN uses the English-only mailbox.
+const CONTACT_CONFIG: Record<Locale, { apiKey: string; to: string[] }> = {
+  es: {
+    apiKey: import.meta.env.RESEND_API_KEY_ES,
+    to: [import.meta.env.CONTACT_EMAIL_ES ?? 'astrolvl.dev@gmail.com'],
+  },
+  en: {
+    apiKey: import.meta.env.RESEND_API_KEY_EN,
+    to: [import.meta.env.CONTACT_EMAIL_EN ?? 'astrolvlen.dev@gmail.com'],
+  },
+  pt: {
+    apiKey: import.meta.env.RESEND_API_KEY_ES,
+    to: [import.meta.env.CONTACT_EMAIL_ES ?? 'astrolvl.dev@gmail.com'],
+  },
+}
 
 // ── Sanitise user input before embedding in HTML email ──────────────────────
 function escapeHtml(str: string): string {
@@ -95,15 +113,27 @@ export const POST: APIRoute = async ({ request }) => {
   const { name, email, service, message } = parsed.data
   const serviceLabel = SERVICE_LABELS[service as ServiceValue]
 
-  // 3. Send via Resend
+  // 4. Resolve language (server-side validation, never trust the client)
+  const locale = z.enum(SUPPORTED_LOCALES).catch('es').parse(body.locale)
+  const config = CONTACT_CONFIG[locale]
+
+  if (!config.apiKey) {
+    console.error(`[api/send-email] Missing Resend API key for locale "${locale}"`)
+    return Response.json(
+      { error: 'No se pudo enviar el correo. Por favor, inténtelo nuevamente.' },
+      { status: 500 },
+    )
+  }
+
+  // 5. Send via Resend
   // Instantiate per-request so the env variable is always fresh.
-  const resend = new Resend(import.meta.env.RESEND_API_KEY)
+  const resend = new Resend(config.apiKey)
 
   const { error } = await resend.emails.send({
     // Once you verify a domain in Resend, replace this with your own address:
     // from: 'Formulario Web <noreply@yourdomain.com>'
     from: 'Formulario Web <onboarding@resend.dev>',
-    to: ['astrolvl.dev@gmail.com'],
+    to: config.to,
     replyTo: email,
     subject: `[Contacto] ${escapeHtml(name)} — ${serviceLabel}`,
     html: buildEmailHtml({ name, email, serviceLabel, message }),

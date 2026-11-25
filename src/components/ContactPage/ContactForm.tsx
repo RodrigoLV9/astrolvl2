@@ -8,7 +8,7 @@ import {
   type ServiceLabels,
   type ServiceValue,
 } from '../../lib/validations/contactSchema'
-import type { I18nDictionary } from '../../i18n'
+import type { I18nDictionary, Locale } from '../../i18n'
 import '../../styles/Contact/contactForm.css'
 
 interface ServiceSelectProps {
@@ -148,9 +148,10 @@ const SuccessCard: React.FC<{ onReset: () => void; formTexts: I18nDictionary['co
 // ── Main Form ────────────────────────────────────────────────────────────────
 interface ContactFormProps {
   dict: I18nDictionary
+  locale: Locale
 }
 
-export const ContactForm: React.FC<ContactFormProps> = ({ dict }) => {
+export const ContactForm: React.FC<ContactFormProps> = ({ dict, locale }) => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [serverError, setServerError] = useState<string | null>(null)
   const formTexts = dict.contact.form
@@ -203,7 +204,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ dict }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Include honeypot value — server will reject if filled (bot detected)
-        body: JSON.stringify({ ...data, _hp: honeypotRef.current?.value ?? '' }),
+        body: JSON.stringify({ ...data, locale, _hp: honeypotRef.current?.value ?? '' }),
       })
 
       if (!res.ok) {

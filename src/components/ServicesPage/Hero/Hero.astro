@@ -46,6 +46,7 @@ const data = dict.servicesPage.hero[serviceKey]
         {service === 'website' && <WebsiteIllustration/>}
         {service === 'ecommerce' && <EcommerceIllustration/>}
         {service === 'support' && <SupportIllustration/>}
+        {(service !== 'landing-page' && service !== 'website' && service !== 'ecommerce' && service !== 'support') && <LandingPageIllustration/>}
     </div>
     <CarouselHero/>
 </section>

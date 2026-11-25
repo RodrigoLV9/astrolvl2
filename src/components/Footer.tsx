@@ -46,6 +46,14 @@ export const Footer: React.FC<FooterProps> = ({ locale, dict }) => {
                         <li><a href={localizedService(locale, 'website')}>{dict.footer.services.website}<IconArrowRight className="icon-arrow"/></a></li>
                         <li><a href={localizedService(locale, 'ecommerce')}>{dict.footer.services.ecommerce}<IconArrowRight className="icon-arrow"/></a></li>
                         <li><a href={localizedService(locale, 'support')}>{dict.footer.services.support}<IconArrowRight className="icon-arrow"/></a></li>
+                        {/* <li><a href={localizedService(locale, 'apps-moviles')}>{dict.footer.services.appsMoviles}<IconArrowRight className="icon-arrow"/></a></li> */}
+                        {/* <li><a href={localizedService(locale, 'apps-escritorio')}>{dict.footer.services.appsEscritorio}<IconArrowRight className="icon-arrow"/></a></li> */}
+                        {/* <li><a href={localizedService(locale, 'saas')}>{dict.footer.services.saas}<IconArrowRight className="icon-arrow"/></a></li> */}
+                        {/* <li><a href={localizedService(locale, 'api')}>{dict.footer.services.api}<IconArrowRight className="icon-arrow"/></a></li> */}
+                        {/* <li><a href={localizedService(locale, 'automatizacion-ia')}>{dict.footer.services.automatizacionIa}<IconArrowRight className="icon-arrow"/></a></li> */}
+                        {/* <li><a href={localizedService(locale, 'crm')}>{dict.footer.services.crm}<IconArrowRight className="icon-arrow"/></a></li> */}
+                        {/* <li><a href={localizedService(locale, 'soluciones-personalizadas')}>{dict.footer.services.solucionesPersonalizadas}<IconArrowRight className="icon-arrow"/></a></li> */}
+                        {/* <li><a href={localizedService(locale, 'consultoria')}>{dict.footer.services.consultoria}<IconArrowRight className="icon-arrow"/></a></li> */}
                     </ul>
                 </div>
                 <div className="footerTop__card">
